@@ -26,28 +26,111 @@
     <h1>Welcome to CDNProjections!</h1>
     <p>This is my first true (actually coded) website, so please be patient!</p>
     <hr>
-    <h2>Projection Overviews:</h2>
 </body>
 </html>
 
-<div class="province-box">
-  <h2 class="province-title">Alberta</h2>
-  <!-- Party Row 1 -->
-  <div class="party-row">
-    <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-    <div class="bars">
-      <div class="seat-bar" title="Seats: 57"></div>
-      <div class="vote-bar" title="Vote Share: 54.53%"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Province Projections</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .province-box {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      width: 30%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .province-title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .party-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .party-logo {
+      width: 40px; /* Static size for logos */
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .bars {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .vote-bar {
+      height: 10px;
+      background-color: #0078d4; /* Adjust color as needed */
+      border-radius: 5px;
+      width: 54.53%; /* Width represents vote percentage */
+    }
+
+    .seat-bar {
+      height: 10px;
+      background-color: #89c2ff; /* Adjust color as needed */
+      border-radius: 5px;
+      width: 57%; /* Width represents seat percentage */
+    }
+
+    .seat-count {
+      font-weight: bold;
+      color: black;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .province-box {
+        width: 100%; /* Full width on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="province-box">
+    <h2 class="province-title">Alberta</h2>
+    <!-- Party Row 1 -->
+    <div class="party-row">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
+      <div class="bars">
+        <div class="seat-bar" title="Seats: 57"></div>
+        <div class="vote-bar" title="Vote Share: 54.53%"></div>
+      </div>
+      <span class="seat-count">57</span>
     </div>
-    <span class="seat-count">57</span>
-  </div>
-  <!-- Party Row 2 -->
-  <div class="party-row">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-    <div class="bars">
-      <div class="seat-bar" title="Seats: 30"></div>
-      <div class="vote-bar" title="Vote Share: 38.94%"></div>
+    <!-- Party Row 2 -->
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
+      <div class="bars">
+        <div class="seat-bar" title="Seats: 30"></div>
+        <div class="vote-bar" title="Vote Share: 38.94%"></div>
+      </div>
+      <span class="seat-count">30</span>
     </div>
-    <span class="seat-count">30</span>
   </div>
-</div>
+</body>
+</html>
