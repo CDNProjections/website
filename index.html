@@ -105,7 +105,7 @@
       display: flex;
       flex-direction: column; /* Stack elements vertically */
       align-items: center; /* Center-align the elements */
-      gap: 5px; /* Space between seat-count and vote-count */
+      gap: 3px; /* Space between seat-count and vote-count */
     }
       
     .seat-count {
@@ -128,8 +128,9 @@
         <div class="seat-bar" style="width: 65.52%; background-color: #17427e;" title="Seats: 57"></div>
         <div class="vote-bar" style="width: 50.32%; background-color: #456898;" title="Vote Share: 50.32%"></div>
       </div>
-      <span class="seat-count">57</span>
-      <span class="vote-count">(50.32%)</span>
+      <div class="seat-vote-container">
+       <span class="seat-count">57</span>
+       <span class="vote-count">(50.32%)</span>
     </div>
     <!-- Party Row 2 -->
     <div class="party-row">
