@@ -7,6 +7,12 @@
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
 <style>
     body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
         font-family: 'Hind Siliguri', sans-serif;
         text-align: center;
         flex-direction: column;
@@ -16,8 +22,26 @@
         display: block;
         text-decoration: none;
     } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
         
-    .province-box {
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
         background-color: #808080;
         width: 100%;
         box-sizing: border-box;
@@ -32,13 +56,100 @@
         color: black;
         font-weight: bold;
     }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 50%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       cursor: pointer;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px; /* Space between vote-bar and seat-bar */
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 100%;/* Adjust for vote share percentage */
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 100%; /* Adjust for seat count percentage */
+      height: 30px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center; /* Center-align the elements */
+      gap: 5px; /* Space between seat-count and vote-count */
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+     .vote-count {
+      font-size: 12px;
+    }
 </style>
 </head>
 <body>
 <a href="index.html" class="province-link">
-  <div class="province-box">
+  <div class="header-box">
       <h2 class="text">Home</h2>
   </div>
 </a>
 </body>
 </html>
+
+
+<body>
+<div class="province-box">
+ <h2 class="province-title">Alberta</h2>
+     <div class="party-row">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 65.52%; background-color: #17427e;" title="Seats: 57"></div>
+          <div class="vote-bar" style="width: 50.32%; background-color: #456898;" title="Vote Share: 50.32%"></div>
+         </div>
+     </div>
+     <div class=seat-vote-container">
+         <span class="seat-count">57</span>
+         <span class="vote-count">(50.32%)</span>
+     </div>
+</div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 34.48%; background-color: #ff6900;" title="Seats: 30"></div>
+          <div class="vote-bar" style="width: 38.94%; background-color: #ff8733;" title="Vote Share: 38.94%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">30</span>
+         <span class="vote-count">(38.94%)</span>
+     </div>
+    
+</body>
