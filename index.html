@@ -37,11 +37,18 @@
   <title>Projection for Alberta</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
 
     .province-box {
       border: 2px solid black;
-      border-radius: 0; /* Sharp corners */
       background-color: #fff;
       padding: 15px;
       width: 60%;
@@ -62,27 +69,23 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .party-logo {
+      width: 40px;
       height: 40px;
     }
 
-    .party-label {
-      width: 80px; /* Fixed width for party names */
-      text-align: left;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
     .bar-container {
-      flex-grow: 1;
       display: flex;
-      align-items: center;
-      gap: 2px;
-      position: relative;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px; /* Space between vote-bar and seat-bar */
     }
 
     .vote-bar, .seat-bar {
       height: 20px;
-      display: inline-block;
+      display: block;
     }
 
     .vote-bar {
@@ -96,46 +99,39 @@
     }
 
     .bar-text {
-      font-size: 14px;
+      font-size: 12px;
       color: black;
       font-weight: bold;
+      margin-left: 5px;
     }
 
-    .percentage-label {
+    .seat-count {
       font-size: 14px;
-      margin-right: 5px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="province-box">
-    <h2 class="province-title">Alberta</h2>
+    <h2 class="province-title">Lethbridge-West</h2>
     <!-- Party Row 1 -->
     <div class="party-row">
-      <span class="party-label">UCP</span>
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 65.52%;"></div>
-        <div class="vote-bar" style="width: 54.53%;"></div>
-        <span class="bar-text">57</span>
+        <div class="vote-bar" style="width: 50.32%;" title="Vote Share: 50.32%"></div>
+        <div class="seat-bar" style="width: 65.52%;" title="Seats: 57"></div>
       </div>
+      <span class="seat-count">57</span>
     </div>
     <!-- Party Row 2 -->
     <div class="party-row">
-      <span class="party-label">NDP</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 34.48%;"></div>
-        <div class="vote-bar" style="width: 38.94%;"></div>
-        <span class="bar-text">30</span>
+        <div class="vote-bar" style="width: 43.33%;" title="Vote Share: 43.33%"></div>
+        <div class="seat-bar" style="width: 34.48%;" title="Seats: 30"></div>
       </div>
+      <span class="seat-count">30</span>
     </div>
   </div>
 </body>
 </html>
-
-box {
-    border: 5px solid black;
-    border-radius: 0;
-}
-<body>
-    <h2>Alberta</h2>
-</body>
