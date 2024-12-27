@@ -43,6 +43,11 @@
       text-align: center;
     }
 
+    .province-link {
+      display: block;
+      text-decoration: none;
+    }
+      
     .province-box {
       border: 2px solid black;
       background-color: #e8e8e8;
@@ -52,6 +57,11 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      cursor: pointer;
+    }
+
+    .province-box:hover {
+      background-colour: #e1e1e1;
     }
 
     .province-title {
@@ -119,6 +129,7 @@
 </style>
 </head>
 <body>
+<a href="Alberta.html" class="province-link">
   <div class="province-box">
     <h2 class="province-title">Alberta</h2>
     <!-- Party Row 1 -->
@@ -147,3 +158,4 @@
   </div>
 </body>
 </html>
+</a>
