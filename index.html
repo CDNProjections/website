@@ -68,8 +68,8 @@
     }
 
     .party-logo {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
     }
 
     .bar-container {
@@ -80,16 +80,17 @@
     }
 
     .vote-bar, .seat-bar {
-      height: 20px;
       display: block;
     }
 
     .vote-bar {
-      width: 100%; /* Adjust for vote share percentage */
+      width: 100%;/* Adjust for vote share percentage */
+      height: 10px;
     }
 
     .seat-bar {
       width: 100%; /* Adjust for seat count percentage */
+      height: 30px;
     }
 
     .bar-text {
@@ -103,7 +104,10 @@
       font-size: 16px;
       font-weight: bold;
     }
-  </style>
+
+     .vote-count {
+      font-size: 10px;
+    }
 </head>
 <body>
   <div class="province-box">
@@ -116,7 +120,7 @@
         <div class="vote-bar" style="width: 50.32%; background-color: #456898;" title="Vote Share: 50.32%"></div>
       </div>
       <span class="seat-count">57</span>
-      <span class="seat-count">(50.32%)</span>
+      <span class="vote-count">(50.32%)</span>
     </div>
     <!-- Party Row 2 -->
     <div class="party-row">
@@ -126,7 +130,7 @@
         <div class="vote-bar" style="width: 38.94%; background-color: #ff8733;" title="Vote Share: 38.94%"></div>
       </div>
       <span class="seat-count">30</span>
-      <span class="seat-count">(38.94%)</span>
+      <span class="vote-count">(38.94%)</span>
     </div>
   </div>
 </body>
