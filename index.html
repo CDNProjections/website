@@ -47,7 +47,7 @@
       border: 2px solid black;
       background-color: #e8e8e8;
       padding: 15px;
-      width: 100%;
+      width: 50%;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -101,13 +101,20 @@
       margin-left: 5px;
     }
 
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center; /* Center-align the elements */
+      gap: 5px; /* Space between seat-count and vote-count */
+    }
+      
     .seat-count {
       font-size: 16px;
       font-weight: bold;
     }
 
      .vote-count {
-      font-size: 10px;
+      font-size: 12px;
     }
 </style>
 </head>
@@ -131,8 +138,9 @@
         <div class="seat-bar" style="width: 34.48%; background-color: #ff6900;" title="Seats: 30"></div>
         <div class="vote-bar" style="width: 38.94%; background-color: #ff8733;" title="Vote Share: 38.94%"></div>
       </div>
-      <span class="seat-count">30</span>
-      <span class="vote-count">(38.94%)</span>
+      <div class="seat-vote-container">
+        <span class="seat-count">30</span>
+        <span class="vote-count">(38.94%)</span>
     </div>
   </div>
 </body>
