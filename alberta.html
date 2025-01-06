@@ -130,10 +130,8 @@
      }
         
      .flex-container {
-      display: grid;
-      grid-template-columns: repeat(13, 3fr);
-      grid-template-columns: repeat(11, 1fr);
-      grid-template-columns: repeat(13, 3fr);
+      display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       padding: 10px;
       gap: 10px;
@@ -255,6 +253,7 @@
 <div class="province-box">
     <h2 class="province-title">Race for 44</h2>
      <div class="flex-container">
+      <div class="row 1">
         <div class="flex-box" style="background-color: #0e284c;" >Drumhell.-Stett.<br>UCP+66.69<br>(±10.21)</div>
         <div class="flex-box" style="background-color: #0e284c;" >Rimbey-Rocky Mt.<br>UCP+61.35<br>(±9.61)</div>
         <div class="flex-box" style="background-color: #0e284c;" >Vermilion-Lloyd.<br>UCP+60.23<br>(±9.84)</div>
@@ -268,6 +267,8 @@
         <div class="flex-box" style="background-color: #0e284c;" >Innisfail-Sylvan<br>UCP+46.56<br>(±9.1)</div>
         <div class="flex-box" style="background-color: #0e284c;" >FMcM-Wood Buf.<br>UCP+44.81<br>(±8.82)</div>
         <div class="flex-box" style="background-color: #0e284c;" >Lacombe-Ponoka<br>UCP+44.5<br>(±8.88)</div>
+      </div>
+      <div class="row 1">
         <div class="flex-box" style="background-color: #0e284c;" >Peace River<br>UCP+43.23<br>(±9.01)</div>
         <div class="flex-box" style="background-color: #0e284c;" >Athabasca-Barr.<br>UCP+42.94<br>(±9.12)</div>
         <div class="flex-box" style="background-color: #0e284c;" >Chester.-Strath.<br>UCP+40.9<br>(±8.91)</div>
@@ -281,6 +282,8 @@
         <div class="flex-box" style="background-color: #0e284c;" >Maskwa.-Wetask.<br>UCP+33.86<br>(±8.58)</div>
         <div class="flex-box" style="background-color: #123565;" >Grande Prairie<br>UCP+30.37<br>(±8.37)</div>
         <div class="flex-box" style="background-color: #123565;" >Airdrie-East<br>UCP+26.76<br>(±8.37)</div>
+      </div>
+      <div class="row 1">
         <div class="flex-box" style="background-color: #123565;" >Cypress-Med. Hat<br>UCP+24.54<br>(±8.4)</div>
         <div class="flex-box" style="background-color: #123565;" >Airdrie-Cochrane<br>UCP+21.58<br>(±8.34)</div>
         <div class="flex-box" style="background-color: #123565;" >Lesser Slave Lake<br>UCP+20.39<br>(±8.28)</div>
@@ -294,6 +297,8 @@
         <div class="flex-box" style="background-color: #17427e;" >Red Deer-South<br>UCP+14.26<br>(±8.08)</div>
         <div class="flex-box" style="background-color: #17427e;" >Leduc-Beaumont<br>UCP+13.67<br>(±8.11)</div>
         <div class="flex-box" style="background-color: #17427e;" >Spruce-Stony<br>UCP+13.62<br>(±8.11)</div>
+      </div>
+      <div class="row 2">
         <div class="flex-box" style="background-color: #17427e;" >Calgary-Peigan<br>UCP+12.04<br>(±8.03)</div>
         <div class="flex-box" style="background-color: #17427e;" >Calgary-Fish Crk<br>UCP+10.48<br>(±8.11)</div>
         <div class="flex-box" style="background-color: #456898;" >Strathcona-Sher.<br>UCP+4.92<br>(±7.97)</div>
@@ -303,6 +308,8 @@
         <div class="flex-box" style="background-color: #748eb2;" >Calgary-Bow<br>UCP+1.53<br>(±8.01)</div>
         <div class="flex-box" style="background-color: #748eb2;" >Calgary-Cross<br>UCP+1.47<br>(±8)</div>
         <div class="flex-box" style="background-color: #748eb2;" >Calgary-North<br>UCP+1.16<br>(±8.09)</div>
+      </div>
+      <div class="row 1">
         <div class="flex-box" style="background-color: #748eb2;" >Calgary-Glen.<br>UCP+0.79<br>(±7.98)</div>
         <div class="flex-box" style="background-color: #ffa566;" >Calgary-Foothills<br>NDP+-0.03<br>(±8.06)</div>
         <div class="flex-box" style="background-color: #ffa566;" >Calgary-Acadia<br>NDP+-0.55<br>(±7.95)</div>
@@ -316,6 +323,8 @@
         <div class="flex-box" style="background-color: #ff6900;" >Calgary-NE<br>NDP+-10.39<br>(±8.17)</div>
         <div class="flex-box" style="background-color: #ff6900;" >EDM-SW<br>NDP+-11.19<br>(±8.01)</div>
         <div class="flex-box" style="background-color: #ff6900;" >EDM-Decore<br>NDP+-13.3<br>(±7.73)</div>
+      </div>
+      <div class="row 1">
         <div class="flex-box" style="background-color: #cc5400;" >EDM-W Henday<br>NDP+-15.24<br>(±7.85)</div>
         <div class="flex-box" style="background-color: #cc5400;" >EDM-Castle<br>NDP+-15.71<br>(±7.71)</div>
         <div class="flex-box" style="background-color: #cc5400;" >Calgary-Currie<br>NDP+-15.96<br>(±8.04)</div>
@@ -329,6 +338,8 @@
         <div class="flex-box" style="background-color: #cc5400;" >EDM-Manning<br>NDP+-21.03<br>(±8.17)</div>
         <div class="flex-box" style="background-color: #cc5400;" >Calgary-McCall<br>NDP+-21.22<br>(±8.38)</div>
         <div class="flex-box" style="background-color: #cc5400;" >EDM-Mill Woods<br>NDP+-21.85<br>(±8.22)</div>
+      </div>
+      <div class="row 1">
         <div class="flex-box" style="background-color: #cc5400;" >EDM-NW<br>NDP+-22.35<br>(±8.18)</div>
         <div class="flex-box" style="background-color: #cc5400;" >St. Albert<br>NDP+-22.46<br>(±8.31)</div>
         <div class="flex-box" style="background-color: #cc5400;" >EDM-Ellerslie<br>NDP+-23.36<br>(±8.35)</div>
@@ -343,6 +354,7 @@
         <div class="flex-box" style="background-color: #993f00;" >EDM-City Centre<br>NDP+-51.47<br>(±9.3)</div>
         <div class="flex-box" style="background-color: #993f00;" >EDM-Strathcona<br>NDP+-52.67<br>(±9.37)</div>
     <p>Bolded seat is the Tipping Point</p>
+     </div>
      </div>
 </div>
 
