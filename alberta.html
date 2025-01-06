@@ -128,30 +128,19 @@
      .odds-count {
       font-size: 12px;
      }
-
-     .riding-label {
-      font-size: 14px;
-      width: 25%
-     }
         
-     .margin {
-      width: 50%
-     }
-
-     .row-content {
-      align-items: center;
-      margin-bottom: 10px
-     }
-
-     .row-axis {
+     .flex-container {
       display: flex;
-      height: 10px;
-      position: relative;
-      padding-top: 3px;
+      justify-content: space-around;
+      background-color: lightgrey;
+      padding: 10px;
      }
 
-     .tick {
-      position: absolute;
+     .flex-box {
+      width: 100px;
+      height: 50px;
+      background-color: coral;
+      border: 2px solid brown;
      }
         
 </style>
@@ -259,17 +248,12 @@
 </div>
 
 <div class="province-box">
-    <h2 class="province-title">Ridings</h2>
-    <div class="row-content" style="width: 25%;"></div>
-    <div class="row-axis" style="width: 50%;">
-     <div class="tick" style="left: 32px;">
-     <div class="tick" style="left: 85.333px;">
-
-        
-     <div class="riding-label">Drumhell.Stett.</div>
-     <div class="margin">
-
-
+    <h2 class="province-title">Race for 44</h2>
+     <div class="flex-container">
+        <div class="flex-box">Item 1</div>
+        <div class="flex-box">Item 2</div>
+     </div>
+</div>
 
 
 
