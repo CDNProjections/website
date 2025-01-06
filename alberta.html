@@ -134,9 +134,26 @@
       width: 25%
      }
         
-     .margin{
+     .margin {
       width: 50%
      }
+
+     .row-content {
+      align-items: center;
+      margin-bottom: 10px
+     }
+
+     .row-axis {
+      display: flex;
+      height: 10px;
+      position: relative;
+      padding-top: 3px;
+     }
+
+     .tick {
+      position: absolute;
+     }
+        
 </style>
 </head>
 <body>
@@ -243,7 +260,12 @@
 
 <div class="province-box">
     <h2 class="province-title">Ridings</h2>
-    <div class="bar-container">
+    <div class="row-content" style="width: 25%;"></div>
+    <div class="row-axis" style="width: 50%;">
+     <div class="tick" style="left: 32px;">
+     <div class="tick" style="left: 85.333px;">
+
+        
      <div class="riding-label">Drumhell.Stett.</div>
      <div class="margin">
 
