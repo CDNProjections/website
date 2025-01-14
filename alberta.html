@@ -512,6 +512,14 @@
      // Run the hideElements function after a slight delay 
      setTimeout(hideElements, 10000); // Adjust delay as needed 
     }); 
+     // Use MutationObserver to detect changes in the DOM 
+     var observer = new MutationObserver(function(mutations) { 
+     mutations.forEach(function(mutation) { 
+     hideElements(); 
+     }); 
+     }); 
+    // Observe changes in the body element 
+    observer.observe(document.body, { childList: true, subtree: true });
 </script>
 </div>
 
