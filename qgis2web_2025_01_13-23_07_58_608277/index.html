@@ -491,5 +491,77 @@
         map.addLayer(layer_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0);
         setBounds();
         </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+var ctx = document.createElement('canvas').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['UCP', 'NDP', 'GREEN', 'ALBERTA', 'LIBERAL', 'WILDROSE', 'OTHERS'],
+        datasets: [{
+            label: 'Votes',
+            data: [0, 0, 0, 0, 0, 0, 0],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+function highlightFeature(e) {
+    var layer = e.target;
+    var data = layer.feature.properties;
+    myChart.data.datasets[0].data = [data.UCP, data.NDP, data.GREEN, data.ALBERTA, data.LIBERAL, data.WILDROSE, data.OTHERS];
+    myChart.update();
+    
+    // Highlight feature
+    layer.setStyle({
+        fillColor: '#ffff00',
+        fillOpacity: 1
+    });
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+    layer.setStyle({
+        fillColor: '#3388ff',
+        fillOpacity: 0.2
+    });
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+    });
+}
+
+var geojsonLayer = L.geoJson(json_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0, {
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+var polygons = L.geoJSON(yourGeoJSONLayer, {
+    onEachFeature: function(feature, layer) {
+        layer.bindPopup('<canvas id="myChart"></canvas>');
+    }
+}).addTo(map);
+
+	
     </body>
 </html>
