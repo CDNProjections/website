@@ -527,9 +527,54 @@ var myChart = new Chart(ctx, {
 function highlightFeature(e) {
     var layer = e.target;
     var data = layer.feature.properties;
-    myChart.data.datasets[0].data = [data.UCP, data.NDP, data.GREEN, data.ALBERTA, data.LIBERAL, data.WILDROSE, data.OTHERS];
-    myChart.update();
-    
+
+    // Create a new canvas element for the chart
+    var canvasId = 'myChart-' + layer._leaflet_id;
+    var popupContent = '<canvas id="' + canvasId + '"></canvas>';
+    layer.bindPopup(popupContent).openPopup();
+
+    // Wait for the popup to be fully opened before initializing the chart
+    layer.on('popupopen', function() {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['UCP', 'NDP', 'GREEN', 'ALBERTA', 'LIBERAL', 'WILDROSE', 'OTHERS'],
+                datasets: [{
+                    label: 'Votes',
+                    data: [data.UCP, data.NDP, data.GREEN, data.ALBERTA, data.LIBERAL, data.WILDROSE, data.OTHERS],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+
     // Highlight feature
     layer.setStyle({
         fillColor: '#ffff00',
@@ -550,19 +595,11 @@ function onEachFeature(feature, layer) {
         mouseover: highlightFeature,
         mouseout: resetHighlight
     });
-    layer.bindPopup('<canvas id="myChart"></canvas>');
 }
 
-var geojsonLayer = L.geoJson(json_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0, {
-    onEachFeature: onEachFeature
+var geojsonLayer = L.geoJson(json_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0, { 
+	    onEachFeature: onEachFeature 
 }).addTo(map);
-
-var polygons = L.geoJSON(yourGeoJSONLayer, {
-    onEachFeature: function(feature, layer) {
-        layer.bindPopup('<canvas id="myChart"></canvas>');
-    }
-}).addTo(map);
-
 	
     </body>
 </html>
