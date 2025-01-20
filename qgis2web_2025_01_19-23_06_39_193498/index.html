@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -341,6 +342,89 @@
         bounds_group.addLayer(layer_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0);
         map.addLayer(layer_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0);
         setBounds();
+
+function createBarChart(ctx, data) {
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['UCP', 'NDP', 'GREEN', 'ALBERTA', 'LIBERAL', 'WILDROSE', 'OTHERS'],
+            datasets: [{
+                label: 'Votes',
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(201, 203, 207, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+function highlightFeature(e) {
+    var layer = e.target;
+    var data = layer.feature.properties;
+    
+    // Create a new canvas element for the chart
+    var canvasId = 'myChart-' + layer._leaflet_id;
+    var popupContent = '<canvas id="' + canvasId + '"></canvas>';
+    layer.bindPopup(popupContent).openPopup();
+    
+    // Wait for the popup to be fully opened before initializing the chart
+    layer.on('popupopen', function() {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        createBarChart(ctx, [data.UCP, data.NDP, data.GREEN, data.ALBERTA, data.LIBERAL, data.WILDROSE, data.OTHERS]);
+    });
+    
+    // Highlight feature
+    layer.setStyle({
+        fillColor: '#ffff00',
+        fillOpacity: 1
+    });
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+    layer.setStyle({
+        fillColor: '#3388ff',
+        fillOpacity: 0.2
+    });
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight
+    });
+}
+
+var geojsonLayer = L.geoJson(json_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0, {
+    onEachFeature: onEachFeature
+}).addTo(map);
+		
+		
         </script>
     </body>
 </html>
