@@ -550,6 +550,7 @@ function onEachFeature(feature, layer) {
         mouseover: highlightFeature,
         mouseout: resetHighlight
     });
+    layer.bindPopup('<canvas id="myChart"></canvas>');
 }
 
 var geojsonLayer = L.geoJson(json_2019Boundaries_EDShapefiles2EDS_ENACTED_BILL33_15DEC2017shp_0, {
