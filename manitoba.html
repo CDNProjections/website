@@ -1,1 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberta</title>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
 
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(11, 1fr); 
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
+
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
+</style>
+</head>
+<body>
+<a href="index.html" class="province-link">
+  <div class="header-box">
+      <h2 class="text">Home</h2>
+  </div>
+</a>
+</body>
+</html>
+
+<p>Some elements on the page take some time to load; please be patient</p>
+
+<body>
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Manitoba Electoral Model</h2>
+     <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;" title="Seats: 43"></div>
+          <div class="vote-bar" style="width: 55.63%; background-color: #e38d53;" title="Vote Share: 55.63%"></div>
+          <div class="odds-bar" style="width: 100%; background-color: #b05a20;" title=NDP Majority Odds: 99.9%></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count">35-<span class="highlight">43</span>-46</span>
+         <span class="vote-count">(55.63%)</span><br>
+         <span class="odds-count">(NDP Maj: >99%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 22.81%; background-color: #024785;" title="Seats: 13"></div>
+          <div class="vote-bar" style="width: 33.89%; background-color: #357ab8;" title="Vote Share: 33.89%"></div>
+          <div class="odds-bar" style="width: 0.25%; background-color: #024785;" title="PC Majority Odds: <0.1%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">10-<span class="highlight">13</span>-21</span>
+         <span class="vote-count">(33.89%)</span>
+         <span class="odds-count">(PC Maj: <0.1%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-1.fna.fbcdn.net/v/t39.30808-6/365542738_602348128736142_4816135332782124913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=m_Fk4GHfmXwQ7kNvgHSBdHu&_nc_zt=23&_nc_ht=scontent.fyto1-1.fna&_nc_gid=AYpUjQ2f-7H6QlooXkCvvP6&oh=00_AYDBwDkWk4V9y9QVo_yBr3kA1xv12ABPzLqR4Zcj6FCXKw&oe=6791B64A" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 1.75%; background-color: #ac151a;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 5.70%; background-color: #357ab8;" title="Vote Share: 5.70%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">1</span>-1</span>
+         <span class="vote-count">(5.70%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/240390047_113869997666872_9093225023773094508_n.png?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=25TzTAfml-IQ7kNvgFQGEox&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=A7VqkB9xQP7kMy98ZBU1TIM&oh=00_AYA0s2uEavxgaMVHvohg9X4OnugIBxn5XOhD7F3_HczsaQ&oe=6798A59E" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #422860;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.96%; background-color: #755b93;" title="Vote Share: 1.96%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+         <span class="vote-count">(1.96%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/312552556_488825826620067_7913745011475915022_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=PM_uZQGH-wAQ7kNvgFDtfDc&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=A4b-nHC6ixpfg9XGPFj_7Eq&oh=00_AYCQ3kQuugFzR4IRZKuX1kaOxcjIRBAqTvBBIueJbaBFrg&oe=67988B2D" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #117239;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.67%; background-color: #44a56c;" title="Vote Share: 1.67%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+         <span class="vote-count">(1.67%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.14%; background-color: #999999;" title="Vote Share: 1.14%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+         <span class="vote-count">(1.14%)</span>
+     </div>
+    </div>
+    <p>Last Updated: January 31, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government</i></p>
+</div>
+
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 50%;">
+ <h3 class="province-title">Rest of Manitoba</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 52.00%; background-color: #b05a20;" title="Seats: 13"></div>
+          <div class="vote-bar" style="width: 47.34%; background-color: #e38d53;" title="Vote Share: 47.34%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">13</span></span>
+         <span class="vote-count">(47.34%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 48.00%; background-color: #024785;" title="Seats: 12"></div>
+          <div class="vote-bar" style="width: 42.70%; background-color: #357ab8;" title="Vote Share: 42.70%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">12</span></span>
+         <span class="vote-count">(42.70%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 5.56%; background-color: #999999;" title="Vote Share: 5.56%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(5.56%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-1.fna.fbcdn.net/v/t39.30808-6/365542738_602348128736142_4816135332782124913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=m_Fk4GHfmXwQ7kNvgHSBdHu&_nc_zt=23&_nc_ht=scontent.fyto1-1.fna&_nc_gid=AYpUjQ2f-7H6QlooXkCvvP6&oh=00_AYDBwDkWk4V9y9QVo_yBr3kA1xv12ABPzLqR4Zcj6FCXKw&oe=6791B64A" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #ac151a;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 4.40%; background-color: #df484d;" title="Vote Share: 4.40%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(4.40%)</span>
+      </div>
+    </div>
+</div>
+    
+<div class="province-box" style="width: 33%;">
+ <h3 class="province-title">Winnipeg</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 93.75%; background-color: #b05a20;" title="Seats: 30"></div>
+          <div class="vote-bar" style="width: 59.24%; background-color: #e38d53;" title="Vote Share: 59.24%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">30</span></span>
+         <span class="vote-count">(59.24%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 3.13%; background-color: #024785;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 29.92%; background-color: #357ab8;" title="Vote Share: 29.92%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">1</span></span>
+         <span class="vote-count">(29.92%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-1.fna.fbcdn.net/v/t39.30808-6/365542738_602348128736142_4816135332782124913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=m_Fk4GHfmXwQ7kNvgHSBdHu&_nc_zt=23&_nc_ht=scontent.fyto1-1.fna&_nc_gid=AYpUjQ2f-7H6QlooXkCvvP6&oh=00_AYDBwDkWk4V9y9QVo_yBr3kA1xv12ABPzLqR4Zcj6FCXKw&oe=6791B64A" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 3.13%; background-color: #ac151a;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 6.66%; background-color: #df484d;" title="Vote Share: 6.66%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(6.66%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 4.18%; background-color: #999999;" title="Vote Share: 4.18%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(4.18%)</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Map</h2>
+    <iframe src="https://cdnprojections.ca/qgis2web_2025_01_19-23_06_39_193498/index.html#6/54.138/-113.559" width="100%" height="700"></iframe>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Race for 44</h2>
+     <div class="grid-container">
+        <div class="grid-item" style="background-color: #e8e8e8"></div>
+        <div class="grid-item" style="background-color: #844318;" >Flin Flon<br>NDP+67.83<br>(±14.17)</div>
+        <div class="grid-item" style="background-color: #844318;" >Notre Dame<br>NDP+67.48<br>(±13.56)</div>
+        <div class="grid-item" style="background-color: #844318;" >Point Douglas<br>NDP+66.12<br>(±13.76)</div>
+        <div class="grid-item" style="background-color: #844318;" >Fort Rouge<br>NDP+63.97<br>(±13.39)</div>
+        <div class="grid-item" style="background-color: #844318;" >Union Station<br>NDP+62.98<br>(±13.41)</div>
+        <div class="grid-item" style="background-color: #844318;" >Wolseley<br>NDP+60.85<br>(±12.47)</div>
+        <div class="grid-item" style="background-color: #844318;" >Thompson<br>NDP+59.09<br>(±13.25)</div>
+        <div class="grid-item" style="background-color: #844318;" >The Pas-Kameesak<br>NDP+58.35<br>(±13.13)</div>
+        <div class="grid-item" style="background-color: #844318;" >St. Boniface<br>NDP+55.34<br>(±11.58)</div>
+        <div class="grid-item" style="background-color: #844318;" >Fort Garry<br>NDP+42.25<br>(±11.12)</div>
+        <div class="grid-item" style="background-color: #844318;" >St. Vital<br>NDP+42.49<br>(±11.87)</div>
+        <div class="grid-item" style="background-color: #844318;" >River Heights<br>NDP+42.94<br>(±9.88)</div>
+        <div class="grid-item" style="background-color: #844318;" >Elmwood<br>NDP+43.1<br>(±11.24)</div>
+        <div class="grid-item" style="background-color: #844318;" >The Maples<br>NDP+46.01<br>(±11.46)</div>
+        <div class="grid-item" style="background-color: #844318;" >Concordia<br>NDP+46.4<br>(±12.27)</div>
+        <div class="grid-item" style="background-color: #844318;" >St. Johns<br>NDP+46.96<br>(±10.5)</div>
+        <div class="grid-item" style="background-color: #844318;" >St. James<br>NDP+47.16<br>(±12.32)</div>
+        <div class="grid-item" style="background-color: #844318;" >Keewatinook<br>NDP+48.44<br>(±12.31)</div>
+        <div class="grid-item" style="background-color: #844318;" >Brandon East<br>NDP+40.69<br>(±11.72)</div>
+        <div class="grid-item" style="background-color: #844318;" >Burrows<br>NDP+37.2<br>(±10.19)</div>
+        <div class="grid-item" style="background-color: #844318;" >Transcona<br>NDP+33.76<br>(±11.52)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Dauphin<br>NDP+31.1<br>(±11.37)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Fort Richmond<br>NDP+30.47<br>(±11.07)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Riel<br>NDP+27.76<br>(±11.12)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Southdale<br>NDP+25.82<br>(±10.32)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Brandon West<br>NDP+25.19<br>(±10.35)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Seine River<br>NDP+24.74<br>(±10.78)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >McPhillips<br>NDP+14.36<br>(±10.53)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Kirkfield Park<br>NDP+16.55<br>(±9.68)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Kildonan-River East<br>NDP+17.69<br>(±10.67)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Rossmere<br>NDP+18.91<br>(±10.24)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Interlake-Gimli<br>NDP+20.18<br>(±10.17)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Dawson Trail<br>NDP+20.54<br>(±9.95)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Assiniboia<br>NDP+20.95<br>(±10.68)</div>
+        <div class="grid-item" style="border: 5px solid black; background-color: #b05a20;" >Radisson<br>NDP+21.26<br>(±10.96)</div>
+        <div class="grid-item" style="background-color: #b05a20;" >Selkirk<br>NDP+23.1<br>(±10.99)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >Lagimodière<br>NDP+12.11<br>(±10.48)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >Waverley<br>NDP+11.91<br>(±9.73)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >Springfield-Ritchot<br>NDP+8.54<br>(±10.03)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >Red River North<br>NDP+8.24<br>(±10.54)</div>
+        <div class="grid-item" style="background-color: #dc7028;" >Tuxedo<br>NDP+7.38<br>(±9.43)</div>
+        <div class="grid-item" style="background-color: #e38d53;" >Lac du Bonnet<br>NDP+4.01<br>(±8.73)</div>
+        <div class="grid-item" style="background-color: #eaa97e;" >Roblin<br>NDP+1.63<br>(±10.25)</div>
+        <div class="grid-item" style="background-color: #357ab8;" >Riding Mountain<br>PC-3.43<br>(±10.13)</div>
+        <div class="grid-item" style="background-color: #357ab8;" >Portage la Prairie<br>PC-3.83<br>(±8.36)</div>
+        <div class="grid-item" style="background-color: #024785;" >Morden-Winkler<br>PC-25.91<br>(±10.74)</div>
+        <div class="grid-item" style="background-color: #024785;" >Midland<br>PC-23.96<br>(±10.42)</div>
+        <div class="grid-item" style="background-color: Default Color;" >Tyndall Park<br>Liberal-21.64<br>(±8.98)</div>
+        <div class="grid-item" style="background-color: #024785;" >La Verendrye<br>PC-19.88<br>(±8.98)</div>
+        <div class="grid-item" style="background-color: #024785;" >Agassiz<br>PC-19.73<br>(±9.24)</div>
+        <div class="grid-item" style="background-color: #024785;" >Spruce Woods<br>PC-15.22<br>(±9.5)</div>
+        <div class="grid-item" style="background-color: #0359a6;" >Turtle Mountain<br>PC-11.06<br>(±8.08)</div>
+        <div class="grid-item" style="background-color: #0359a6;" >Lakeside<br>PC-10.09<br>(±9.71)</div>
+        <div class="grid-item" style="background-color: #357ab8;" >Swan River<br>PC-3.93<br>(±9.92)</div>
+        <div class="grid-item" style="background-color: #023564;" >Fort Whyte<br>PC-33.76<br>(±9.45)</div>
+        <div class="grid-item" style="background-color: #023564;" >Borderland<br>PC-40.18<br>(±10.87)</div>
+        <div class="grid-item" style="background-color: #023564;" >Steinbach<br>PC-40.54<br>(±11.11)</div>
+        <div class="grid-item" style="background-color: #e8e8e8"></div>
+        <div class="grid-item" style="background-color: #e8e8e8"></div>
+      </div>
+    <p>Bolded seat is the Tipping Point</p>
+</div>
+
+<div class="province-box">
+<div class="flourish-embed flourish-election" data-src="visualisation/21056512"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21056512/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+<div class="flourish-embed flourish-chart" data-src="visualisation/20587197"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20587197/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Simulator</h2>
+    <p><b>Simulate an Alberta election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+
+<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQRp0P57xjv9SpNqSnvCrYBRAZYfAnwQDPvXywu_V8qqFuQ?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&Item='Simulator'!A%3AZ&wdHideGridlines=True&wdInConfigurator=True"></iframe>
+</div>
+
+
+
+
+
+</body>
