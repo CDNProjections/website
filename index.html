@@ -119,96 +119,13 @@
 
 
 <body>
-    <h1>Welcome to CDNProjections!</h1><br><p>This is my first true (actually coded) website, so please be patient!</p>
+    <h1>Welcome to CDNProjections!</h1>
+    <hr style="height:10px; visibility:hidden;"/>
+    <p>This is my first true (actually coded) website, so please be patient!</p>
     <hr style="width:100%;text-align:left;margin-left:0">
 </body>
 
-
-
-<title>Projection for Alberta</title>
-<a href="alberta.html" class="province-link">
- <div class="container">
-  <div class="province-box">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Alberta</h2>
-    <div class="party-row">
-      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 57.47%; background-color: #17427e;" title="Seats: 50"></div>
-        <div class="vote-bar" style="width: 47.66%; background-color: #456898;" title="Vote Share: 47.66%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">50</span>
-        <span class="vote-count">(47.66%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 42.53%; background-color: #ff6900;" title="Seats: 37"></div>
-        <div class="vote-bar" style="width: 40.41%; background-color: #ff8733;" title="Vote Share: 40.41%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">37</span>
-        <span class="vote-count">(40.41%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
-        <div class="vote-bar" style="width: 11.92%; background-color: #999999;" title="Vote Share: 11.92%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">0</span>
-        <span class="vote-count">(11.92%)</span>
-      </div>
-    </div>
-  </div>
-
-<title>Projection for Manitoba</title>
-<a href="manitoba.html" class="province-link">
-  <div class="province-box">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Manitoba</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;" title="Seats: 43"></div>
-        <div class="vote-bar" style="width: 55.63%; background-color: #e38d53;" title="Vote Share: 55.63%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">43</span>
-        <span class="vote-count">(55.63%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 22.81%; background-color: #024785;" title="Seats: 13"></div>
-        <div class="vote-bar" style="width: 33.89%; background-color: #357ab8;" title="Vote Share: 33.89%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">13</span>
-        <span class="vote-count">(33.89%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://static.wixstatic.com/media/140e48_e1353533e2404ccea921896fbea1c255~mv2.jpg/v1/fill/w_178,h_160,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MLP%20%2B%20MB_LIBERAL_RED_KO_web.jpg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 1.75%; background-color: #ac151a;" title="Seats: 1"></div>
-        <div class="vote-bar" style="width: 5.70%; background-color: #df484d;" title="Vote Share: 5.70%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">1</span>
-        <span class="vote-count">(5.70%)</span>
-      </div>
-    </div>
-  </div>
+<h2>2025 Provincial Elections</h2>
 
 <title>Projection for Ontario</title>
 <a href="ontario.html" class="province-link">
@@ -272,7 +189,194 @@
         <span class="vote-count">(5.98%)</span>
       </div>
     </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Feb 27, 2025 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
+
+<title>Projection for Yukon</title>
+<a href="yukon.html" class="province-link">
+  <div class="province-box">
+    <div style="display: flex; justify-content: center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 200px; height: 100px">
+    </div>
+    <h2 class="province-title">Yukon</h2>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/374268533_678150171015783_976649595484162437_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gw1CM1LgVagQ7kNvgExZok9&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=A2G8yl-gcBVkqCDxNY44b1O&oh=00_AYC_86bqYsecyrcOCkcqkPtBFPluj-p9UGYiTmTSIvuv5A&oe=6793A6D2" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 52.38%; background-color: #0a3b71;" title="Seats: 11"></div>
+        <div class="vote-bar" style="width: 37.98%; background-color: #3d6ea4;" title="Vote Share: 37.98%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">11</span>
+        <span class="vote-count">(37.98%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/748392499400548352/BNZ6g8xg_400x400.jpg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 23.81%; background-color: #bc161d;" title="Seats: 5"></div>
+        <div class="vote-bar" style="width: 31.18%; background-color: #ef4950;" title="Vote Share: 31.18%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">5</span>
+        <span class="vote-count">(31.18%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Yukon_New_Democratic_Party_%28White_Logo%29.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 23.81%; background-color: #c36925;" title="Seats: 5"></div>
+        <div class="vote-bar" style="width: 30.45%; background-color: #f69c58;" title="Vote Share: 30.45%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">5</span>
+        <span class="vote-count">(30.45%)</span>
+      </div>
+    </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 3, 2025 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
+  </div>
+
+<title>Projection for Newfoundland and Labrador</title>
+<a href="NL.html" class="province-link">
+  <div class="province-box">
+    <div style="display: flex; justify-content: center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 200px; height: 100px">
+    </div>
+    <h2 class="province-title">Newfoundland and Labrador</h2>
+    <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 20"></div>
+        <div class="vote-bar" style="width: 42.53%; background-color: #94494b;" title="Vote Share: 42.53%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">20</span>
+        <span class="vote-count">(42.53%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/464044827_859306806383453_4381144388696553254_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=f80QOqztGz0Q7kNvgHJjFWk&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=AppWVkXiSOPG62k7NAL-eQc&oh=00_AYBDCU2ul551jBgw-AyHGLpeljelmKLWYEVS4EMDTbJwZA&oe=679A348D" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 37.50%; background-color: #1e1d42;" title="Seats: 15"></div>
+        <div class="vote-bar" style="width: 38.20%; background-color: #515075;" title="Vote Share: 38.20%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">15</span>
+        <span class="vote-count">(38.20%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://scontent.fyto1-1.fna.fbcdn.net/v/t39.30808-6/362675896_680194077480807_7100702789560807492_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=94kdqiqKK-wQ7kNvgHkmMTP&_nc_zt=23&_nc_ht=scontent.fyto1-1.fna&_nc_gid=AxCbRuDwp36P7iSrfKiNnwI&oh=00_AYDbkEmDJhdmB1jKSPdvHTBPSvsHjg4KNW0kvcXeWzytFw&oe=679A591A" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 4"></div>
+        <div class="vote-bar" style="width: 16.17%; background-color: #f7a04d;" title="Vote Share: 16.17%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">4</span>
+        <span class="vote-count">(16.17%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 2.50%; background-color: #666666;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 3.11%; background-color: #999999;" title="Vote Share: 3.11%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">1</span>
+        <span class="vote-count">(3.11%)</span>
+      </div>
+    </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 24, 2025 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
+  </div>
+
+<h2>2026 Provincial Elections</h2>
 
 <title>Projection for Quebec</title>
 <a href="quebec.html" class="province-link">
@@ -336,7 +440,39 @@
         <span class="vote-count">(12.20%)</span>
       </div>
     </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 25, 2026 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
+
+<h2>2027 Provincial Elections</h2>
 
 <title>Projection for Prince Edward Island</title>
 <a href="PEI.html" class="province-link">
@@ -378,187 +514,256 @@
         <span class="vote-count">(19.58%)</span>
       </div>
     </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 4, 2027 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
 
-<title>Projection for Newfoundland and Labrador</title>
-<a href="NL.html" class="province-link">
+<title>Projection for Manitoba</title>
+<a href="manitoba.html" class="province-link">
   <div class="province-box">
     <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 200px; height: 100px">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 200px; height: 100px">
     </div>
-    <h2 class="province-title">Newfoundland and Labrador</h2>
+    <h2 class="province-title">Manitoba</h2>
     <div class="party-row">
-      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 20"></div>
-        <div class="vote-bar" style="width: 42.53%; background-color: #94494b;" title="Vote Share: 42.53%"></div>
+        <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;" title="Seats: 43"></div>
+        <div class="vote-bar" style="width: 55.63%; background-color: #e38d53;" title="Vote Share: 55.63%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">20</span>
-        <span class="vote-count">(42.53%)</span>
+        <span class="seat-count">43</span>
+        <span class="vote-count">(55.63%)</span>
     </div>
   </div>
     <div class="party-row">
-      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/464044827_859306806383453_4381144388696553254_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=f80QOqztGz0Q7kNvgHJjFWk&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=AppWVkXiSOPG62k7NAL-eQc&oh=00_AYBDCU2ul551jBgw-AyHGLpeljelmKLWYEVS4EMDTbJwZA&oe=679A348D" alt="Party Logo" class="party-logo">
+      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 37.50%; background-color: #1e1d42;" title="Seats: 15"></div>
-        <div class="vote-bar" style="width: 38.20%; background-color: #515075;" title="Vote Share: 38.20%"></div>
+        <div class="seat-bar" style="width: 22.81%; background-color: #024785;" title="Seats: 13"></div>
+        <div class="vote-bar" style="width: 33.89%; background-color: #357ab8;" title="Vote Share: 33.89%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">15</span>
-        <span class="vote-count">(38.20%)</span>
+        <span class="seat-count">13</span>
+        <span class="vote-count">(33.89%)</span>
     </div>
   </div>
     <div class="party-row">
-      <img src="https://scontent.fyto1-1.fna.fbcdn.net/v/t39.30808-6/362675896_680194077480807_7100702789560807492_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=94kdqiqKK-wQ7kNvgHkmMTP&_nc_zt=23&_nc_ht=scontent.fyto1-1.fna&_nc_gid=AxCbRuDwp36P7iSrfKiNnwI&oh=00_AYDbkEmDJhdmB1jKSPdvHTBPSvsHjg4KNW0kvcXeWzytFw&oe=679A591A" alt="Party Logo" class="party-logo">
+      <img src="https://static.wixstatic.com/media/140e48_e1353533e2404ccea921896fbea1c255~mv2.jpg/v1/fill/w_178,h_160,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MLP%20%2B%20MB_LIBERAL_RED_KO_web.jpg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 4"></div>
-        <div class="vote-bar" style="width: 16.17%; background-color: #f7a04d;" title="Vote Share: 16.17%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">4</span>
-        <span class="vote-count">(16.17%)</span>
-      </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 2.50%; background-color: #666666;" title="Seats: 1"></div>
-        <div class="vote-bar" style="width: 3.11%; background-color: #999999;" title="Vote Share: 3.11%"></div>
+        <div class="seat-bar" style="width: 1.75%; background-color: #ac151a;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 5.70%; background-color: #df484d;" title="Vote Share: 5.70%"></div>
       </div>
       <div class="seat-vote-container">
         <span class="seat-count">1</span>
-        <span class="vote-count">(3.11%)</span>
+        <span class="vote-count">(5.70%)</span>
       </div>
     </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 5, 2027 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
 
-<title>Projection for Yukon</title>
-<a href="yukon.html" class="province-link">
+<title>Projection for Alberta</title>
+<a href="alberta.html" class="province-link">
+ <div class="container">
   <div class="province-box">
     <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 200px; height: 100px">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 200px; height: 100px">
     </div>
-    <h2 class="province-title">Yukon</h2>
+    <h2 class="province-title">Alberta</h2>
     <div class="party-row">
-      <img src="https://scontent.fyto1-2.fna.fbcdn.net/v/t39.30808-6/374268533_678150171015783_976649595484162437_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gw1CM1LgVagQ7kNvgExZok9&_nc_zt=23&_nc_ht=scontent.fyto1-2.fna&_nc_gid=A2G8yl-gcBVkqCDxNY44b1O&oh=00_AYC_86bqYsecyrcOCkcqkPtBFPluj-p9UGYiTmTSIvuv5A&oe=6793A6D2" alt="Party Logo" class="party-logo">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 52.38%; background-color: #0a3b71;" title="Seats: 11"></div>
-        <div class="vote-bar" style="width: 37.98%; background-color: #3d6ea4;" title="Vote Share: 37.98%"></div>
+        <div class="seat-bar" style="width: 57.47%; background-color: #17427e;" title="Seats: 50"></div>
+        <div class="vote-bar" style="width: 47.66%; background-color: #456898;" title="Vote Share: 47.66%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">11</span>
-        <span class="vote-count">(37.98%)</span>
+        <span class="seat-count">50</span>
+        <span class="vote-count">(47.66%)</span>
     </div>
   </div>
     <div class="party-row">
-      <img src="https://pbs.twimg.com/profile_images/748392499400548352/BNZ6g8xg_400x400.jpg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 23.81%; background-color: #bc161d;" title="Seats: 5"></div>
-        <div class="vote-bar" style="width: 31.18%; background-color: #ef4950;" title="Vote Share: 31.18%"></div>
+        <div class="seat-bar" style="width: 42.53%; background-color: #ff6900;" title="Seats: 37"></div>
+        <div class="vote-bar" style="width: 40.41%; background-color: #ff8733;" title="Vote Share: 40.41%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">5</span>
-        <span class="vote-count">(31.18%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Yukon_New_Democratic_Party_%28White_Logo%29.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 23.81%; background-color: #c36925;" title="Seats: 5"></div>
-        <div class="vote-bar" style="width: 30.45%; background-color: #f69c58;" title="Vote Share: 30.45%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">5</span>
-        <span class="vote-count">(30.45%)</span>
-      </div>
-    </div>
-  </div>
-
-<title>Projection for British Columbia</title>
-<a href="index.html" class="province-link">
-  <div class="province-box" style="background-color: #b3b3b3">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 166px; height: 100px">
-    </div>
-    <h2 class="province-title">British Columbia</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/27/British_Columbia_New_Democratic_Party_logo_2017.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 50.54%; background-color: #ba4b26;" title="Seats: 47"></div>
-        <div class="vote-bar" style="width: 44.86%; background-color: #ed7e59;" title="Vote Share: 44.86%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">47</span>
-        <span class="vote-count">(44.86%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://scontent.fyzd1-2.fna.fbcdn.net/v/t39.30808-6/300214850_378497514457455_8207940272095813272_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=3IinO758irIQ7kNvgEwPUrF&_nc_zt=23&_nc_ht=scontent.fyzd1-2.fna&_nc_gid=AL-TtixNo4QIFarjt53Tx5i&oh=00_AYAXbFwBWL984tAzS0YG6dTNr6ruULWPhjbtgFS9m-Aytw&oe=679B904E" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 47.31%; background-color: #1e3578;" title="Seats: 44"></div>
-        <div class="vote-bar" style="width: 43.28%; background-color: #5168ab;" title="Vote Share: 43.28%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">44</span>
-        <span class="vote-count">(43.28%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/BCGreenslogo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 2.15%; background-color: #0f8f47;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 8.24%; background-color: #42c27a;" title="Vote Share: 8.24%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(8.24%)</span>
-      </div>
-    </div>
-  <p>No Projection</p>
-  </div>
-
-<title>Projection for Saskatchewan</title>
-<a href="index.html" class="province-link">
-  <div class="province-box" style="background-color: #b3b3b3">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Saskatchewan</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c8/Saskatchewan_Party_Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 55.74%; background-color: #024835;" title="Seats: 34"></div>
-        <div class="vote-bar" style="width: 52.24%; background-color: #357b68;" title="Vote Share: 52.24%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">34</span>
-        <span class="vote-count">(52.24%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://scontent.fyzd1-3.fna.fbcdn.net/v/t39.30808-6/309596265_667420444748072_80268654155802765_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=1Q2os0iz52gQ7kNvgFhKEuX&_nc_zt=23&_nc_ht=scontent.fyzd1-3.fna&_nc_gid=AcxucImub0ZGYIbF2zwExdB&oh=00_AYApvunKW_WjksWtn_bCznZ87NBZEj3UIcukwO4NISgTwg&oe=679B9EBB" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 44.26%; background-color: #cc7902;" title="Seats: 27"></div>
-        <div class="vote-bar" style="width: 40.33%; background-color: #ffac35;" title="Vote Share: 40.33%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">27</span>
-        <span class="vote-count">(40.33%)</span>
+        <span class="seat-count">37</span>
+        <span class="vote-count">(40.41%)</span>
     </div>
   </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
         <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
-        <div class="vote-bar" style="width: 7.43%; background-color: #999999;" title="Vote Share: 7.43%"></div>
+        <div class="vote-bar" style="width: 11.92%; background-color: #999999;" title="Vote Share: 11.92%"></div>
       </div>
       <div class="seat-vote-container">
         <span class="seat-count">0</span>
-        <span class="vote-count">(7.43%)</span>
+        <span class="vote-count">(11.92%)</span>
+      </div>
+    </div>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 18, 2027 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
+  </div>
+
+<h2>2028 Provincial Elections</h2>
+
+<title>Projection for Nova Scotia</title>
+<a href="index.html" class="province-link">
+  <div class="province-box" style="background-color: #b3b3b3">
+    <div style="display: flex; justify-content: center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 200px; height: 100px">
+    </div>
+    <h2 class="province-title">Nova Scotia</h2>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Progressive_Conservative_Party_NS_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 78.18%; background-color: #3f7eb6;" title="Seats: 43"></div>
+        <div class="vote-bar" style="width: 52.49%; background-color: #72b1e9;" title="Vote Share: 52.49%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">43</span>
+        <span class="vote-count">(52.49%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://www.nsndp.ca/sites/all/themes/nsndp.themes/nsndp-styleguide/icons/icon--nsndp-logo/icon--nsndp-logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 16.36%; background-color: #c87f16;" title="Seats: 9"></div>
+        <div class="vote-bar" style="width: 22.17%; background-color: #fbb249;" title="Vote Share: 22.17%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">9</span>
+        <span class="vote-count">(22.17%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://scontent.fyzd1-3.fna.fbcdn.net/v/t39.30808-6/454613929_901620795342848_1397680325413769882_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-Y5n_2riPvUQ7kNvgFXZnFj&_nc_zt=23&_nc_ht=scontent.fyzd1-3.fna&_nc_gid=AuJwJo0HZ73p3ml86l6RMmc&oh=00_AYB23YAVVtQiSnmMoZTkzy72CG7U7tJhIS16HY0avTB2Fw&oe=679BB324" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 3.64%; background-color: #b2141a;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 22.69%; background-color: #e5474d;" title="Vote Share: 22.69%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">2</span>
+        <span class="vote-count">(22.69%)</span>
       </div>
     </div>
   <p>No Projection</p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jul 18, 2028 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
 
 <title>Projection for New Brunswick</title>
@@ -602,50 +807,185 @@
       </div>
     </div>
   <p>No Projection</p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 16, 2028 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
 
-<title>Projection for Nova Scotia</title>
+<title>Projection for British Columbia</title>
 <a href="index.html" class="province-link">
   <div class="province-box" style="background-color: #b3b3b3">
     <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 200px; height: 100px">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 166px; height: 100px">
     </div>
-    <h2 class="province-title">Nova Scotia</h2>
+    <h2 class="province-title">British Columbia</h2>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Progressive_Conservative_Party_NS_Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/en/2/27/British_Columbia_New_Democratic_Party_logo_2017.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 78.18%; background-color: #3f7eb6;" title="Seats: 43"></div>
-        <div class="vote-bar" style="width: 52.49%; background-color: #72b1e9;" title="Vote Share: 52.49%"></div>
+        <div class="seat-bar" style="width: 50.54%; background-color: #ba4b26;" title="Seats: 47"></div>
+        <div class="vote-bar" style="width: 44.86%; background-color: #ed7e59;" title="Vote Share: 44.86%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">43</span>
-        <span class="vote-count">(52.49%)</span>
+        <span class="seat-count">47</span>
+        <span class="vote-count">(44.86%)</span>
     </div>
   </div>
     <div class="party-row">
-      <img src="https://www.nsndp.ca/sites/all/themes/nsndp.themes/nsndp-styleguide/icons/icon--nsndp-logo/icon--nsndp-logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://scontent.fyzd1-2.fna.fbcdn.net/v/t39.30808-6/300214850_378497514457455_8207940272095813272_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=3IinO758irIQ7kNvgEwPUrF&_nc_zt=23&_nc_ht=scontent.fyzd1-2.fna&_nc_gid=AL-TtixNo4QIFarjt53Tx5i&oh=00_AYAXbFwBWL984tAzS0YG6dTNr6ruULWPhjbtgFS9m-Aytw&oe=679B904E" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 16.36%; background-color: #c87f16;" title="Seats: 9"></div>
-        <div class="vote-bar" style="width: 22.17%; background-color: #fbb249;" title="Vote Share: 22.17%"></div>
+        <div class="seat-bar" style="width: 47.31%; background-color: #1e3578;" title="Seats: 44"></div>
+        <div class="vote-bar" style="width: 43.28%; background-color: #5168ab;" title="Vote Share: 43.28%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">9</span>
-        <span class="vote-count">(22.17%)</span>
+        <span class="seat-count">44</span>
+        <span class="vote-count">(43.28%)</span>
     </div>
   </div>
     <div class="party-row">
-      <img src="https://scontent.fyzd1-3.fna.fbcdn.net/v/t39.30808-6/454613929_901620795342848_1397680325413769882_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-Y5n_2riPvUQ7kNvgFXZnFj&_nc_zt=23&_nc_ht=scontent.fyzd1-3.fna&_nc_gid=AuJwJo0HZ73p3ml86l6RMmc&oh=00_AYB23YAVVtQiSnmMoZTkzy72CG7U7tJhIS16HY0avTB2Fw&oe=679BB324" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/BCGreenslogo.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 3.64%; background-color: #b2141a;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 22.69%; background-color: #e5474d;" title="Vote Share: 22.69%"></div>
+        <div class="seat-bar" style="width: 2.15%; background-color: #0f8f47;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 8.24%; background-color: #42c27a;" title="Vote Share: 8.24%"></div>
       </div>
       <div class="seat-vote-container">
         <span class="seat-count">2</span>
-        <span class="vote-count">(22.69%)</span>
+        <span class="vote-count">(8.24%)</span>
       </div>
     </div>
   <p>No Projection</p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 21, 2028 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
   </div>
+
+<title>Projection for Saskatchewan</title>
+<a href="index.html" class="province-link">
+  <div class="province-box" style="background-color: #b3b3b3">
+    <div style="display: flex; justify-content: center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 200px; height: 100px">
+    </div>
+    <h2 class="province-title">Saskatchewan</h2>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/c8/Saskatchewan_Party_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 55.74%; background-color: #024835;" title="Seats: 34"></div>
+        <div class="vote-bar" style="width: 52.24%; background-color: #357b68;" title="Vote Share: 52.24%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">34</span>
+        <span class="vote-count">(52.24%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://scontent.fyzd1-3.fna.fbcdn.net/v/t39.30808-6/309596265_667420444748072_80268654155802765_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=1Q2os0iz52gQ7kNvgFhKEuX&_nc_zt=23&_nc_ht=scontent.fyzd1-3.fna&_nc_gid=AcxucImub0ZGYIbF2zwExdB&oh=00_AYApvunKW_WjksWtn_bCznZ87NBZEj3UIcukwO4NISgTwg&oe=679B9EBB" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 44.26%; background-color: #cc7902;" title="Seats: 27"></div>
+        <div class="vote-bar" style="width: 40.33%; background-color: #ffac35;" title="Vote Share: 40.33%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">27</span>
+        <span class="vote-count">(40.33%)</span>
+    </div>
+  </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 7.43%; background-color: #999999;" title="Vote Share: 7.43%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">0</span>
+        <span class="vote-count">(7.43%)</span>
+      </div>
+    </div>
+  <p>No Projection</p>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 30, 2028 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ELECTION DAY";
+  }
+}, 1000);
+</script>
+  </div>
+
+<h2>2025 Federal Election</h2>
 
 <title>Projection for Canada</title>
 <a href="canada.html" class="province-link" style="display: block; width: 100%;">
