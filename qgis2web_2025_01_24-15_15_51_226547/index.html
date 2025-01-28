@@ -329,7 +329,7 @@
 
 
 
-<div id="custom-popup" style="position: absolute; top: 10px; right: 10px; background-color: white; padding: 10px; border: 1px solid black;">
+<div id="custom-popup" style="position: absolute; top: 10px; right: 10px; background-color: white; padding: 10px; border: 2px solid black;">
     Hover over a riding
 </div>
 <script>
@@ -339,9 +339,82 @@
 </script>
 <script>
     // Example of updating the popup content
-    updatePopupContent('New content for the popup');
+    updatePopupContent('Hover over a riding');
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="chart-container" style="position: absolute; top: 100px; right: 10px; width: 300px; height: 200px; background-color: white; border: 2px solid black;">
+    <canvas id="riding-chart"></canvas>
+</div>
+<script>
+    var ctx = document.getElementById('riding-chart').getContext('2d');
+    var ridingChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Election Results',
+                data: [],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script>
+    function updateChart(ridingResults) {
+        ridingChart.data.labels = Object.keys(ridingResults);
+        ridingChart.data.datasets[0].data = Object.values(ridingResults);
+        ridingChart.update();
+    }
+</script>
+<script>
+    function pop_EDBC2018_FinalBoundaries1EDBC2018_FinalBoundariesshp_0(feature, layer) {
+        var popupContent = '<table>...'; // your existing popup content code
+
+        var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+        layer.on('popupopen', function(e) {
+            addClassToPopupIfMedia(content, e.popup);
+        });
+        layer.bindPopup(content, { maxHeight: 400 });
+
+        // Example riding results data
+        var ridingResults = {
+            'PC': feature.properties['PC'], 
+            'NDP': feature.properties['NDP'], 
+            'LIB': feature.properties['LIB'], 
+            'GRN': feature.properties['GRN'], 
+            'NBP': feature.properties['NBP'], 
+            'OTH': feature.properties['OTH']
+        };
+
+        layer.on('mouseover', function() {
+            updateChart(ridingResults);
+        });
+    }
+</script>
 
 
 
