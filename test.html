@@ -1,1 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NL</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(9, 1fr); 
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
+
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
+</style>
+</head>
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Newfoundland and Labrador</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Regional Results">Regional Results</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Squares">Squares Chart</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulator</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
+    </h3>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Newfoundland and Labrador Electoral Model</h2>
+     <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 20"></div>
+          <div class="vote-bar" style="width: 42.38%; background-color: #94494b;" title="Vote Share: 42.38%"></div>
+          <div class="odds-bar" style="width: 38%; background-color: #ae7476;" title="LIB Majority Odds: 38%"></div>
+          <div class="odds-bar" style="width: 35%; background-color: #ae7476;" title="LIB Majority Odds: 35%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count">15-<span class="highlight">20</span>-24</span>
+         <span class="vote-count">(42.38%)</span><br>
+         <span class="odds-count">(LIB Maj: 38%)</span><br>
+         <span class="odds-count">(LIB Min: 35%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 37.50%; background-color: #1e1d42;" title="Seats: 15"></div>
+          <div class="vote-bar" style="width: 38.06%; background-color: #515075;" title="Vote Share: 38.06%"></div>
+          <div class="odds-bar" style="width: 18%; background-color: #7d7c98;" title="PC Minority Odds: 18%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">11-<span class="highlight">15</span>-19</span>
+         <span class="vote-count">(38.06%)</span>
+         <span class="odds-count">(PC Min: 18%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 4"></div>
+          <div class="vote-bar" style="width: 16.34%; background-color: #f7a04d;" title="Vote Share: 16.34%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">3-<span class="highlight">4</span>-6</span>
+         <span class="vote-count">(16.34%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 2.50%; background-color: #666666;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 3.22%; background-color: #999999;" title="Vote Share: 3.22%"></div>
+          <div class="odds-bar" style="width: 9%; background-color: #b3b3b3;" title="Tie: 9%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">1</span>-2</span>
+         <span class="vote-count">(3.22%)</span>
+         <span class="odds-count">(Tie: 9%)</span>
+     </div>
+    </div>
+    <p>Last Updated: January 31, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government</i></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
