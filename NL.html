@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NL</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(10, 1fr); 
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
+
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
+</style>
+</head>
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Newfoundland and Labrador</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Regional Results">Regional Results</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Squares">Squares Chart</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulator</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
+    </h3>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Newfoundland and Labrador Electoral Model</h2>
+     <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 20"></div>
+          <div class="vote-bar" style="width: 42.38%; background-color: #94494b;" title="Vote Share: 42.38%"></div>
+          <div class="odds-bar" style="width: 38%; background-color: #ae7476;" title="LIB Majority Odds: 38%"></div>
+          <div class="odds-bar" style="width: 35%; background-color: #ae7476;" title="LIB Majority Odds: 35%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count">15-<span class="highlight">20</span>-24</span>
+         <span class="vote-count">(42.38%)</span><br>
+         <span class="odds-count">(LIB Maj: 38%)</span><br>
+         <span class="odds-count">(LIB Min: 35%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 37.50%; background-color: #1e1d42;" title="Seats: 15"></div>
+          <div class="vote-bar" style="width: 38.06%; background-color: #515075;" title="Vote Share: 38.06%"></div>
+          <div class="odds-bar" style="width: 18%; background-color: #7d7c98;" title="PC Minority Odds: 18%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">11-<span class="highlight">15</span>-19</span>
+         <span class="vote-count">(38.06%)</span>
+         <span class="odds-count">(PC Min: 18%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 4"></div>
+          <div class="vote-bar" style="width: 16.34%; background-color: #f7a04d;" title="Vote Share: 16.34%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">3-<span class="highlight">4</span>-6</span>
+         <span class="vote-count">(16.34%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 2.50%; background-color: #666666;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 3.22%; background-color: #999999;" title="Vote Share: 3.22%"></div>
+          <div class="odds-bar" style="width: 9%; background-color: #b3b3b3;" title="Tie: 9%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">1</span>-2</span>
+         <span class="vote-count">(3.22%)</span>
+         <span class="odds-count">(Tie: 9%)</span>
+     </div>
+    </div>
+    <p>Last Updated: January 31, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government</i></p>
+</div>
+
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 33%;">
+ <h3 id="Regional Results" class="province-title">Avalon</h3>
+    <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 55.56%; background-color: #611517;" title="Seats: 10"></div>
+          <div class="vote-bar" style="width: 42.25%; background-color: #94494b;" title="Vote Share: 42.25%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">10</span></span>
+         <span class="vote-count">(42.25%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 27.78%; background-color: #1e1d42;" title="Seats: 5"></div>
+          <div class="vote-bar" style="width: 32.95%; background-color: #515075;" title="Vote Share: 32.95%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">5</span></span>
+         <span class="vote-count">(32.95%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 16.67%; background-color: #c46d1a;" title="Seats: 3"></div>
+          <div class="vote-bar" style="width: 22.06%; background-color: #f7a04d;" title="Vote Share: 22.06%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">3</span></span>
+         <span class="vote-count">(22.06%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 2.74%; background-color: #999999;" title="Vote Share: 2.74%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(2.74%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 33%;">
+ <h3 id="Regional Results" class="province-title">Central and Eastern Newfoundland</h3>
+    <div class="party-row">
+      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 58.33%; background-color: #1e1d42;" title="Seats: 7"></div>
+          <div class="vote-bar" style="width: 49.56%; background-color: #515075;" title="Vote Share: 49.56%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">7</span></span>
+         <span class="vote-count">(49.56%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 41.67%; background-color: #611517;" title="Seats: 5"></div>
+          <div class="vote-bar" style="width: 42.64%; background-color: #94494b;" title="Vote Share: 42.64%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">5</span></span>
+         <span class="vote-count">(42.64%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #c46d1a;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 6.46%; background-color: #f7a04d;" title="Vote Share: 6.46%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">0</span></span>
+         <span class="vote-count">(6.46%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.35%; background-color: #999999;" title="Vote Share: 1.35%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(1.35%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 33%;">
+ <h3 id="Regional Results" class="province-title">West and Labrador</h3>
+    <div class="party-row">
+      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 5"></div>
+          <div class="vote-bar" style="width: 41.51%; background-color: #94494b;" title="Vote Share: 41.51%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">5</span></span>
+         <span class="vote-count">(41.51%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 30.00%; background-color: #1e1d42;" title="Seats: 3"></div>
+          <div class="vote-bar" style="width: 36.96%; background-color: #515075;" title="Vote Share: 36.96%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">3</span></span>
+         <span class="vote-count">(36.96%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 14.04%; background-color: #f7a04d;" title="Vote Share: 14.04%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">1</span></span>
+         <span class="vote-count">(14.04%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 10.00%; background-color: #666666;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 7.49%; background-color: #999999;" title="Vote Share: 7.49%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(7.49%)</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Map</h2>
+<div class="flourish-embed flourish-map" data-src="visualisation/21409998"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21409998/thumbnail" width="100%" alt="map visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Squares" class="province-title">Race for 21</h2>
+     <div class="grid-container">
+        <div class="grid-item" style="background-color: #481011;" >Cartwright-L'Anse<br>Liberal+75.41<br>(±28.41)</div>
+        <div class="grid-item" style="background-color: #481011;" >Burgeo-Poile<br>Liberal+58.26<br>(±24.05)</div>
+        <div class="grid-item" style="background-color: #481011;" >Harbour Grace<br>Liberal+44.37<br>(±20.64)</div>
+        <div class="grid-item" style="background-color: #481011;" >Waterford Valley<br>Liberal+38.51<br>(±18.03)</div>
+        <div class="grid-item" style="background-color: #481011;" >Gander<br>Liberal+35.02<br>(±20.13)</div>
+        <div class="grid-item" style="background-color: #611517;" >Fortune-La Hune<br>Liberal+29.57<br>(±19.34)</div>
+        <div class="grid-item" style="background-color: #611517;" >Carbonear-Trinity<br>Liberal+29.38<br>(±17.93)</div>
+        <div class="grid-item" style="background-color: #611517;" >St. John's West<br>Liberal+23.89<br>(±14.97)</div>
+        <div class="grid-item" style="background-color: #611517;" >Corner Brook<br>Liberal+21.02<br>(±19.17)</div>
+        <div class="grid-item" style="background-color: #611517;" >Humber-Morne<br>Liberal+18.56<br>(±18.1)</div>
+        <div class="grid-item" style="background-color: #ae7476;" >Mt Pearl South<br>Liberal+0.02<br>(±8)</div>
+        <div class="grid-item" style="background-color: #94494b;" >Mt Pearl North<br>Liberal+3.25<br>(±14.87)</div>
+        <div class="grid-item" style="background-color: #94494b;" >Lewis-Twilling<br>Liberal+3.72<br>(±17.86)</div>
+        <div class="grid-item" style="background-color: #94494b;" >Placentia-Mary's<br>Liberal+5.59<br>(±18.15)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >Virginia Waters<br>Liberal+7.4<br>(±14.69)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >Concep Bay East<br>Liberal+8.81<br>(±12.61)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >Windsor Lake<br>Liberal+10.2<br>(±14.1)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >St. George-Humber<br>Liberal+11.46<br>(±16.2)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >Burin-Grand Bank<br>Liberal+12.77<br>(±17.51)</div>
+        <div class="grid-item" style="background-color: #7a1b1d;" >Lake Melville<br>Liberal+14.07<br>(±7.11)</div>
+        <div class="grid-item" style="border: 5px solid black; background-color: #515075;" >Ferryland<br>PC-6.29<br>(±16.8)</div>
+        <div class="grid-item" style="background-color: #515075;" >Topsail-Paradise<br>PC-6.42<br>(±14.63)</div>
+        <div class="grid-item" style="background-color: #515075;" >St. Barbe-L'Anse<br>PC-6.55<br>(±18.7)</div>
+        <div class="grid-item" style="background-color: #262453;" >Harbour Main<br>PC-10.62<br>(±16.75)</div>
+        <div class="grid-item" style="background-color: #f58821;" >Mt Scio<br>NDP-12.64<br>(±14.12)</div>
+        <div class="grid-item" style="background-color: #262453;" >Fogo-Cape Freels<br>PC-13.73<br>(±17.77)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Terra Nova<br>PC-18.45<br>(±18.28)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Exploits<br>PC-18.5<br>(±18.96)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Concep Bay South<br>PC-18.59<br>(±17)</div>
+        <div class="grid-item" style="background-color: #666666;" >Humber-Bay Is<br>Other-20.59<br>(±10.89)</div>
+        <div class="grid-item" style="background-color: #171632;" >Torngat Mountains<br>PC-62.97<br>(±25.36)</div>
+        <div class="grid-item" style="background-color: #935214;" >Labrador West<br>NDP-59.39<br>(±23.2)</div>
+        <div class="grid-item" style="background-color: #935214;" >St. John's Ctr<br>NDP-54.86<br>(±23.39)</div>
+        <div class="grid-item" style="background-color: #171632;" >Bonavista<br>PC-48<br>(±20.72)</div>
+        <div class="grid-item" style="background-color: #935214;" >St. John's East<br>NDP-39.08<br>(±20.35)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Baie Verte<br>PC-32.56<br>(±20.17)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Stephenville-Port<br>PC-30.52<br>(±19.53)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Cape St. Francis<br>PC-30.06<br>(±16.65)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Grand Falls<br>PC-28.86<br>(±19.84)</div>
+        <div class="grid-item" style="background-color: #1e1d42;" >Placentia West<br>PC-20.7<br>(±18.39)</div>
+      </div>
+    <p>Bolded seat is the Tipping Point</p>
+</div>
+
+<div class="province-box">
+<h2 id="Model Specifics"></h2>
+    <div class="flourish-embed flourish-election" data-src="visualisation/21412338"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21412338/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21412379"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21412379/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21412402"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21412402/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator" class="province-title">Simulator</h2>
+    <p><b>Simulate a Newfoundland and Labrador election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+    <a href="https://yapms.com/app/can/nl/2021/blank?m=mo548duy63ejnd0">Click here to map your result</a>
+
+<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQR-jQgNSXutSqzKsj0ujR99AUkgLxViv2rE-6uHBgN1Nnk?wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&Item='Simulator'!A%3AZ&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+</div>
+
+</body>
+</html>
