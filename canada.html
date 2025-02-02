@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(13, 1fr); 
+      font-size: 10px;
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
+
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Canada</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Regional Results">Regional Results</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Squares">Squares Chart</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulator</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
+    </h3>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Federal Electoral Model</h2>
+     <div class="party-row">
+      <img src="https://cpcassets.conservative.ca/social-icons/conservative-logo-Dark_Blue.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 62.68%; background-color: #0f2643;" title="Seats: 215"></div>
+        <div class="vote-bar" style="width: 43.43%; background-color: #425976;" title="Vote Share: 43.43%"></div>
+        <div class="odds-bar" style="width: 100%; background-color: #718298;" title="CPC Majority Odds: >99%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">201-<span class="highlight">215</span>-225</span>
+        <span class="vote-count">(46.92%)</span>
+        <span class="odds-count">(CPC Maj: >99%)</span>
+    </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 16.03%; background-color: #ac151a;" title="Seats: 55"></div>
+        <div class="vote-bar" style="width: 23.34%; background-color: #df484d;" title="Vote Share: 23.34%"></div>
+        <div class="odds-bar" style="width: 0.25%; background-color: #e77679;" title="LIB Majority Odds: <1%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">48-<span class="highlight">55</span>-67</span>
+         <span class="vote-count">(20.57%)</span>
+         <span class="odds-count">(LIB Maj: <1%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://www.blocquebecois.org/wp-content/themes/bloc2021/images/logo-square.svg?ver=1712854112571" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 13.12%; background-color: #0086b9;" title="Seats: 45"></div>
+        <div class="vote-bar" style="width: 9.82%; background-color: #33b9ec;" title="Vote Share: 9.82%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">38-<span class="highlight">45</span>-50</span>
+         <span class="vote-count">(9.82%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Orange_NDP_logo_English.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 7.58%; background-color: #c4681a;" title="Seats: 26"></div>
+        <div class="vote-bar" style="width: 16.82%; background-color: #f79b4d;" title="Vote Share: 16.82%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">16-<span class="highlight">26</span>-34</span>
+          <span class="vote-count">(16.82%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://www.greenparty.ca/sites/all/themes/gpc4_bootstrap/images/logo/gpc_logo_web_green_en.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.58%; background-color: #307c2a;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 3.42%; background-color: #63af5d;" title="Vote Share: 3.42%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">2</span>-3</span>
+          <span class="vote-count">(3.42%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://cdn.prod.website-files.com/61b95f3fa12ab59a52d3ffd4/668c358d706bf9dfadebb26e_PPC_WhiteLetterA.jpg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #53297c;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 2.59%; background-color: #865caf;" title="Vote Share: 2.59%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+          <span class="vote-count">(2.59%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 0.58%; background-color: #999999;" title="Vote Share: 0.58%"></div>
+          <div class="odds-bar" style="width: 0.25%; background-color: #b3b3b3;" title="Tie Odds: <1%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+          <span class="vote-count">(0.58%)</span>
+          <span class="odds-count">(Tie: <1%)</span>
+      </div>
+    </div>
+    <p>Last Updated: January 31, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government</i></p>
+</div>
+
+<div id="Regional Results" class="province-box">
+    <p>Due to the urgency of publication, the regional results are not yet available. Coming soon!</p>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Map</h2>
+<p>Due to the urgency of publication, the map is not yet available. Coming soon!</p>
+</div>
+
+<div class="province-box">
+    <h2 id="Squares" class="province-title">Race for 172</h2>
+<p>Due to the urgency of publication, the squares graphic is not yet available. Coming soon!</p>
+</div>
+
+<div class="province-box">
+<h2 id="Model Specifics"></h2>
+    <div class="flourish-embed flourish-election" data-src="visualisation/21431016"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431016/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21431145"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431145/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21431179"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431179/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator" class="province-title">Simulator</h2>
+    <p><b>Simulate a Federal election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+    <a href="https://yapms.com/app/can/commons/2023201/blank?m=9wl5xm4j6jbtlk6">Click here to map your result</a>
+
+<p>Due to the urgency of publication, the simulator is not yet available. Coming soon!</p>
+</div>
+
+</body>
+</html>
