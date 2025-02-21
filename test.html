@@ -76,6 +76,11 @@
       flex-direction: column;
       flex-grow: 1;
       gap: 5px;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      background-color: white;
+      position: relative;
     }
 
     .vote-bar, .seat-bar {
@@ -155,15 +160,26 @@
       background-color: white;
       z-index: 1;
      }
-
+    
+     .name-box {
+      padding: 0 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+     }
+        
      .candidate-name {
       font-size: 12px;
       font-weight: bold;
+      text-align: start;
      }
 
     .party-name {
      font-size: 8px;
      font-style: italic;
+     text-align: start;
     }
         
 </style>
@@ -209,14 +225,13 @@
 
      <div class="party-row">
       <div class="bar-container">
-      <td class="name-box">
+      <td class="name-box" style="background-color: 537ab880">
         <div class="candidate-name">Catherine Gentilcore</div>
-        <br><div class="party-name">Parti Québécois</div>
-        <div id="background" style="position: fixed; top: 0px; left: 0px; width: 39.14%; height: 30px; background-color: #537ab8; z-index: 1;"></div>
+        <div class="party-name">Parti Québécois</div>
       </td>
       </div>
       <div class="seat-vote-container">
-        <span class="vote-bar">79-<span class="highlight">88</span>-96</span>
+        <span class="vote-bar">79-<br><span class="highlight">88</span><br>-96</span>
     </div>
     </div>
 
