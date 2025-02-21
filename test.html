@@ -145,6 +145,26 @@
       color: white;
       text-align: center;
      }
+
+     .background {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 75%;
+      height: 100%;
+      background-color: white;
+      z-index: 1;
+     }
+
+     .candidate-name {
+      font-size: 12px;
+      font-weight: bold;
+     }
+
+    .party-name {
+     font-size: 8px;
+     font-style: italic;
+    }
         
 </style>
 </head>
@@ -176,7 +196,7 @@
      <div class="party-row">
       <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="font-size: 10px;">Catherine Gentilcore</div>
+        <div class="seat-bar" style="font-size: 16px;">Catherine Gentilcore</div>
         <div class="seat-bar" style="width: 39.14%; background-color: #3f7eb6;" title="Part de Voix: 39.14%"></div>
         <div class="odds-bar" style="width: 99.2%; background-color: #95c5ee;" title="PQ Probabilités: 99.2%"></div>
       </div>
@@ -186,6 +206,20 @@
         <span class="odds-count">(PC Maj: >99%)</span>
     </div>
     </div>
+
+     <div class="party-row">
+      <div class="bar-container">
+      <td class="name-box">
+        <div class="candidate-name">Catherine Gentilcore</div>
+        <br><div class="party-name">Parti Québécois</div>
+        <div id="background" style="position: fixed; top: 0px; left: 0px; width: 39.14%; height: 100%; background-color: #537ab8; z-index: 1;"></div>
+      </td>
+      </div>
+      <div class="seat-vote-container">
+        <span class="vote-bar">79-<span class="highlight">88</span>-96</span>
+    </div>
+    </div>
+
     <div class="party-row">
       <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
