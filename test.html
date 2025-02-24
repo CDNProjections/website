@@ -172,7 +172,20 @@
      width: 15px;
      z-index: 1;
     }
-    
+
+    .dual-results {
+     display: flex;
+     gap: 15px;
+    }
+
+    .dual-results .province-box:first-child {
+     width: 66.7%;
+    }
+
+    .dual-results .province-box:last-child {
+     width: 33.3%;
+    }
+
 </style>
 </head>
 
@@ -198,7 +211,8 @@
     </div>
 </header>
 
-<div class="province-box" style="width: 66.7%">
+<div class="dual-results">
+<div class="province-box">
  <h2 class="province-title">CDNProjections Projection Électorale du Terrebonne</h2><br>
     
     <div class="party-row">
@@ -301,9 +315,10 @@
 </div>
 
     
-<div class="province-box" style="width: 33.3%">
+<div class="province-box">
  <h2 class="province-title">CDNProjections Probabilités de Victoire du Terrebonne</h2><br>
 
+</div>
 </div>
     
 <div class="province-box">
