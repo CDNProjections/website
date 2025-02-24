@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrebonne</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin-bottom: 70px
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+       margin-bottom: 5px;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 75px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 80%;
+      height: 75px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+      position: absolute;
+      right: 2.5%;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
+     }
+
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
+
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
+    }
+
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
+    }
+
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Terrebonne</h1>
+        <p>Le chargement de certains éléments de la page prend du temps; soyez patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Histoire et des projections</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Résultats simulés</a>
+    </h3>
+    </div>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Projection Électorale du Terrebonne</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 39.14%; background-color: #7e9bca;">
+       <div class="bar" style="background-color: #2859a6;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Catherine Gentilcore</div>
+         <div class="party-name">Parti Québécois</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">39.14%</span></span>
+        <span class="odds-count">(PQ Vic: >99%)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 25.18%; background-color: #66cbf1;">
+       <div class="bar" style="background-color: #00a8e7;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Alex Gagné</div>
+         <div class="party-name">Coalition avenir Québec</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">25.18%</span></span>
+        <span class="odds-count">(CAQ Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 12.79%; background-color: #f4757f;">
+       <div class="bar" style="background-color: #ec192a;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Virginie Bouchard</div>
+         <div class="party-name">Parti libéral du Québec</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">12.79%</span></span>
+        <span class="odds-count">(PLQ Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 12.00%; background-color: #ff9969;">
+       <div class="bar" style="background-color: #ff5505;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Nadia Poirier</div>
+         <div class="party-name">Québec solidaire</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">12.00%</span></span>
+        <span class="odds-count">(QS Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 9.01%; background-color: #737d97;">
+       <div class="bar" style="background-color: #162751;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Ange Claude Bigilimana</div>
+         <div class="party-name">Parti conservateur du Québec</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">9.01%</span></span>
+        <span class="odds-count">(PCQ Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 1.88%; background-color: #b3b3b3;">
+       <div class="bar" style="background-color: #808080;"></div>
+       <div class="text-container">
+         <div class="candidate-name">N/A</div>
+         <div class="party-name">Tous les Autres</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">1.88%</span></span>
+        <span class="odds-count">(AUT Vic: <1%)</span>
+    </div>
+    </div>
+    
+    <p>Dernière mise à jour : 24 février, 2025<br><i>Pourcentage des Voix<br>Probabilités de victoire</i></p>
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Probabilités de Victoire du Terrebonne</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 99.10%; background-color: #7e9bca;">
+       <div class="bar" style="background-color: #2859a6;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Catherine Gentilcore</div>
+         <div class="party-name">Parti Québécois</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">99.10%</span></span>
+        <span class="odds-count">(4955)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.90%; background-color: #66cbf1;">
+       <div class="bar" style="background-color: #00a8e7;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Alex Gagné</div>
+         <div class="party-name">Coalition avenir Québec</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.90%</span></span>
+        <span class="odds-count">(45)</span>
+    </div>
+    </div>
+
+    <p>Dernière mise à jour : 24 février, 2025<br><i>Probabilités de victoire<br>Nombre de simulations gagnées (sur 5000)</i></p>
+
+</div>
+
+<div class="province-box">
+    <h2 id="Model Specifics"></h2>
+<div class="flourish-embed flourish-chart" data-src="visualisation/21681649"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21681649/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator"></h2>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/21703127"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21703127/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+</body>
+</html>
