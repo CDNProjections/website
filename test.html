@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDNProjections</title>
+    <title>Ontario</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
 <style>
     body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
         font-family: 'Hind Siliguri', sans-serif;
         text-align: center;
         flex-direction: column;
@@ -15,77 +21,61 @@
     }
 
     .province-link {
-      display: block;
-      text-decoration: none;
-    }
+        display: block;
+        text-decoration: none;
+    } 
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      flex: 1;
-      gap: 15px;
-    }
-
-    .province-box {
-      border: 2px solid black;
-      background-color: #e8e8e8;
-      padding: 15px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      cursor: pointer;
-      color: black;
-      flex: 1 1 auto;
-      min-width: 300px;
-      max-width: 450px;
-    }
-
-    .election-box::before {
-      content: 'ELECTION';
-      background-color: #ffcc00; /* Replace with your desired color */
-      color: black;
-      padding: 5px;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      font-weight: bold;
-    }
-
-    .province-box:hover {
-      background-colour: #808080;
-      filter: drop-shadow(10px 10px 10px rgba(36, 36, 36, 0.5));
-    }
-      
-    .province-box h2, .province-box span {
-      color: black;
-    }
-      
     .province-title {
-      font-size: 30px;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 15px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
     }
 
     .party-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 10px;
+       display: flex;
+       align-items: center;
+       gap: 10px;
     }
-
+        
     .party-logo {
-      width: 50px;
-      height: 50px;
+        width: 50px;
+        height: 50px;
     }
-
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
     .bar-container {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      gap: 5px; /* Space between vote-bar and seat-bar */
+      gap: 5px;
     }
 
     .vote-bar, .seat-bar {
@@ -94,13 +84,18 @@
     }
 
     .vote-bar {
-      width: 100%;/* Adjust for vote share percentage */
+      width: 90%;
       height: 10px;
     }
 
     .seat-bar {
-      width: 100%; /* Adjust for seat count percentage */
+      width: 90%;
       height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
     }
 
     .bar-text {
@@ -112,38 +107,47 @@
 
     .seat-vote-container {
       display: flex;
-      flex-direction: column; /* Stack elements vertically */
-      align-items: right; /* Center-align the elements */
-      gap: 10px; /* Space between seat-count and vote-count */
+      flex-direction: column;
+      gap: 5px;
     }
       
     .seat-count {
       font-size: 16px;
       font-weight: bold;
+      display: flex;
+      align-items: center;
     }
 
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
      .vote-count {
       font-size: 12px;
     }
 
-    @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-     10% { transform: translate(-1px, -2px) rotate(-2deg); }
-     20% { transform: translate(-3px, 0px) rotate(2deg); }
-     30% { transform: translate(3px, 2px) rotate(0deg); }
-     40% { transform: translate(1px, -1px) rotate(2deg); }
-     50% { transform: translate(-1px, 2px) rotate(-2deg); }
-     60% { transform: translate(-3px, 1px) rotate(0deg); }
-     70% { transform: translate(3px, 1px) rotate(-2deg); }
-     80% { transform: translate(-1px, -1px) rotate(2deg); }
-     90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-2deg); }
-   }
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(9, 1fr); 
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
 
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
 </style>
 </head>
-</html>
-
 
 <body>
 <header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
@@ -151,197 +155,70 @@
     <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
     </a>
     <div style="flex: 1;">
-        <h1>Welcome to CDNProjections!</h1>
+        <h1>Ontario</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
         <hr style="height:10px; visibility:hidden;">
-        <p>This is my first true (actually coded) website, so please be patient! If you're visiting on mobile, flip to landscape mode for better viewing</p>
-        <i><p>Due to the snap election in Ontario, release had to be (partially) rushed. Not all things will be entirely smooth, sorry for the inconvenience</p></i>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="display: flex; gap: 10px; margin-right: 20px">
-            <a href="https://www.instagram.com/cdnprojections" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" style="width: 40px; height: 40px;">
-            </a>
-            <a href="https://x.com/CDNprojections" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="Twitter" style="width: 40px; height: 40px;">
-            </a>
-        </div>
-        <div style="display: flex; gap: 10px; margin-right: 20px">
-            <a href="https://cdnprojections.substack.com/" target="_blank">
-                <img src="https://substack.com/img/substack.png" alt="Substack" style="width: 40px; height: 40px;">
-            </a>
-            <a href="https://www.youtube.com/@cdnprojections" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" style="width: 40px; height: 40px;">
-            </a>
-        </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Regional Results">Regional Results</a>
+    </h3>
     </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Squares">Squares Chart</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulator</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
+    </h3>
 </header>
 
-<h2>By-elections</h2>
-<div class="container">
-
-
-<title>Terrebonne</title>
-<div class="province-box election-box" style="animation: shake 5s infinite;">
-    <a href="terrebonne.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg" style="width: 75px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Terrebonne</h2>
-    <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 39.14%; background-color: #537ab8;" title="Vote Share: 39.14%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">39.14%</span>
-    </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 25.18%; background-color: #33b9ec;" title="Vote Share: 25.18%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">25.18%</span>
-      </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 12.79%; background-color: #f04755;" title="Vote Share: 12.79%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">12.79%</span>
-    </div>
-  </div>
-</div>
-
-<title>Transcona</title>
-<div class="province-box election-box" style="animation: shake 5s infinite;">
-    <a href="transcona.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 100px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Transcona</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 61.69%; background-color: #e38d53;" title="Vote Share: 61.69%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">61.69%</span>
-    </div>
-    </div>
-    <div class="party-row">
-      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 32.60%; background-color: #357ab8;" title="Vote Share: 32.60%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">32.60%</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="vote-bar" style="width: 3.52%; background-color: #999999;" title="Vote Share: 3.52%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">3.52%</span>
-      </div>
-    </div>
-</div>
-
-<br>
-
-<title>Brackley-Hunter River</title>
 <div class="province-box">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 75px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Brackley-Hunter River</h2>
-    <p style="color: black;">By-election has not been called</p>
-    </a>
-</div>
-
-<title>Charlottetown-Hillsborough Park</title>
-<div class="province-box">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 75px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Charlottetown-<br>Hillsborough Park</h2>
-    <p style="color: black;">By-election has not been called</p>
-    </a>
-</div>
-
-<title>Edmonton-Strathcona</title>
-<div class="province-box">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 100px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Edmonton-Strathcona</h2>
-    <p style="color: black;">By-election has not been called</p>
-    </a>
-</div>
-
-<title>Halifax</title>
-<div class="province-box">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 100px; height: 50px">
-    </div>
-    <h2 class="province-title" style="font-size: 24px">Halifax</h2>
-    <p style="color: black;">By-election has not been called</p>
-    </a>
-</div>
-
-</div>
-</a>
-
-<h2>2025 Provincial Elections</h2>
-<div class="container">
-
-<title>Projection for Ontario</title>
-<div class="province-box election-box" style="animation: shake 5s infinite;">    
-    <a href="ontario.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Ontario</h2>
-    <div class="party-row">
+ <h2 class="province-title">CDNProjections Ontario Electoral Model</h2>
+     <div class="party-row">
       <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
         <div class="seat-bar" style="width: 73.39%; background-color: #3f7eb6;" title="Seats: 91"></div>
         <div class="vote-bar" style="width: 43.46%; background-color: #72b1e9;" title="Vote Share: 43.46%"></div>
+        <div class="odds-bar" style="width: 100%; background-color: #95c5ee;" title="PC Majority Odds: >99%"></div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count">91</span>
+        <span class="seat-count">76-<span class="highlight">91</span>-95</span>
         <span class="vote-count">(43.46%)</span>
+        <span class="odds-count">(PC Maj: >99%)</span>
     </div>
     </div>
     <div class="party-row">
       <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
         <div class="seat-bar" style="width: 14.52%; background-color: #c75000;" title="Seats: 18"></div>
-        <div class="vote-bar" style="width: 21.24%; background-color: #fa8333;" title="Vote Share: 21.24%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">18</span>
-        <span class="vote-count">(21.24%)</span>
-      </div>
+        <div class="vote-bar" style="width: 21.23%; background-color: #fa8333;" title="Vote Share: 21.23%"></div>
+        <div class="odds-bar" style="width: 0.25%; background-color: #fba266;" title="NDP Majority Odds: <1%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">10-<span class="highlight">18</span>-25</span>
+         <span class="vote-count">(21.23%)</span>
+         <span class="odds-count">(NDP Maj: <1%)</span>
+     </div>
     </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
       <div class="bar-container">
         <div class="seat-bar" style="width: 9.68%; background-color: #be161d;" title="Seats: 12"></div>
         <div class="vote-bar" style="width: 25.81%; background-color: #f14950;" title="Vote Share: 25.81%"></div>
-      </div>
+        <div class="odds-bar" style="width: 0.25%; background-color: #f4777c;" title="LIB Majority Odds: <1%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">12</span>
-        <span class="vote-count">(25.81%)</span>
+         <span class="seat-count">10-<span class="highlight">12</span>-23</span>
+         <span class="vote-count">(25.81%)</span>
+         <span class="odds-count">(LIB Maj: <1%)</span>
       </div>
     </div>
     <div class="party-row">
@@ -349,590 +226,480 @@
       <div class="bar-container">
         <div class="seat-bar" style="width: 1.61%; background-color: #265f25;" title="Seats: 2"></div>
         <div class="vote-bar" style="width: 5.64%; background-color: #599258;" title="Vote Share: 5.64%"></div>
-      </div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(5.64%)</span>
+         <span class="seat-count">1-<span class="highlight">2</span>-3</span>
+          <span class="vote-count">(5.64%)</span>
       </div>
     </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.81%; background-color: #666666;" title="Seats: 1"></div>
-        <div class="vote-bar" style="width: 3.86%; background-color: #999999;" title="Vote Share: 3.86%"></div>
-      </div>
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.81%; background-color: #666666;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 3.86%; background-color: #999999;" title="Vote Share: 3.86%"></div>
+          <div class="odds-bar" style="width: 0.25%; background-color: #b3b3b3;" title="Tie Odds: <1%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">1</span>
-        <span class="vote-count">(3.86%)</span>
+         <span class="seat-count">0-<span class="highlight">1</span>-2</span>
+          <span class="vote-count">(3.86%)</span>
+          <span class="odds-count">(Tie: <1%)</span>
       </div>
     </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21328976"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21328976/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-  </div>
+    <p>Last Updated: February 21, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government<br>Vote percentages (within 3.24%) and Seat Ranges are correct 19 times out of 20</i></p>
+</div>
 
-<title>Projection for Yukon</title>
-  <div class="province-box">
-    <a href="yukon.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Yukon</h2>
+<div class="province-box">
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Toronto (416)</h3>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/4/4a/Yukon_Party_logo.png" alt="Party Logo" class="party-logo">
+      <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 52.38%; background-color: #0a3b71;" title="Seats: 11"></div>
-        <div class="vote-bar" style="width: 37.98%; background-color: #3d6ea4;" title="Vote Share: 37.98%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">11</span>
-        <span class="vote-count">(37.98%)</span>
+        <div class="seat-bar" style="width: 44.00%; background-color: #3f7eb6;" title="Seats: 11"></div>
+        <div class="vote-bar" style="width: 34.99%; background-color: #72b1e9;" title="Vote Share: 34.99%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">11</span></span>
+         <span class="vote-count">(34.99%)</span><br>
+     </div>
     </div>
-  </div>
     <div class="party-row">
-      <img src="https://pbs.twimg.com/profile_images/748392499400548352/BNZ6g8xg_400x400.jpg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 23.81%; background-color: #bc161d;" title="Seats: 5"></div>
-        <div class="vote-bar" style="width: 31.18%; background-color: #ef4950;" title="Vote Share: 31.18%"></div>
-      </div>
+        <div class="seat-bar" style="width: 28.00%; background-color: #be161d;" title="Seats: 7"></div>
+        <div class="vote-bar" style="width: 33.48%; background-color: #f14950;" title="Vote Share: 33.48%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">5</span>
-        <span class="vote-count">(31.18%)</span>
+          <span class="seat-count"><span class="highlight">7</span></span>
+          <span class="vote-count">(33.48%)</span>
+      </div>
     </div>
-  </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Yukon_New_Democratic_Party_%28White_Logo%29.svg" alt="Party Logo" class="party-logo">
+      <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 23.81%; background-color: #c36925;" title="Seats: 5"></div>
-        <div class="vote-bar" style="width: 30.45%; background-color: #f69c58;" title="Vote Share: 30.45%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">5</span>
-        <span class="vote-count">(30.45%)</span>
-      </div>
+        <div class="seat-bar" style="width: 28.00%; background-color: #c75000;" title="Seats: 7"></div>
+        <div class="vote-bar" style="width: 24.37%; background-color: #fa8333;" title="Vote Share: 24.37%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">7</span></span>
+         <span class="vote-count">(24.37%)</span>
+     </div>
     </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329010"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329010/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for Newfoundland and Labrador</title>
-  <div class="province-box">
-    <a href="NL.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Newfoundland and Labrador</h2>
     <div class="party-row">
-      <img src="https://pbs.twimg.com/profile_images/1828057460671733760/fjWGKSYm_400x400.jpg" alt="Party Logo" class="party-logo">
+      <img src="https://files.ontariogreens.ca/branding/gpo/logos/gpo-logo-en-square-green.png" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 50.00%; background-color: #611517;" title="Seats: 20"></div>
-        <div class="vote-bar" style="width: 42.38%; background-color: #94494b;" title="Vote Share: 42.38%"></div>
-      </div>
+        <div class="seat-bar" style="width: 0.25%; background-color: #265f25;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 4.59%; background-color: #599258;" title="Vote Share: 4.59%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">20</span>
-        <span class="vote-count">(42.38%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://338canada.com/nl/PC.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 37.50%; background-color: #1e1d42;" title="Seats: 15"></div>
-        <div class="vote-bar" style="width: 38.06%; background-color: #515075;" title="Vote Share: 38.06%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">15</span>
-        <span class="vote-count">(38.06%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/NL-NDP_Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 10.00%; background-color: #c46d1a;" title="Seats: 4"></div>
-        <div class="vote-bar" style="width: 16.34%; background-color: #f7a04d;" title="Vote Share: 16.34%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">4</span>
-        <span class="vote-count">(16.34%)</span>
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(4.59%)</span>
       </div>
     </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 2.50%; background-color: #666666;" title="Seats: 1"></div>
-        <div class="vote-bar" style="width: 3.22%; background-color: #999999;" title="Vote Share: 3.22%"></div>
-      </div>
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 2.56%; background-color: #999999;" title="Vote Share: 2.56%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">1</span>
-        <span class="vote-count">(3.22%)</span>
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(2.56%)</span>
       </div>
     </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329017"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329017/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
 </div>
-<h2>2026 Provincial Elections</h2>
-<div class="container">
 
-<title>Projection for Québec</title>
-  <div class="province-box">
-    <a href="quebec.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg" style="width: 150px; height: 100px">
-    </div>
-    <h2 class="province-title">Québec</h2>
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Greater Golden Horseshoe</h3>
     <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 49.60%; background-color: #204785;" title="Seats: 62"></div>
-        <div class="vote-bar" style="width: 31.22%; background-color: #537ab8;" title="Vote Share: 31.22%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">62</span>
-        <span class="vote-count">(31.22%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 21.60%; background-color: #bd1422;" title="Seats: 27"></div>
-        <div class="vote-bar" style="width: 17.04%; background-color: #f04755;" title="Vote Share: 17.04%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">27</span>
-        <span class="vote-count">(17.04%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 16.80%; background-color: #0086b9;" title="Seats: 21"></div>
-        <div class="vote-bar" style="width: 24.31%; background-color: #33b9ec;" title="Vote Share: 24.31%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">21</span>
-        <span class="vote-count">(24.31%)</span>
-      </div>
+        <div class="seat-bar" style="width: 88.10%; background-color: #3f7eb6;" title="Seats: 37"></div>
+        <div class="vote-bar" style="width: 46.77%; background-color: #72b1e9;" title="Vote Share: 46.77%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">37</span></span>
+         <span class="vote-count">(46.77%)</span><br>
+     </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Logo_of_Qu%C3%A9bec_solidaire.svg" alt="Party Logo" class="party-logo">
+      <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 6.40%; background-color: #cc4404;" title="Seats: 8"></div>
-        <div class="vote-bar" style="width: 13.55%; background-color: #ff7737;" title="Vote Share: 13.55%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">8</span>
-        <span class="vote-count">(13.55%)</span>
-      </div>
+        <div class="seat-bar" style="width: 7.14%; background-color: #c75000;" title="Seats: 3"></div>
+        <div class="vote-bar" style="width: 17.88%; background-color: #fa8333;" title="Vote Share: 17.88%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">3</span></span>
+         <span class="vote-count">(17.88%)</span>
+     </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_conservateur_bleu.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 5.60%; background-color: #121f41;" title="Seats: 7"></div>
-        <div class="vote-bar" style="width: 11.79%; background-color: #455274;" title="Vote Share: 11.79%"></div>
-      </div>
+        <div class="seat-bar" style="width: 2.38%; background-color: #be161d;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 27.22%; background-color: #f14950;" title="Vote Share: 27.22%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">7</span>
-        <span class="vote-count">(11.79%)</span>
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(27.22%)</span>
       </div>
     </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329022"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329022/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-</div>
-<h2>2027 Provincial Elections</h2>
-<div class="container">
-
-<title>Projection for Prince Edward Island</title>
-  <div class="province-box" style="background-color: #b3b3b3">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 150px; height: 100px">
-    </div>
-    <h2 class="province-title">Prince Edward Island</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 81.48%; background-color: #035e99;" title="Seats: 22"></div>
-        <div class="vote-bar" style="width: 55.92%; background-color: #3691cc;" title="Vote Share: 55.92%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">22</span>
-        <span class="vote-count">(55.92%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 11.11%; background-color: #a6282e;" title="Seats: 3"></div>
-        <div class="vote-bar" style="width: 17.21%; background-color: #d95b61;" title="Vote Share: 17.21%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">3</span>
-        <span class="vote-count">(17.21%)</span>
-      </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 7.41%; background-color: #2f7e38;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 21.57%; background-color: #62b16b;" title="Vote Share: 21.57%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(21.57%)</span>
-    </div>
-  </div>
-  <p>No Projection</p>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329052"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329052/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for Manitoba</title>
-  <div class="province-box">
-    <a href="manitoba.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Manitoba</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;" title="Seats: 43"></div>
-        <div class="vote-bar" style="width: 55.63%; background-color: #e38d53;" title="Vote Share: 55.63%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">43</span>
-        <span class="vote-count">(55.63%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 22.81%; background-color: #024785;" title="Seats: 13"></div>
-        <div class="vote-bar" style="width: 33.89%; background-color: #357ab8;" title="Vote Share: 33.89%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">13</span>
-        <span class="vote-count">(33.89%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://static.wixstatic.com/media/140e48_e1353533e2404ccea921896fbea1c255~mv2.jpg/v1/fill/w_178,h_160,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MLP%20%2B%20MB_LIBERAL_RED_KO_web.jpg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 1.75%; background-color: #ac151a;" title="Seats: 1"></div>
-        <div class="vote-bar" style="width: 5.70%; background-color: #df484d;" title="Vote Share: 5.70%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">1</span>
-        <span class="vote-count">(5.70%)</span>
-      </div>
-    </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329073"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329073/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for Alberta</title>
-  <div class="province-box">
-    <a href="alberta.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Alberta</h2>
-    <div class="party-row">
-      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 57.47%; background-color: #17427e;" title="Seats: 50"></div>
-        <div class="vote-bar" style="width: 47.66%; background-color: #456898;" title="Vote Share: 47.66%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">50</span>
-        <span class="vote-count">(47.66%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 42.53%; background-color: #ff6900;" title="Seats: 37"></div>
-        <div class="vote-bar" style="width: 40.41%; background-color: #ff8733;" title="Vote Share: 40.41%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">37</span>
-        <span class="vote-count">(40.41%)</span>
-    </div>
-  </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
-        <div class="vote-bar" style="width: 11.92%; background-color: #999999;" title="Vote Share: 11.92%"></div>
-      </div>
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 2.38%; background-color: #666666;" title="Seats: 1"></div>
+          <div class="vote-bar" style="width: 3.70%; background-color: #999999;" title="Vote Share: 3.70%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">0</span>
-        <span class="vote-count">(11.92%)</span>
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(3.70%)</span>
       </div>
     </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329081"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329081/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
+    <div class="party-row">
+      <img src="https://files.ontariogreens.ca/branding/gpo/logos/gpo-logo-en-square-green.png" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #265f25;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 4.43%; background-color: #599258;" title="Vote Share: 4.43%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(4.43%)</span>
+      </div>
+    </div>
 </div>
-<h2>2028 Provincial Elections</h2>
-<div class="container">
 
-<title>Projection for Nova Scotia</title>
-  <div class="province-box" style="background-color: #b3b3b3">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Nova Scotia</h2>
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Southwest Ontario</h3>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Progressive_Conservative_Party_NS_Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 78.18%; background-color: #3f7eb6;" title="Seats: 43"></div>
-        <div class="vote-bar" style="width: 52.49%; background-color: #72b1e9;" title="Vote Share: 52.49%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">43</span>
-        <span class="vote-count">(52.49%)</span>
+        <div class="seat-bar" style="width: 76.00%; background-color: #3f7eb6;" title="Seats: 19"></div>
+        <div class="vote-bar" style="width: 45.24%; background-color: #72b1e9;" title="Vote Share: 45.24%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">19</span></span>
+         <span class="vote-count">(45.24%)</span><br>
+     </div>
     </div>
-  </div>
     <div class="party-row">
-      <img src="https://www.nsndp.ca/sites/all/themes/nsndp.themes/nsndp-styleguide/icons/icon--nsndp-logo/icon--nsndp-logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 16.36%; background-color: #c87f16;" title="Seats: 9"></div>
-        <div class="vote-bar" style="width: 22.17%; background-color: #fbb249;" title="Vote Share: 22.17%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">9</span>
-        <span class="vote-count">(22.17%)</span>
+        <div class="seat-bar" style="width: 16.00%; background-color: #c75000;" title="Seats: 4"></div>
+        <div class="vote-bar" style="width: 21.83%; background-color: #fa8333;" title="Vote Share: 21.83%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">2</span></span>
+         <span class="vote-count">(21.83%)</span>
+     </div>
     </div>
-  </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/NSLibLogo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://files.ontariogreens.ca/branding/gpo/logos/gpo-logo-en-square-green.png" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 3.64%; background-color: #b2141a;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 22.69%; background-color: #e5474d;" title="Vote Share: 22.69%"></div>
-      </div>
+        <div class="seat-bar" style="width: 8.00%; background-color: #265f25;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 10.40%; background-color: #599258;" title="Vote Share: 10.40%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(22.69%)</span>
+          <span class="seat-count"><span class="highlight">2</span></span>
+          <span class="vote-count">(10.40%)</span>
       </div>
     </div>
-  <p>No Projection</p>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329085"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329085/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for New Brunswick</title>
-  <div class="province-box" style="background-color: #b3b3b3">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg" style="width: 160px; height: 100px">
-    </div>
-    <h2 class="province-title">New Brunswick</h2>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/e5/NBLA_New_Brunswick_Liberal_Party_Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
       <div class="bar-container">
-        <div class="seat-bar" style="width: 63.27%; background-color: #be271c;" title="Seats: 31"></div>
-        <div class="vote-bar" style="width: 48.24%; background-color: #f15a4f;" title="Vote Share: 48.24%"></div>
-      </div>
+        <div class="seat-bar" style="width: 0.25%; background-color: #be161d;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 16.97%; background-color: #f14950;" title="Vote Share: 16.97%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">31</span>
-        <span class="vote-count">(48.24%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Progressive_Conservative_Party_of_New_Brunswick_Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 32.65%; background-color: #123972;" title="Seats: 16"></div>
-        <div class="vote-bar" style="width: 35.04%; background-color: #456ca5;" title="Vote Share: 35.04%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">16</span>
-        <span class="vote-count">(35.04%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://338canada.com/nb/GRN.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 4.08%; background-color: #508025;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 13.76%; background-color: #83b358;" title="Vote Share: 13.76%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(13.76%)</span>
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(16.97%)</span>
       </div>
     </div>
-  <p>No Projection</p>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329092"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329092/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for British Columbia</title>
-  <div class="province-box" style="background-color: #b3b3b3">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 166px; height: 100px">
-    </div>
-    <h2 class="province-title">British Columbia</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/27/British_Columbia_New_Democratic_Party_logo_2017.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 50.54%; background-color: #ba4b26;" title="Seats: 47"></div>
-        <div class="vote-bar" style="width: 44.86%; background-color: #ed7e59;" title="Vote Share: 44.86%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">47</span>
-        <span class="vote-count">(44.86%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/CPBCBlueLogo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 47.31%; background-color: #1e3578;" title="Seats: 44"></div>
-        <div class="vote-bar" style="width: 43.28%; background-color: #5168ab;" title="Vote Share: 43.28%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">44</span>
-        <span class="vote-count">(43.28%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/BCGreenslogo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 2.15%; background-color: #0f8f47;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 8.24%; background-color: #42c27a;" title="Vote Share: 8.24%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(8.24%)</span>
-      </div>
-    </div>
-  <p>No Projection</p>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329098"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329098/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-<title>Projection for Saskatchewan</title>
-  <div class="province-box" style="background-color: #b3b3b3">
-    <a href="index.html" class="province-link">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Saskatchewan</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c8/Saskatchewan_Party_Logo.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 55.74%; background-color: #024835;" title="Seats: 34"></div>
-        <div class="vote-bar" style="width: 52.24%; background-color: #357b68;" title="Vote Share: 52.24%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">34</span>
-        <span class="vote-count">(52.24%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://cdn.nationbuilderthemes.ca/themes/5dec5e82c294806c6d7a055f/1/attachments/17296239961729623996/default/mark-orange.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 44.26%; background-color: #cc7902;" title="Seats: 27"></div>
-        <div class="vote-bar" style="width: 40.33%; background-color: #ffac35;" title="Vote Share: 40.33%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">27</span>
-        <span class="vote-count">(40.33%)</span>
-    </div>
-  </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
-        <div class="vote-bar" style="width: 7.43%; background-color: #999999;" title="Vote Share: 7.43%"></div>
-      </div>
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 5.55%; background-color: #999999;" title="Vote Share: 5.55%"></div>
+         </div>
       <div class="seat-vote-container">
-        <span class="seat-count">0</span>
-        <span class="vote-count">(7.43%)</span>
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(5.55%)</span>
       </div>
     </div>
-  <p>No Projection</p>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329104"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329104/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
-
-</div>
-<h2>2025 Federal Election</h2>
-<div class="container">
-
-<title>Projection for Canada</title>
-  <div class="province-box" style="min-width: 100%;">
-    <a href="canada.html" class="province-link" style="display: block; width: 100%;">
-    <div style="display: flex; justify-content: center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 200px; height: 100px">
-    </div>
-    <h2 class="province-title">Canada</h2>
-    <div class="party-row">
-      <img src="https://cpcassets.conservative.ca/social-icons/conservative-logo-Dark_Blue.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 54.52%; background-color: #0f2643;" title="Seats: 187"></div>
-        <div class="vote-bar" style="width: 41.37%; background-color: #425976;" title="Vote Share: 41.37%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">187</span>
-        <span class="vote-count">(41.37%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 26.82%; background-color: #ac151a;" title="Seats: 92"></div>
-        <div class="vote-bar" style="width: 28.36%; background-color: #df484d;" title="Vote Share: 28.36%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">92</span>
-        <span class="vote-count">(28.36%)</span>
-    </div>
-  </div>
-    <div class="party-row">
-      <img src="https://www.blocquebecois.org/wp-content/themes/bloc2021/images/logo-square.svg?ver=1712854112571" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 12.54%; background-color: #0086b9;" title="Seats: 43"></div>
-        <div class="vote-bar" style="width: 9.04%; background-color: #33b9ec;" title="Vote Share: 9.04%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">43</span>
-        <span class="vote-count">(9.04%)</span>
-      </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Orange_NDP_logo_English.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 5.54%; background-color: #c4681a;" title="Seats: 19"></div>
-        <div class="vote-bar" style="width: 14.91%; background-color: #f79b4d;" title="Vote Share: 14.91%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">19</span>
-        <span class="vote-count">(14.91%)</span>
-      </div>
-    </div>
-    <div class="party-row">
-      <img src="https://www.greenparty.ca/sites/all/themes/gpc4_bootstrap/images/logo/gpc_logo_web_green_en.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.58%; background-color: #307c2a;" title="Seats: 2"></div>
-        <div class="vote-bar" style="width: 3.10%; background-color: #63af5d;" title="Vote Share: 3.10%"></div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">2</span>
-        <span class="vote-count">(3.10%)</span>
-      </div>
-    </div>
-<div class="flourish-embed flourish-countdown" data-src="visualisation/21329116"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21329116/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
-    </a>
-  </div>
 </div>
 
-<br>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiDbhJyxHNYDRFhFz6j-362KR3HOSiD-nXa_r2c7q9KeygPw/viewform?embedded=true" width="75%" height="750" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    
+</div>
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">East</h3>
+    <div class="party-row">
+      <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 73.68%; background-color: #3f7eb6;" title="Seats: 14"></div>
+        <div class="vote-bar" style="width: 42.48%; background-color: #72b1e9;" title="Vote Share: 42.48%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">14</span></span>
+         <span class="vote-count">(42.48%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 21.05%; background-color: #be161d;" title="Seats: 4"></div>
+        <div class="vote-bar" style="width: 30.96%; background-color: #f14950;" title="Vote Share: 30.96%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">4</span></span>
+          <span class="vote-count">(30.96%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 5.26%; background-color: #c75000;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 18.12%; background-color: #fa8333;" title="Vote Share: 18.12%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">1</span></span>
+         <span class="vote-count">(18.12%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://files.ontariogreens.ca/branding/gpo/logos/gpo-logo-en-square-green.png" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #265f25;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 4.60%; background-color: #599258;" title="Vote Share: 4.60%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(4.60%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.84%; background-color: #999999;" title="Vote Share: 3.84%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(3.84%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Northern Ontario</h3>
+    <div class="party-row">
+      <img src="https://ontariopc.ca/wp-content/themes/pcpo-candidate-2022/images/opc-horizontal-colour.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 76.92%; background-color: #3f7eb6;" title="Seats: 10"></div>
+        <div class="vote-bar" style="width: 42.96%; background-color: #72b1e9;" title="Vote Share: 42.96%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">10</span></span>
+         <span class="vote-count">(42.96%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://www.ontariondp.ca/sites/all/themes/ondp.themes/ondp-2025/blocks/block--navigation/images/Ontario-NDP-BIL-orange.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 30.77%; background-color: #c75000;" title="Seats: 3"></div>
+        <div class="vote-bar" style="width: 28.46%; background-color: #fa8333;" title="Vote Share: 28.46%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">3</span></span>
+         <span class="vote-count">(28.46%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Ontario_Liberal_Party_Logo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #be161d;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 17.26%; background-color: #f14950;" title="Vote Share: 17.26%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(17.26%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://files.ontariogreens.ca/branding/gpo/logos/gpo-logo-en-square-green.png" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #265f25;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 7.55%; background-color: #599258;" title="Vote Share: 7.55%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(7.55%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.77%; background-color: #999999;" title="Vote Share: 3.77%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(3.77%)</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Map</h2>
+<div class="flourish-embed flourish-map" data-src="visualisation/21378611"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21378611/thumbnail" width="100%" alt="map visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Squares" class="province-title">Race for 62</h2>
+     <div class="grid-container">
+        <div class="grid-item" style="background-color: #e8e8e8"></div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Ren.-Nip.-Pem.<br>PC+49.96<br>(±12.5)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Leeds-Grenville<br>PC+49.77<br>(±12.67)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >H-Kawartha-B<br>PC+47.78<br>(±11.51)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Sto.-Dun.-S Gle.<br>PC+46.15<br>(±12.18)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >York-Simcoe<br>PC+44.96<br>(±11.56)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Kenora-Rainy<br>PC+43.94<br>(±12.51)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Lam.-Kent-Mid.<br>PC+42.87<br>(±11.46)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Nipissing<br>PC+41.03<br>(±11.97)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Lan.-Front.<br>PC+34.88<br>(±9.68)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Huron-Bruce<br>PC+35.52<br>(±10.5)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Barrie-Innisfil<br>PC+35.83<br>(±9.86)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Simcoe-Grey<br>PC+37.34<br>(±11.07)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Sarnia-Lamb.<br>PC+38.08<br>(±11.1)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Etbk North<br>PC+39.3<br>(±11.86)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Hastings<br>PC+39.65<br>(±10.6)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Oxford<br>PC+39.94<br>(±10.88)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Elgin-Mid.<br>PC+40.21<br>(±10.59)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Simcoe North<br>PC+34.72<br>(±9.67)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Mrkhm-Union.<br>PC+34.52<br>(±12.35)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >King-Vaughan<br>PC+34.19<br>(±12.35)</div>
+        <div class="grid-item" style="background-color: #2f5f88;" >Perth-Well.<br>PC+33.88<br>(±9.28)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Whitby<br>PC+32.59<br>(±9.99)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Thornhill<br>PC+32.13<br>(±11.52)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Bruce-Grey<br>PC+31.54<br>(±9.45)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Vaughan<br>PC+31.46<br>(±11.98)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Niagara West<br>PC+30.88<br>(±9)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Durham<br>PC+26.33<br>(±9.23)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Duff.-Cal.<br>PC+26.47<br>(±8.51)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Scar North<br>PC+27.18<br>(±11.16)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Timmins<br>PC+28.2<br>(±11.02)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >A-OR-RH<br>PC+28.42<br>(±11.27)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Chath.-Kent<br>PC+28.47<br>(±9.6)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Essex<br>PC+28.68<br>(±10.54)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Flam.-Glam.<br>PC+30.4<br>(±9.47)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Bay of Quinte<br>PC+30.84<br>(±9.66)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Northumberland<br>PC+26.17<br>(±9.93)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Welling.-Halt.<br>PC+25.49<br>(±7.29)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Brant<br>PC+25.28<br>(±8.71)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Ktchnr South<br>PC+21.61<br>(±7.58)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Carleton<br>PC+21.3<br>(±8.93)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Richmond Hill<br>PC+21.28<br>(±11.39)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Scar Agin.<br>PC+19.93<br>(±11.34)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Bptn South<br>PC+19.69<br>(±9.12)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Scar Rouge<br>PC+18.86<br>(±9.16)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Etbk Centre<br>PC+15.01<br>(±10.07)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Ktchnr-Con.<br>PC+15.19<br>(±7.11)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Oakville North<br>PC+15.53<br>(±10.18)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Windsor-Tec.<br>PC+15.81<br>(±8.86)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Mrkhm-Stouff.<br>PC+15.86<br>(±10.46)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Bptn North<br>PC+16.18<br>(±8.9)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Bptn Centre<br>PC+16.31<br>(±8.58)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >Pick.-Uxb.<br>PC+18.06<br>(±8.61)</div>
+        <div class="grid-item" style="background-color: #3f7eb6;" >York Centre<br>PC+18.15<br>(±9.54)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Bptn East<br>PC+14.57<br>(±8.91)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Bptn West<br>PC+14.12<br>(±8.86)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Mrkhm-Thorn.<br>PC+14.05<br>(±11.04)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Hald.-Norf.<br>PC+13.32<br>(±7.84)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Barrie-Spring<br>PC+13.16<br>(±9.28)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Burlington<br>PC+13.16<br>(±8.52)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Newmarket<br>PC+11.1<br>(±9.47)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Willowdale<br>PC+10.94<br>(±9.93)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Peterborough<br>PC+10.88<br>(±8.28)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Niagara Centre<br>PC+8.92<br>(±9.1)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >PS-Muskoka<br>PC+9.14<br>(±8.72)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >DV North<br>PC+9.15<br>(±10.22)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Cambridge<br>PC+9.66<br>(±7.05)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Mush.-Bay<br>PC+9.68<br>(±10.02)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Sault<br>PC+9.74<br>(±9.44)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Scar Centre<br>PC+10.63<br>(±8.31)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Miss Malton<br>PC+10.64<br>(±9.02)</div>
+        <div class="grid-item" style="border: 5px solid black; background-color: #4f9ee3;" >Etbk-Lakeshore<br>PC+10.66<br>(±8.69)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >TB-Superior<br>PC+8.9<br>(±7.91)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Ajax<br>PC+8.76<br>(±9.44)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Oshawa<br>PC+8.38<br>(±11.14)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Milton<br>PC+8.28<br>(±10.17)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Hmltn East<br>PC+7.67<br>(±6.82)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Alg.-Man.<br>PC+7.45<br>(±7.21)</div>
+        <div class="grid-item" style="background-color: #4f9ee3;" >Oakville<br>PC+7.41<br>(±10.26)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >York-Weston<br>PC+6.77<br>(±7.88)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >Gle.-Pre.-Rus.<br>PC+6.71<br>(±10)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Miss Lake.<br>PC+1.63<br>(±9.96)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Ottawa West<br>PC+1.8<br>(±7.91)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Lndn North<br>PC+2.51<br>(±7.49)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Miss Erin<br>PC+2.82<br>(±9.24)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >Miss Ctr<br>PC+4.05<br>(±9.27)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >Tim.-Coch.<br>PC+4.37<br>(±9.06)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >Hmltn Mt.<br>PC+5.15<br>(±6.68)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >Miss Street.<br>PC+5.21<br>(±9.92)</div>
+        <div class="grid-item" style="background-color: #72b1e9;" >TB-Atikokan<br>PC+6.26<br>(±8.26)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Kanata-Carl.<br>PC+0.3<br>(±7.94)</div>
+        <div class="grid-item" style="background-color: #95c5ee;" >Nepean<br>PC+0.26<br>(±8.02)</div>
+        <div class="grid-item" style="background-color: #fba266;" >Toronto Centre<br>NDP-1.35<br>(±8.67)</div>
+        <div class="grid-item" style="background-color: #fba266;" >Hmltn West<br>NDP-2.77<br>(±7.53)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >St. Catharines<br>NDP-3.08<br>(±7.8)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Waterloo<br>NDP-3.08<br>(±7.5)</div>
+        <div class="grid-item" style="background-color: #f14950;" >Humber Riv.<br>Liberal-3.45<br>(±8.04)</div>
+        <div class="grid-item" style="background-color: #f14950;" >DV West<br>Liberal-3.54<br>(±10.17)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Univ.-Rose.<br>NDP-3.64<br>(±6.28)</div>
+        <div class="grid-item" style="background-color: #f96400;" >Kiiwetinoong<br>NDP-7.16<br>(±9.8)</div>
+        <div class="grid-item" style="background-color: #f14950;" >Eg.-Law.<br>Liberal-6.8<br>(±12.69)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Spadina-York<br>NDP-6.6<br>(±7.99)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Lndn-Fansh.<br>NDP-6.56<br>(±8.74)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Scar SW<br>NDP-5.99<br>(±8.53)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Windsor West<br>NDP-5.31<br>(±11.3)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Lndn West<br>NDP-5.23<br>(±8.37)</div>
+        <div class="grid-item" style="background-color: #fa8333;" >Sudbury<br>NDP-3.97<br>(±7.43)</div>
+        <div class="grid-item" style="background-color: #999999;" >Hmltn Centre<br>Other-3.72<br>(±2.84)</div>
+        <div class="grid-item" style="background-color: #2f772e;" >Ktchnr Centre<br>Green-8.9<br>(±5.51)</div>
+        <div class="grid-item" style="background-color: #f96400;" >Niagara Falls<br>NDP-9.35<br>(±10.19)</div>
+        <div class="grid-item" style="background-color: #f96400;" >Ottawa Centre<br>NDP-9.46<br>(±7.85)</div>
+        <div class="grid-item" style="background-color: #ed1c24;" >Toronto-Paul's<br>Liberal-10.89<br>(±8.44)</div>
+        <div class="grid-item" style="background-color: #ed1c24;" >Beaches<br>Liberal-11.46<br>(±6.99)</div>
+        <div class="grid-item" style="background-color: #ed1c24;" >DV East<br>Liberal-12.81<br>(±9.53)</div>
+        <div class="grid-item" style="background-color: #ed1c24;" >Miss East<br>Liberal-13.41<br>(±10.39)</div>
+        <div class="grid-item" style="background-color: #ed1c24;" >Scar Guild.<br>Liberal-13.55<br>(±9.33)</div>
+        <div class="grid-item" style="background-color: #c75000;" >Parkdale-High<br>NDP-17.01<br>(±7.5)</div>
+        <div class="grid-item" style="background-color: #e8e8e8"></div>
+        <div class="grid-item" style="background-color: #1c471c;" >Guelph<br>Green-40.91<br>(±10.95)</div>
+        <div class="grid-item" style="background-color: #953c00;" >Davenport<br>NDP-39.2<br>(±11.36)</div>
+        <div class="grid-item" style="background-color: #953c00;" >Toronto-Dan.<br>NDP-36.92<br>(±10.94)</div>
+        <div class="grid-item" style="background-color: #be161d;" >Ottawa-Vanier<br>Liberal-28.81<br>(±9.07)</div>
+        <div class="grid-item" style="background-color: #be161d;" >Kingston<br>Liberal-27.04<br>(±9.37)</div>
+        <div class="grid-item" style="background-color: #be161d;" >Orléans<br>Liberal-23.22<br>(±10.31)</div>
+        <div class="grid-item" style="background-color: #be161d;" >Ottawa South<br>Liberal-21.59<br>(±9.31)</div>
+        <div class="grid-item" style="background-color: #c75000;" >Nickel Belt<br>NDP-20.51<br>(±9.77)</div>
+     </div>
+    <p>Bolded seat is the Tipping Point</p>
+</div>
+
+<div class="province-box">
+<h2 id="Model Specifics"></h2>
+    <div class="flourish-embed flourish-election" data-src="visualisation/21363953"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21363953/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21364076"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21364076/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/21364135"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21364135/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator" class="province-title">Simulator</h2>
+    <p><b>Simulate an Ontario election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+    <a href="https://yapms.com/app/can/on/2022/blank?m=lho7z6pdnnzkx1x">Click here to map your result</a>
+
+<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQQPqms_XrzkRJBT6JTuSDyKARvYETvnUPXjuS8QiAb6IdI?wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&Item='Simulator'!A%3AZ&wdHideGridlines=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+</div>
+
 </body>
 </html>
-</a>
