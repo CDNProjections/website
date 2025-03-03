@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halifax</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin-bottom: 70px
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+       margin-bottom: 5px;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 75px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 80%;
+      height: 75px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: centre;
+      position: absolute;
+      right: 2.5%;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
+     }
+
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
+
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
+    }
+
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
+    }
+
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Halifax</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">History and Projections</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulated Results</a>
+    </h3>
+    </div>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Halifax Electoral Model</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 41.75%; background-color: #f9b479;">
+       <div class="bar" style="background-color: #f58220;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Lisa Roberts</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">41.75%</span></span>
+        <span class="odds-count">(NDP Vic: 87%)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 35.01%; background-color: #e77679;">
+       <div class="bar" style="background-color: #d71a20;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Shannon Miedema</div>
+         <div class="party-name">Liberal Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">35.01%</span></span>
+        <span class="odds-count">(LIB Vic: 13%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 17.49%; background-color: #718298;">
+       <div class="bar" style="background-color: #132f54;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Mark Boudreau</div>
+         <div class="party-name">Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">17.49%</span></span>
+        <span class="odds-count">(CPC Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 3.14%; background-color: #8ac386;">
+       <div class="bar" style="background-color: #3c9b35;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Green</div>
+         <div class="party-name">Green Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">3.14%</span></span>
+        <span class="odds-count">(GRN Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 2.25%; background-color: #a485c3;">
+       <div class="bar" style="background-color: #68339b;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic PPC</div>
+         <div class="party-name">People's Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">2.25%</span></span>
+        <span class="odds-count">(PPC Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.36%; background-color: #b3b3b3;">
+       <div class="bar" style="background-color: #808080;"></div>
+       <div class="text-container">
+         <div class="candidate-name">N/A</div>
+         <div class="party-name">All Others</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.36%</span></span>
+        <span class="odds-count">(OTH Vic: <1%)</span>
+    </div>
+    </div>
+    
+    <p>Last Updated: March 2, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Chance of Winning Halifax</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 87.12%; background-color: #f9b479;">
+       <div class="bar" style="background-color: #f58220;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Lisa Roberts</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">87.12%</span></span>
+        <span class="odds-count">(4356)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 12.84%; background-color: #e77679;">
+       <div class="bar" style="background-color: #d71a20;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Shannon Miedema</div>
+         <div class="party-name">Liberal Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">12.84%</span></span>
+        <span class="odds-count">(642)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.04%; background-color: #718298;">
+       <div class="bar" style="background-color: #132f54;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Mark Boudreau</div>
+         <div class="party-name">Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.04%</span></span>
+        <span class="odds-count">(2)</span>
+    </div>
+    </div>
+
+    <p>Last Updated: March 2, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+
+</div>
+
+<div class="province-box">
+    <h2 id="Model Specifics"></h2>
+<div class="flourish-embed flourish-chart" data-src="visualisation/21896314"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21896314/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator"></h2>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/21896316"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21896316/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+</body>
+</html>
