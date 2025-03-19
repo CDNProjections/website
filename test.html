@@ -174,11 +174,10 @@
      z-index: 1;
     }
 
-    .wrapper {
-     display: grid;
-     grid-template-columns: 2fr 1fr 1fr;
+    .table, th, td {
+     border: 1px solid black;
     }
-    
+
 </style>
 </head>
 
@@ -293,13 +292,23 @@
 
 <div class="province-box">
     <h2 class="province-title">Record against 338canada and Poliwave</h2>
-    <div class="wrapper">
-      <div>Region</div>
-      <div>CDNProjections</div>
-      <div>338canada</div>
-      <div>Poliwave</div>
-      <div></div>
-    </div>
+        <table>
+         <tr>
+          <th>Region</th>
+          <th>CDNprojections</th>
+          <th>338canada</th>
+          <th>Poliwave</th>
+         </tr>
+         <tr>
+          <th>Ontario</th>
+          <td bgcolor="green">XX%</td>
+          <td>83%</td>
+          <td>85%</td>
+         </tr>
+
+
+            
+        </table>
 
 </body>
 </html>
