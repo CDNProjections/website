@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Record</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin-bottom: 70px
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+       margin-bottom: 5px;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 75px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 80%;
+      height: 75px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: centre;
+      position: absolute;
+      right: 2.5%;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
+     }
+
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
+
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
+    }
+
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
+    }
+
+    .table, th, td {
+     border: 1px solid black;
+    }
+
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>The Record</h1>
+        <p>This page shows the record of my projections since creation in 2021</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#By-Elections">By-Elections</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Comparison">Modeler Comparison</a>
+    </h3>
+    </div>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">Totals (11 elections, 1,140 total ridings)</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 88.95%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">88.95%</span></span>
+        <span class="odds-count">(1,014)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 11.05%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">11.05%</span></span>
+        <span class="odds-count">(126)</span>
+    </div>
+    </div>
+
+<p>*MoE results have been counted since 2024, so totals do not include these stats, which is why in this chart it's only correct/incorrect</p>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2024 Nova Scotia General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 94.5%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">94.5%</span></span>
+        <span class="odds-count">(52)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 5.5%; background-color: #ffff00;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect, Inside MoE</div>
+         <div class="party-name">Winner in the riding <b>in</b>correctly projected, but the result within the margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">5.5%</span></span>
+        <span class="odds-count">(3)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected, with the winner outside the projected margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0%</span></span>
+        <span class="odds-count">(0)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2024 Saskatchewan General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 93.4%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">93.4%</span></span>
+        <span class="odds-count">(57)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0%; background-color: #ffff00;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect, Inside MoE</div>
+         <div class="party-name">Winner in the riding <b>in</b>correctly projected, but the result within the margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0%</span></span>
+        <span class="odds-count">(0)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 6.6%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected, with the winner outside the projected margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">6.6%</span></span>
+        <span class="odds-count">(4)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2024 New Brunswick General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 85.7%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">85.7%</span></span>
+        <span class="odds-count">(42)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 8.2%; background-color: #ffff00;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect, Inside MoE</div>
+         <div class="party-name">Winner in the riding <b>in</b>correctly projected, but the result within the margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">8.2%</span></span>
+        <span class="odds-count">(4)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 6.1%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected, with the winner outside the projected margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">6.1%</span></span>
+        <span class="odds-count">(3)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2024 British Columbia General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 82.8%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">82.8%</span></span>
+        <span class="odds-count">(77)</span>
+      </div>
+    </div>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 7.5%; background-color: #ffff00;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect, Inside MoE</div>
+         <div class="party-name">Winner in the riding <b>in</b>correctly projected, but the result within the margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">7.5%</span></span>
+        <span class="odds-count">(7)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 9.7%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected, with the winner outside the projected margin of error</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">9.7%</span></span>
+        <span class="odds-count">(9)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2023 Manitoba General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 86.0%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">86.0%</span></span>
+        <span class="odds-count">(49)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 14.0%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">14.0%</span></span>
+        <span class="odds-count">(8)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2023 Alberta General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 90.8%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">90.8%</span></span>
+        <span class="odds-count">(79)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 9.2%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">9.2%</span></span>
+        <span class="odds-count">(8)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2023 Prince Edward Island General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 85.2%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">85.2%</span></span>
+        <span class="odds-count">(23)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 14.8%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">14.8%</span></span>
+        <span class="odds-count">(4)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2022 Quebec General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 94.4%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">94.4%</span></span>
+        <span class="odds-count">(118)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 5.6%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">5.6%</span></span>
+        <span class="odds-count">(7)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2022 Ontario General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 85.5%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">85.5%</span></span>
+        <span class="odds-count">(106)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 14.5%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">14.5%</span></span>
+        <span class="odds-count">(18)</span>
+    </div>
+    </div>
+
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">2021 Canada General Election</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 89.9%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">89.9%</span></span>
+        <span class="odds-count">(304)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 10.1%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">10.1%</span></span>
+        <span class="odds-count">(34)</span>
+    </div>
+    </div>
+
+</div>
+
+<br>
+
+<div class="province-box">
+ <h2 id="By-Elections" class="province-title">Totals (51 byelections)</h2><br>
+    
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 72.5%; background-color: #009900;">
+       <div class="text-container">
+         <div class="candidate-name">Correct</div>
+         <div class="party-name">Winner in the riding correctly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">72.5%</span></span>
+        <span class="odds-count">(37)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 27.5%; background-color: #ff0000;">
+       <div class="text-container">
+         <div class="candidate-name">Incorrect</div>
+         <div class="party-name">Winner in the riding incorrectly projected</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">27.5%</span></span>
+        <span class="odds-count">(14)</span>
+    </div>
+    </div>
+
+<div class="flourish-embed flourish-chart" data-src="visualisation/22204718"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/22204718/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Comparison" class="province-title">Record against 338canada and Poliwave</h2>
+        <table>
+         <tr>
+          <th>Election</th>
+          <th>CDNprojections</th>
+          <th>338canada</th>
+          <th>Poliwave</th>
+         </tr>
+         <tr>
+          <th>Totals</th>
+          <td bgcolor="#004c00">89%</td>
+          <td bgcolor="#004c00">89%</td>
+          <td>Unpublished</td>
+         </tr>
+         <tr>
+          <th>Ontario '25</th>
+          <td bgcolor="#004c00">86%</td>
+          <td bgcolor="#00ff00">83%</td>
+          <td bgcolor="#009900">85%</td>
+         </tr>
+         <tr>
+          <th>Nova Scotia '24</th>
+          <td bgcolor="#009900">95%</td>
+          <td bgcolor="#004c00">98%</td>
+          <td bgcolor="#004c00">98%</td>
+         </tr>
+         <tr>
+          <th>Saskatchewan '24</th>
+          <td bgcolor="#D1E231">93%</td>
+          <td bgcolor="#009900">92%</td>
+          <td bgcolor="#ffff00">92%</td>
+         </tr>
+         <tr>
+          <th>New Brunswick '24</th>
+          <td bgcolor="#009900">86%</td>
+          <td bgcolor="#00ff00">84%</td>
+          <td bgcolor="#004c00">90%</td>
+         </tr>
+         <tr>
+          <th>British Columbia '24</th>
+          <td bgcolor="#00ff00">83%</td>
+          <td bgcolor="#009900">84%</td>
+          <td bgcolor="#ffffcc">86%</td>
+         </tr>
+         <tr>
+          <th>Manitoba '23</th>
+          <td bgcolor="#009900">86%</td>
+          <td bgcolor="#004c00">91%</td>
+         </tr>
+         <tr>
+          <th>Alberta '23</th>
+          <td bgcolor="#009900">91%</td>
+          <td bgcolor="#004c00">94%</td>
+         </tr>
+         <tr>
+          <th>PEI '23</th>
+          <td bgcolor="#004c00">85%</td>
+         </tr>
+         <tr>
+          <th>Quebec '22</th>
+          <td bgcolor="#004c00">94%</td>
+          <td bgcolor="#004c00">94%</td>
+         </tr>
+         <tr>
+          <th>Ontario '22</th>
+          <td bgcolor="#009900">86%</td>
+          <td bgcolor="#004c00">87%</td>
+         </tr>
+         <tr>
+          <th>Canada '21</th>
+          <td bgcolor="#009900">90%</td>
+          <td bgcolor="#004c00">92%</td>
+         </tr>
+
+        </table>
+
+        <table>
+            <tr>
+                <th bgcolor="#004c00">Most accurate, correct winner</th>
+                <th bgcolor="#009900">2nd most accurate, correct winner</th>
+                <th bgcolor="#00ff00">Least accurate, correct winner</th>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffcc">Most accurate, incorrect winner</td>
+                <td bgcolor="#ffff00">2nd most accurate, incorrect winner</td>
+                <td bgcolor="#999900">Least accurate, incorrect winner</td>
+            </tr>
+        </table>
+</body>
+</html>
