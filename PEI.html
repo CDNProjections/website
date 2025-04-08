@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Edward Island</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-V2T0WMSWY8');
+   </script>
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+    }
+        
+    .party-logo {
+        width: 50px;
+        height: 50px;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 5px;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 40px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .seat-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 12px;
+    }
+
+     .odds-count {
+      font-size: 12px;
+     }
+        
+     .grid-container { 
+      display: grid; 
+      grid-template-columns: repeat(9, 1fr); 
+      grid-gap: 10px; 
+      padding: 10px; 
+     }
+
+     .grid-item {
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px solid black;
+      color: white;
+      text-align: center;
+     }
+        
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Prince Edward Island</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Regional Results">Regional Results</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Squares">Squares Chart</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Simulator">Simulator</a>
+    </h3>
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
+    </h3>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Prince Edward Island Electoral Model</h2>
+     <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 66.67%; background-color: #035e99;" title="Seats: 18"></div>
+        <div class="vote-bar" style="width: 45.87%; background-color: #3691cc;" title="Vote Share: 45.87%"></div>
+        <div class="odds-bar" style="width: 100%; background-color: #68add9;" title="PC Majority Odds: >99%"></div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count">13-<span class="highlight">18</span>-21</span>
+        <span class="vote-count">(45.87%)</span>
+        <span class="odds-count">(PC Maj: >99%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 22.22%; background-color: #2f7e38;" title="Seats: 6"></div>
+        <div class="vote-bar" style="width: 26.08%; background-color: #62b16b;" title="Vote Share: 26.08%"></div>
+        <div class="odds-bar" style="width: 0.25%; background-color: #89c590;" title="GRN Majority Odds: <1%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">3-<span class="highlight">6</span>-10</span>
+         <span class="vote-count">(26.08%)</span>
+         <span class="odds-count">(GRN Maj: <1%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 7.41%; background-color: #a6282e;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 18.76%; background-color: #d95b61;" title="Vote Share: 18.76%"></div>
+        <div class="odds-bar" style="width: 0.25%; background-color: #e28488;" title="LIB Majority Odds: <1%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count">1-<span class="highlight">2</span>-7</span>
+         <span class="vote-count">(18.76%)</span>
+         <span class="odds-count">(LIB Maj: <1%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="245021496_232100658945946_3370813018112262840_n.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 3.70%; background-color: #c56817;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 6.47%; background-color: #f89b4a;" title="Vote Share: 6.47%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">1</span>-2</span>
+          <span class="vote-count">(6.47%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 2.82%; background-color: #999999;" title="Vote Share: 2.82%"></div>
+          <div class="odds-bar" style="width: 0.25%; background-color: #b3b3b3;" title="Tie Odds: <1%"></div>
+         </div>
+      <div class="seat-vote-container">
+         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
+          <span class="vote-count">(2.82%)</span>
+          <span class="odds-count">(Tie: <1%)</span>
+      </div>
+    </div>
+    <p>Last Updated: April 8, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government<br>Vote percentages (within 3.22%) and Seat Ranges are correct 19 times out of 20</i></p>
+</div>
+
+<div class="province-box">
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Cardigan</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 87.50%; background-color: #035e99;" title="Seats: 7"></div>
+        <div class="vote-bar" style="width: 52.31%; background-color: #3691cc;" title="Vote Share: 52.31%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">7</span></span>
+         <span class="vote-count">(52.31%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 12.50%; background-color: #2f7e38;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 23.80%; background-color: #62b16b;" title="Vote Share: 23.80%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(23.80%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #a6282e;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 13.31%; background-color: #d95b61;" title="Vote Share: 13.31%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">0</span></span>
+         <span class="vote-count">(13.31%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="245021496_232100658945946_3370813018112262840_n.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #c56817;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 7.08%; background-color: #f89b4a;" title="Vote Share: 7.08%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(7.08%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.50%; background-color: #999999;" title="Vote Share: 3.50%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(3.50%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Charlottetown</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 50.00%; background-color: #035e99;" title="Seats: 3"></div>
+        <div class="vote-bar" style="width: 40.86%; background-color: #3691cc;" title="Vote Share: 40.86%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">3</span></span>
+         <span class="vote-count">(40.86%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 33.33%; background-color: #2f7e38;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 28.33%; background-color: #62b16b;" title="Vote Share: 28.33%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">2</span></span>
+          <span class="vote-count">(28.33%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 16.67%; background-color: #a6282e;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 21.87%; background-color: #d95b61;" title="Vote Share: 21.87%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">0</span></span>
+         <span class="vote-count">(21.87%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="245021496_232100658945946_3370813018112262840_n.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #c56817;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 5.52%; background-color: #f89b4a;" title="Vote Share: 5.52%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(5.52%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.43%; background-color: #999999;" title="Vote Share: 3.43%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(3.43%)</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="province-box" style="display: flex; flex-direction: row">
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Egmont</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 57.14%; background-color: #035e99;" title="Seats: 4"></div>
+        <div class="vote-bar" style="width: 40.19%; background-color: #3691cc;" title="Vote Share: 40.19%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">4</span></span>
+         <span class="vote-count">(40.19%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 14.29%; background-color: #a6282e;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 27.16%; background-color: #d95b61;" title="Vote Share: 27.16%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">1</span></span>
+         <span class="vote-count">(27.16%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 14.29%; background-color: #2f7e38;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 22.18%; background-color: #62b16b;" title="Vote Share: 22.18%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(22.18%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="245021496_232100658945946_3370813018112262840_n.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 14.29%; background-color: #c56817;" title="Seats: 1"></div>
+        <div class="vote-bar" style="width: 8.56%; background-color: #f89b4a;" title="Vote Share: 8.56%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">1</span></span>
+          <span class="vote-count">(8.56%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.91%; background-color: #999999;" title="Vote Share: 1.91%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(1.91%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 50%;">
+ <h3 id="Regional Results" class="province-title">Malpeque</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 66.67%; background-color: #035e99;" title="Seats: 4"></div>
+        <div class="vote-bar" style="width: 48.77%; background-color: #3691cc;" title="Vote Share: 48.77%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">4</span></span>
+         <span class="vote-count">(48.77%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" style="width: 50px; height: 50px; object-fit: contain;" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 33.33%; background-color: #2f7e38;" title="Seats: 2"></div>
+        <div class="vote-bar" style="width: 32.12%; background-color: #62b16b;" title="Vote Share: 32.12%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">2</span></span>
+          <span class="vote-count">(32.12%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://liberalpei.ca/wp-content/uploads/LIB_logo.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #a6282e;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 12.98%; background-color: #d95b61;" title="Vote Share: 12.98%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">0</span></span>
+         <span class="vote-count">(12.98%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="245021496_232100658945946_3370813018112262840_n.svg" alt="Party Logo" class="party-logo">
+      <div class="bar-container">
+        <div class="seat-bar" style="width: 0.25%; background-color: #c56817;" title="Seats: 0"></div>
+        <div class="vote-bar" style="width: 3.76%; background-color: #f89b4a;" title="Vote Share: 3.76%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(3.76%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 2.37%; background-color: #999999;" title="Vote Share: 2.37%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count"><span class="highlight">0</span></span>
+          <span class="vote-count">(2.37%)</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="province-box">
+    <h2 class="province-title">Map</h2>
+<iframe title="Prince Edward Island Projection" aria-label="Map" id="datawrapper-chart-jFc4f" src="https://datawrapper.dwcdn.net/jFc4f/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="537" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();</script>
+</div>
+
+<div class="province-box">
+    <h2 id="Squares" class="province-title">Race for 14</h2>
+     <div class="grid-container">
+        <div class="grid-item" style="background-color: #024773;" >Kensington-Mal<br>PC+47.45<br>(±21.67)</div>
+        <div class="grid-item" style="background-color: #024773;" >Morell-Donagh<br>PC+47.13<br>(±19.28)</div>
+        <div class="grid-item" style="background-color: #024773;" >George-Pownal<br>PC+46.27<br>(±18.66)</div>
+        <div class="grid-item" style="background-color: #024773;" >Montague-Kilmuir<br>PC+44.64<br>(±18.56)</div>
+        <div class="grid-item" style="background-color: #024773;" >Brackley-Hunter<br>PC+38.07<br>(±19)</div>
+        <div class="grid-item" style="background-color: #035e99;" >Rustico-Emerald<br>PC+31.7<br>(±16.47)</div>
+        <div class="grid-item" style="background-color: #035e99;" >Stanhope-Marsh<br>PC+30.56<br>(±20.05)</div>
+        <div class="grid-item" style="background-color: #035e99;" >YYG Hillsborough<br>PC+29.27<br>(±16.47)</div>
+        <div class="grid-item" style="background-color: #035e99;" >YYG Winsloe<br>PC+28.9<br>(±15.24)</div>
+        <div class="grid-item" style="background-color: #035e99;" >Belfast-Murray<br>PC+27.2<br>(±15.15)</div>
+        <div class="grid-item" style="background-color: #035e99;" >Evang-Miscou<br>PC+25.61<br>(±16.93)</div>
+        <div class="grid-item" style="background-color: #035e99;" >Cornwall-Meadow<br>PC+16.23<br>(±14.68)</div>
+        <div class="grid-item" style="background-color: #0476bf;" >YYG Belvedere<br>PC+14.53<br>(±12.78)</div>
+        <div class="grid-item" style="border: 5px solid black; background-color: #0476bf;" >Souris-Elmira<br>PC+14.16<br>(±14.91)</div>
+        <div class="grid-item" style="background-color: #0476bf;" >Alberton-Bloom<br>PC+10.86<br>(±16.73)</div>
+        <div class="grid-item" style="background-color: #0476bf;" >Summerside-Drive<br>PC+9.76<br>(±14.85)</div>
+        <div class="grid-item" style="background-color: #0476bf;" >Strat-Keppoch<br>PC+7.23<br>(±14.97)</div>
+        <div class="grid-item" style="background-color: #3691cc;" >Summerside-Wlmt<br>PC+6.38<br>(±16.9)</div>
+        <div class="grid-item" style="background-color: #89c590;" >Tyne-Sherbrooke<br>Green-2.22<br>(±15.93)</div>
+        <div class="grid-item" style="background-color: #89c590;" >YYG Brighton<br>Green-2.44<br>(±12.67)</div>
+        <div class="grid-item" style="background-color: #f89b4a;" >O'Leary-Inverness<br>NDP-4.73<br>(±13.02)</div>
+        <div class="grid-item" style="background-color: #3b9e46;" >Borden-Kinkora<br>Green-11.68<br>(±17.23)</div>
+        <div class="grid-item" style="background-color: #3b9e46;" >Mermaid-Strat<br>Green-14.62<br>(±17.57)</div>
+        <div class="grid-item" style="background-color: #a6282e;" >YYG West Royalty<br>Liberal-16.37<br>(±14.79)</div>
+        <div class="grid-item" style="background-color: #2f7e38;" >YYG Victoria<br>Green-17.33<br>(±15.17)</div>
+        <div class="grid-item" style="background-color: #2f7e38;" >New Haven-Point<br>Green-17.81<br>(±15.95)</div>
+        <div class="grid-item" style="background-color: #a6282e;" >Tignish-Palmer Rd<br>Liberal-32.15<br>(±19.7)</div>
+     </div>
+    <p>Bolded seat is the Tipping Point</p>
+</div>
+
+<div class="province-box">
+<h2 id="Model Specifics"></h2>
+    <div class="flourish-embed flourish-election" data-src="visualisation/22531771"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/22531771/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/22531941"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/22531941/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+    <div class="flourish-embed flourish-chart" data-src="visualisation/22532011"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/22532011/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="province-box">
+    <h2 id="Simulator" class="province-title">Simulator</h2>
+    <p><b>Simulate a Prince Edward Island election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+    <a href="https://yapms.com/app?m=m5ztgf858c3375t">Click here to map your result</a>
+
+<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQSPKv72COLyQpGkmOh2qfmgAeOibX0_tFLeUfChqmZS91Q?wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&wdHideGridlines=True&wdHideHeaders=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+</div>
+
+</body>
+</html>
