@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Québec</title>
+    <title>Alberta</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
-        <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
     <script>
      window.dataLayer = window.dataLayer || [];
@@ -141,7 +141,7 @@
         
      .grid-container { 
       display: grid; 
-      grid-template-columns: repeat(9, 1fr); 
+      grid-template-columns: repeat(11, 1fr); 
       grid-gap: 10px; 
       padding: 10px; 
      }
@@ -156,481 +156,352 @@
         
 </style>
 </head>
+
 <body>
 <header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
     <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
     </a>
     <div style="flex: 1;">
-        <h1>Québec</h1>
-        <p>Le chargement de certains éléments de la page prend du temps; soyez patient</p>
+        <h1>Alberta</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
         <hr style="height:10px; visibility:hidden;">
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Regional Results">Résultats Régionaux</a>
+    <a href="#Regional Results">Regional Results</a>
     </h3>
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Squares">Graphique des Carrés</a>
+    <a href="#Squares">Squares Chart</a>
     </h3>
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Simulator">Simulateur</a>
+    <a href="#Simulator">Simulator</a>
     </h3>
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Model Specifics">Liste Déroulante et Sondages</a>
+    <a href="#Model Specifics">Dropdowns and Polls</a>
     </h3>
 </header>
 
 <div class="province-box">
- <h2 class="province-title">CDNProjections Projection Électorale du Québec</h2>
+ <h2 class="province-title">CDNProjections Alberta Electoral Model</h2>
      <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 49.60%; background-color: #204785;" title="Sièges : 62"></div>
-          <div class="vote-bar" style="width: 31.22%; background-color: #537ab8;" title="Part de Voix : 31.22%"></div>
-          <div class="odds-bar" style="width: 24%; background-color: #7e9bca;" title="PQ Probabilités de Majorité : 24%"></div>
-          <div class="odds-bar" style="width: 76%; background-color: #7e9bca;" title="PQ Probabilités de Minorité : 76%"></div>
+          <div class="seat-bar" style="width: 57.47%; background-color: #123565;" title="Seats: 50"></div>
+          <div class="vote-bar" style="width: 47.66%; background-color: #456898;" title="Vote Share: 47.66%"></div>
+          <div class="odds-bar" style="width: 96%; background-color: #748eb2;" title=UCP Majority Odds: 96%></div>
          </div>
      <div class=seat-vote-container">
-         <span class="seat-count">48-<span class="highlight">62</span>-73</span>
-         <span class="vote-count">(31.22%)</span><br>
-         <span class="odds-count">(PQ Maj : 24%)</span><br>
-         <span class="odds-count">(PQ Min : 76%)</span>
+         <span class="seat-count">40-<span class="highlight">50</span>-59</span>
+         <span class="vote-count">(47.66%)</span><br>
+         <span class="odds-count">(UCP Maj: 96%)</span>
      </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 21.60%; background-color: #bd1422;" title="Sièges : 27"></div>
-          <div class="vote-bar" style="width: 17.04%; background-color: #f04755;" title="Part de Voix : 17.04%"></div>
-          <div class="odds-bar" style="width: 0.25%; background-color: #f4757f;" title="PLQ Probabilités de Minorité : <1%"></div>
+          <div class="seat-bar" style="width: 42.53%; background-color: #cc5400;" title="Seats: 37"></div>
+          <div class="vote-bar" style="width: 40.41%; background-color: #ff8733;" title="Vote Share: 40.41%"></div>
+          <div class="odds-bar" style="width: 4%; background-color: #ffa566;" title="NDP Majority Odds: 4%"></div>
          </div>
      <div class="seat-vote-container">
-         <span class="seat-count">18-<span class="highlight">27</span>-30</span>
-         <span class="vote-count">(17.04%)</span>
-         <span class="odds-count">(PLQ Min : <1%)</span>
+         <span class="seat-count">28-<span class="highlight">37</span>-47</span>
+         <span class="vote-count">(40.41%)</span>
+         <span class="odds-count">(NDP Maj: 4%)</span>
      </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Alberta_Party_Logo.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 16.80%; background-color: #0086b9;" title="Sièges : 21"></div>
-          <div class="vote-bar" style="width: 24.31%; background-color: #33b9ec;" title="Part de Voix : 24.31%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count">10-<span class="highlight">21</span>-40</span>
-         <span class="vote-count">(24.31%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Logo_of_Qu%C3%A9bec_solidaire.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 6.40%; background-color: #cc4404;" title="Sièges : 8"></div>
-          <div class="vote-bar" style="width: 13.55%; background-color: #ff7737;" title="Part de Voix : 13.55%"></div>
+          <div class="seat-bar" style="width: 0.25%; background-color: #157bb7;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.85%; background-color: #48aeea;" title="Vote Share: 3.85%"></div>
          </div>
       <div class="seat-vote-container">
-         <span class="seat-count">3-<span class="highlight">8</span>-11</span>
-         <span class="vote-count">(13.55%)</span>
+          <span class="seat-count">0-0-0</span>
+          <span class="vote-count">(3.85%)</span>
       </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_conservateur_bleu.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 5.60%; background-color: #121f41;" title="Sièges : 7"></div>
-          <div class="vote-bar" style="width: 11.79%; background-color: #455274;" title="Part de Voix : 11.79%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count">2-<span class="highlight">7</span>-8</span>
-         <span class="vote-count">(11.79%)</span>
-     </div>
     </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 2.09%; background-color: #999999;" title="Part de Voix : 2.09%"></div>
-          <div class="odds-bar" style="width: 0.25%; background-color: #b3b3b3;" title="Egalité : <1%"></div>
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 3.82%; background-color: #999999;" title="Vote Share: 3.82%"></div>
          </div>
-     <div class="seat-vote-container">
-         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
-         <span class="vote-count">(2.09%)</span>
-         <span class="odds-count">(Egalité : <1%)</span>
-     </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0-0-0</span>
+          <span class="vote-count">(3.82%)</span>
+      </div>
     </div>
-    <p>Dernière mise à jour : 31 janvier 2025<br><i>Plancher de Projection-Résultat Prévu-Plafond de Projection<br>Pourcentage des Voix<br>Chance de Formation du Gouvernement</i></p>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Alberta_Liberal_Party_Logo_%282017%29.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #b62e1c;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.65%; background-color: #e9614f;" title="Vote Share: 1.65%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0-0-0</span>
+          <span class="vote-count">(1.65%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/2/2f/Green_Party_of_Alberta_logo.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #237b34;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.34%; background-color: #56ae67;" title="Vote Share: 1.34%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0-0-0</span>
+          <span class="vote-count">(1.34%)</span>
+      </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Logo_of_the_Wildrose_Loyalty_Coalition.png" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #b760a2;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 1.27%; background-color: #ea93d5;" title="Vote Share: 1.27%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0-0-0</span>
+          <span class="vote-count">(1.27%)</span>
+      </div>
+    </div>
+    <p>Last Updated: January 31, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote<br>Chance at Forming Government</i></p>
 </div>
 
 <div class="province-box" style="display: flex; flex-direction: row">
 <div class="province-box" style="width: 33%;">
- <h3 id="Regional Results" class="province-title">Région de Montréal</h3>
+ <h3 id="Regional Results" class="province-title">Calgary</h3>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 67.65%; background-color: #bd1422;" title="Sièges : 23"></div>
-          <div class="vote-bar" style="width: 30.30%; background-color: #f04755;" title="Part de Voix : 30.30%"></div>
+          <div class="seat-bar" style="width: 53.85%; background-color: #123565;" title="Seats: 14"></div>
+          <div class="vote-bar" style="width: 44.11%; background-color: #456898;" title="Vote Share: 44.11%"></div>
          </div>
      <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">23</span></span>
-         <span class="vote-count">(30.30%)</span><br>
+         <span class="seat-count"><span class="highlight">14</span></span>
+         <span class="vote-count">(44.11%)</span><br>
      </div>
     </div>
     <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 17.65%; background-color: #204785;" title="Sièges : 6"></div>
-          <div class="vote-bar" style="width: 24.95%; background-color: #537ab8;" title="Part de Voix : 24.95%"></div>
+          <div class="seat-bar" style="width: 46.15%; background-color: #cc5400;" title="Seats: 12"></div>
+          <div class="vote-bar" style="width: 45.04%; background-color: #ff8733;" title="Vote Share: 45.04%"></div>
          </div>
      <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">6</span></span>
-         <span class="vote-count">(24.95%)</span>
+         <span class="seat-count"><span class="highlight">13</span></span>
+         <span class="vote-count">(45.04%)</span>
      </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Logo_of_Qu%C3%A9bec_solidaire.svg" alt="Party Logo" class="party-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 14.71%; background-color: #cc4404;" title="Sièges : 5"></div>
-          <div class="vote-bar" style="width: 15.61%; background-color: #ff7737;" title="Part de Voix : 15.61%"></div>
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 10.84%; background-color: #999999;" title="Vote Share: 10.84%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0</span>
+          <span class="vote-count">(10.84%)</span>
+      </div>
+    </div>
+</div>
+    
+<div class="province-box" style="width: 33%;">
+ <h3 class="province-title">Edmonton</h3>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 100.00%; background-color: #cc5400;" title="Seats: 20"></div>
+          <div class="vote-bar" style="width: 55.68%; background-color: #ff8733;" title="Vote Share: 55.68%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">20</span></span>
+         <span class="vote-count">(55.68%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #123565;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 31.31%; background-color: #456898;" title="Vote Share: 31.31%"></div>
+         </div>
+     <div class="seat-vote-container">
+         <span class="seat-count"><span class="highlight">0</span></span>
+         <span class="vote-count">(31.31%)</span>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 13.01%; background-color: #999999;" title="Vote Share: 13.01%"></div>
+         </div>
+      <div class="seat-vote-container">
+          <span class="seat-count">0</span>
+          <span class="vote-count">(13.01%)</span>
+      </div>
+    </div>
+</div>
+
+<div class="province-box" style="width: 33%;">
+ <h3 class="province-title">Rest of Alberta</h3>
+    <div class="party-row">
+      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 87.80%; background-color: #123565;" title="Seats: 36"></div>
+          <div class="vote-bar" style="width: 57.25%; background-color: #456898;" title="Vote Share: 57.25%"></div>
+         </div>
+     <div class=seat-vote-container">
+         <span class="seat-count"><span class="highlight">36</span></span>
+         <span class="vote-count">(57.25%)</span><br>
+     </div>
+    </div>
+    <div class="party-row">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
+         <div class="bar-container">
+          <div class="seat-bar" style="width: 12.20%; background-color: #cc5400;" title="Seats: 5"></div>
+          <div class="vote-bar" style="width: 30.82%; background-color: #ff8733;" title="Vote Share: 30.82%"></div>
          </div>
      <div class="seat-vote-container">
          <span class="seat-count"><span class="highlight">5</span></span>
-         <span class="vote-count">(15.61%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #0086b9;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 17.10%; background-color: #33b9ec;" title="Part de Voix : 17.10%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">0</span></span>
-         <span class="vote-count">(17.10%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_conservateur_bleu.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #121f41;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 9.43%; background-color: #455274;" title="Part de Voix : 9.43%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">0</span></span>
-         <span class="vote-count">(9.43%)</span>
+         <span class="vote-count">(30.82%)</span>
      </div>
     </div>
     <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 2.61%; background-color: #999999;" title="Part de Voix : 2.61%"></div>
+          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Seats: 0"></div>
+          <div class="vote-bar" style="width: 11.93%; background-color: #999999;" title="Vote Share: 11.93%"></div>
          </div>
       <div class="seat-vote-container">
-          <span class="seat-count"><span class="highlight">0</span></span>
-          <span class="vote-count">(2.61%)</span>
-      </div>
-    </div>
-</div>
-
-<div class="province-box" style="width: 33%;">
- <h3 id="Regional Results" class="province-title">Capitale-Nationale</h3>
-    <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 63.64%; background-color: #204785;" title="Sièges : 7"></div>
-          <div class="vote-bar" style="width: 30.77%; background-color: #537ab8;" title="Part de Voix : 30.77%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">7</span></span>
-         <span class="vote-count">(30.77%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_conservateur_bleu.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 27.27%; background-color: #121f41;" title="Sièges : 3"></div>
-          <div class="vote-bar" style="width: 19.29%; background-color: #455274;" title="Part de Voix : 19.29%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">3</span></span>
-         <span class="vote-count">(19.29%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Logo_of_Qu%C3%A9bec_solidaire.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 9.09%; background-color: #cc4404;" title="Sièges : 1"></div>
-          <div class="vote-bar" style="width: 13.68%; background-color: #ff7737;" title="Part de Voix : 13.68%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">1</span></span>
-         <span class="vote-count">(13.68%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #0086b9;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 23.98%; background-color: #33b9ec;" title="Part de Voix : 23.98%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">0</span></span>
-         <span class="vote-count">(23.98%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #bd1422;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 10.63%; background-color: #f04755;" title="Part de Voix : 10.63%"></div>
-         </div>
-     <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">0</span></span>
-         <span class="vote-count">(10.63%)</span><br>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 1.65%; background-color: #999999;" title="Part de Voix : 1.65%"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count"><span class="highlight">0</span></span>
-          <span class="vote-count">(1.65%)</span>
-      </div>
-    </div>
-</div>
-
-<div class="province-box" style="width: 33%;">
- <h3 id="Regional Results" class="province-title">Reste du Québec</h3>
-    <div class="party-row">
-      <img src="https://pq.org/wp-content/uploads/2024/08/Logo.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 61.25%; background-color: #204785;" title="Sièges : 49"></div>
-          <div class="vote-bar" style="width: 33.21%; background-color: #537ab8;" title="Part de Voix : 33.21%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">49</span></span>
-         <span class="vote-count">(33.21%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/CAQ_logo_updated_in_November_2015.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 26.25%; background-color: #0086b9;" title="Sièges : 21"></div>
-          <div class="vote-bar" style="width: 27.96%; background-color: #33b9ec;" title="Part de Voix : 27.96%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">21</span></span>
-         <span class="vote-count">(27.96%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Logo_conservateur_bleu.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 5.00%; background-color: #121f41;" title="Sièges : 4"></div>
-          <div class="vote-bar" style="width: 12.16%; background-color: #455274;" title="Part de Voix : 12.16%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">4</span></span>
-         <span class="vote-count">(12.16%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/fr/0/05/Logo_PLQ_crop.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 5.00%; background-color: #bd1422;" title="Sièges : 4"></div>
-          <div class="vote-bar" style="width: 12.12%; background-color: #f04755;" title="Part de Voix : 12.12%"></div>
-         </div>
-     <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">4</span></span>
-         <span class="vote-count">(12.12%)</span><br>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Logo_of_Qu%C3%A9bec_solidaire.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 2.50%; background-color: #cc4404;" title="Sièges : 2"></div>
-          <div class="vote-bar" style="width: 12.60%; background-color: #ff7737;" title="Part de Voix : 12.60%"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">2</span></span>
-         <span class="vote-count">(12.60%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;" title="Sièges : 0"></div>
-          <div class="vote-bar" style="width: 1.95%; background-color: #999999;" title="Part de Voix : 1.95%"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count"><span class="highlight">0</span></span>
-          <span class="vote-count">(1.95%)</span>
+          <span class="seat-count">0</span>
+          <span class="vote-count">(11.93%)</span>
       </div>
     </div>
 </div>
 </div>
 
 <div class="province-box">
-    <h2 class="province-title">Map</h2>
-    <p>En raison de l'urgence de la publication, une carte n'est pas encore disponible. Prochainement!</p>
+    <h1 class="province-title">Map</h1>
+<div class="flourish-embed flourish-map" data-src="visualisation/21348045"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21348045/thumbnail" width="100%" alt="map visualization" /></noscript></div>
 </div>
 
 <div class="province-box">
-    <h2 id="Squares" class="province-title">Course pour 63</h2>
+    <h2 id="Squares" class="province-title">Race for 44</h2>
      <div class="grid-container">
+        <div class="grid-item" style="background-color: #0e284c;" >Drumhell.-Stett.<br>UCP+59.11<br>(±10.24)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Rimbey-Rocky Mt.<br>UCP+54.9<br>(±9.77)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Taber-Warner<br>UCP+54.21<br>(±10.33)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Vermilion-Lloyd.<br>UCP+53.98<br>(±9.94)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Olds-Didsbury<br>UCP+50.62<br>(±9.72)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Central Peace<br>UCP+49.03<br>(±10.15)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >GP-Wapiti<br>UCP+48.28<br>(±9.79)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Cardston-Siksika<br>UCP+46.45<br>(±9.16)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Bonnyville-Cold.<br>UCP+45.52<br>(±9.91)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Drayton Valley<br>UCP+44.02<br>(±9.58)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Innisfail-Sylvan<br>UCP+42.52<br>(±9.38)</div>
+        <div class="grid-item" style="background-color: #123565;" >Brooks-Med. Hat<br>UCP+31.79<br>(±8.2)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Lac Ste. Anne<br>UCP+33.39<br>(±9.13)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Livingstone-Mac.<br>UCP+35.84<br>(±9.07)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >West Yellowhead<br>UCP+36.27<br>(±9.44)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Chester.-Strath.<br>UCP+36.55<br>(±8.93)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Highwood<br>UCP+36.64<br>(±9.4)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >FMcM-Lac La Bic.<br>UCP+37.43<br>(±9.43)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >FMcM-Wood Buf.<br>UCP+38.67<br>(±8.51)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Peace River<br>UCP+39.29<br>(±9.22)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Athabasca-Barr.<br>UCP+40.08<br>(±9.66)</div>
+        <div class="grid-item" style="background-color: #0e284c;" >Lacombe-Ponoka<br>UCP+40.35<br>(±9.07)</div>
+        <div class="grid-item" style="background-color: #123565;" >Maskwa.-Wetask.<br>UCP+31.13<br>(±8.9)</div>
+        <div class="grid-item" style="background-color: #123565;" >Camrose<br>UCP+30.5<br>(±7.99)</div>
+        <div class="grid-item" style="background-color: #123565;" >Grande Prairie<br>UCP+27.32<br>(±8.39)</div>
+        <div class="grid-item" style="background-color: #123565;" >Airdrie-East<br>UCP+25.44<br>(±9.04)</div>
+        <div class="grid-item" style="background-color: #123565;" >Cypress-Med. Hat<br>UCP+23.09<br>(±8.94)</div>
+        <div class="grid-item" style="background-color: #123565;" >Airdrie-Cochrane<br>UCP+20.41<br>(±8.93)</div>
+        <div class="grid-item" style="background-color: #123565;" >Lesser Slave Lake<br>UCP+19.19<br>(±8.81)</div>
+        <div class="grid-item" style="background-color: #123565;" >Calgary-SE<br>UCP+18.62<br>(±8.33)</div>
+        <div class="grid-item" style="background-color: #123565;" >Red Deer-North<br>UCP+16.85<br>(±8.08)</div>
+        <div class="grid-item" style="background-color: #123565;" >Calgary-Lough.<br>UCP+16.52<br>(±8.38)</div>
+        <div class="grid-item" style="background-color: #123565;" >Calgary-West<br>UCP+15.86<br>(±8.74)</div>
+        <div class="grid-item" style="border: 5px solid black; background-color: #748eb2;" >Morinville-St. Al.<br>UCP+2.31<br>(±8.13)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-East<br>UCP+2.42<br>(±7.93)</div>
+        <div class="grid-item" style="background-color: #456898;" >Strathcona-Sher.<br>UCP+4.55<br>(±8.13)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Calgary-Fish Crk<br>UCP+9.93<br>(±8.49)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Calgary-Peigan<br>UCP+11.46<br>(±8.5)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Leduc-Beaumont<br>UCP+12.45<br>(±8.2)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Spruce-Stony<br>UCP+12.87<br>(±8.65)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Red Deer-South<br>UCP+13.49<br>(±8.64)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Calgary-Shaw<br>UCP+13.59<br>(±8.57)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Fort Sask.-Vegre.<br>UCP+13.62<br>(±7.81)</div>
+        <div class="grid-item" style="background-color: #17427e;" >Calgary-Hays<br>UCP+13.99<br>(±8.55)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-NW<br>UCP+1.63<br>(±7.97)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-Bow<br>UCP+1.59<br>(±8.24)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-Cross<br>UCP+1.56<br>(±8.44)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-North<br>UCP+1.26<br>(±8.41)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-Glen.<br>UCP+0.94<br>(±8.47)</div>
+        <div class="grid-item" style="background-color: #748eb2;" >Calgary-Foothills<br>UCP+0.16<br>(±8.29)</div>
+        <div class="grid-item" style="background-color: #ffa566;" >Calgary-Acadia<br>NDP-0.32<br>(±8.43)</div>
+        <div class="grid-item" style="background-color: #ffa566;" >Calgary-Edge.<br>NDP-0.75<br>(±8.14)</div>
+        <div class="grid-item" style="background-color: #ffa566;" >Calgary-Elbow<br>NDP-0.86<br>(±7.21)</div>
+        <div class="grid-item" style="background-color: #ffa566;" >Lethbridge-East<br>NDP-1.31<br>(±8.47)</div>
+        <div class="grid-item" style="background-color: #ffa566;" >Calgary-Bedding.<br>NDP-2.52<br>(±8.3)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-South<br>NDP-15.28<br>(±8.66)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >Lethbridge-West<br>NDP-14.87<br>(±8.51)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >Calgary-Currie<br>NDP-14.44<br>(±8.24)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >EDM-Castle<br>NDP-13.69<br>(±7.52)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >EDM-W Henday<br>NDP-13.57<br>(±7.84)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >EDM-Decore<br>NDP-11.68<br>(±7.61)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >EDM-SW<br>NDP-10.28<br>(±8.39)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >Calgary-NE<br>NDP-9.48<br>(±8.58)</div>
+        <div class="grid-item" style="background-color: #ff6900;" >Sherwood Park<br>NDP-9.44<br>(±8.05)</div>
+        <div class="grid-item" style="background-color: #ff8733;" >Calgary-Klein<br>NDP-6.51<br>(±8.38)</div>
+        <div class="grid-item" style="background-color: #ff8733;" >Banff-Kananaskis<br>NDP-5.06<br>(±8.82)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >Calgary-Falcon.<br>NDP-15.82<br>(±8.42)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >Calgary-Varsity<br>NDP-16.41<br>(±8.63)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-McClung<br>NDP-16.84<br>(±7.42)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Whitemud<br>NDP-18.52<br>(±8.02)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Beverly<br>NDP-18.72<br>(±8.14)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Manning<br>NDP-19.37<br>(±8.53)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >Calgary-McCall<br>NDP-19.67<br>(±8.86)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Mill Woods<br>NDP-20.16<br>(±8.59)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-NW<br>NDP-20.55<br>(±8.52)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >St. Albert<br>NDP-21.1<br>(±8.88)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Ellerslie<br>NDP-21.45<br>(±8.67)</div>
         <div class="grid-item" style="background-color: #e8e8e8"></div>
-        <div class="grid-item" style="background-color: #183564;" >Matane-Matapédia<br>PQ+73.62<br>(±13.49)</div>
-        <div class="grid-item" style="background-color: #183564;" >Îles-la-Madeleine<br>PQ+49.69<br>(±10.86)</div>
-        <div class="grid-item" style="background-color: #183564;" >Gaspé<br>PQ+40.17<br>(±9.43)</div>
-        <div class="grid-item" style="background-color: #204785;" >Joliette<br>PQ+30.64<br>(±8.38)</div>
-        <div class="grid-item" style="background-color: #204785;" >Camille-Laurin<br>PQ+30.27<br>(±7.36)</div>
-        <div class="grid-item" style="background-color: #204785;" >Bonaventure<br>PQ+29.48<br>(±8.03)</div>
-        <div class="grid-item" style="background-color: #204785;" >Rimouski<br>PQ+28.45<br>(±7.61)</div>
-        <div class="grid-item" style="background-color: #204785;" >Marie-Victorin<br>PQ+27.05<br>(±6.43)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Prévost<br>PQ+12.27<br>(±5.82)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Abitibi-Ouest<br>PQ+14.04<br>(±6.15)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Bertrand<br>PQ+14.55<br>(±5.91)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Taschereau<br>PQ+14.77<br>(±6.68)</div>
-        <div class="grid-item" style="background-color: #204785;" >Rosemont<br>PQ+15.17<br>(±6.32)</div>
-        <div class="grid-item" style="background-color: #204785;" >Taillon<br>PQ+15.98<br>(±5.72)</div>
-        <div class="grid-item" style="background-color: #204785;" >Lac-Saint-Jean<br>PQ+19.55<br>(±7.44)</div>
-        <div class="grid-item" style="background-color: #204785;" >Jean-Talon<br>PQ+20.09<br>(±5.32)</div>
-        <div class="grid-item" style="background-color: #204785;" >Duplessis<br>PQ+21.48<br>(±6.92)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Berthier<br>PQ+11.81<br>(±6.44)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Verchères<br>PQ+11.37<br>(±6.34)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Montarville<br>PQ+10.69<br>(±5.54)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Borduas<br>PQ+9.15<br>(±6.08)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Terrebonne<br>PQ+9.12<br>(±5.87)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Pointe-Trembles<br>PQ+9.11<br>(±6.45)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Saint-Jean<br>PQ+9.06<br>(±6.02)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Louis-Hébert<br>PQ+8.86<br>(±5.41)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Saint-Jérôme<br>PQ+8.69<br>(±5.89)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Nicolet-Bécancour<br>PQ+7.16<br>(±5.49)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Deux-Montagnes<br>PQ+7.22<br>(±5.31)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Labelle<br>PQ+7.51<br>(±6.18)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Charlev–Beaupré<br>PQ+7.54<br>(±5.39)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Orford<br>PQ+7.74<br>(±4.88)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Chambly<br>PQ+7.8<br>(±5.59)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >René-Lévesque<br>PQ+7.99<br>(±7.03)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Richelieu<br>PQ+8.05<br>(±6.6)</div>
-        <div class="grid-item" style="background-color: #2859a6;" >Roberval<br>PQ+8.38<br>(±6.74)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Masson<br>PQ+6.67<br>(±5.88)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Rousseau<br>PQ+6.61<br>(±5.91)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Argenteuil<br>PQ+6.54<br>(±4.85)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Ungava<br>PQ+6.01<br>(±4.25)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Charlesbourg<br>PQ+5.5<br>(±4.75)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Repentigny<br>PQ+5.23<br>(±5.85)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Rivière–Témis<br>PQ+5.16<br>(±5.88)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Maurice-Richard<br>PQ+4.86<br>(±4.84)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Mirabel<br>PQ+4.73<br>(±5.56)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Laviolette–St-Maur<br>PQ+2.18<br>(±5.45)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Blainville<br>PQ+2.39<br>(±5.27)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Vanier-Rivières<br>PQ+2.67<br>(±4.72)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Laval-des-Rapides<br>PQ+2.78<br>(±4.69)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Beauharnois<br>PQ+2.9<br>(±5.8)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Groulx<br>PQ+3.15<br>(±5.04)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Les Plaines<br>PQ+3.17<br>(±5.42)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Jonquière<br>PQ+4.22<br>(±6.73)</div>
-        <div class="grid-item" style="background-color: #537ab8;" >Sanguinet<br>PQ+4.55<br>(±5.27)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Saint-Hyacinthe<br>PQ+1.99<br>(±5.81)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Vachon<br>PQ+1.9<br>(±4.49)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Dubuc<br>PQ+1.83<br>(±6.28)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Montmorency<br>PQ+1.52<br>(±4.7)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Sainte-Rose<br>PQ+0.89<br>(±4.77)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Châteauguay<br>PQ+0.53<br>(±4.38)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Mégantic<br>PQ+0.39<br>(±4.68)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Drummond<br>PQ+0.25<br>(±5.26)</div>
-        <div class="grid-item" style="background-color: #7e9bca;" >Richmond<br>PQ+0.04<br>(±4.73)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Abitibi-Est<br>CAQ-0.69<br>(±4.77)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Soulanges<br>CAQ-0.53<br>(±4.16)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Côte-du-Sud<br>CAQ-0.52<br>(±4.84)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Trois-Rivières<br>CAQ-0.49<br>(±5.19)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Brome-Missisquoi<br>CAQ-0.44<br>(±4.14)</div>
-        <div class="grid-item" style="background-color: #ff9969;" >Rouyn-Noranda<br>QS-0.41<br>(±4.99)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Saint-François<br>CAQ-0.38<br>(±4.3)</div>
-        <div class="grid-item" style="background-color: #737d97;" >Portneuf<br>CON-0.34<br>(±4.99)</div>
-        <div class="grid-item" style="border: 5px solid black; background-color: #66cbf1;" >Iberville<br>CAQ-0.24<br>(±5.48)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Huntingdon<br>CAQ-0.83<br>(±4.39)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Lévis<br>CAQ-1.03<br>(±4.8)</div>
-        <div class="grid-item" style="background-color: #f4757f;" >Anjou–Louis-Riel<br>Liberal-1.31<br>(±4.87)</div>
-        <div class="grid-item" style="background-color: #f4757f;" >Vimont<br>Liberal-1.34<br>(±4.69)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Johnson<br>CAQ-1.43<br>(±5.33)</div>
-        <div class="grid-item" style="background-color: #f4757f;" >Mille-Îles<br>Liberal-1.62<br>(±4.87)</div>
-        <div class="grid-item" style="background-color: #737d97;" >La Peltrie<br>CON-2.03<br>(±4.78)</div>
-        <div class="grid-item" style="background-color: #737d97;" >Lotbinière-Front<br>CON-2.3<br>(±4.86)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Maskinongé<br>CAQ-2.37<br>(±5.29)</div>
-        <div class="grid-item" style="background-color: #33b9ec;" >Gatineau<br>CAQ-3.78<br>(±4.4)</div>
-        <div class="grid-item" style="background-color: #455274;" >Bellechasse<br>CON-3.77<br>(±5.35)</div>
-        <div class="grid-item" style="background-color: #ff7737;" >Jean-Lesage<br>QS-3.5<br>(±4.77)</div>
-        <div class="grid-item" style="background-color: #f04755;" >Fabre<br>Liberal-3.41<br>(±4.52)</div>
-        <div class="grid-item" style="background-color: #f04755;" >Verdun<br>Liberal-3.31<br>(±4.28)</div>
-        <div class="grid-item" style="background-color: #f04755;" >Laporte<br>Liberal-3.17<br>(±4.29)</div>
-        <div class="grid-item" style="background-color: #f04755;" >Hull<br>Liberal-3.1<br>(±4.05)</div>
-        <div class="grid-item" style="background-color: #737d97;" >Chauveau<br>CON-2.63<br>(±5.02)</div>
-        <div class="grid-item" style="background-color: #66cbf1;" >Chutes-Chaudière<br>CAQ-2.42<br>(±4.92)</div>
-        <div class="grid-item" style="background-color: #ff7737;" >Hochela-Maisonne<br>QS-4.32<br>(±6.32)</div>
-        <div class="grid-item" style="background-color: #ff7737;" >St-Mar–St-Jacq<br>QS-4.53<br>(±5.42)</div>
-        <div class="grid-item" style="background-color: #33b9ec;" >La Prairie<br>CAQ-5.37<br>(±5.03)</div>
-        <div class="grid-item" style="background-color: #33b9ec;" >L'Assomption<br>CAQ-6.05<br>(±5.9)</div>
-        <div class="grid-item" style="background-color: #33b9ec;" >Arthabaska<br>CAQ-6.43<br>(±5.02)</div>
-        <div class="grid-item" style="background-color: #33b9ec;" >Champlain<br>CAQ-6.51<br>(±5.41)</div>
-        <div class="grid-item" style="background-color: #00a8e7;" >Papineau<br>CAQ-7.03<br>(±4.86)</div>
-        <div class="grid-item" style="background-color: #00a8e7;" >Chapleau<br>CAQ-7.4<br>(±4.83)</div>
-        <div class="grid-item" style="background-color: #00a8e7;" >Chicoutimi<br>CAQ-7.7<br>(±6.32)</div>
-        <div class="grid-item" style="background-color: #162751;" >Beauce-Nord<br>CON-11.79<br>(±5.97)</div>
-        <div class="grid-item" style="background-color: #162751;" >Beauce-Sud<br>CON-11.72<br>(±6.07)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Viau<br>Liberal-11.57<br>(±5.23)</div>
-        <div class="grid-item" style="background-color: #ff5505;" >Laurier-Dorion<br>QS-10.99<br>(±5.1)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >St-Henri–St-Anne<br>Liberal-10.13<br>(±4.83)</div>
-        <div class="grid-item" style="background-color: #ff5505;" >Mercier<br>QS-9.02<br>(±5.96)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Mt-Royal–Outre<br>Liberal-8.72<br>(±5.27)</div>
-        <div class="grid-item" style="background-color: #00a8e7;" >Granby<br>CAQ-8.26<br>(±5.62)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Vaudreuil<br>Liberal-7.97<br>(±4.75)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Chomedey<br>Liberal-11.86<br>(±4.78)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Bourassa-Sauvé<br>Liberal-13.16<br>(±5.32)</div>
-        <div class="grid-item" style="background-color: #ff5505;" >Sherbrooke<br>QS-13.27<br>(±5.42)</div>
-        <div class="grid-item" style="background-color: #ec192a;" >Acadie<br>Liberal-13.45<br>(±5.61)</div>
-        <div class="grid-item" style="background-color: #ff5505;" >Gouin<br>QS-13.91<br>(±6.48)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >La Pinière<br>Liberal-17.98<br>(±5.5)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Marguerit-Bourgeo<br>Liberal-19.66<br>(±5.83)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Marquette<br>Liberal-19.69<br>(±6.13)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Pontiac<br>Liberal-24.1<br>(±6.07)</div>
-        <div class="grid-item" style="background-color: #8e0f19;" >Jacques-Cartier<br>Liberal-37.75<br>(±7.81)</div>
-        <div class="grid-item" style="background-color: #8e0f19;" >Robert-Baldwin<br>Liberal-34.66<br>(±7.11)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Jeanne–Viger<br>Liberal-31.63<br>(±7.23)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Nelligan<br>Liberal-29.96<br>(±6.87)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >LaFontaine<br>Liberal-28.22<br>(±6.89)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >D'Arcy-McGee<br>Liberal-26.31<br>(±6.09)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Notre-Dame-Grâce<br>Liberal-25.88<br>(±5.96)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Westmount<br>Liberal-24.52<br>(±5.99)</div>
-        <div class="grid-item" style="background-color: #bd1422;" >Saint-Laurent<br>Liberal-24.35<br>(±6.08)</div>
+        <div class="grid-item" style="background-color: #993f00;" >EDM-Strathcona<br>NDP-47.54<br>(±9.55)</div>
+        <div class="grid-item" style="background-color: #993f00;" >EDM-City Centre<br>NDP-47.43<br>(±9.74)</div>
+        <div class="grid-item" style="background-color: #993f00;" >EDM-Highlands<br>NDP-42.05<br>(±9.36)</div>
+        <div class="grid-item" style="background-color: #993f00;" >EDM-Gold Bar<br>NDP-36.72<br>(±9.1)</div>
+        <div class="grid-item" style="background-color: #993f00;" >EDM-Glenora<br>NDP-35.97<br>(±9.05)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Riverview<br>NDP-33.21<br>(±8.79)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Rutherford<br>NDP-29.03<br>(±9.03)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >Calgary-Mt. View<br>NDP-28.23<br>(±8.63)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >Calgary-Buffalo<br>NDP-26.64<br>(±9)</div>
+        <div class="grid-item" style="background-color: #cc5400;" >EDM-Meadows<br>NDP-21.55<br>(±8.18)</div>
       </div>
-    <p>Le siège en gras est le point d'inflexion</p>
+    <p>Bolded seat is the Tipping Point</p>
 </div>
 
 <div class="province-box">
 <h2 id="Model Specifics"></h2>
-    <div class="flourish-embed flourish-election" data-src="visualisation/21419926"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21419926/thumbnail" width="100%" alt="election visualization" /></noscript></div>
-    <div class="flourish-embed flourish-chart" data-src="visualisation/21420072"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21420072/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-    <div class="flourish-embed flourish-chart" data-src="visualisation/21420095"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21420095/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+<div class="flourish-embed flourish-election" data-src="visualisation/21056512"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21056512/thumbnail" width="100%" alt="election visualization" /></noscript></div>
+<div class="flourish-embed flourish-chart" data-src="visualisation/20587197"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20587197/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+<div class="flourish-embed flourish-chart" data-src="visualisation/21340807"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21340807/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
 <div class="province-box">
     <h2 id="Simulator" class="province-title">Simulator</h2>
-    <p><b>Simuler une élection québécoise en modifiant les intentions de vote dans le premier tableau</b><br><i>Il est important de noter que le simulateur n'inclut pas tous les changements de modèle et qu'il ne sera pas identique à ma projection réelle.</i></p>
-    <a href="https://yapms.com/app/can/qc/2022/blank?m=zfhvib55rnkk8xq">Cliquez ici pour cartographier votre résultat</a>
+    <p><b>Simulate an Alberta election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
+    <a href="https://yapms.com/app/can/ab/2023/blank?m=gnqoxu81dq69j5p">Click here to map your result</a>
 
-<div class="province-box">
-    <p>En raison de l'urgence de la publication, le simulateur n'est pas encore disponible. Prochainement!</p>
+<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQRp0P57xjv9SpNqSnvCrYBRAZYfAnwQDPvXywu_V8qqFuQ?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&Item='Simulator'!A%3AZ&wdHideGridlines=True&wdInConfigurator=True"></iframe>
 </div>
 
+</body>
 </body>
 </html>
