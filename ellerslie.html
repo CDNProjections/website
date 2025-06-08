@@ -49,8 +49,8 @@
     }
         
     .party-logo {
-        width: 50px;
-        height: 50px;
+        width: 4em;
+        height: 4em;
     }
         
     .header-box {
@@ -99,12 +99,12 @@
 
     .vote-bar {
       width: 90%;
-      height: 10px;
+      height: 30px;
     }
 
     .seat-bar {
       width: 80%;
-      height: 75px;
+      height: 80px;
     }
 
     .odds-bar {
@@ -125,7 +125,7 @@
       gap: 5px;
       align-items: centre;
       position: absolute;
-      right: 2.5%;
+      right: 2em;
     }
       
     .seat-count {
@@ -141,11 +141,11 @@
     }
         
      .vote-count {
-      font-size: 12px;
+      font-size: 14px;
     }
 
      .odds-count {
-      font-size: 12px;
+      font-size: 16px;
      }
 
      .text-container {
@@ -183,13 +183,43 @@
      z-index: 1;
     }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 
 <body>
-<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
-    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
     </a>
     <div style="flex: 1;">
         <h1>Edmonton-Ellerslie</h1>
@@ -213,7 +243,7 @@
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 48.52%; background-color: #ffa566;">
+       <div class="seat-bar" style="width: 47.25%; background-color: #ffa566;">
        <div class="bar" style="background-color: #ff6900;"></div>
        <div class="text-container">
          <div class="candidate-name">Gurtej Singh Brar</div>
@@ -222,14 +252,14 @@
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">48.52%</span></span>
-        <span class="odds-count">(NDP Vic: 66%)</span>
+        <span class="seat-count"><span class="highlight">47.25%</span></span>
+        <span class="odds-count">(NDP Vic: 60%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 45.98%; background-color: #748eb2;">
+       <div class="seat-bar" style="width: 45.75%; background-color: #748eb2;">
        <div class="bar" style="background-color: #17427e;"></div>
        <div class="text-container">
          <div class="candidate-name">Naresh Bhardwaj</div>
@@ -238,92 +268,76 @@
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">45.98%</span></span>
-        <span class="odds-count">(UCP Vic: 34%)</span>
+        <span class="seat-count"><span class="highlight">45.75%</span></span>
+        <span class="odds-count">(UCP Vic: 40%)</span>
       </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 1.99%; background-color: #76c2ef;">
-       <div class="bar" style="background-color: #1a9ae5;"></div>
+       <div class="seat-bar" style="width: 3.61%; background-color: #efaee0;">
+       <div class="bar" style="background-color: #e578cb;"></div>
        <div class="text-container">
-         <div class="candidate-name">Generic Candidate</div>
-         <div class="party-name">Alberta Party</div>
+         <div class="candidate-name">Pamela Henson</div>
+         <div class="party-name">Wildrose Loyalty Coalition</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.99%</span></span>
-        <span class="odds-count">(ABP Vic: <1%)</span>
+        <span class="seat-count"><span class="highlight">3.61%</span></span>
+        <span class="odds-count">(WLC Vic: <1%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 1.48%; background-color: #80c28d;">
-       <div class="bar" style="background-color: #2c9a41;"></div>
-       <div class="text-container">
-         <div class="candidate-name">Generic Candidate</div>
-         <div class="party-name">Green Party</div>
-       </div>
-       </div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.48%</span></span>
-        <span class="odds-count">(AGP Vic: <1%)</span>
-    </div>
-    </div>
-
-    <div class="party-row">
-      <div class="bar-container">
-       <div class="seat-bar" style="width: 1.02%; background-color: #ee897b;">
+       <div class="seat-bar" style="width: 1.84%; background-color: #ee897b;">
        <div class="bar" style="background-color: #e33a23;"></div>
        <div class="text-container">
-         <div class="candidate-name">Generic Candidate</div>
+         <div class="candidate-name">Manpreet Tiwana</div>
          <div class="party-name">Liberal Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.02%</span></span>
+        <span class="seat-count"><span class="highlight">1.84%</span></span>
         <span class="odds-count">(ALP Vic: <1%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 0.82%; background-color: #b3b3b3;">
+       <div class="seat-bar" style="width: 0.98%; background-color: #b3b3b3;">
        <div class="bar" style="background-color: #808080;"></div>
        <div class="text-container">
-         <div class="candidate-name">N/A</div>
-         <div class="party-name">All Others</div>
+         <div class="candidate-name">Fred Munn</div>
+         <div class="party-name">Republican</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">0.82%</span></span>
+        <span class="seat-count"><span class="highlight">0.98%</span></span>
         <span class="odds-count">(OTH Vic: <1%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 0.19%; background-color: #efaee0;">
-       <div class="bar" style="background-color: #e578cb;"></div>
+       <div class="seat-bar" style="width: 0.57%; background-color: #76c2ef;">
+       <div class="bar" style="background-color: #1a9ae5;"></div>
        <div class="text-container">
-         <div class="candidate-name">Generic Candidate</div>
-         <div class="party-name">Wildrose Loyalty Coalition</div>
+         <div class="candidate-name">Caroline Currie</div>
+         <div class="party-name">Alberta Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">0.19%</span></span>
-        <span class="odds-count">(WLC Vic: <1%)</span>
+        <span class="seat-count"><span class="highlight">0.57%</span></span>
+        <span class="odds-count">(ABP Vic: <1%)</span>
     </div>
     </div>
 
-    <p>Last Updated: May 26, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
+    <p>Last Updated: June 8, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
 </div>
 
 <div class="province-box">
@@ -331,7 +345,7 @@
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 66.06%; background-color: #ffa566;">
+       <div class="seat-bar" style="width: 59.58%; background-color: #ffa566;">
        <div class="bar" style="background-color: #ff6900;"></div>
        <div class="text-container">
          <div class="candidate-name">Gurtej Singh Brar</div>
@@ -340,14 +354,14 @@
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">66.06%</span></span>
-        <span class="odds-count">(3303)</span>
+        <span class="seat-count"><span class="highlight">59.58%</span></span>
+        <span class="odds-count">(2979)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 33.94%; background-color: #748eb2;">
+       <div class="seat-bar" style="width: 40.42%; background-color: #748eb2;">
        <div class="bar" style="background-color: #17427e;"></div>
        <div class="text-container">
          <div class="candidate-name">Naresh Bhardwaj</div>
@@ -356,12 +370,12 @@
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">33.94%</span></span>
-        <span class="odds-count">(1697)</span>
+        <span class="seat-count"><span class="highlight">40.42%</span></span>
+        <span class="odds-count">(2021)</span>
       </div>
     </div>
 
-    <p>Last Updated: May 26, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+    <p>Last Updated: June 8, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
 
 </div>
 
