@@ -162,8 +162,12 @@
 }
 
 @media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
     .province-box {
-        display: block;
         width: 100%;
     }
 
