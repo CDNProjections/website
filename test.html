@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberta</title>
+    <title>Edmonton-Ellerslie</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
     <script>
      window.dataLayer = window.dataLayer || [];
@@ -27,6 +27,7 @@
         text-align: center;
         flex-direction: column;
         justify-content: center;
+    }
 
     .province-link {
         display: block;
@@ -44,11 +45,12 @@
        display: flex;
        align-items: center;
        gap: 10px;
+       margin-bottom: 70px
     }
         
     .party-logo {
-        width: 4em;
-        height: 4em;
+        width: 50px;
+        height: 50px;
     }
         
     .header-box {
@@ -77,28 +79,32 @@
        flex-direction: column;
        gap: 15px;
        color: black;
+       margin-bottom: 5px;
     }
         
     .bar-container {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      gap: 5px;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
     }
 
     .vote-bar, .seat-bar {
-      height: 40px;
+      height: 75px;
       display: block;
     }
 
     .vote-bar {
       width: 90%;
-      height: 30px;
+      height: 10px;
     }
 
     .seat-bar {
-      width: 90%;
-      height: 80px;
+      width: 80%;
+      height: 75px;
     }
 
     .odds-bar {
@@ -117,6 +123,9 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+      align-items: centre;
+      position: absolute;
+      right: 2.5%;
     }
       
     .seat-count {
@@ -132,314 +141,242 @@
     }
         
      .vote-count {
-      font-size: 14px;
+      font-size: 12px;
     }
 
      .odds-count {
-      font-size: 16px;
-     }
-        
-     .grid-container { 
-      display: grid; 
-      grid-template-columns: repeat(10, 1fr); 
-      grid-gap: 10px; 
-      padding: 10px; 
+      font-size: 12px;
      }
 
-     .grid-item {
-      padding: 10px;
-      background-color: black;
-      border-radius: 5px solid black;
-      color: white;
-      text-align: center;
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
      }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
-}
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
 
-@media (max-width: 768px) {
-    div[style="display: flex; flex-direction: row"] {
-        flex-direction: column !important;
-        align-items: center;
-    }
-    
-    .province-box {
-        width: 100%;
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
     }
 
-    .party-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
     }
-
-    .bar-container {
-        width: 100%;
-    }
-}
 
 </style>
 </head>
 
 <body>
-<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
     <a href="index.html" class="province-link">
     <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
     </a>
     <div style="flex: 1;">
-        <h1>Alberta</h1>
+        <h1>Edmonton-Ellerslie</h1>
         <p>Some elements on the page take some time to load; please be patient</p>
         <hr style="height:10px; visibility:hidden;">
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Regional Results">Regional Results</a>
+    <a href="#Model Specifics">History and Projections</a>
     </h3>
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Simulator">Simulator</a>
+    <a href="#Simulator">Simulated Results</a>
     </h3>
     </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Model Specifics">Dropdowns and Polls</a>
-    </h3>
 </header>
 
 <div class="province-box">
-    <h2 class="province-title">CDNProjections Alberta Electoral Model</h2>
-        <div class="party-row">
-            <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-                <div class="bar-container">
-                    <div class="seat-bar" style="width: 72.41%; background-color: #123565;"></div>
-                    <div class="vote-bar" style="width: 53.15%; background-color: #456898;"></div>
-                </div>
-                <div class=seat-vote-container">
-                    <span class="seat-count">49-<span class="highlight">63</span>-76</span>
-                    <span class="vote-count">(53.15%)</span><br>
-                </div>
-        </div>
+ <h2 class="province-title">CDNProjections Edmonton-Ellerslie Electoral Model</h2><br>
+
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 27.59%; background-color: #cc5400;"></div>
-          <div class="vote-bar" style="width: 35.69%; background-color: #ff8733;"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count">11-<span class="highlight">24</span>-38</span>
-         <span class="vote-count">(35.69%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Logo_of_the_Wildrose_Loyalty_Coalition.png" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #b760a2;"></div>
-          <div class="vote-bar" style="width: 4.20%; background-color: #ea93d5;"></div>
-         </div>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 48.52%; background-color: #ffa566;">
+       <div class="bar" style="background-color: #ff6900;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Gurtej Singh Brar</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
       <div class="seat-vote-container">
-          <span class="seat-count">0-0-0</span>
-          <span class="vote-count">(4.20%)</span>
+        <span class="seat-count"><span class="highlight">48.52%</span></span>
+        <span class="odds-count">(NDP Vic: 66%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 45.98%; background-color: #748eb2;">
+       <div class="bar" style="background-color: #17427e;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Naresh Bhardwaj</div>
+         <div class="party-name">United Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">45.98%</span></span>
+        <span class="odds-count">(UCP Vic: 34%)</span>
       </div>
     </div>
+
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Alberta_Liberal_Party_Logo_%282017%29.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #b62e1c;"></div>
-          <div class="vote-bar" style="width: 2.80%; background-color: #e9614f;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0-0-0</span>
-          <span class="vote-count">(2.80%)</span>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 1.99%; background-color: #76c2ef;">
+       <div class="bar" style="background-color: #1a9ae5;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Candidate</div>
+         <div class="party-name">Alberta Party</div>
+       </div>
+       </div>
       </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">1.99%</span></span>
+        <span class="odds-count">(ABP Vic: <1%)</span>
     </div>
+    </div>
+
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;"></div>
-          <div class="vote-bar" style="width: 2.40%; background-color: #999999;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0-0-0</span>
-          <span class="vote-count">(2.40%)</span>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 1.48%; background-color: #80c28d;">
+       <div class="bar" style="background-color: #2c9a41;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Candidate</div>
+         <div class="party-name">Green Party</div>
+       </div>
+       </div>
       </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">1.48%</span></span>
+        <span class="odds-count">(AGP Vic: <1%)</span>
     </div>
+    </div>
+
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/2/2f/Green_Party_of_Alberta_logo.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #237b34;"></div>
-          <div class="vote-bar" style="width: 0.94%; background-color: #56ae67;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0-0-0</span>
-          <span class="vote-count">(0.94%)</span>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 1.02%; background-color: #ee897b;">
+       <div class="bar" style="background-color: #e33a23;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Candidate</div>
+         <div class="party-name">Liberal Party</div>
+       </div>
+       </div>
       </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">1.02%</span></span>
+        <span class="odds-count">(ALP Vic: <1%)</span>
     </div>
+    </div>
+
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Alberta_Party_Logo.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #157bb7;"></div>
-          <div class="vote-bar" style="width: 0.81%; background-color: #48aeea;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0-0-0</span>
-          <span class="vote-count">(0.81%)</span>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.82%; background-color: #b3b3b3;">
+       <div class="bar" style="background-color: #808080;"></div>
+       <div class="text-container">
+         <div class="candidate-name">N/A</div>
+         <div class="party-name">All Others</div>
+       </div>
+       </div>
       </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.82%</span></span>
+        <span class="odds-count">(OTH Vic: <1%)</span>
     </div>
-    <p>Last Updated: June 8, 2025<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote</i></p>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.19%; background-color: #efaee0;">
+       <div class="bar" style="background-color: #e578cb;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Candidate</div>
+         <div class="party-name">Wildrose Loyalty Coalition</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.19%</span></span>
+        <span class="odds-count">(WLC Vic: <1%)</span>
+    </div>
+    </div>
+
+    <p>Last Updated: May 26, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
 </div>
 
 <div class="province-box">
-    <h2 class="province-title">CDNProjections Chance of Winning</h2>
-        <div class="party-row">
-            <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-                <div class="bar-container">
-                    <div class="vote-bar" style="width: 100%; background-color: #5d7ba5;"></div>
-                </div>
-                <div class=seat-vote-container">
-                    <span class="odds-count">(UCP Maj: >99%)</span><br>
-                </div>
-        </div>
-    <p>Last Updated: June 8, 2025<br><i>Chance at Forming Government</i></p>
-</div>
+ <h2 class="province-title">CDNProjections Chance of Winning Edmonton-Ellerslie</h2><br>
 
-<div class="province-box" style="display: flex; flex-direction: row">
-<div class="province-box">
- <h3 id="Regional Results" class="province-title">Calgary</h3>
     <div class="party-row">
-      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 76.00%; background-color: #123565;"></div>
-          <div class="vote-bar" style="width: 47.24%; background-color: #456898;"></div>
-         </div>
-     <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">10</span></span>
-         <span class="vote-count">(47.24%)</span><br>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 28.00%; background-color: #cc5400;"></div>
-          <div class="vote-bar" style="width: 43.08%; background-color: #ff8733;"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">7</span></span>
-         <span class="vote-count">(43.08%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;"></div>
-          <div class="vote-bar" style="width: 9.86%; background-color: #999999;"></div>
-         </div>
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 66.06%; background-color: #ffa566;">
+       <div class="bar" style="background-color: #ff6900;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Gurtej Singh Brar</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
       <div class="seat-vote-container">
-          <span class="seat-count">0</span>
-          <span class="vote-count">(9.86%)</span>
+        <span class="seat-count"><span class="highlight">66.06%</span></span>
+        <span class="odds-count">(3303)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 33.94%; background-color: #748eb2;">
+       <div class="bar" style="background-color: #17427e;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Naresh Bhardwaj</div>
+         <div class="party-name">United Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">33.94%</span></span>
+        <span class="odds-count">(1697)</span>
       </div>
     </div>
-</div>
-    
-<div class="province-box">
- <h3 class="province-title">Edmonton</h3>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 70.00%; background-color: #cc5400;"></div>
-          <div class="vote-bar" style="width: 49.88%; background-color: #ff8733;"></div>
-         </div>
-     <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">14</span></span>
-         <span class="vote-count">(49.88%)</span><br>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 30.00%; background-color: #123565;"></div>
-          <div class="vote-bar" style="width: 40.09%; background-color: #456898;"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">6</span></span>
-         <span class="vote-count">(40.09%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;"></div>
-          <div class="vote-bar" style="width: 10.03%; background-color: #999999;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0</span>
-          <span class="vote-count">(10.03%)</span>
-      </div>
-    </div>
+
+    <p>Last Updated: May 26, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+
 </div>
 
 <div class="province-box">
- <h3 class="province-title">Rest of Alberta</h3>
-    <div class="party-row">
-      <img src="https://www.unitedconservative.ca/wp-content/uploads/ucp-logo-full-color-rgb.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 92.68%; background-color: #123565;"></div>
-          <div class="vote-bar" style="width: 62.77%; background-color: #456898;"></div>
-         </div>
-     <div class=seat-vote-container">
-         <span class="seat-count"><span class="highlight">38</span></span>
-         <span class="vote-count">(62.77%)</span><br>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Alberta_New_Democratic_Party_Logo_%282022%29.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 7.32%; background-color: #cc5400;"></div>
-          <div class="vote-bar" style="width: 24.61%; background-color: #ff8733;"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count"><span class="highlight">3</span></span>
-         <span class="vote-count">(24.61%)</span>
-     </div>
-    </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;"></div>
-          <div class="vote-bar" style="width: 12.62%; background-color: #999999;"></div>
-         </div>
-      <div class="seat-vote-container">
-          <span class="seat-count">0</span>
-          <span class="vote-count">(12.62%)</span>
-      </div>
-    </div>
-</div>
+    <h2 id="Model Specifics"></h2>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/23428268"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/23428268/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
 </div>
 
 <div class="province-box">
-    <h1 class="province-title">Map</h1>
-<iframe title="Alberta Projection" aria-label="Map" id="datawrapper-chart-UoAF0" src="https://datawrapper.dwcdn.net/UoAF0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="791" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();</script>
+    <h2 id="Simulator"></h2>
+<div class="flourish-embed flourish-chart" data-src="visualisation/23428304"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/23428304/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
-<div class="province-box">
-<h2 id="Model Specifics"></h2>
-<div class="flourish-embed flourish-chart" data-src="visualisation/20587197"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/20587197/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-<div class="flourish-embed flourish-chart" data-src="visualisation/21340807"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21340807/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-</div>
-
-<div class="province-box">
-    <h2 id="Simulator" class="province-title">Simulator</h2>
-    <p><b>Simulate an Alberta election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
-    <a href="https://yapms.com/app/can/ab/2023/blank?m=gnqoxu81dq69j5p">Click here to map your result</a>
-
-<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQRp0P57xjv9SpNqSnvCrYBRAZYfAnwQDPvXywu_V8qqFuQ?em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&Item='Simulator'!A%3AZ&wdHideGridlines=True&wdInConfigurator=True"></iframe>
-</div>
+</body>
+</html>
 
 </body>
 </body>
