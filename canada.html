@@ -6,7 +6,7 @@
     <title>Canada</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
-        <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
     <script>
      window.dataLayer = window.dataLayer || [];
@@ -27,7 +27,6 @@
         text-align: center;
         flex-direction: column;
         justify-content: center;
-    }
 
     .province-link {
         display: block;
@@ -48,8 +47,8 @@
     }
         
     .party-logo {
-        width: 50px;
-        height: 50px;
+        width: 4em;
+        height: 4em;
     }
         
     .header-box {
@@ -94,12 +93,12 @@
 
     .vote-bar {
       width: 90%;
-      height: 10px;
+      height: 30px;
     }
 
     .seat-bar {
       width: 90%;
-      height: 30px;
+      height: 80px;
     }
 
     .odds-bar {
@@ -133,17 +132,16 @@
     }
         
      .vote-count {
-      font-size: 12px;
+      font-size: 14px;
     }
 
      .odds-count {
-      font-size: 12px;
+      font-size: 16px;
      }
         
      .grid-container { 
       display: grid; 
-      grid-template-columns: repeat(13, 1fr); 
-      font-size: 10px;
+      grid-template-columns: repeat(10, 1fr); 
       grid-gap: 10px; 
       padding: 10px; 
      }
@@ -155,10 +153,39 @@
       color: white;
       text-align: center;
      }
-        
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
-
 <body>
 <header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
