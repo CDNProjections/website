@@ -49,8 +49,8 @@
     }
         
     .party-logo {
-        width: 50px;
-        height: 50px;
+        width: 4em;
+        height: 4em;
     }
         
     .header-box {
@@ -99,12 +99,12 @@
 
     .vote-bar {
       width: 90%;
-      height: 10px;
+      height: 30px;
     }
 
     .seat-bar {
       width: 80%;
-      height: 75px;
+      height: 80px;
     }
 
     .odds-bar {
@@ -125,7 +125,7 @@
       gap: 5px;
       align-items: centre;
       position: absolute;
-      right: 2.5%;
+      right: 2em;
     }
       
     .seat-count {
@@ -141,11 +141,11 @@
     }
         
      .vote-count {
-      font-size: 12px;
+      font-size: 14px;
     }
 
      .odds-count {
-      font-size: 12px;
+      font-size: 16px;
      }
 
      .text-container {
@@ -183,16 +183,46 @@
      z-index: 1;
     }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 
 <body>
-<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
-    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
     </a>
     <div style="flex: 1;">
-        <h1>Halifax</h1>
+        <h1>Battle River-Crowfoot</h1>
         <p>Some elements on the page take some time to load; please be patient</p>
         <hr style="height:10px; visibility:hidden;">
     </div>
@@ -201,83 +231,78 @@
     <a href="#Model Specifics">History and Projections</a>
     </h3>
     </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Simulator">Simulated Results</a>
-    </h3>
-    </div>
 </header>
 
 <div class="province-box">
- <h2 class="province-title">CDNProjections Halifax Electoral Model</h2><br>
-    
-    <div class="party-row">
-      <div class="bar-container">
-       <div class="seat-bar" style="width: 48.04%; background-color: #e77679;">
-       <div class="bar" style="background-color: #d71a20;"></div>
-       <div class="text-container">
-         <div class="candidate-name">Shannon Miedema</div>
-         <div class="party-name">Liberal Party</div>
-       </div>
-       </div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">48.04%</span></span>
-        <span class="odds-count">(LIB Vic: 56%)</span>
-    </div>
-    </div>
+ <h2 class="province-title">CDNProjections Battle River-Crowfoot Electoral Model</h2><br>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 31.86%; background-color: #f9b479;">
-       <div class="bar" style="background-color: #f58220;"></div>
-       <div class="text-container">
-         <div class="candidate-name">Lisa Roberts</div>
-         <div class="party-name">New Democratic Party</div>
-       </div>
-       </div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">31.86%</span></span>
-        <span class="odds-count">(NDP Vic: 44%)</span>
-      </div>
-    </div>
-
-    <div class="party-row">
-      <div class="bar-container">
-       <div class="seat-bar" style="width: 14.87%; background-color: #718298;">
+       <div class="seat-bar" style="width: 74.57%; background-color: #718298;">
        <div class="bar" style="background-color: #132f54;"></div>
        <div class="text-container">
-         <div class="candidate-name">Mark Boudreau</div>
+         <div class="candidate-name">Pierre Poilievre</div>
          <div class="party-name">Conservative Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">14.87%</span></span>
-        <span class="odds-count">(CPC Vic: <1%)</span>
+        <span class="seat-count"><span class="highlight">74.57%</span></span>
+        <span class="odds-count">(CPC Vic: >99%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 2.02%; background-color: #8ac386;">
-       <div class="bar" style="background-color: #3c9b35;"></div>
+       <div class="seat-bar" style="width: 11.63%; background-color: #e77679;">
+       <div class="bar" style="background-color: #d71a20;"></div>
        <div class="text-container">
-         <div class="candidate-name">Generic Green</div>
-         <div class="party-name">Green Party</div>
+         <div class="candidate-name">Darcy Spady</div>
+         <div class="party-name">Liberal Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">2.02%</span></span>
-        <span class="odds-count">(GRN Vic: <1%)</span>
+        <span class="seat-count"><span class="highlight">11.63%</span></span>
+        <span class="odds-count">(LIB Vic: <1%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 1.63%; background-color: #b3b3b3;">
+       <div class="seat-bar" style="width: 5.05%; background-color: #a485c3;">
+       <div class="bar" style="background-color: #68339b;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Jonathan Bridges</div>
+         <div class="party-name">People's Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">5.05%</span></span>
+        <span class="odds-count">(PPC Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 4.06%; background-color: #f9b479;">
+       <div class="bar" style="background-color: #f58220;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic NDP</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">4.06%</span></span>
+        <span class="odds-count">(NDP Vic: <1%)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 3.80%; background-color: #b3b3b3;">
        <div class="bar" style="background-color: #808080;"></div>
        <div class="text-container">
          <div class="candidate-name">N/A</div>
@@ -286,77 +311,72 @@
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.63%</span></span>
+        <span class="seat-count"><span class="highlight">3.80%</span></span>
         <span class="odds-count">(OTH Vic: <1%)</span>
     </div>
     </div>
 
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 1.57%; background-color: #a485c3;">
-       <div class="bar" style="background-color: #68339b;"></div>
+       <div class="seat-bar" style="width: 0.89%; background-color: #8ac386;">
+       <div class="bar" style="background-color: #3c9b35;"></div>
        <div class="text-container">
-         <div class="candidate-name">Generic PPC</div>
-         <div class="party-name">People's Party</div>
+         <div class="candidate-name">Douglas Gook</div>
+         <div class="party-name">Green Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.57%</span></span>
-        <span class="odds-count">(PPC Vic: <1%)</span>
+        <span class="seat-count"><span class="highlight">0.89%</span></span>
+        <span class="odds-count">(GRN Vic: <1%)</span>
     </div>
     </div>
     
-    <p>Last Updated: March 23, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
+    <p>Last Updated: June 30, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
 </div>
 
 <div class="province-box">
- <h2 class="province-title">CDNProjections Chance of Winning Halifax</h2><br>
-    
+ <h2 class="province-title">CDNProjections Chance of Winning Battle River-Crowfoot</h2><br>
+
     <div class="party-row">
       <div class="bar-container">
-       <div class="seat-bar" style="width: 98.86%; background-color: #e77679;">
-       <div class="bar" style="background-color: #d71a20;"></div>
+       <div class="seat-bar" style="width: 99.96%; background-color: #718298;">
+       <div class="bar" style="background-color: #132f54;"></div>
        <div class="text-container">
-         <div class="candidate-name">Shannon Miedema</div>
+         <div class="candidate-name">Pierre Poilievre</div>
+         <div class="party-name">Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">99.96%</span></span>
+        <span class="odds-count">(4998)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.04%; background-color: #718298;">
+       <div class="bar" style="background-color: #132f54;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Darcy Spady</div>
          <div class="party-name">Liberal Party</div>
        </div>
        </div>
       </div>
       <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">98.86%</span></span>
-        <span class="odds-count">(4943)</span>
-    </div>
-    </div>
-
-    <div class="party-row">
-      <div class="bar-container">
-       <div class="seat-bar" style="width: 1.14%; background-color: #f9b479;">
-       <div class="bar" style="background-color: #f58220;"></div>
-       <div class="text-container">
-         <div class="candidate-name">Lisa Roberts</div>
-         <div class="party-name">New Democratic Party</div>
-       </div>
-       </div>
-      </div>
-      <div class="seat-vote-container">
-        <span class="seat-count"><span class="highlight">1.14%</span></span>
-        <span class="odds-count">(57)</span>
+        <span class="seat-count"><span class="highlight">0.04%</span></span>
+        <span class="odds-count">(2)</span>
       </div>
     </div>
 
-    <p>Last Updated: March 23, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+    <p>Last Updated: June 30, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
 
 </div>
 
 <div class="province-box">
     <h2 id="Model Specifics"></h2>
-<div class="flourish-embed flourish-chart" data-src="visualisation/21896314"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21896314/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-</div>
-
-<div class="province-box">
-    <h2 id="Simulator"></h2>
-<div class="flourish-embed flourish-scatter" data-src="visualisation/21896316"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21896316/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+<div class="flourish-embed flourish-chart" data-src="visualisation/24018422"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/24018422/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
 </body>
