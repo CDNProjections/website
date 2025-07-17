@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brackley-Hunter River</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-V2T0WMSWY8');
+   </script>
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin-bottom: 70px
+    }
+        
+    .party-logo {
+        width: 4em;
+        height: 4em;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+       margin-bottom: 5px;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 75px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .seat-bar {
+      width: 80%;
+      height: 80px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: centre;
+      position: absolute;
+      right: 2em;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 14px;
+    }
+
+     .odds-count {
+      font-size: 16px;
+     }
+
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
+     }
+
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
+
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
+    }
+
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
+    }
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Brackley-Hunter River</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">History and Projections</a>
+    </h3>
+    </div>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Brackley-Hunter River Electoral Model</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 51.70%; background-color: #68add9;">
+       <div class="bar" style="background-color: #0476bf;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Dennis Jameson</div>
+         <div class="party-name">Progressive Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">51.70%</span></span>
+        <span class="odds-count">(PC Vic: >99%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 27.04%; background-color: #89c590;">
+       <div class="bar" style="background-color: #3b9e46;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Green</div>
+         <div class="party-name">Green Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">27.04%</span></span>
+        <span class="odds-count">(GRN Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 14.19%; background-color: #e28488;">
+       <div class="bar" style="background-color: #cf3239;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Carolyn Simpson</div>
+         <div class="party-name">Liberal Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">14.19%</span></span>
+        <span class="odds-count">(LIB Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 5.41%; background-color: #fab477;">
+       <div class="bar" style="background-color: #f6821d;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Simone Webster</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">5.41%</span></span>
+        <span class="odds-count">(NDP Vic: <1%)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 1.65%; background-color: #b3b3b3;">
+       <div class="bar" style="background-color: #808080;"></div>
+       <div class="text-container">
+         <div class="candidate-name">N/A</div>
+         <div class="party-name">All Others</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">1.65%</span></span>
+        <span class="odds-count">(OTH Vic: <1%)</span>
+    </div>
+    </div>
+    
+    <p>Last Updated: July 16, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Chance of Winning Brackley-Hunter River</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 99.70%; background-color: #68add9;">
+       <div class="bar" style="background-color: #0476bf;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Dennis Jameson</div>
+         <div class="party-name">Progressive Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">99.70%</span></span>
+        <span class="odds-count">(4985)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.30%; background-color: #89c590;">
+       <div class="bar" style="background-color: #3b9e46;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Green</div>
+         <div class="party-name">Green Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.30%</span></span>
+        <span class="odds-count">(15)</span>
+      </div>
+    </div>
+
+    <p>Last Updated: July 16, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+
+</div>
+
+<div class="province-box">
+    <h2 id="Model Specifics"></h2>
+<div class="flourish-embed flourish-chart" data-src="visualisation/24275133"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/24275133/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</body>
+</html>
