@@ -49,8 +49,8 @@
     }
         
     .party-logo {
-        width: 50px;
-        height: 50px;
+        width: 4em;
+        height: 4em;
     }
         
     .header-box {
@@ -99,12 +99,12 @@
 
     .vote-bar {
       width: 90%;
-      height: 10px;
+      height: 30px;
     }
 
     .seat-bar {
       width: 80%;
-      height: 75px;
+      height: 80px;
     }
 
     .odds-bar {
@@ -125,7 +125,7 @@
       gap: 5px;
       align-items: centre;
       position: absolute;
-      right: 2.5%;
+      right: 2em;
     }
       
     .seat-count {
@@ -141,11 +141,11 @@
     }
         
      .vote-count {
-      font-size: 12px;
+      font-size: 14px;
     }
 
      .odds-count {
-      font-size: 12px;
+      font-size: 16px;
      }
 
      .text-container {
@@ -183,6 +183,35 @@
      z-index: 1;
     }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
     .table, th, td {
      border: 1px solid black;
     }
@@ -190,10 +219,10 @@
 </style>
 </head>
 
-<body style='margin-top:5px;margin-left:10%;margin-right:10%;'>
-<header style="display: flex; align-items: center; text-align: center; width: 75%; border: none;">
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
-    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
     </a>
     <div style="flex: 1;">
         <h1>Methodology</h1>
@@ -207,18 +236,16 @@
     </div>
     <div style="flex: 1;">
     <h3>
-    <a href="#Comparison">Modeler Comparison</a>
+    <a href="#Setting">Setting the Model</a>
     </h3>
     </div>
 </header>
 
-<h2 id="By-Elections" class="province-title">Polling Average</h2><br>
+<h2 id="Polling" class="province-title">Polling Average</h2><br>
 <p>
 Now, you can't have a working model without a functional polling average, so I'm starting this page in the inner workings of the model's inputs.
 The polling average among my provincial models covers every poll throughout the term. So my Quebec model, for instance, covers the polls done since the 2022 election, which you can see on the 
-<a href="https://en.wikipedia.org/wiki/44th_Quebec_general_election#Opinion_polls">Wikipedia page for the upcoming Quebec election.</a> However, this is only different on the federal level, which has a 
-rolling polling average covering the previous three months of polls, both to keep things frequently updated, and so that the average doesn't include ancient polls that'd take weeks to input all the 
-respective data for. After the April Federal Election, I plan on starting new and incorporating the federal polls from the next full term to align with the provincial systems.
+<a href="https://en.wikipedia.org/wiki/44th_Quebec_general_election#Opinion_polls">Wikipedia page for the upcoming Quebec election.</a>
 </p>
 <img src="https://latex.codecogs.com/svg.image?\large&space;W=\frac{\left(\frac{R\times\sqrt[3]{n}}{d&plus;1}\right)^{2}}{\left(\left(\Sigma&space;E=\left(x_{i}-\overline{x}\right)^{1.5}\right)&plus;10\right)}" title="W=\frac{\left(\frac{R\times\sqrt[3]{n}}{d+1}\right)^{2}}{\left(\left(\Sigma E=\left(x_{i}-\overline{x}\right)^{1.5}\right)+10\right)}" />
 <i><p><small>*important note, when not in a writ period, to fix polls from just a couple of months ago from being weighted next to nothing, the W value follows a pattern being multiplied by a higher amount per previous year:<br>
@@ -242,7 +269,11 @@ So, getting to how the formula <b>actually</b> works, first you need to plug in 
             x̄ - the current average for the same party leading up to that poll<br>
         </b>
     </small>
-...and I think it's probably easiest to do an example to fill out this formula.
+</p>
+
+<h2 id="Setting" class="province-title">Setting Up</h2><br>
+<p>
+
 </p>
 
 </body>
