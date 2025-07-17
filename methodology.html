@@ -248,7 +248,7 @@ The polling average among my provincial models covers every poll throughout the 
 <a href="https://en.wikipedia.org/wiki/44th_Quebec_general_election#Opinion_polls">Wikipedia page for the upcoming Quebec election.</a>
 </p>
 <img src="https://latex.codecogs.com/svg.image?\large&space;W=\frac{\left(\frac{R\times\sqrt[3]{n}}{d&plus;1}\right)^{2}}{\left(\left(\Sigma&space;E=\left(x_{i}-\overline{x}\right)^{1.5}\right)&plus;10\right)}" title="W=\frac{\left(\frac{R\times\sqrt[3]{n}}{d+1}\right)^{2}}{\left(\left(\Sigma E=\left(x_{i}-\overline{x}\right)^{1.5}\right)+10\right)}" />
-<i><p><small>*important note, when not in a writ period, to fix polls from just a couple of months ago from being weighted next to nothing, the W value follows a pattern being multiplied by a higher amount per previous year:<br>
+<i><p><small>*important note, to fix polls from just a couple of months ago from being weighted next to nothing, the W value follows a pattern being multiplied by a higher amount per previous year:<br>
 <b>2024 - multiplied by 5<br></b>
 <b>2023 - multiplied by 10<br></b>
 <b>2022 - multiplied by 15<br></b>
@@ -257,7 +257,7 @@ The polling average among my provincial models covers every poll throughout the 
 </i></p></small>
 
 <p>
-So, getting to how the formula <b>actually</b> works, first you need to plug in all our valuables, which are listed here:<br>
+So, getting to how the formula <b>actually</b> works, first you need to plug in all our variables, which are listed here:<br>
     <small>
         <b>
             W - weighting<br>
@@ -271,10 +271,65 @@ So, getting to how the formula <b>actually</b> works, first you need to plug in 
     </small>
 </p>
 
-<h2 id="Setting" class="province-title">Setting Up</h2><br>
+<h2 id="Model" class="province-title">The Model's Math</h2><br>
 <p>
-
+In terms of calculations within the model, the foundation is based on previous election results; if possible, the last three elections are incorporated into the model, although this isn't always possible due to boundary changes.
+There's a varying number of swings that are used in the model, but they generally follow a uniform swing method which works like this:<br>
+<b>IF([Previous Result]<[Reimbursement Requirement],(Polling Average),[Previous Result]÷[Previous Overall Result]×(Polling Average))×100</b><br>
+To put it into words, the formula looks at whether the party got above the reimbursement requirement (varies by jurisdiction, but generally around 10%),
+in which case, that result is divided by the respective party's overall result in that jurisdiction (province, territory, country) and then multiplied by the polling average.
+In cases where a party has not met the reimbursement requirement, their result for the swing is simply input as the current polling average for that respective area.
+For instance, the NDP and Greens missed the 10% vote share reimbursement requirement in almost every single riding in the 2025 federal election, so their result is replaced with their current polling average,
+which, if we're calculating the uniform (overall) swing, it'll take the nationwide polling average, or if we're looking at regional swings, it'll take the specific regional polling average.<br>
+The table below shows what swings each model currently has at the time of writing (July 2025):<br>
 </p>
+<table>
+    <tr>
+        <th>Swing</th>
+        <th>FED</th>
+        <th>BC</th>
+        <th>AB</th>
+        <th>SK</th>
+        <th>MB</th>
+        <th>ON</th>
+        <th>QC</th>
+        <th>NB</th>
+        <th>NS</th>
+        <th>PE</th>
+        <th>NL</th>
+        <th>YK</th>
+    </tr>
+    <tr>
+        <th>Uniform/Overall</th>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+    </tr>
+    <tr>
+        <th>Regional</th>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#008000"></td>
+        <td bgcolor="#f7f7f7"></td>
+    </tr>
+</table>
 
 </body>
 </html>
