@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spruce Woods</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-V2T0WMSWY8');
+   </script>
+<style>
+    body {
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .province-link {
+        display: block;
+        text-decoration: none;
+    } 
+
+    .province-title {
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .party-row {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       margin-bottom: 70px
+    }
+        
+    .party-logo {
+        width: 4em;
+        height: 4em;
+    }
+        
+    .header-box {
+        background-color: #808080;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        color: black;
+    }
+        
+    .text {
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+        
+    .province-box {
+       border: 2px solid black;
+       background-color: #e8e8e8;
+       padding: 15px;
+       width: 100%;
+       box-sizing: border-box;
+       display: flex;
+       flex-direction: column;
+       gap: 15px;
+       color: black;
+       margin-bottom: 5px;
+    }
+        
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: absolute;
+      gap: 100px;
+      height: 75px;
+      width: 90%;
+    }
+
+    .vote-bar, .seat-bar {
+      height: 75px;
+      display: block;
+    }
+
+    .vote-bar {
+      width: 90%;
+      height: 30px;
+    }
+
+    .seat-bar {
+      width: 80%;
+      height: 80px;
+    }
+
+    .odds-bar {
+      width: 90%;
+      height: 10px;
+    }
+
+    .bar-text {
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .seat-vote-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: centre;
+      position: absolute;
+      right: 2em;
+    }
+      
+    .seat-count {
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .highlight {
+      font-size: 26px;
+      text-align: center;
+    }
+        
+     .vote-count {
+      font-size: 14px;
+    }
+
+     .odds-count {
+      font-size: 16px;
+     }
+
+     .text-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      height: 72.5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-33%);
+      white-space: nowrap;
+     }
+
+     .candidate-name {
+      padding-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+     }
+
+    .party-name {
+     padding-left: 20px;
+     font-size: 12px;
+     font-style: italic;
+     text-align: left;
+    }
+
+    .bar {
+     padding: 0
+     display: flex;
+     position: absolute;
+     height: 75px;
+     width: 15px;
+     z-index: 1;
+    }
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
+    <a href="index.html" class="province-link">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
+    </a>
+    <div style="flex: 1;">
+        <h1>Spruce Woods</h1>
+        <p>Some elements on the page take some time to load; please be patient</p>
+        <hr style="height:10px; visibility:hidden;">
+    </div>
+    <div style="flex: 1;">
+    <h3>
+    <a href="#Model Specifics">History and Projections</a>
+    </h3>
+    </div>
+</header>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Spruce Woods Electoral Model</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 46.50%; background-color: #0359a6;">
+       <div class="bar" style="background-color: #689bca;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Colleen Robbins</div>
+         <div class="party-name">Progressive Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">46.50%</span></span>
+        <span class="odds-count">(PC Vic: 92%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 37.30%; background-color: #dc7028;">
+       <div class="bar" style="background-color: #eaa97e;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Ray Berthelette</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">37.30%</span></span>
+        <span class="odds-count">(NDP Vic: 8%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 10.61%; background-color: #d71a20;">
+       <div class="bar" style="background-color: #e77679;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Stephen Reid</div>
+         <div class="party-name">Liberal Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">10.61%</span></span>
+        <span class="odds-count">(LIB Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 2.92%; background-color: #523278;">
+       <div class="bar" style="background-color: #9784ae;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Keystone</div>
+         <div class="party-name">Keystone Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">2.92%</span></span>
+        <span class="odds-count">(KEY Vic: <1%)</span>
+      </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 2.17%; background-color: #158e47;">
+       <div class="bar" style="background-color: #73bb91;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Generic Green</div>
+         <div class="party-name">Green Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">2.17%</span></span>
+        <span class="odds-count">(GRN Vic: <1%)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 0.51%; background-color: #b3b3b3;">
+       <div class="bar" style="background-color: #808080;"></div>
+       <div class="text-container">
+         <div class="candidate-name">N/A</div>
+         <div class="party-name">All Others</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">0.51%</span></span>
+        <span class="odds-count">(OTH Vic: <1%)</span>
+    </div>
+    </div>
+    
+    <p>Last Updated: July 25, 2025<br><i>Percent of the Vote<br>Chance of Winning</i></p>
+</div>
+
+<div class="province-box">
+ <h2 class="province-title">CDNProjections Chance of Winning Spruce Woods</h2><br>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 91.54%; background-color: #0359a6;">
+       <div class="bar" style="background-color: #689bca;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Colleen Robbins</div>
+         <div class="party-name">Progressive Conservative Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">91.54%</span></span>
+        <span class="odds-count">(4577)</span>
+    </div>
+    </div>
+
+    <div class="party-row">
+      <div class="bar-container">
+       <div class="seat-bar" style="width: 8.46%; background-color: #dc7028;">
+       <div class="bar" style="background-color: #eaa97e;"></div>
+       <div class="text-container">
+         <div class="candidate-name">Ray Berthelette</div>
+         <div class="party-name">New Democratic Party</div>
+       </div>
+       </div>
+      </div>
+      <div class="seat-vote-container">
+        <span class="seat-count"><span class="highlight">8.46%</span></span>
+        <span class="odds-count">(423)</span>
+    </div>
+    </div>
+
+    <p>Last Updated: July 25, 2025<br><i>Chance of Winning<br>Number of Simulations Won (out of 5000)</i></p>
+
+</div>
