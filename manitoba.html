@@ -47,8 +47,8 @@
     }
         
     .party-logo {
-        width: 50px;
-        height: 50px;
+        width: 4em;
+        height: 4em;
     }
         
     .header-box {
@@ -93,12 +93,12 @@
 
     .vote-bar {
       width: 90%;
-      height: 10px;
+      height: 30px;
     }
 
     .seat-bar {
       width: 90%;
-      height: 30px;
+      height: 80px;
     }
 
     .odds-bar {
@@ -132,16 +132,16 @@
     }
         
      .vote-count {
-      font-size: 12px;
+      font-size: 14px;
     }
 
      .odds-count {
-      font-size: 12px;
+      font-size: 16px;
      }
         
      .grid-container { 
       display: grid; 
-      grid-template-columns: repeat(9, 1fr); 
+      grid-template-columns: repeat(10, 1fr); 
       grid-gap: 10px; 
       padding: 10px; 
      }
@@ -153,13 +153,43 @@
       color: white;
       text-align: center;
      }
-        
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    div[style="display: flex; flex-direction: row"] {
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    .province-box {
+        width: 100%;
+    }
+
+    .party-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .bar-container {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 <body>
 <header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
     <a href="index.html" class="province-link">
-    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
+    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 10em; height: 10em; margin-right: 1em;">
     </a>
     <div style="flex: 1;">
         <h1>Manitoba</h1>
@@ -169,11 +199,6 @@
     <div style="flex: 1;">
     <h3>
     <a href="#Regional Results">Regional Results</a>
-    </h3>
-    </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Squares">Squares Chart</a>
     </h3>
     </div>
     <div style="flex: 1;">
@@ -192,9 +217,9 @@
      <div class="party-row">
       <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Manitoba_NDP_logo.png" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;" title="Seats: 43"></div>
-          <div class="vote-bar" style="width: 55.86%; background-color: #e38d53;" title="Vote Share: 55.86%"></div>
-          <div class="odds-bar" style="width: 100%; background-color: #eaa97e;" title="NDP Majority Odds: >99%"></div>
+          <div class="seat-bar" style="width: 75.44%; background-color: #b05a20;"></div>
+          <div class="vote-bar" style="width: 55.86%; background-color: #e38d53;"></div>
+          <div class="odds-bar" style="width: 100%; background-color: #eaa97e;"></div>
          </div>
      <div class=seat-vote-container">
          <span class="seat-count">35-<span class="highlight">43</span>-46</span>
@@ -205,9 +230,9 @@
     <div class="party-row">
       <img src="https://media.licdn.com/dms/image/v2/C560BAQGz0eU-hBH8Gg/company-logo_200_200/company-logo_200_200/0/1631382188047?e=2147483647&v=beta&t=MGBnUT4b267ZbY8fPBU-c-7GFMTlL87E613VFaGTPbs" alt="Party Logo" class="party-logo">
          <div class="bar-container">
-          <div class="seat-bar" style="width: 22.81%; background-color: #024785;" title="Seats: 13"></div>
-          <div class="vote-bar" style="width: 34.03%; background-color: #357ab8;" title="Vote Share: 34.03%"></div>
-          <div class="odds-bar" style="width: 0.25%; background-color: #689bca;" title="PC Majority Odds: <1%"></div>
+          <div class="seat-bar" style="width: 22.81%; background-color: #024785;"></div>
+          <div class="vote-bar" style="width: 34.03%; background-color: #357ab8;"></div>
+          <div class="odds-bar" style="width: 0.25%; background-color: #689bca;"></div>
          </div>
      <div class="seat-vote-container">
          <span class="seat-count">10-<span class="highlight">13</span>-21</span>
@@ -227,7 +252,7 @@
      </div>
     </div>
     <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/KeystoneManitoba.jpg" alt="Party Logo" class="party-logo">
+      <img src="https://keystonepartymb.ca/images/KMB-PrimaryLogo-RGB_2021-08-09.svg" alt="Party Logo" class="party-logo">
          <div class="bar-container">
           <div class="seat-bar" style="width: 0.25%; background-color: #422860;" title="Seats: 0"></div>
           <div class="vote-bar" style="width: 2.25%; background-color: #755b93;" title="Vote Share: 2.25%"></div>
