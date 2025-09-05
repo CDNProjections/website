@@ -51,8 +51,6 @@
       max-width: 450px;
     }
 
- style="animation: shake 5s infinite; min-width: 75px;"
-^
     .election-box::before {
       content: 'ELECTION';
       background-color: #ffcc00;
@@ -62,6 +60,8 @@
       top: 5px;
       left: 5px;
       font-weight: bold;
+      animation: shake 5s infinite;
+      min-width: 75px;
     }
 
     .province-box:hover {
@@ -222,13 +222,13 @@
 <div class="container">
 
 <title>Miramichi West</title>
-<div class="province-box">
+<div class="province-box election-box">
     <a href="index.html" class="province-link">
     <div style="display: flex; justify-content: center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg" style="width: 80px; height: 50px">
     </div>
     <h2 class="province-title" style="font-size: 24px">Miramichi West</h2>
-    <p style="color: black;">By-election has not been called</p>
+<div class="flourish-embed flourish-countdown" data-src="visualisation/24996987"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/24996987/thumbnail" width="100%" alt="countdown visualization" /></noscript></div>
     </a>
 </div>
 
