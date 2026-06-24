@@ -272,6 +272,7 @@
 
 .dropdown {
   position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
@@ -303,6 +304,42 @@
   display: block;
 }
 
+.dropbtn-sub {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  transition: color 0.2s ease;
+}
+
+.dropbtn-sub:hover {
+  color: #7c3aed;
+}
+
+.dropdown-content-sub {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 11;
+}
+
+.dropdown-sub:hover .dropdown-content-sub {
+  display: block;
+}
+
 .arrow-icon {
   width: 16px;
   height: 16px;
@@ -312,6 +349,10 @@
 }
 
 .dropdown:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-sub:hover .arrow-icon {
   transform: rotate(180deg);
 }
 
@@ -333,28 +374,33 @@
 
 <nav class="nav-bar">
   <a href="index.html">Home</a>
-  <div class="dropdown">
-    <button class="dropbtn">
-     Elections
-      <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+<div class="dropdown">
+  <button class="dropbtn">
+    Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-      </svg>
-    </button>
-    <div class="dropdown-content">
-          <div class="dropdown">
-            <button class="dropbtn">
-             2026
-              <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-            <div class="dropdown-content">
-              <a href="quebec.html">Quebec</a>
-            </div>
-          </div>
-      <a href="quebec.html">Quebec</a>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub">
+        2026
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+
+      <div class="dropdown-content-sub">
+        <a href="quebec.html">Quebec</a>
+        <a href="ontario.html">Ontario</a>
+      </div>
     </div>
+
+    <a href="federal.html">Federal</a>
+    <a href="provincial.html">Provincial</a>
   </div>
+</div>
 
   <div class="dropdown">
     <button class="dropbtn">By-Elections ▾</button>
