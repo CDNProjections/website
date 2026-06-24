@@ -17,10 +17,11 @@
    </script>
 <style>
     body {
+        background-color: #e6e6e6;
         font-family: 'Hind Siliguri', sans-serif;
         text-align: center;
-        flex-direction: column;
-        justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
     .province-link {
@@ -37,9 +38,9 @@
     }
 
     .province-box {
-      border: 2px solid black;
-      background-color: #e8e8e8;
-      padding: 15px;
+      border: 1px solid black;
+      background-color: #ffffff;
+      border-radius: 12px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -49,6 +50,7 @@
       flex: 1 1 auto;
       min-width: 300px;
       max-width: 450px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .election-box::before {
@@ -63,8 +65,8 @@
     }
 
     .province-box:hover {
-      background-colour: #808080;
-      filter: drop-shadow(10px 10px 10px rgba(36, 36, 36, 0.5));
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
       
     .province-box h2, .province-box span {
