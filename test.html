@@ -287,7 +287,19 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-    
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.dropdown:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+
 </style>
 </head>
 </html>
@@ -312,8 +324,14 @@
   </div>
 
 <nav class="nav-bar">
+  <a href="index.html">Home</a>
   <div class="dropdown">
-    <button class="dropbtn">2026 Forecast ▾</button>
+    <button class="dropbtn">
+     2026 Forecast
+      <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </button>
     <div class="dropdown-content">
       <a href="forecast.html">2026 Forecast</a>
       <a href="forecast-map.html">2026 Forecast Map</a>
@@ -321,7 +339,7 @@
   </div>
 
   <div class="dropdown">
-    <button class="dropbtn">Elections ▾</button>
+    <button class="dropbtn">By-Elections ▾</button>
     <div class="dropdown-content">
       <a href="by-elections.html">By-Elections</a>
       <a href="provincial.html">Provincial</a>
