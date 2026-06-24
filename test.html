@@ -389,7 +389,7 @@
 
   <div class="dropdown-content">
     <div class="dropdown-sub">
-      <button class="dropbtn-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
         2026
         <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -401,7 +401,7 @@
     </div>
 
     <div class="dropdown-sub">
-      <button class="dropbtn-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
         2027
         <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -415,7 +415,7 @@
     </div>
 
     <div class="dropdown-sub">
-      <button class="dropbtn-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
         2028
         <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -430,7 +430,7 @@
     </div>
 
     <div class="dropdown-sub">
-      <button class="dropbtn-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
         2029
         <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -443,7 +443,7 @@
     </div>
 
     <div class="dropdown-sub">
-      <button class="dropbtn-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
         2030
         <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -1190,8 +1190,19 @@ function toggleDropdown(button) {
   dropdown.classList.toggle('show');
 }
 
+function toggleSubDropdown(button) {
+  const submenu = button.nextElementSibling;
+
+  const parentContent = button.closest('.dropdown-content');
+  parentContent.querySelectorAll('.dropdown-content-sub').forEach(menu => {
+    if (menu !== submenu) menu.classList.remove('show');
+  });
+
+  submenu.classList.toggle('show');
+}
+
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn, .dropbtn-sub, .arrow-icon')) {
+  if (!event.target.closest('.dropdown, .dropdown-sub')) {
     document.querySelectorAll('.dropdown-content, .dropdown-content-sub').forEach(menu => {
       menu.classList.remove('show');
     });
