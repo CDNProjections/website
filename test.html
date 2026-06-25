@@ -532,6 +532,64 @@
   white-space: nowrap;
 }
 
+.projection-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  padding: 20px;
+}
+
+.slide.active {
+  display: block;
+}
+
+.province-map {
+  width: 80%;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.view-link {
+  color: #7c3aed;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.carousel-dots {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #7c3aed;
+}
 
 
 
@@ -902,7 +960,43 @@
   </aside>
 
   <main class="main-content">
-    <!-- Your existing homepage content -->
+
+<div class="projection-carousel">
+  <div class="slide active">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/QuebecDistrictsBlank2026.svg" alt="Quebec Map" class="province-map">
+    <p><strong>Quebec: </strong><span style="color: #2859a6;">Parti Quebecois lead by 9 seats, favoured to flip government from CAQ</span></p>
+    <a href="quebec.html" class="view-link">View full projection →</a>
+  </div>
+
+  <div class="slide">
+    <img src="images/quebec-map.svg" alt="Quebec map" class="province-map">
+    <p><strong>Quebec</strong> — CAQ leads with 38%</p>
+    <a href="quebec.html" class="view-link">View full projection →</a>
+  </div>
+
+  <div class="slide">
+    <img src="images/bc-map.svg" alt="BC map" class="province-map">
+    <p><strong>British Columbia</strong> — NDP leads with 41%</p>
+    <a href="bc.html" class="view-link">View full projection →</a>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="prev">←</button>
+    <button class="next">→</button>
+  </div>
+
+  <div class="carousel-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+
+
+
+
+
   </main>
 </div>
 
@@ -1666,11 +1760,48 @@ function createCountdown(elementId, targetDate) {
   }, 1000);
 }
 </script>
+
 <script>
 createCountdown("countdown1", "Oct 5, 2026 0:00:00");
 createCountdown("countdown2", "Oct 15, 2029 0:00:00");
 createCountdown("countdown3", "July 13, 2026 0:00:00");
 createCountdown("countdown4", "July 21, 2026 0:00:00");
+</script>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+    dots[i].classList.toggle('active', i === index);
+  });
+}
+
+document.querySelector('.next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentSlide = i;
+    showSlide(currentSlide);
+  });
+});
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 5000);
+
 </script>
 
 
