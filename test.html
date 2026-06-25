@@ -497,6 +497,12 @@
   100% { opacity: 0.4; transform: scale(0.8); }
 }
 
+.countdown-timer {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 10px;
+  color: #6b46c1; /* your purple accent */
+}
 
 
 
@@ -736,6 +742,7 @@
   </div>
 </div>
 
+  <a href="polls.html">Polls</a>
   <a href="accuracy.html">Accuracy</a>
 
     <div class="social-icons">
@@ -767,22 +774,27 @@
   <aside class="sidebar">
 
 <div class="card" style="animation: shake 5s infinite; min-width: 75px">
+  <a href="cornwall.html" class="province-link">
   <h3 class="card-title">Race to Watch</h3>
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Cornwall-Meadowbank_electoral_district_map.svg" class="card-map">
   <p class="card-text">
     <strong>Cornwall-Meadowbank</strong> is <span style="color: #cf3239;">Likely Liberal</span>
   </p>
+  </a>
 </div>
 
 <div class="card" style="animation: shake 5s infinite; min-width: 75px">
+  <a href="pas.html" class="province-link">
   <h3 class="card-title">By-Election</h3>
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Manitoba_2018_The_Pas-Kameesak.svg" class="card-map">
   <p class="card-text">
     <strong>The Pas-Kameesak</strong> is <span style="color: #844318;">Locked NDP</span>
   </p>
+  </a>
 </div>
 
 <div class="card">
+  <a href="polls.html" class="province-link">
   <h3 class="card-title">Do Canadians approve of Mark Carney's Government?</h3>
   <div class="approval-box">
     <div class="approve">55%<br><span>Approve</span></div>
@@ -791,6 +803,16 @@
 <p class="live">
   <span class="live-dot"></span>Latest Polls
 </p>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Election Countdown - Quebec</h3>
+  <p id="countdown1" class="countdown-timer"></p>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Election Countdown - Canada</h3>
+  <p id="countdown2" class="countdown-timer"></p>
 </div>
 
   </aside>
@@ -1536,6 +1558,35 @@ window.onclick = function(event) {
   }
 };
 </script>
+
+<script>
+function createCountdown(elementId, targetDate) {
+  var countDownDate = new Date(targetDate).getTime();
+
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById(elementId).innerHTML =
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById(elementId).innerHTML = "Election Day/Jour de L'Élection";
+    }
+  }, 1000);
+}
+</script>
+<script>
+createCountdown("countdown1", "Oct 5, 2026 0:00:00");
+createCountdown("countdown2", "Oct 15, 2029 0:00:00");
+</script>
+
 
 </body>
 </html>
