@@ -481,9 +481,22 @@
   color: #666;
 }
 
-.live-text {
-  animation: shimmer 2s infinite;
+.live-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background-color: #16a34a; /* green */
+  animation: pulse 1.5s infinite;
 }
+
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.4; transform: scale(0.8); }
+}
+
 
 
 
@@ -776,7 +789,7 @@
     <div class="disapprove">30%<br><span>Disapprove</span></div>
   </div>
 <p class="live">
-  <span class="live-dot"></span><span class="live-text">Latest Polls</span>
+  <span class="live-dot"></span>Latest Polls
 </p>
 </div>
 
