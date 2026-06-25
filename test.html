@@ -433,8 +433,11 @@
 
 .card-map {
   width: 100%;
+  max-width: 260px; /* keeps it proportional inside the card */
+  height: auto;
   border-radius: 8px;
   margin-bottom: 10px;
+  object-fit: contain; /* prevents distortion */
 }
 
 .card-text {
