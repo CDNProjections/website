@@ -421,6 +421,9 @@
   padding: 20px;
   text-align: center;
   max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-title {
@@ -435,12 +438,14 @@
   width: 100%;
   max-width: 260px; /* keeps it proportional inside the card */
   height: auto;
+  max-height: 200px;
   border-radius: 8px;
   margin-bottom: 10px;
   object-fit: contain; /* prevents distortion */
 }
 
 .card-text {
+  margin-top: auto;
   font-size: 0.95rem;
   color: #333;
 }
