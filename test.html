@@ -535,7 +535,7 @@
 .projection-carousel {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   text-align: center;
   background: #fff;
@@ -553,17 +553,48 @@
   display: block;
 }
 
+.slide-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px;
+}
+
+.map-column {
+  flex: 1;
+  text-align: center;
+}
+
+.text-column {
+  flex: 1;
+  text-align: left;
+}
+
 .province-map {
-  width: 80%;
-  max-height: 250px;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
   object-fit: contain;
+}
+
+.province-title {
+  font-size: 1.4rem;
+  font-weight: 700;
   margin-bottom: 10px;
+  color: #000;
+}
+
+.province-blurb {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .view-link {
   color: #7c3aed;
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .carousel-controls {
@@ -963,9 +994,18 @@
 
 <div class="projection-carousel">
   <div class="slide active">
+  <div class="slide-content">
+  <div class="map-column">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/QuebecDistrictsBlank2026.svg" alt="Quebec Map" class="province-map">
-    <p><strong>Quebec: </strong><span style="color: #2859a6;">Parti Quebecois lead by 9 seats, favoured to flip government from CAQ</span></p>
+  </div>
+  <div class="text-column">
+    <h3 class="province-title">Quebec</h3>
+    <p class="province-blurb">
+      <span style="color: #2859a6;">Parti Quebecois lead by 9 seats, favoured to flip government from CAQ</span>
+    </p>
     <a href="quebec.html" class="view-link">View full projection →</a>
+  </div>
+  </div>
   </div>
 
   <div class="slide">
@@ -1800,7 +1840,7 @@ dots.forEach((dot, i) => {
 setInterval(() => {
   currentSlide = (currentSlide + 1) % slides.length;
   showSlide(currentSlide);
-}, 5000);
+}, 10000);
 
 </script>
 
