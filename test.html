@@ -512,7 +512,6 @@
 .projection-carousel {
   position: relative;
   width: 100%;
-  max-width: 800px;
   margin: auto;
   text-align: center;
   background: #fff;
@@ -600,15 +599,11 @@
 }
 
 .updates-feed {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px;
   margin-top: 20px;
-  max-width: 800px;
 }
 
 .updates-title {
@@ -636,6 +631,19 @@
 .update-date {
   font-weight: 600;
   color: #6b46c1;
+}
+
+.projection-carousel,
+.updates-feed {
+  width: 90%;
+  max-width: 800px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 </style>
