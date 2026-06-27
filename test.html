@@ -484,18 +484,18 @@
 
 .live-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 6px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: #16a34a; /* green */
+  background-color: #e74c3c; /* inner red */
+  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.4); /* outer glow */
   animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.4; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 0.4; transform: scale(0.8); }
+  0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(231, 76, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
 }
 
 .countdown-timer {
