@@ -240,28 +240,38 @@
   gap: 20px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.projection-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.results-panel {
+  flex: 1 1 50%;
+  background-color: #f8f8f8;
   padding: 20px;
-  text-align: center;
-  max-height: 500px;
-  margin-bottom: 20px;
-  flex-direction: column;
+  border-radius: 8px;
+}
+
+.party {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 1.1em;
 }
 
-.card-title {
-  color: #a36d7c;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
+.party-name.liberal { color: #d71a20; }
+.party-name.conservative { color: #132f54; }
+.party-name.bloc { color: #00a8e7; }
+.party-name.ndp { color: #f58220; }
+.party-name.green { color: #3c9b35; }
+.party-name.other { color: #808080; }
 
-.card-text {
-  margin-top: auto;
-  color: #333;
+.map-panel {
+  flex: 1 1 50%;
 }
 
 </style>
@@ -512,12 +522,43 @@
 <div class="homepage-grid">
   <aside class="sidebar">
 
-<div class="card">
-  <h3 class="card-title">Card</h3>
-  <p class="card-text">
-    <strong>Card</strong> is <span style="color: #cf3239;">Likely Liberal</span>
-  </p>
+<div class="projection-container">
+  <div class="results-panel">
+    <h2>Ontario › Provincial Projection</h2>
+    <p>Latest update: July 2, 2026</p>
+
+    <div class="party">
+      <span class="party-name liberal">Liberal Party</span>
+      <span class="votes">1,245,000</span>
+      <span class="pct">32.4%</span>
+    </div>
+
+    <div class="party">
+      <span class="party-name conservative">Conservative Party</span>
+      <span class="votes">1,180,000</span>
+      <span class="pct">30.7%</span>
+    </div>
+
+    <div class="party">
+      <span class="party-name ndp">New Democratic Party</span>
+      <span class="votes">950,000</span>
+      <span class="pct">24.7%</span>
+    </div>
+
+    <div class="party">
+      <span class="party-name green">Green Party</span>
+      <span class="votes">210,000</span>
+      <span class="pct">5.5%</span>
+    </div>
+
+    <p class="total">Total votes reported: 3,585,000</p>
+  </div>
+
+  <div class="map-panel">
+    <iframe src="https://datawrapper.dwcdn.net/XXXX/" width="100%" height="500" frameborder="0"></iframe>
+  </div>
 </div>
+
 
 
 
