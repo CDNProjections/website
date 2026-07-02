@@ -227,51 +227,72 @@
   gap: 8px;
 }
 
-.homepage-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  margin: 20px;
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.projection-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1200px;
+.page-wrapper {
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 20px 30px;
 }
 
-.results-panel {
-  flex: 1 1 50%;
-  background-color: #f8f8f8;
-  padding: 20px;
+.projection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.results-section {
+  background: #ffffff;
+  padding: 25px;
   border-radius: 8px;
+  border: 1px solid #e5e5e5;
 }
 
-.party {
-  display: flex;
-  justify-content: space-between;
+.province-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.updated-time {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.party-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  margin: 8px 0;
-  font-size: 1.1em;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
 }
 
-.party-name.liberal { color: #d71a20; }
-.party-name.conservative { color: #132f54; }
-.party-name.bloc { color: #00a8e7; }
-.party-name.ndp { color: #f58220; }
-.party-name.green { color: #3c9b35; }
-.party-name.other { color: #808080; }
+.party-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
 
-.map-panel {
-  flex: 1 1 50%;
+.party-seats {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.party-bar {
+  grid-column: 1 / span 2;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+
+.party-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.map-section iframe {
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
 }
 
 </style>
@@ -519,48 +540,37 @@
 
 </header>
 
-<div class="homepage-grid">
-  <aside class="sidebar">
+<div class="page-wrapper">
 
-<div class="projection-container">
-  <div class="results-panel">
-    <h2>Canada Projection</h2>
-    <p>Latest update: July 2, 2026</p>
+  <div class="projection-grid">
 
-    <div class="party">
-      <span class="party-name liberal">Liberal Party</span>
-      <span class="votes">1,245,000</span>
-      <span class="pct">32.4%</span>
-    </div>
+    <section class="results-section">
+      <h1 class="province-title">Canada Projection</h1>
+      <p class="updated-time">Updated July 2, 2026</p>
 
-    <div class="party">
-      <span class="party-name conservative">Conservative Party</span>
-      <span class="votes">1,180,000</span>
-      <span class="pct">30.7%</span>
-    </div>
+      <div class="party-results">
+        <div class="party-row liberal">
+          <span class="party-name">Liberal</span>
+          <span class="party-seats">120 seats</span>
+          <span class="party-bar"><span style="width: 32%"></span></span>
+        </div>
 
-    <div class="party">
-      <span class="party-name ndp">New Democratic Party</span>
-      <span class="votes">950,000</span>
-      <span class="pct">24.7%</span>
-    </div>
+        <div class="party-row conservative">
+          <span class="party-name">Conservative</span>
+          <span class="party-seats">140 seats</span>
+          <span class="party-bar"><span style="width: 38%"></span></span>
+        </div>
 
-    <div class="party">
-      <span class="party-name green">Green Party</span>
-      <span class="votes">210,000</span>
-      <span class="pct">5.5%</span>
-    </div>
+      </div>
+    </section>
 
-    <p class="total">Total votes reported: 3,585,000</p>
+    <section class="map-section">
+      <iframe src="https://datawrapper.dwcdn.net/XXXX/" 
+              width="100%" height="600" frameborder="0"></iframe>
+    </section>
+
   </div>
 
-  </aside>
-
-  <main class="main-content">
-
-  <div class="map-panel">
-    <iframe src="https://datawrapper.dwcdn.net/XXXX/" width="100%" height="500" frameborder="0"></iframe>
-  </div>
 </div>
 
 
