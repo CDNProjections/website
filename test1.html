@@ -765,15 +765,21 @@ Promise.all([
   fetch('federalridingmap.json').then(r => r.json()),
   fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
     .then(r => r.text())
-    .then(csv => {
-      const rows = csv.split('\n').slice(1);
-      const model = {};
-      rows.forEach(row => {
-      const [id, status, vote] = row.split(',').map(v => v.trim());
-      model[id] = { party: status, vote: parseFloat(vote) };
-      });
-      return model;
-    })
+.then(csv => {
+  const rows = csv.split('\n').slice(1);
+  const model = {};
+  rows.forEach(row => {
+    if (!row.trim()) return;
+
+    const cols = row.split(',').map(v => v.trim());
+    const id = cols[0];        // FED_NUM
+    const status = cols[8];    // Status (9th column)
+    const vote = cols[1];      // LIB% or whatever you want to show
+
+    model[id] = { party: status, vote: parseFloat(vote) };
+  });
+  return model;
+})
 ]).then(([geojson, model]) => {
   L.geoJSON(geojson, {
     style: feature => {
