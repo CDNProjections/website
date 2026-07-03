@@ -763,23 +763,40 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 Promise.all([
   fetch('federalridingmap.json').then(r => r.json()),
-  fetch('model_output.json').then(r => r.json())
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRdI9Vn-IZ4o4C3cQq5FiUbjWi112CA6ZGG2SH3jc3FrsGujAD5cMK3J8cvoBU3tvq6d3TByocoq4PE/pub?gid=875863224&single=true&output=csv')
+    .then(r => r.text())
+    .then(csv => {
+      const rows = csv.split('\n').slice(1);
+      const model = {};
+      rows.forEach(row => {
+        const [id, party, vote] = row.split(',');
+        model[id] = { party, vote: parseFloat(vote) };
+      });
+      return model;
+    })
 ]).then(([geojson, model]) => {
-
   L.geoJSON(geojson, {
     style: feature => {
       const id = feature.properties.id;
       const ridingData = model[id];
-
       return {
         color: "#fff",
         weight: 1,
-        fillColor: partyColor(ridingData.party),
+        fillColor: ridingData ? partyColor(ridingData.party) : "#ccc",
         fillOpacity: 0.8
       };
+    },
+    onEachFeature: (feature, layer) => {
+      const id = feature.properties.id;
+      const ridingData = model[id];
+      if (ridingData) {
+        layer.bindPopup(`
+          <strong>${feature.properties.name}</strong><br>
+          ${ridingData.party}: ${ridingData.vote.toFixed(1)}%
+        `);
+      }
     }
   }).addTo(map);
-
 });
 
 function partyColor(party) {
