@@ -801,13 +801,32 @@ Promise.all([
 
 function partyColor(party) {
   return {
-    "Liberal": "#ac151a",
-    "Conservative": "#0f2643",
-    "Bloc": "#0086b9",
-    "NDP": "#c4681a",
-    "Green": "#307c2a",
-    "Other": "#666666"
-  }[party] || "#999";
+    "Locked Liberal": "#811013",
+    "Safe Liberal": "#ac151a",
+    "Likely Liberal": "#d71a20",
+    "Leaning Liberal": "#df484d",
+    "Tilting Liberal": "#e77679",
+    "Locked Conservative": "#0b1c32",
+    "Safe Conservative": "#0f2643",
+    "Likely Conservative": "#132f54",
+    "Leaning Conservative": "#425976",
+    "Tilting Conservative": "#718298",
+    "Locked Bloc": "#00658b",
+    "Safe Bloc": "#0086b9",
+    "Likely Bloc": "#00a8e7",
+    "Leaning Bloc": "#33b9ec",
+    "Tilting Bloc": "#66cbf1",
+    "Locked NDP": "#934e13",
+    "Safe NDP": "#c4681a",
+    "Likely NDP": "#f58220",
+    "Leaning NDP": "#f79b4d",
+    "Tilting NDP": "#f9b479",
+    "Locked Green": "#245d20",
+    "Safe Green": "#307c2a",
+    "Likely Green": "#3c9b35",
+    "Leaning Green": "#63af5d",
+    "Tilting Green": "#8ac386",
+  }[party] || "#000000";
 }
 
 L.geoJSON(data, {
