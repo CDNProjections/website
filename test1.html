@@ -763,7 +763,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 Promise.all([
   fetch('federalridingmap.json').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRdI9Vn-IZ4o4C3cQq5FiUbjWi112CA6ZGG2SH3jc3FrsGujAD5cMK3J8cvoBU3tvq6d3TByocoq4PE/pub?gid=875863224&single=true&output=csv')
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       const rows = csv.split('\n').slice(1);
