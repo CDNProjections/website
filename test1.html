@@ -777,7 +777,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   L.geoJSON(geojson, {
     style: feature => {
-      const id = feature.properties.id;
+      const id = String(feature.properties.FEDNUM);
       const ridingData = model[id];
       return {
         color: "#fff",
@@ -787,7 +787,7 @@ Promise.all([
       };
     },
     onEachFeature: (feature, layer) => {
-      const id = feature.properties.id;
+      const id = String(feature.properties.FEDNUM);
       const ridingData = model[id];
       if (ridingData) {
         layer.bindPopup(`
