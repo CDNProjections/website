@@ -15,6 +15,10 @@
 
      gtag('config', 'G-V2T0WMSWY8');
    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <style>
     body {
         background-color: #e6e6e6;
@@ -309,9 +313,17 @@
   text-align: center;
 }
 
-.map-section iframe {
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
+#map {
+  height: 600px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 400px;
+  }
 }
 
 </style>
@@ -640,9 +652,7 @@
 </div>
 
 
-    <section class="map-section">
-        <iframe title="Canada Projection" aria-label="Choropleth map" id="datawrapper-chart-cBY2w" src="https://datawrapper.dwcdn.net/cBY2w/19/" scrolling="no" frameborder="0" style="width: 100%; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}});</script>
-    </section>
+<div id="map"></div>
 
   </div>
 
@@ -739,7 +749,82 @@
 
 
 
+<script>
 
+const map = L.map('map', {
+  minZoom: 3,
+  maxZoom: 10,
+  zoomControl: true
+}).setView([56, -96], 4);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+Promise.all([
+  fetch('federalridingmap.json').then(r => r.json()),
+  fetch('model_output.json').then(r => r.json())
+]).then(([geojson, model]) => {
+
+  L.geoJSON(geojson, {
+    style: feature => {
+      const id = feature.properties.id;
+      const ridingData = model[id];
+
+      return {
+        color: "#fff",
+        weight: 1,
+        fillColor: partyColor(ridingData.party),
+        fillOpacity: 0.8
+      };
+    }
+  }).addTo(map);
+
+});
+
+function partyColor(party) {
+  return {
+    "Liberal": "#ac151a",
+    "Conservative": "#0f2643",
+    "Bloc": "#0086b9",
+    "NDP": "#c4681a",
+    "Green": "#307c2a",
+    "Other": "#666666"
+  }[party] || "#999";
+}
+
+L.geoJSON(data, {
+  style: feature => ({
+    color: "#fff",
+    weight: 1,
+    fillColor: partyColor(feature.properties.party),
+    fillOpacity: 0.8
+  })
+});
+
+map.fitBounds(geojsonLayer.getBounds());
+
+function highlightFeature(e) {
+  const layer = e.target;
+  layer.setStyle({
+    weight: 3,
+    color: '#000',
+    fillOpacity: 0.9
+  });
+}
+
+function resetHighlight(e) {
+  geojsonLayer.resetStyle(e.target);
+}
+
+function onEachFeature(feature, layer) {
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight
+  });
+}
+
+</script>
 
 
 
