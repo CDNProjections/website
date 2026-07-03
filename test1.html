@@ -769,7 +769,7 @@ Promise.all([
       const rows = csv.split('\n').slice(1);
       const model = {};
       rows.forEach(row => {
-      const [id, status, vote] = row.split(',');
+      const [id, status, vote] = row.split(',').map(v => v.trim());
       model[id] = { party: status, vote: parseFloat(vote) };
       });
       return model;
@@ -799,7 +799,11 @@ Promise.all([
   }).addTo(map);
 });
 
-function partyColor(party) {
+function partyColor(partyRaw) {
+  if (!partyRaw) return "#ccc";
+
+  const party = partyRaw.trim();
+
   return {
     "Locked Liberal": "#811013",
     "Safe Liberal": "#ac151a",
