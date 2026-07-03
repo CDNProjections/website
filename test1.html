@@ -769,8 +769,8 @@ Promise.all([
       const rows = csv.split('\n').slice(1);
       const model = {};
       rows.forEach(row => {
-        const [id, party, vote] = row.split(',');
-        model[id] = { party, vote: parseFloat(vote) };
+      const [id, status, vote] = row.split(',');
+      model[id] = { party: status, vote: parseFloat(vote) };
       });
       return model;
     })
@@ -828,17 +828,6 @@ function partyColor(party) {
     "Tilting Green": "#8ac386",
   }[party] || "#000000";
 }
-
-L.geoJSON(data, {
-  style: feature => ({
-    color: "#fff",
-    weight: 1,
-    fillColor: partyColor(feature.properties.party),
-    fillOpacity: 0.8
-  })
-});
-
-map.fitBounds(geojsonLayer.getBounds());
 
 function highlightFeature(e) {
   const layer = e.target;
