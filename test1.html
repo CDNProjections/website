@@ -852,7 +852,7 @@ function resetHighlight(e) {
   geojsonLayer.resetStyle(e.target);
 }
 
-function onEachFeature: (feature, layer) => {
+function onEachFeature(feature, layer) => {
   const id = String(feature.properties.FED_NUM);
   const ridingData = model[id];
 
