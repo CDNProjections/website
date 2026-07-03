@@ -42,7 +42,6 @@
   background-color: #ffffff;
   border-bottom: 2px solid #000000;
   font-family: 'Hind Siliguri', sans-serif;
-  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -239,61 +238,82 @@
   gap: 40px;
 }
 
-.results-section {
+.nyt-results {
   background: #ffffff;
-  padding: 25px;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
-.province-title {
-  font-size: 2rem;
+.nyt-title {
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.updated-time {
-  font-size: 0.95rem;
-  color: #666;
+  text-align: center;
   margin-bottom: 25px;
 }
 
-.party-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
+.nyt-party-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
   padding: 12px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-.party-name {
-  font-size: 1.1rem;
+.nyt-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.nyt-info {
+  flex-grow: 1;
+}
+
+.nyt-topline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.nyt-party-name {
+  font-weight: 700;
+}
+
+.nyt-seat-range {
   font-weight: 600;
 }
 
-.party-seats {
-  font-size: 1rem;
-  font-weight: 500;
+.nyt-highlight {
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.party-bar {
-  grid-column: 1 / span 2;
-  height: 8px;
-  background: #ddd;
-  border-radius: 4px;
+.nyt-vote {
+  color: #555;
+  font-size: 16px;
+}
+
+.nyt-bar {
   margin-top: 6px;
+  width: 100%;
+  height: 18px;
+  background: #f0f0f0;
 }
 
-.party-bar span {
-  display: block;
+.nyt-bar-fill {
   height: 100%;
-  border-radius: 4px;
 }
 
-.map-section iframe {
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
+.nyt-updated {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
 }
+
 
 </style>
 </head>
@@ -544,25 +564,82 @@
 
   <div class="projection-grid">
 
-    <section class="results-section">
-      <h1 class="province-title">Canada Projection</h1>
-      <p class="updated-time">Updated July 2, 2026</p>
+<div class="nyt-results">
+  <h2 class="nyt-title">CDNProjections Federal Electoral Model</h2>
 
-      <div class="party-results">
-        <div class="party-row liberal">
-          <span class="party-name">Liberal</span>
-          <span class="party-seats">120 seats</span>
-          <span class="party-bar"><span style="width: 32%"></span></span>
-        </div>
-
-        <div class="party-row conservative">
-          <span class="party-name">Conservative</span>
-          <span class="party-seats">140 seats</span>
-          <span class="party-bar"><span style="width: 38%"></span></span>
-        </div>
-
+  <div class="nyt-party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" class="nyt-logo">
+    <div class="nyt-info">
+      <div class="nyt-topline">
+        <span class="nyt-party-name">Liberals</span>
+        <span class="nyt-seat-range">161–<span class="nyt-highlight">211</span>–244</span>
+        <span class="nyt-vote">(46.64%)</span>
       </div>
-    </section>
+      <div class="nyt-bar">
+        <div class="nyt-bar-fill" style="width: 61.52%; background-color:#ac151a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nyt-party-row">
+    <img src="https://cpcassets.conservative.ca/social-icons/conservative-logo-Dark_Blue.svg" class="nyt-logo">
+    <div class="nyt-info">
+      <div class="nyt-topline">
+        <span class="nyt-party-name">Conservatives</span>
+        <span class="nyt-seat-range">79–<span class="nyt-highlight">95</span>–140</span>
+        <span class="nyt-vote">(35.31%)</span>
+      </div>
+      <div class="nyt-bar">
+        <div class="nyt-bar-fill" style="width: 27.70%; background-color:#0f2643;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nyt-party-row">
+    <img src="https://www.blocquebecois.org/wp-content/themes/bloc2021/images/logo-square.svg?ver=1712854112571" class="nyt-logo">
+    <div class="nyt-info">
+      <div class="nyt-topline">
+        <span class="nyt-party-name">Bloc Québécois</span>
+        <span class="nyt-seat-range">15–<span class="nyt-highlight">24</span>–35</span>
+        <span class="nyt-vote">(6.59%)</span>
+      </div>
+      <div class="nyt-bar">
+        <div class="nyt-bar-fill" style="width: 7.00%; background-color:#0086b9;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nyt-party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Orange_NDP_logo_English.svg" class="nyt-logo">
+    <div class="nyt-info">
+      <div class="nyt-topline">
+        <span class="nyt-party-name">NDP</span>
+        <span class="nyt-seat-range">4–<span class="nyt-highlight">10</span>–22</span>
+        <span class="nyt-vote">(7.21%)</span>
+      </div>
+      <div class="nyt-bar">
+        <div class="nyt-bar-fill" style="width: 2.62%; background-color:#c4681a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nyt-party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Logo_2025_Green_Party_of_Canada.svg" class="nyt-logo">
+    <div class="nyt-info">
+      <div class="nyt-topline">
+        <span class="nyt-party-name">Greens</span>
+        <span class="nyt-seat-range">1–<span class="nyt-highlight">3</span>–4</span>
+        <span class="nyt-vote">(2.05%)</span>
+      </div>
+      <div class="nyt-bar">
+        <div class="nyt-bar-fill" style="width: 0.87%; background-color:#307c2a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="nyt-updated">Last Updated: May 10, 2026</p>
+</div>
+
 
     <section class="map-section">
       <iframe src="https://datawrapper.dwcdn.net/XXXX/" 
