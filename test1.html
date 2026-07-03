@@ -855,56 +855,38 @@ function resetHighlight(e) {
 function onEachFeature: (feature, layer) => {
   const id = String(feature.properties.FED_NUM);
   const ridingData = model[id];
+
   if (ridingData) {
     const props = feature.properties;
+
     const html = `
       <div style="font-weight:bold; margin-bottom:4px;">
-        ${props.FED_NAME || props.name || "Unnamed Riding"}
+        ${props.FED_NAME || "Riding"}
       </div>
+
       <div style="height:150px; display:flex; flex-direction:column;">
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#e77679; height:100%; width:${props.LIB}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.LIB}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#718298; height:100%; width:${props.CPC}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.CPC}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#f9b479; height:100%; width:${props.NDP}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.NDP}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#66cbf1; height:100%; width:${props.BQC}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.BQC}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#8ac386; height:100%; width:${props.GRN}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.GRN}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center; margin-bottom:6px;'>
-          <div style='background:#a485c3; height:100%; width:${props.PPC}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.PPC}%</span>
-          </div>
-        </div>
-        <div style='background:#F2F2F2; width:150px; height:15px; display:flex; align-items:center;'>
-          <div style='background:#b3b3b3; height:100%; width:${props.OTH}%'>
-            <span style='color:black; font-weight:bold; margin:0 5px;'>${props.OTH}%</span>
-          </div>
-        </div>
+        ${makeBar(props["LIB%"], "#e77679")}
+        ${makeBar(props["CPC%"], "#718298")}
+        ${makeBar(props["NDP%"], "#f9b479")}
+        ${makeBar(props["BQ%"], "#66cbf1")}
+        ${makeBar(props["GRN%"], "#8ac386")}
+        ${makeBar(props["PPC%"], "#a485c3")}
+        ${makeBar(props["OTH%"], "#b3b3b3")}
       </div>
+
       <div style="margin-top:6px;">
-        Projection: ${ridingData.party} (${ridingData.vote.toFixed(2)}%)
+        Projection: ${ridingData.party} (${ridingData.vote.toFixed(1)}%)
       </div>
     `;
+
     layer.bindPopup(html);
   }
-}
+
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight
+  });
+};
 
 </script>
 
