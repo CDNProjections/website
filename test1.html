@@ -853,35 +853,6 @@ function resetHighlight(e) {
 }
 
 function onEachFeature(feature, layer) {
-  const id = String(feature.properties.FED_NUM);
-  const ridingData = model[id];
-
-  if (ridingData) {
-    const props = feature.properties;
-
-    const html = `
-      <div style="font-weight:bold; margin-bottom:4px;">
-        ${props.FED_NAME || "Riding"}
-      </div>
-
-      <div style="height:150px; display:flex; flex-direction:column;">
-        ${makeBar(props["LIB%"], "#e77679")}
-        ${makeBar(props["CPC%"], "#718298")}
-        ${makeBar(props["NDP%"], "#f9b479")}
-        ${makeBar(props["BQ%"], "#66cbf1")}
-        ${makeBar(props["GRN%"], "#8ac386")}
-        ${makeBar(props["PPC%"], "#a485c3")}
-        ${makeBar(props["OTH%"], "#b3b3b3")}
-      </div>
-
-      <div style="margin-top:6px;">
-        Projection: ${ridingData.party} (${ridingData.vote.toFixed(1)}%)
-      </div>
-    `;
-
-    layer.bindPopup(html);
-  }
-
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight
