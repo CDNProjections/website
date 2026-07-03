@@ -797,7 +797,7 @@ Promise.all([
       const ridingData = model[id];
       if (ridingData) {
         layer.bindPopup(`
-          <strong>${feature.properties.name}</strong><br>
+          <strong>${feature.Riding}</strong><br>
           ${ridingData.party}: ${ridingData.vote.toFixed(1)}%
         `);
       }
