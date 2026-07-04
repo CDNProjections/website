@@ -454,6 +454,21 @@
   padding-left: 10px;
 }
 
+/* Ensure the highlighted riding border is always on top of others */
+.leaflet-interactive:hover {
+    outline: none;
+}
+
+/* Ensure tooltips don't catch mouse events (prevents flickering) */
+.leaflet-tooltip-nyt {
+    pointer-events: none !important;
+}
+
+/* Optional: Add a slight transition so the border doesn't 'snap' too hard */
+.leaflet-interactive {
+    transition: stroke-width 0.1s, stroke 0.1s;
+}
+
 </style>
 </head>
 </html>
