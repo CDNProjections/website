@@ -972,88 +972,55 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-      const id = String(feature.properties.FED_NUM);
-      const d = model[id];
-      const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+    const id = String(feature.properties.FED_NUM);
+    const d = model[id];
+    const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
-      if (d) {
-        // 1. Get Top 4 Parties
-        const topParties = Object.keys(d.parties)
-          .sort((a, b) => d.parties[b] - d.parties[a])
-          .slice(0, 4);
+    if (d) {
+        // ... [Keep your existing topParties / rowsHtml / contentHtml logic here] ...
 
-        // 2. Build Table Rows
-        const rowsHtml = topParties.map(p => {
-          const val = d.parties[p];
-          
-          // FIX IS HERE: We look inside 'd' to find the 'changes' object we created earlier
-          const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
-          
-          const color = getBasePartyColor(p);
-          
-          // Format the swing/change display (+1.2 or -0.5)
-          const sign = chg > 0 ? '+' : '';
-          const chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
+        // Bind the tooltip ONCE
+        layer.bindTooltip(contentHtml, {
+            sticky: true,
+            direction: "auto",
+            className: "leaflet-tooltip-nyt",
+            offset: [15, 0],
+            opacity: 1.0 // Ensure it's fully opaque
+        });
 
-          return `
-            <tr>
-              <td>
-                <div class="nyt-party-cell">
-                  <div class="nyt-color-bar" style="background-color: ${color}"></div>
-                  <span>${p}</span>
-                </div>
-              </td>
-              <td class="nyt-pct">
-                ${val.toFixed(1)}% ${chgDisplay}
-              </td>
-            </tr>`;
-        }).join('');
-
-        // 3. Margin & Footer logic
-        const marginDisplay = (d.margin !== undefined && !isNaN(d.margin)) 
-          ? ` (+${d.margin.toFixed(1)}%)` 
-          : "";
-
-        const contentHtml = `
-          <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Blurb')}</div>
-          <table class="nyt-table">
-            <tr class="nyt-header-row">
-              <td style="text-align:left">Party</td>
-              <td style="text-align:right">
-                Projection <span style="font-size: 10px; margin-left: 5px; font-weight: normal; color: #999;">+/- 2025</span>
-            </tr>
-            ${rowsHtml}
-          </table>
-          <div class="nyt-footer">
-            ${escapeHtml(d.status || '')}${marginDisplay}
-          </div>
-          <div class="nyt-history-box">
-            <div class="nyt-history-title">Previous Results</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
-          </div>
-          <div class="nyt-brand">CDNProjections.ca riding model</div>
-        `;
-
-        // Bind Tooltip and Popup
-        layer.bindTooltip(contentHtml, { sticky: true, direction: "auto", className: "leaflet-tooltip-nyt", offset: [15, 0] });
-        layer.bindPopup(contentHtml, { className: "nyt-stick-popup", closeButton: false });
-      }
-
-      // Hover styling
-      layer.on('mouseover', e => {
-        e.target.setStyle({ weight: 3, color: '#000' });
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-          e.target.bringToFront();
-        }
-      });
-
-      layer.on('mouseout', e => {
-        geojsonLayer.resetStyle(e.target);
-      });
+        // Bind the popup for clicking
+        layer.bindPopup(contentHtml, { 
+            className: "nyt-stick-popup", 
+            closeButton: false 
+        });
     }
+
+    // HOVER EVENTS
+    layer.on('mouseover', e => {
+        const lyr = e.target;
+        // Instead of bringToFront, we just use a very distinct border
+        lyr.setStyle({
+            weight: 4,     // Thicker border
+            color: '#000', // Black border
+            fillOpacity: 0.9
+        });
+        
+        // Safety: If for some reason a tooltip is stuck, this helps refresh it
+        if (!lyr.isTooltipOpen()) {
+            lyr.openTooltip();
+        }
+    });
+
+    layer.on('mouseout', e => {
+        const lyr = e.target;
+        
+        // Reset the style to the original
+        geojsonLayer.resetStyle(lyr);
+        
+        // FORCE the tooltip to close immediately
+        lyr.closeTooltip();
+    });
+}
   }).addTo(map);
 });
 
