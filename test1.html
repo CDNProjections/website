@@ -787,6 +787,7 @@ Promise.all([
         const oth = parseFloat(cols[7]);    // OTH%
         const status = cols[8] || '';       // Status
         const riding = cols[9] || '';       // Riding
+        const margin = parseFloat(cols[10]); // Margin
 
         // Build an object with all party percentages
         const parties = {
