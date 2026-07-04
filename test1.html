@@ -1015,7 +1015,7 @@ onEachFeature: (feature, layer) => {
 
         const contentHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Federal Riding Projection')}</div>
+          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Blurb')}</div>
           <table class="nyt-table">
             <tr class="nyt-header-row">
               <td style="text-align:left">Party</td>
@@ -1033,7 +1033,7 @@ onEachFeature: (feature, layer) => {
             <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
             <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
           </div>
-          <div class="nyt-brand">CDNProjections riding model</div>
+          <div class="nyt-brand">CDNProjections.ca riding model</div>
         `;
 
         // Bind Tooltip and Popup
