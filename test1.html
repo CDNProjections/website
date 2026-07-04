@@ -843,7 +843,7 @@ Promise.all([
         highlightFeature(e);
         const d = e.target.ridingData;
         const tooltipText = d && d.leading
-          ? `${escapeHtml(e.target.ridingName)} — ${escapeHtml(d.leading.party)}: ${e.target.margin}%`
+          ? `${escapeHtml(e.target.ridingName)} — ${escapeHtml(d.leading.party)}: 'Margin'`
           : `${escapeHtml(e.target.ridingName)} - No data`;
         layer.bindTooltip(tooltipText, { sticky: true }).openTooltip();
       });
