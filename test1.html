@@ -326,82 +326,58 @@
   }
 }
 
-/* Container for the tooltip */
 .leaflet-tooltip-nyt {
-    background: white !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-    padding: 12px !important;
-    color: #333 !important;
-    opacity: 1 !important;
-    min-width: 220px;
+  background: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 10px !important; /* Slightly tighter */
+  color: #333 !important;
+  opacity: 1 !important;
+  min-width: 240px;
 }
 
-/* Remove the little arrow from the tooltip */
-.leaflet-tooltip-nyt::before {
-    display: none !important;
+.leaflet-tooltip-nyt::before { display: none !important; }
+
+.nyt-title { font-size: 15px; font-weight: bold; margin-bottom: 2px; color: #121212; }
+.nyt-subtitle { font-size: 13px; color: #666; margin-bottom: 8px; line-height: 1.2; }
+
+.nyt-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+/* The horizontal line between rows */
+.nyt-table tr { border-bottom: 1px solid #ebebeb; }
+.nyt-table tr:last-child { border-bottom: none; }
+
+.nyt-table td { padding: 6px 0; vertical-align: middle; }
+
+/* Column Headers */
+.nyt-header-row td { 
+  font-size: 11px; 
+  color: #888; 
+  text-transform: none; 
+  padding-bottom: 4px;
 }
 
-/* Header: Riding Name */
-.nyt-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    display: block;
+.nyt-color-bar {
+  width: 4px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 1px;
 }
 
-/* Subheader: Description/Status */
-.nyt-desc {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 10px;
-    line-height: 1.3;
-}
-
-/* Table Layout */
-.nyt-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-
-.nyt-table tr {
-    border-bottom: 1px solid #eee;
-}
-
-.nyt-table tr:last-child {
-    border-bottom: none;
-}
-
-.nyt-table td {
-    padding: 6px 0;
-}
-
-/* The vertical party color indicator */
-.nyt-party-indicator {
-    width: 4px;
-    height: 18px;
-    display: inline-block;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-.nyt-party-name {
-    color: #333;
-}
-
-.nyt-pct {
-    text-align: right;
-    font-weight: 700;
-    width: 40px;
+.nyt-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  width: 50px;
 }
 
 .nyt-footer {
-    font-size: 11px;
-    color: #999;
-    margin-top: 8px;
-    text-transform: uppercase;
+  font-size: 11px;
+  color: #999;
+  margin-top: 8px;
 }
 
 </style>
@@ -900,49 +876,51 @@ Promise.all([
         fillOpacity: 0.8
       };
     },
-    onEachFeature: (feature, layer) => {
+onEachFeature: (feature, layer) => {
       const id = String(feature.properties.FED_NUM);
       const d = model[id];
       const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
       if (d) {
-        // 1. Create the Party Rows for the table
-        // We sort them so the highest percentage is at the top (NYT style)
-        const sortedParties = Object.keys(d.parties)
+        // 1. Sort all parties by percentage
+        // 2. .slice(0, 4) takes ONLY the top 4
+        const topParties = Object.keys(d.parties)
           .filter(p => d.parties[p] !== null)
-          .sort((a, b) => d.parties[b] - d.parties[a]);
+          .sort((a, b) => d.parties[b] - d.parties[a])
+          .slice(0, 4); 
 
-        const rowsHtml = sortedParties.map(p => {
+        const rowsHtml = topParties.map((p, index) => {
           const val = d.parties[p];
-          const color = getBasePartyColor(p); // Helper function below
+          const color = getBasePartyColor(p);
+          
+          // The first row gets the "%" symbol next to the number (NYT Style)
+          const pctDisplay = index === 0 ? `${val.toFixed(0)}%` : `${val.toFixed(0)}`;
+
           return `
             <tr>
               <td>
                 <div class="nyt-color-bar" style="background-color: ${color}"></div>
-                ${p}
+                <span style="color:#121212;">${p}</span>
               </td>
-              <td class="nyt-pct">${val.toFixed(1)}%</td>
+              <td class="nyt-pct">${pctDisplay}</td>
             </tr>`;
         }).join('');
 
-        // 2. Combine into the full Tooltip HTML
         const tooltipHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">Federal Riding — Projection</div>
+          <div class="nyt-subtitle">Federal Riding Projection</div>
           <table class="nyt-table">
             <tr class="nyt-header-row">
-              <td style="text-align:left">Candidate</td>
+              <td style="text-align:left">Party</td>
               <td style="text-align:right">Pct.</td>
             </tr>
             ${rowsHtml}
           </table>
-          <div style="font-size:10px; color:#999; margin-top:8px; text-transform:uppercase;">
-            Status: ${escapeHtml(d.status || 'N/A')}
+          <div class="nyt-footer">
+            >95% of model confidence
           </div>
         `;
 
-        // 3. Bind the Tooltip
-        // 'sticky: true' makes it follow the mouse automatically
         layer.bindTooltip(tooltipHtml, {
           sticky: true,
           direction: "auto",
@@ -951,7 +929,6 @@ Promise.all([
         });
       }
 
-      // Hover styling (border gets thicker on hover)
       layer.on('mouseover', e => {
         e.target.setStyle({ weight: 3, color: '#000' });
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
