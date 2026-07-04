@@ -974,7 +974,15 @@ onEachFeature: (feature, layer) => {
 
         const rowsHtml = topParties.map(p => {
           const val = d.parties[p];
+          const chg = d.changes && d.changes[p]; // Look up the change for this party
           const color = getBasePartyColor(p);
+
+          let chgDisplay = '';
+          if (chg !== undefined && !isNaN(chg)) {
+            const sign = chg > 0 ? '+' : ''; // Add '+' if positive, '-' is handled by the number
+            chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
+          }
+
           return `
             <tr>
               <td>
@@ -983,7 +991,10 @@ onEachFeature: (feature, layer) => {
                   <span>${p}</span>
                 </div>
               </td>
-              <td class="nyt-pct">${val.toFixed(1)}%</td>
+              <td class="nyt-pct">
+                  ${val.toFixed(1)}%
+                  ${chgDisplay}
+              </td>
             </tr>`;
         }).join('');
 
