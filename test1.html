@@ -987,55 +987,104 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-    const id = String(feature.properties.FED_NUM);
-    const d = model[id];
-    const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+      const id = String(feature.properties.FED_NUM);
+      const d = model[id];
+      const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
-    if (d) {
-        // ... [Keep your existing topParties / rowsHtml / contentHtml logic here] ...
+      // We only build the box if data (d) actually exists for this riding
+      if (d) {
+        // 1. Sort and get top 4 parties
+        const topParties = Object.keys(d.parties)
+          .sort((a, b) => d.parties[b] - d.parties[a])
+          .slice(0, 4);
 
-        // Bind the tooltip ONCE
+        // 2. Build the table rows with vote share and +/- change
+        const rowsHtml = topParties.map(p => {
+          const val = d.parties[p];
+          const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
+          const color = getBasePartyColor(p);
+          
+          const sign = chg > 0 ? '+' : '';
+          const chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
+
+          return `
+            <tr>
+              <td>
+                <div class="nyt-party-cell">
+                  <div class="nyt-color-bar" style="background-color: ${color}"></div>
+                  <span>${p}</span>
+                </div>
+              </td>
+              <td class="nyt-pct">${val.toFixed(1)}% ${chgDisplay}</td>
+            </tr>`;
+        }).join('');
+
+        const marginDisplay = (d.margin !== undefined && !isNaN(d.margin)) 
+          ? ` (+${d.margin.toFixed(1)}%)` 
+          : "";
+
+        // 3. Assemble the full content string
+        const contentHtml = `
+          <div class="nyt-title">${escapeHtml(ridingName)}</div>
+          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+          <table class="nyt-table">
+            <tr class="nyt-header-row">
+              <td style="text-align:left">Party</td>
+              <td style="text-align:right">
+                Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2021</span>
+              </td>
+            </tr>
+            ${rowsHtml}
+          </table>
+          <div class="nyt-footer">
+            ${escapeHtml(d.status || '')}${marginDisplay}
+          </div>
+          <div class="nyt-history-box">
+            <div class="nyt-history-title">Previous Results</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+          </div>
+          <div class="nyt-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+        `;
+
+        // 4. Bind the Tooltip (Hover)
         layer.bindTooltip(contentHtml, {
-            sticky: true,
-            direction: "auto",
-            className: "leaflet-tooltip-nyt",
-            offset: [15, 0],
-            opacity: 1.0 // Ensure it's fully opaque
+          sticky: true,
+          direction: "auto",
+          className: "leaflet-tooltip-nyt",
+          offset: [15, 0],
+          opacity: 1.0
         });
 
-        // Bind the popup for clicking
+        // 5. Bind the Popup (Click)
         layer.bindPopup(contentHtml, { 
-            className: "nyt-stick-popup", 
-            closeButton: false 
+          className: "nyt-stick-popup", 
+          closeButton: false 
         });
-    }
+      }
 
-    // HOVER EVENTS
-    layer.on('mouseover', e => {
+      // 6. Hover Events (Style updates only)
+      layer.on('mouseover', e => {
         const lyr = e.target;
-        // Instead of bringToFront, we just use a very distinct border
         lyr.setStyle({
-            weight: 4,     // Thicker border
-            color: '#000', // Black border
-            fillOpacity: 0.9
+          weight: 4,
+          color: '#000',
+          fillOpacity: 0.9
         });
-        
-        // Safety: If for some reason a tooltip is stuck, this helps refresh it
-        if (!lyr.isTooltipOpen()) {
+        // This is a safety check to make sure the tooltip opens
+        if (d && !lyr.isTooltipOpen()) {
             lyr.openTooltip();
         }
-    });
+      });
 
-    layer.on('mouseout', e => {
+      layer.on('mouseout', e => {
         const lyr = e.target;
-        
-        // Reset the style to the original
         geojsonLayer.resetStyle(lyr);
-        
-        // FORCE the tooltip to close immediately
+        // This prevents the "multiple boxes" ghosting issue
         lyr.closeTooltip();
-    });
-}
+      });
+    }
   }).addTo(map);
 });
 
