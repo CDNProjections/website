@@ -966,22 +966,23 @@ onEachFeature: (feature, layer) => {
       const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
       if (d) {
-        // (Keep your topParties, rowsHtml, and marginDisplay logic exactly as it is)
+        // 1. Get Top 4 Parties
         const topParties = Object.keys(d.parties)
-          .filter(p => d.parties[p] !== null)
           .sort((a, b) => d.parties[b] - d.parties[a])
           .slice(0, 4);
 
+        // 2. Build Table Rows
         const rowsHtml = topParties.map(p => {
           const val = d.parties[p];
-          const chg = d.changes && d.changes[p]; // Look up the change for this party
+          
+          // FIX IS HERE: We look inside 'd' to find the 'changes' object we created earlier
+          const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
+          
           const color = getBasePartyColor(p);
-
-          let chgDisplay = '';
-          if (chg !== undefined && !isNaN(chg)) {
-            const sign = chg > 0 ? '+' : ''; // Add '+' if positive, '-' is handled by the number
-            chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
-          }
+          
+          // Format the swing/change display (+1.2 or -0.5)
+          const sign = chg > 0 ? '+' : '';
+          const chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
 
           return `
             <tr>
@@ -992,25 +993,15 @@ onEachFeature: (feature, layer) => {
                 </div>
               </td>
               <td class="nyt-pct">
-                  ${val.toFixed(1)}%
-                  ${chgDisplay}
+                ${val.toFixed(1)}% ${chgDisplay}
               </td>
             </tr>`;
         }).join('');
 
+        // 3. Margin & Footer logic
         const marginDisplay = (d.margin !== undefined && !isNaN(d.margin)) 
           ? ` (+${d.margin.toFixed(1)}%)` 
           : "";
-
-        // NEW: Construct the Historical Results HTML
-        const historyHtml = `
-          <div class="nyt-history-box">
-            <div class="nyt-history-title">Previous Results</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
-          </div>
-        `;
 
         const contentHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
@@ -1025,20 +1016,32 @@ onEachFeature: (feature, layer) => {
           <div class="nyt-footer">
             ${escapeHtml(d.status || '')}${marginDisplay}
           </div>
-          ${historyHtml} <!-- Insert History Here -->
+          <div class="nyt-history-box">
+            <div class="nyt-history-title">Previous Results</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+          </div>
           <div class="nyt-brand">CDNProjections riding model</div>
         `;
 
-        // Bind Tooltip and Popup (Same as before)
+        // Bind Tooltip and Popup
         layer.bindTooltip(contentHtml, { sticky: true, direction: "auto", className: "leaflet-tooltip-nyt", offset: [15, 0] });
         layer.bindPopup(contentHtml, { className: "nyt-stick-popup", closeButton: false });
       }
 
-      // (Keep your mouseover and mouseout styling logic as it is)
-      layer.on('mouseover', e => { e.target.setStyle({ weight: 3, color: '#000' }); });
-      layer.on('mouseout', e => { geojsonLayer.resetStyle(e.target); });
+      // Hover styling
+      layer.on('mouseover', e => {
+        e.target.setStyle({ weight: 3, color: '#000' });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+          e.target.bringToFront();
+        }
+      });
+
+      layer.on('mouseout', e => {
+        geojsonLayer.resetStyle(e.target);
+      });
     }
-  }).addTo(map); // This ends the geojsonLayer block
+  }).addTo(map);
 });
 
 function partyColor(partyRaw) {
