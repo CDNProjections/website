@@ -381,7 +381,7 @@
 .leaflet-popup-content-wrapper {
     background: white !important;
     border-radius: 4px !important;
-    padding: 0 !important; /* Let our internal div handle padding */
+    padding: 5px !important; /* Let our internal div handle padding */
     box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
@@ -934,12 +934,12 @@ onEachFeature: (feature, layer) => {
           : "";
         
         // Use the blurb from your data, or a fallback
-        const ridingBlurb = d.blurb || "Federal Riding Projection";
+        const blurb = d.blurb || "Federal Riding Projection";
 
         // THE CONTENT TEMPLATE
         const contentHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">${escapeHtml(ridingBlurb)}</div>
+          <div class="nyt-subtitle">${escapeHtml(blurb)}</div>
           <table class="nyt-table">
             <tr class="nyt-header-row">
               <td style="text-align:left">Party</td>
