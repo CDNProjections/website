@@ -767,29 +767,27 @@ Promise.all([
   fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
-      // If your CSV fields contain commas, use PapaParse instead of the simple split below.
-      const rows = csv.split('\n').map(r => r.trim()).filter(Boolean);
-      const header = rows.shift().split(',').map(h => h.trim());
+      // Split rows but handle potential empty lines
+      const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
+      const header = rows.shift(); 
       const model = {};
 
       rows.forEach(row => {
-        // Basic split; replace with PapaParse if you have quoted commas
-        const cols = row.split(',').map(c => c.trim());
+        // IMPROVED: This regex handles commas inside quotes better than a simple split
+        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
-        // Column mapping based on the sheet you uploaded
-        const id = cols[0];                 // FED_NUM
-        const lib = parseFloat(cols[1]);    // LIB%
-        const cpc = parseFloat(cols[2]);    // CPC%
-        const bqc = parseFloat(cols[3]);    // BQC%
-        const ndp = parseFloat(cols[4]);    // NDP%
-        const grn = parseFloat(cols[5]);    // GRN%
-        const ppc = parseFloat(cols[6]);    // PPC%
-        const oth = parseFloat(cols[7]);    // OTH%
-        const status = cols[8] || '';       // Status
-        const riding = cols[9] || '';       // Riding
-        const margin = parseFloat(cols[10]); // Margin
+        const id = cols[0];                 
+        const lib = parseFloat(cols[1]);    
+        const cpc = parseFloat(cols[2]);    
+        const bqc = parseFloat(cols[3]);    
+        const ndp = parseFloat(cols[4]);    
+        const grn = parseFloat(cols[5]);    
+        const ppc = parseFloat(cols[6]);    
+        const oth = parseFloat(cols[7]);    
+        const status = cols[8] || '';       
+        const riding = cols[9] || '';       
+        const margin = parseFloat(cols[10]); 
 
-        // Build an object with all party percentages
         const parties = {
           "Liberal": isNaN(lib) ? null : lib,
           "Conservative": isNaN(cpc) ? null : cpc,
@@ -800,7 +798,6 @@ Promise.all([
           "Other": isNaN(oth) ? null : oth
         };
 
-        // Determine leading party (highest numeric value)
         let leading = null;
         Object.keys(parties).forEach(p => {
           const v = parties[p];
@@ -808,12 +805,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = {
-          parties,
-          leading,
-          status,
-          riding
-        };
+        model[id] = { parties, leading, status, riding, margin };
       });
 
       return model;
@@ -832,44 +824,47 @@ Promise.all([
     },
     onEachFeature: (feature, layer) => {
       const id = String(feature.properties.FED_NUM);
-      const ridingData = model[id];
-      layer.featureId = id;
-      layer.ridingData = ridingData;
-      layer.ridingName = ridingData && ridingData.riding
-        ? ridingData.riding
-        : (feature.properties.RIDING || feature.properties.NAME || feature.properties.FED_NAME || 'Riding');
+      const d = model[id];
+      
+      // Store data on the layer for easy access
+      layer.ridingData = d;
+      const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
-      // Hover: show leading party and percent
+      // 1. PRE-BIND THE TOOLTIP (This is the fix)
+      const tooltipText = d && d.leading
+        ? `<strong>${escapeHtml(ridingName)}</strong><br>${escapeHtml(d.leading.party)}: ${d.leading.value.toFixed(1)}%`
+        : `<strong>${escapeHtml(ridingName)}</strong><br>No data`;
+
+      layer.bindTooltip(tooltipText, {
+        sticky: true,
+        direction: "auto",
+        className: "riding-tooltip"
+      });
+
+      // 2. HOVER EVENTS (Styling only)
       layer.on('mouseover', e => {
         highlightFeature(e);
-        const d = e.target.ridingData;
-        const tooltipText = d && d.leading
-          ? `${escapeHtml(e.target.ridingName)} — ${escapeHtml(d.leading.party)}: ${d.leading.value.toFixed(1)}%` +
-            (d.margin !== null ? `  (Margin: ${d.margin.toFixed(1)}%)` : '')
-          : `${escapeHtml(e.target.ridingName)} — No data`;
-          layer.bindTooltip(tooltipText, { sticky: true }).openTooltip();
       });
 
       layer.on('mouseout', e => {
         resetHighlight(e);
-        layer.closeTooltip();
       });
 
-      // Click: show full breakdown
+      // 3. CLICK EVENT
       layer.on('click', e => {
-        const d = e.target.ridingData;
-        let popupHtml;
-        if (d) {
-          // Build a simple table-like HTML (keeps it compact)
-          const rows = Object.keys(d.parties).map(p => {
-            const v = d.parties[p];
-            return `<tr><td style="padding:2px 6px;"><strong>${escapeHtml(p)}</strong></td><td style="padding:2px 6px;text-align:right;">${v !== null ? v.toFixed(1) + '%' : 'N/A'}</td></tr>`;
-          }).join('');
-          popupHtml = `<div style="min-width:200px;"><strong>${escapeHtml(e.target.ridingName)}</strong><br><em>Status</em>: ${escapeHtml(d.status || 'N/A')}<table style="margin-top:6px;border-collapse:collapse;">${rows}</table></div>`;
-        } else {
-          popupHtml = `<strong>${escapeHtml(e.target.ridingName)}</strong><br>No data available`;
-        }
-        layer.bindPopup(popupHtml, { maxWidth: 320 }).openPopup();
+        if (!d) return;
+        const rows = Object.keys(d.parties).map(p => {
+          const v = d.parties[p];
+          return `<tr><td style="padding:2px 6px;"><strong>${escapeHtml(p)}</strong></td><td style="padding:2px 6px;text-align:right;">${v !== null ? v.toFixed(1) + '%' : 'N/A'}</td></tr>`;
+        }).join('');
+        
+        const popupHtml = `<div style="min-width:200px;">
+          <strong>${escapeHtml(ridingName)}</strong><br>
+          <small>Status: ${escapeHtml(d.status || 'N/A')}</small>
+          <table style="margin-top:6px; width:100%; border-collapse:collapse;">${rows}</table>
+        </div>`;
+        
+        layer.bindPopup(popupHtml).openPopup();
       });
     }
   }).addTo(map);
