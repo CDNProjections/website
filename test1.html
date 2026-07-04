@@ -936,6 +936,16 @@ Promise.all([
           "Other": isNaN(oth) ? null : oth
         };
 
+        const changes = {
+          "Liberal": isNaN(libchange) ? 0 : libchange,
+          "Conservative": isNaN(cpcchange) ? 0 : cpcchange,
+          "Bloc": isNaN(bqcchange) ? 0 : bqcchange,
+          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
+          "Green": isNaN(grnchange) ? 0 : grnchange,
+          "PPC": isNaN(ppcchange) ? 0 : ppcchange,
+          "Other": isNaN(othchange) ? 0 : othchange
+        };
+
         let leading = null;
         Object.keys(parties).forEach(p => {
           const v = parties[p];
