@@ -750,7 +750,6 @@
 
 
 <script>
-
 const map = L.map('map', {
   minZoom: 3,
   maxZoom: 10,
@@ -761,55 +760,122 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+let geojsonLayer = null;
+
 Promise.all([
   fetch('federalridingmap.json').then(r => r.json()),
   fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
-      const rows = csv.split('\n').slice(1);
+      // If your CSV fields contain commas, use PapaParse instead of the simple split below.
+      const rows = csv.split('\n').map(r => r.trim()).filter(Boolean);
+      const header = rows.shift().split(',').map(h => h.trim());
       const model = {};
+
       rows.forEach(row => {
-        if (!row.trim()) return;
+        // Basic split; replace with PapaParse if you have quoted commas
+        const cols = row.split(',').map(c => c.trim());
 
-        const cols = row.split(',').map(v => v.trim());
-        const id = cols[0];        // FED_NUM
-        const status = cols[8];    // Status (9th column)
-        const vote = cols[1];      // LIB% or whatever you want to show
+        // Column mapping based on the sheet you uploaded
+        const id = cols[0];                 // FED_NUM
+        const lib = parseFloat(cols[1]);    // LIB%
+        const cpc = parseFloat(cols[2]);    // CPC%
+        const bqc = parseFloat(cols[3]);    // BQC%
+        const ndp = parseFloat(cols[4]);    // NDP%
+        const grn = parseFloat(cols[5]);    // GRN%
+        const ppc = parseFloat(cols[6]);    // PPC%
+        const oth = parseFloat(cols[7]);    // OTH%
+        const status = cols[8] || '';       // Status
+        const riding = cols[9] || '';       // Riding
 
-        model[id] = { party: status, vote: parseFloat(vote) };
+        // Build an object with all party percentages
+        const parties = {
+          "Liberal": isNaN(lib) ? null : lib,
+          "Conservative": isNaN(cpc) ? null : cpc,
+          "Bloc": isNaN(bqc) ? null : bqc,
+          "NDP": isNaN(ndp) ? null : ndp,
+          "Green": isNaN(grn) ? null : grn,
+          "PPC": isNaN(ppc) ? null : ppc,
+          "Other": isNaN(oth) ? null : oth
+        };
+
+        // Determine leading party (highest numeric value)
+        let leading = null;
+        Object.keys(parties).forEach(p => {
+          const v = parties[p];
+          if (v === null) return;
+          if (!leading || v > leading.value) leading = { party: p, value: v };
+        });
+
+        model[id] = {
+          parties,
+          leading,
+          status,
+          riding
+        };
       });
+
       return model;
     })
 ]).then(([geojson, model]) => {
-  L.geoJSON(geojson, {
+  geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
       const id = String(feature.properties.FED_NUM);
       const ridingData = model[id];
       return {
         color: "#fff",
         weight: 1,
-        fillColor: ridingData ? partyColor(ridingData.party) : "#ccc",
+        fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
         fillOpacity: 0.8
       };
     },
     onEachFeature: (feature, layer) => {
       const id = String(feature.properties.FED_NUM);
       const ridingData = model[id];
-      if (ridingData) {
-        layer.bindPopup(`
-          <strong>${feature.Riding}</strong><br>
-          ${ridingData.party}: ${ridingData.vote.toFixed(1)}%
-        `);
-      }
+      layer.featureId = id;
+      layer.ridingData = ridingData;
+      layer.ridingName = ridingData && ridingData.riding
+        ? ridingData.riding
+        : (feature.properties.RIDING || feature.properties.NAME || feature.properties.FED_NAME || 'Riding');
+
+      // Hover: show leading party and percent
+      layer.on('mouseover', e => {
+        highlightFeature(e);
+        const d = e.target.ridingData;
+        const tooltipText = d && d.leading
+          ? `${escapeHtml(e.target.ridingName)} — ${escapeHtml(d.leading.party)}: ${d.leading.value.toFixed(1)}%`
+          : `${escapeHtml(e.target.ridingName)} — No data`;
+        layer.bindTooltip(tooltipText, { sticky: true }).openTooltip();
+      });
+
+      layer.on('mouseout', e => {
+        resetHighlight(e);
+        layer.closeTooltip();
+      });
+
+      // Click: show full breakdown
+      layer.on('click', e => {
+        const d = e.target.ridingData;
+        let popupHtml;
+        if (d) {
+          // Build a simple table-like HTML (keeps it compact)
+          const rows = Object.keys(d.parties).map(p => {
+            const v = d.parties[p];
+            return `<tr><td style="padding:2px 6px;"><strong>${escapeHtml(p)}</strong></td><td style="padding:2px 6px;text-align:right;">${v !== null ? v.toFixed(1) + '%' : 'N/A'}</td></tr>`;
+          }).join('');
+          popupHtml = `<div style="min-width:200px;"><strong>${escapeHtml(e.target.ridingName)}</strong><br><em>Status</em>: ${escapeHtml(d.status || 'N/A')}<table style="margin-top:6px;border-collapse:collapse;">${rows}</table></div>`;
+        } else {
+          popupHtml = `<strong>${escapeHtml(e.target.ridingName)}</strong><br>No data available`;
+        }
+        layer.bindPopup(popupHtml, { maxWidth: 320 }).openPopup();
+      });
     }
   }).addTo(map);
 });
 
 function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
-
   const party = partyRaw.trim();
-
   return {
     "Locked Liberal": "#811013",
     "Safe Liberal": "#ac151a",
@@ -846,20 +912,28 @@ function highlightFeature(e) {
     color: '#000',
     fillOpacity: 0.9
   });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
 }
 
 function resetHighlight(e) {
+  if (!geojsonLayer) return;
   geojsonLayer.resetStyle(e.target);
 }
 
-function onEachFeature(feature, layer) {
-  layer.on({
-    mouseover: highlightFeature,
-    mouseout: resetHighlight
-  });
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 </script>
+
 
 
 
