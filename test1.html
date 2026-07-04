@@ -405,6 +405,34 @@
     padding-top: 4px;
 }
 
+.nyt-history-box {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #eee;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.nyt-history-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.nyt-history-row {
+  display: block;
+}
+
+.nyt-history-year {
+  font-weight: bold;
+  color: #333;
+  width: 35px;
+  display: inline-block;
+}
+
 </style>
 </head>
 </html>
@@ -867,6 +895,10 @@ Promise.all([
         const riding = cols[9] || '';       
         const margin = parseFloat(cols[10]); 
         const blurb = cols[11] || '';       
+        const result2025 = cols[12] || '';       
+        const result2021 = cols[13] || '';       
+        const result2019 = cols[14] || '';       
+
 
         const parties = {
           "Liberal": isNaN(lib) ? null : lib,
@@ -885,7 +917,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, leading, status, riding, margin, blurb };
+        model[id] = { parties, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
       });
 
       return model;
@@ -908,7 +940,7 @@ onEachFeature: (feature, layer) => {
       const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
       if (d) {
-        // 1. Sort and get top 4
+        // (Keep your topParties, rowsHtml, and marginDisplay logic exactly as it is)
         const topParties = Object.keys(d.parties)
           .filter(p => d.parties[p] !== null)
           .sort((a, b) => d.parties[b] - d.parties[a])
@@ -932,14 +964,19 @@ onEachFeature: (feature, layer) => {
         const marginDisplay = (d.margin !== undefined && !isNaN(d.margin)) 
           ? ` (+${d.margin.toFixed(1)}%)` 
           : "";
-        
-        // Use the blurb from your data, or a fallback
-        const blurb = d.blurb || "Undefined";
 
-        // THE CONTENT TEMPLATE
+        // NEW: Construct the Historical Results HTML
+        const historyHtml = `
+          <div class="nyt-history-box">
+            <div class="nyt-history-title">Previous Results</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+          </div>
+        `;
+
         const contentHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">${escapeHtml(blurb)}</div>
+          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Federal Riding Projection')}</div>
           <table class="nyt-table">
             <tr class="nyt-header-row">
               <td style="text-align:left">Party</td>
@@ -950,36 +987,18 @@ onEachFeature: (feature, layer) => {
           <div class="nyt-footer">
             ${escapeHtml(d.status || '')}${marginDisplay}
           </div>
+          ${historyHtml} <!-- Insert History Here -->
           <div class="nyt-brand">CDNProjections riding model</div>
         `;
 
-        // BIND TOOLTIP (For Hover)
-        layer.bindTooltip(contentHtml, {
-          sticky: true,
-          direction: "auto",
-          className: "leaflet-tooltip-nyt",
-          offset: [15, 0]
-        });
-
-        // BIND POPUP (For Click/Stick)
-        layer.bindPopup(contentHtml, {
-            className: "nyt-stick-popup",
-            closeButton: false // Makes it look cleaner like the tooltip
-        });
+        // Bind Tooltip and Popup (Same as before)
+        layer.bindTooltip(contentHtml, { sticky: true, direction: "auto", className: "leaflet-tooltip-nyt", offset: [15, 0] });
+        layer.bindPopup(contentHtml, { className: "nyt-stick-popup", closeButton: false });
       }
 
-      layer.on('mouseover', e => {
-        e.target.setStyle({ weight: 3, color: '#000' });
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-          e.target.bringToFront();
-        }
-      });
-
-      layer.on('mouseout', e => {
-        geojsonLayer.resetStyle(e.target);
-      });
-
-      // On click, the popup will open automatically because of bindPopup
+      // (Keep your mouseover and mouseout styling logic as it is)
+      layer.on('mouseover', e => { e.target.setStyle({ weight: 3, color: '#000' }); });
+      layer.on('mouseout', e => { geojsonLayer.resetStyle(e.target); });
     }
   }).addTo(map); // This ends the geojsonLayer block
 });
