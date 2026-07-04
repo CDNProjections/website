@@ -885,7 +885,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, leading, status, riding, margin };
+        model[id] = { parties, leading, status, riding, margin, blurb };
       });
 
       return model;
