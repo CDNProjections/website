@@ -433,6 +433,26 @@
   display: inline-block;
 }
 
+/* Change in vote share styling */
+.nyt-chg {
+  font-size: 11px;
+  color: #999; /* Grey color */
+  font-weight: normal;
+  margin-left: 6px;
+  display: inline-block;
+  min-width: 30px;
+  text-align: left;
+}
+
+/* Ensure the PCT cell can fit both numbers */
+.nyt-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  white-space: nowrap; /* Prevents the change from wrapping to a new line */
+  padding-left: 10px;
+}
+
 </style>
 </head>
 </html>
@@ -898,7 +918,13 @@ Promise.all([
         const result2025 = cols[12] || '';       
         const result2021 = cols[13] || '';       
         const result2019 = cols[14] || '';       
-
+        const libchange = parseFloat(cols[1]);    
+        const cpcchange = parseFloat(cols[2]);    
+        const bqcchange = parseFloat(cols[3]);    
+        const ndpchange = parseFloat(cols[4]);    
+        const grnchange = parseFloat(cols[5]);    
+        const ppcchange = parseFloat(cols[6]);    
+        const othchange = parseFloat(cols[7]);    
 
         const parties = {
           "Liberal": isNaN(lib) ? null : lib,
@@ -917,7 +943,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
+        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
       });
 
       return model;
