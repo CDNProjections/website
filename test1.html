@@ -377,6 +377,34 @@
   font-weight: 500;
 }
 
+/* Styling the Popup to match the Tooltip */
+.leaflet-popup-content-wrapper {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 0 !important; /* Let our internal div handle padding */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important; /* Matches our tooltip padding */
+    min-width: 250px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+/* Footer Branding */
+.nyt-brand {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
 </style>
 </head>
 </html>
@@ -838,6 +866,7 @@ Promise.all([
         const status = cols[8] || '';       
         const riding = cols[9] || '';       
         const margin = parseFloat(cols[10]); 
+        const blurb = cols[11] || '';       
 
         const parties = {
           "Liberal": isNaN(lib) ? null : lib,
@@ -879,7 +908,7 @@ onEachFeature: (feature, layer) => {
       const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
 
       if (d) {
-        // Sort and get top 4
+        // 1. Sort and get top 4
         const topParties = Object.keys(d.parties)
           .filter(p => d.parties[p] !== null)
           .sort((a, b) => d.parties[b] - d.parties[a])
@@ -888,7 +917,6 @@ onEachFeature: (feature, layer) => {
         const rowsHtml = topParties.map(p => {
           const val = d.parties[p];
           const color = getBasePartyColor(p);
-          
           return `
             <tr>
               <td>
@@ -901,16 +929,17 @@ onEachFeature: (feature, layer) => {
             </tr>`;
         }).join('');
 
-        // Prepare the Status + Margin string (e.g. "Locked Liberal (+12.4%)")
         const marginDisplay = (d.margin !== undefined && !isNaN(d.margin)) 
           ? ` (+${d.margin.toFixed(1)}%)` 
           : "";
         
-        const footerText = `${d.status || ''}${marginDisplay}`;
+        // Use the blurb from your data, or a fallback
+        const ridingBlurb = d.blurb || "Federal Riding Projection";
 
-        const tooltipHtml = `
+        // THE CONTENT TEMPLATE
+        const contentHtml = `
           <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">Federal Riding Projection</div>
+          <div class="nyt-subtitle">${escapeHtml(ridingBlurb)}</div>
           <table class="nyt-table">
             <tr class="nyt-header-row">
               <td style="text-align:left">Party</td>
@@ -919,15 +948,23 @@ onEachFeature: (feature, layer) => {
             ${rowsHtml}
           </table>
           <div class="nyt-footer">
-            ${escapeHtml(footerText)}
+            ${escapeHtml(d.status || '')}${marginDisplay}
           </div>
+          <div class="nyt-brand">CDNProjections riding model</div>
         `;
 
-        layer.bindTooltip(tooltipHtml, {
+        // BIND TOOLTIP (For Hover)
+        layer.bindTooltip(contentHtml, {
           sticky: true,
           direction: "auto",
           className: "leaflet-tooltip-nyt",
           offset: [15, 0]
+        });
+
+        // BIND POPUP (For Click/Stick)
+        layer.bindPopup(contentHtml, {
+            className: "nyt-stick-popup",
+            closeButton: false // Makes it look cleaner like the tooltip
         });
       }
 
@@ -941,6 +978,8 @@ onEachFeature: (feature, layer) => {
       layer.on('mouseout', e => {
         geojsonLayer.resetStyle(e.target);
       });
+
+      // On click, the popup will open automatically because of bindPopup
     }
   }).addTo(map); // This ends the geojsonLayer block
 });
