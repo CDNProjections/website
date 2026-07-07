@@ -1414,7 +1414,7 @@ createCountdown("countdown4", "July 21, 2026 0:00:00");
 </script>
 
 <script>
-document.querySelectorAll('.carousel').forEach((carousel) => {
+document.querySelectorAll('.projection-carousel').forEach((carousel) => {
   let currentSlide = 0;
 
   const slides = carousel.querySelectorAll('.slide');
@@ -1453,7 +1453,7 @@ document.querySelectorAll('.carousel').forEach((carousel) => {
     });
   });
 
-  // Auto‑advance (each carousel gets its own timer)
+  // Auto‑advance
   setInterval(() => {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
