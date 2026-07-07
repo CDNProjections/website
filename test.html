@@ -841,6 +841,10 @@
         </a>
         <a href="index.html" class="province-link-head">
         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Chicoutimi-Le Fjord
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
         Laurier-Sainte-Marie
         </a>
         <a href="index.html" class="province-link-head">
@@ -1233,7 +1237,7 @@
       <span style="color: #f45e5a;">Remain favoured to win over Holding a Second Referendum</span><br>
       <span>Last Update: X X, 2026</span>
     </p>
-    <a href="quebec.html" class="view-link">View full projection →</a>
+    <a href="albertareferendum.html" class="view-link">View full projection →</a>
   </div>
   </div>
   </div>
@@ -1249,7 +1253,51 @@
       <span style="color: #f45e5a;">Remain favoured to win over Independence</span><br>
       <span>Last Update: X X, 2025</span>
     </p>
-    <a href="alberta.html" class="view-link">View full projection →</a>
+    <a href="quebecreferendum.html" class="view-link">View full projection →</a>
+  </div>
+  </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="prev">←</button>
+    <button class="next">→</button>
+  </div>
+
+  <div class="carousel-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<div class="projection-carousel">
+  <div class="slide active">
+  <div class="slide-content">
+  <div class="map-column">
+    <img src="https://en.wikipedia.org/wiki/Wards_of_the_City_of_Ottawa#/media/File:Ottawa_ward_map_(2022).png" alt="Ottawa Map" class="province-map">
+  </div>
+  <div class="text-column">
+    <h3 class="province-title">Ottawa Mayoral Election</h3>
+    <p class="province-blurb">
+      <span style="color: #f45e5a;">Sutcliffe favoured to win a 2nd term</span><br>
+      <span>Last Update: X X, 2026</span>
+    </p>
+    <a href="ottawa.html" class="view-link">View full projection →</a>
+  </div>
+  </div>
+  </div>
+
+  <div class="slide">
+  <div class="slide-content">
+  <div class="map-column">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/d/dc/20230627020348%21Toronto_mayoral_election%2C_2023_results_by_ward.svg" alt="Toronto Map" class="province-map">
+  </div>
+  <div class="text-column">
+    <h3 class="province-title">Toronto Mayoral Election</h3>
+    <p class="province-blurb">
+      <span style="color: #f45e5a;">Chow favoured to win a first full term</span><br>
+      <span>Last Update: X X, 2025</span>
+    </p>
+    <a href="toronto.html" class="view-link">View full projection →</a>
   </div>
   </div>
   </div>
@@ -1283,6 +1331,25 @@
 
 <br>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiDbhJyxHNYDRFhFz6j-362KR3HOSiD-nXa_r2c7q9KeygPw/viewform?embedded=true" width="75%" height="750" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 function toggleDropdown(button) {
@@ -1347,39 +1414,54 @@ createCountdown("countdown4", "July 21, 2026 0:00:00");
 </script>
 
 <script>
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
+document.querySelectorAll('.carousel').forEach((carousel) => {
+  let currentSlide = 0;
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-    dots[i].classList.toggle('active', i === index);
+  const slides = carousel.querySelectorAll('.slide');
+  const dots = carousel.querySelectorAll('.dot');
+  const nextBtn = carousel.querySelector('.next');
+  const prevBtn = carousel.querySelector('.prev');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+  }
+
+  // Next button
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+  }
+
+  // Prev button
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+  }
+
+  // Dot click
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentSlide = i;
+      showSlide(currentSlide);
+    });
   });
-}
 
-document.querySelector('.next').addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-});
-
-document.querySelector('.prev').addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-});
-
-dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    currentSlide = i;
+  // Auto‑advance (each carousel gets its own timer)
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
-  });
-});
+  }, 20000);
 
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % slides.length;
+  // Initialize
   showSlide(currentSlide);
-}, 20000);
-
+});
 </script>
 
 
