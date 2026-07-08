@@ -652,6 +652,36 @@
   margin-top: 0;
 }
 
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-grid {
+    grid-template-columns: 1fr; /* stack columns vertically */
+    gap: 10px; /* tighter spacing for mobile */
+    margin: 10px;
+  }
+
+  .homepage-grid > * {
+    width: 100%; /* ensure each card fills the viewport width */
+  }
+}
+
 </style>
 </head>
 </html>
