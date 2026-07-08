@@ -695,7 +695,9 @@
   }
 
   .logo-title {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
   }
 
@@ -714,11 +716,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
     padding: 10px 0;
   }
 
   .nav-bar > a {
+    text-align: center;
     font-size: 1rem;
     padding: 6px 0;
   }
@@ -778,6 +782,13 @@
     font-size: clamp(1.2rem, 4vw, 2rem);
   }
 }
+
+@media (max-width: 768px) {
+  .main-header {
+    position: static;   /* disables sticky */
+  }
+}
+
 
 </style>
 </head>
