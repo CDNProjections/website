@@ -682,6 +682,103 @@
   }
 }
 
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-title {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .logo-title img {
+    width: 70px;
+    height: auto;
+  }
+
+  .logo-title h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .nav-bar > a {
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown, .dropdown-sub {
+    width: 100%;
+  }
+
+  .dropbtn, .dropbtn-sub {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content,
+  .dropdown-content-sub {
+    position: static; /* removes desktop absolute positioning */
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .province-link-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}
+
 </style>
 </head>
 </html>
