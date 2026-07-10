@@ -675,6 +675,17 @@
     grid-template-columns: 1fr; /* stack columns vertically */
     gap: 10px; /* tighter spacing for mobile */
     margin: 10px;
+    grid-template-areas:
+        "main-content"
+        "sidebar";
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+  }
+
+  .main-content {
+    grid-area: main-content;
   }
 
   .homepage-grid > * {
