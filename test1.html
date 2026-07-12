@@ -327,7 +327,7 @@
   }
 }
 
-.leaflet-tooltip-nyt {
+.leaflet-tooltip-map {
   background: white !important;
   border: 1px solid #ccc !important;
   border-radius: 4px !important;
@@ -338,24 +338,24 @@
   min-width: 250px; /* Slightly wider to fit decimals and margins */
 }
 
-.leaflet-tooltip-nyt::before { display: none !important; }
+.leaflet-tooltip-map::before { display: none !important; }
 
-.nyt-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
-.nyt-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
+.map-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
+.map-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
 
-.nyt-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
 /* Thin separators between party rows */
-.nyt-table tr { border-bottom: 1px solid #eeeeee; }
-.nyt-table tr:last-child { border-bottom: none; }
+.map-table tr { border-bottom: 1px solid #eeeeee; }
+.map-table tr:last-child { border-bottom: none; }
 
-.nyt-table td { padding: 7px 0; vertical-align: middle; }
+.map-table td { padding: 7px 0; vertical-align: middle; }
 
 /* THE FIX: Alignment */
-.nyt-party-cell { text-align: left; display: flex; align-items: center; }
-.nyt-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
+.map-party-cell { text-align: left; display: flex; align-items: center; }
+.map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
 
-.nyt-color-bar {
+.map-color-bar {
   width: 4px;
   height: 18px;
   background-color: #ccc;
@@ -363,14 +363,14 @@
   flex-shrink: 0;
 }
 
-.nyt-header-row td { 
+.map-header-row td { 
   font-size: 11px; 
   color: #999; 
   padding-bottom: 4px; 
   border-bottom: 1px solid #ddd;
 }
 
-.nyt-footer {
+.map-footer {
   font-size: 12px;
   color: #666;
   margin-top: 10px;
@@ -396,7 +396,7 @@
 }
 
 /* Footer Branding */
-.nyt-brand {
+.map-brand {
     font-size: 10px;
     color: #aaa;
     text-transform: uppercase;
@@ -406,7 +406,7 @@
     padding-top: 4px;
 }
 
-.nyt-history-box {
+.map-history-box {
   margin-top: 8px;
   padding-top: 6px;
   border-top: 1px dashed #eee;
@@ -415,7 +415,7 @@
   line-height: 1.4;
 }
 
-.nyt-history-title {
+.map-history-title {
   font-size: 10px;
   text-transform: uppercase;
   color: #999;
@@ -423,11 +423,11 @@
   font-weight: bold;
 }
 
-.nyt-history-row {
+.map-history-row {
   display: block;
 }
 
-.nyt-history-year {
+.map-history-year {
   font-weight: bold;
   color: #333;
   width: 35px;
@@ -435,7 +435,7 @@
 }
 
 /* Change in vote share styling */
-.nyt-chg {
+.map-chg {
   font-size: 11px;
   color: #999; /* Grey color */
   font-weight: normal;
@@ -446,7 +446,7 @@
 }
 
 /* Ensure the PCT cell can fit both numbers */
-.nyt-pct { 
+.map-pct { 
   text-align: right; 
   font-weight: bold; 
   font-size: 14px; 
@@ -460,7 +460,7 @@
 }
 
 /* Ensure tooltips don't catch mouse events (prevents flickering) */
-.leaflet-tooltip-nyt {
+.leaflet-tooltip-map {
     pointer-events: none !important;
 }
 
@@ -1220,6 +1220,7 @@ onEachFeature: (feature, layer) => {
       const id = String(feature.properties.FED_NUM);
       const d = model[id];
       const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
       // We only build the box if data (d) actually exists for this riding
       if (d) {
@@ -1235,17 +1236,17 @@ onEachFeature: (feature, layer) => {
           const color = getBasePartyColor(p);
           
           const sign = chg > 0 ? '+' : '';
-          const chgDisplay = `<span class="nyt-chg">${sign}${chg.toFixed(1)}</span>`;
+          const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
 
           return `
             <tr>
               <td>
-                <div class="nyt-party-cell">
-                  <div class="nyt-color-bar" style="background-color: ${color}"></div>
+                <div class="map-party-cell">
+                  <div class="map-color-bar" style="background-color: ${color}"></div>
                   <span>${p}</span>
                 </div>
               </td>
-              <td class="nyt-pct">${val.toFixed(1)}% ${chgDisplay}</td>
+              <td class="map-pct">${val.toFixed(1)}% ${chgDisplay}</td>
             </tr>`;
         }).join('');
 
@@ -1255,10 +1256,10 @@ onEachFeature: (feature, layer) => {
 
         // 3. Assemble the full content string
         const contentHtml = `
-          <div class="nyt-title">${escapeHtml(ridingName)}</div>
-          <div class="nyt-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
-          <table class="nyt-table">
-            <tr class="nyt-header-row">
+          <div class="map-title">${escapeHtml(ridingName)}</div>
+          <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+          <table class="map-table">
+            <tr class="map-header-row">
               <td style="text-align:left">Party</td>
               <td style="text-align:right">
                 Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2025</span>
@@ -1266,57 +1267,59 @@ onEachFeature: (feature, layer) => {
             </tr>
             ${rowsHtml}
           </table>
-          <div class="nyt-footer">
+          <div class="map-footer">
             ${escapeHtml(d.status || '')}${marginDisplay}
           </div>
-          <div class="nyt-history-box">
-            <div class="nyt-history-title">Previous Results</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
-            <div class="nyt-history-row"><span class="nyt-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+          <div class="map-history-box">
+            <div class="map-history-title">Previous Results</div>
+            <div class="map-history-row"><span class="map-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
+            <div class="map-history-row"><span class="map-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+            <div class="map-history-row"><span class="map-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
           </div>
-          <div class="nyt-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+          <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
         `;
 
         // 4. Bind the Tooltip (Hover)
         layer.bindTooltip(contentHtml, {
           sticky: true,
           direction: "auto",
-          className: "leaflet-tooltip-nyt",
+          className: "leaflet-tooltip-map",
           offset: [15, 0],
           opacity: 1.0
         });
 
         // 5. Bind the Popup (Click)
         layer.bindPopup(contentHtml, { 
-          className: "nyt-stick-popup", 
+          className: "map-stick-popup", 
           closeButton: false 
         });
       }
 
-      // 6. Hover Events (Style updates only)
-      layer.on('mouseover', e => {
-        const lyr = e.target;
-        lyr.setStyle({
-          weight: 4,
-          color: '#000',
-          fillOpacity: 0.9
-        });
-        // This is a safety check to make sure the tooltip opens
-        if (d && !lyr.isTooltipOpen()) {
-            lyr.openTooltip();
-        }
-      });
+// 6. Hover Events (Style updates only)
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-      layer.on('mouseout', e => {
-        const lyr = e.target;
-        geojsonLayer.resetStyle(lyr);
-        // This prevents the "multiple boxes" ghosting issue
-        lyr.closeTooltip();
-      });
+if (!isMobile) {
+
+  layer.on('mouseover', e => {
+    const lyr = e.target;
+    lyr.setStyle({
+      weight: 4,
+      color: '#000',
+      fillOpacity: 0.9
+    });
+
+    if (d && !lyr.isTooltipOpen()) {
+      lyr.openTooltip();
     }
-  }).addTo(map);
-});
+  });
+
+  layer.on('mouseout', e => {
+    const lyr = e.target;
+    geojsonLayer.resetStyle(lyr);
+    lyr.closeTooltip();
+  });
+
+}
 
 function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
