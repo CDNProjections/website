@@ -1296,8 +1296,6 @@ onEachFeature: (feature, layer) => {
       }
 
 // 6. Hover Events (Style updates only)
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
 if (!isMobile) {
 
   layer.on('mouseover', e => {
