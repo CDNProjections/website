@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada</title>
+    <title>CDNProjections</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
     <script>
      window.dataLayer = window.dataLayer || [];
@@ -15,315 +15,1284 @@
 
      gtag('config', 'G-V2T0WMSWY8');
    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <style>
     body {
-        background-color: #f7f7f7;
-        margin: 0;
-        padding: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        background-color: #e6e6e6;
         font-family: 'Hind Siliguri', sans-serif;
         text-align: center;
-        flex-direction: column;
-        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
 
     .province-link {
-        display: block;
-        text-decoration: none;
-    } 
-
-    .province-title {
-        font-size: 30px;
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-
-    .party-row {
-       display: flex;
-       align-items: center;
-       gap: 10px;
-    }
-        
-    .party-logo {
-        width: 4em;
-        height: 4em;
-    }
-        
-    .header-box {
-        background-color: #808080;
-        width: 100%;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        color: black;
-    }
-        
-    .text {
-        font-size: 30px;
-        color: black;
-        font-weight: bold;
-    }
-        
-    .province-box {
-       border: 2px solid black;
-       background-color: #e8e8e8;
-       padding: 15px;
-       width: 100%;
-       box-sizing: border-box;
-       display: flex;
-       flex-direction: column;
-       gap: 15px;
-       color: black;
-    }
-        
-    .bar-container {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: 5px;
-    }
-
-    .vote-bar, .seat-bar {
-      height: 40px;
       display: block;
+      text-decoration: none;
     }
 
-    .vote-bar {
-      width: 90%;
-      height: 30px;
-    }
-
-    .seat-bar {
-      width: 90%;
-      height: 80px;
-    }
-
-    .odds-bar {
-      width: 90%;
-      height: 10px;
-    }
-
-    .bar-text {
-      font-size: 12px;
-      color: black;
-      font-weight: bold;
-      margin-left: 5px;
-    }
-
-    .seat-vote-container {
+    .container {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-      
-    .seat-count {
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+      gap: 15px;
     }
 
-    .highlight {
-      font-size: 26px;
-      text-align: center;
-    }
-        
-     .vote-count {
-      font-size: 14px;
-    }
+.main-header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 2px solid #000000;
+  font-family: 'Hind Siliguri', sans-serif;
+  top: 0;
+  position: relative;
+  z-index: 1100;
+}
 
-     .odds-count {
-      font-size: 16px;
-     }
-        
-     .grid-container { 
-      display: grid; 
-      grid-template-columns: repeat(10, 1fr); 
-      grid-gap: 10px; 
-      padding: 10px; 
-     }
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 15px 40px;
+}
 
-     .grid-item {
-      padding: 10px;
-      background-color: black;
-      border-radius: 5px solid black;
-      color: white;
-      text-align: center;
-     }
+.logo-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
+.logo-title img {
+  width: 80px;
+  height: 80px;
+}
+
+.logo-section h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 5px 0 0 0;
+  color: #111827;
+}
+
+.social-icons {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 10px 0;
+  border-top: 1px solid #808080;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.nav-bar a, .dropbtn {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.nav-bar a:hover, .dropbtn:hover {
+  color: #a36d7c;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: #111827;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn-sub {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  transition: color 0.2s ease;
+}
+
+.dropbtn-sub:hover {
+  color: #a36d7c;
+}
+
+.dropdown-content-sub {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+  background-color: #ffffff;
+  min-width: 180px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 11;
+}
+
+.dropdown-sub:hover .dropdown-content-sub {
+  display: block;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.dropdown:hover > .dropbtn .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-sub:hover > .dropbtn-sub .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-content.show,
+.dropdown-content-sub.show {
+  display: block;
+}
+
+.province-link-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111827;
+}
+
+.dropdown-content-sub a,
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.projection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.results {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.party-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.party-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.topline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.party-name {
+  font-weight: 700;
+}
+
+.highlight {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.vote {
+  color: #808080;
+  font-size: 16px;
+}
+
+.bar {
+  margin-top: 6px;
+  width: 100%;
+  height: 18px;
+  background: #f0f0f0;
+}
+
+.bar-fill {
+  height: 100%;
+}
+
+.updated {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #808080;
+  text-align: center;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 @media (max-width: 768px) {
-    div[style="display: flex; flex-direction: row"] {
-        flex-direction: column !important;
-        align-items: center;
-    }
-    
-    .province-box {
-        width: 100%;
-    }
-
-    .party-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .bar-container {
-        width: 100%;
-    }
+  #map {
+    height: 500px;
+  }
 }
+
+.leaflet-tooltip-map {
+  background: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 12px !important;
+  color: #333 !important;
+  opacity: 1 !important;
+  min-width: 250px;
+}
+
+.leaflet-tooltip-map::before { display: none !important; }
+
+.map-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
+.map-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
+
+.map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+.map-table tr { border-bottom: 1px solid #eeeeee; }
+.map-table tr:last-child { border-bottom: none; }
+
+.map-table td { padding: 7px 0; vertical-align: middle; }
+
+.map-party-cell { text-align: left; display: flex; align-items: center; }
+.map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+.map-color-bar {
+  width: 4px;
+  height: 18px;
+  background-color: #ccc;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.map-header-row td { 
+  font-size: 11px; 
+  color: #999; 
+  padding-bottom: 4px; 
+  border-bottom: 1px solid #ddd;
+}
+
+.map-footer {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 5px;
+  font-weight: 500;
+}
+
+.leaflet-popup-content-wrapper {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important;
+    min-width: 250px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+.map-brand {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
+.map-history-box {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #eee;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.map-history-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.map-history-row {
+  display: block;
+}
+
+.map-history-year {
+  font-weight: bold;
+  color: #333;
+  width: 35px;
+  display: inline-block;
+}
+
+.map-chg {
+  font-size: 11px;
+  color: #999;
+  font-weight: normal;
+  margin-left: 6px;
+  display: inline-block;
+  min-width: 30px;
+  text-align: left;
+}
+
+.map-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  white-space: nowrap;
+  padding-left: 10px;
+}
+
+.leaflet-interactive:hover {
+    outline: none;
+}
+
+.leaflet-tooltip-map {
+    pointer-events: none !important;
+}
+
+.leaflet-interactive {
+    transition: stroke-width 0.1s, stroke 0.1s;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  max-height: 900px;
+  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  color: #a36d7c;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.card iframe,
+.card .flourish-embed {
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .projection-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 10px;
+    grid-template-areas:
+        "main-content"
+        "sidebar";
+  }
+
+  .results {
+    grid-area: sidebar;
+  }
+
+  .map {
+    grid-area: main-content;
+  }
+
+  .homepage-grid > * {
+    width: 100%;
+  }
+
+  .page-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .logo-title img {
+    width: 70px;
+    height: auto;
+  }
+
+  .logo-title h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-bar > a {
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown, .dropdown-sub {
+    width: 100%;
+  }
+
+  .dropbtn, .dropbtn-sub {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content,
+  .dropdown-content-sub {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .province-link-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    width: 10%;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-title,
+  .live {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .flourish-embed[data-src="visualisation/29608498"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29608498"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29607733"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29607733"] iframe {
+    height: 400px !important;
+  }
+}
+
 
 </style>
 </head>
+</html>
+
 <body>
-<header style="display: flex; align-items: center; text-align: center; width: 100%; border: none;">
-    <a href="index.html" class="province-link">
-    <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" style="width: 200px; height: 200px; margin-right: 20px;">
-    </a>
-    <div style="flex: 1;">
-        <h1>Canada</h1>
-        <p>Some elements on the page take some time to load; please be patient</p>
-        <hr style="height:10px; visibility:hidden;">
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-title">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" alt="CDNProjections Logo">
+      </a>
+      <h1>CDNProjections</h1>
     </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Regional Results">Regional Results</a>
-    </h3>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+      </a>
+      <a href="https://x.com/CDNprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X">
+      </a>
+      <a href="https://cdnprojections.substack.com/" target="_blank">
+        <img src="https://substack.com/img/substack.png" alt="Substack">
+      </a>
+      <a href="https://www.youtube.com/@cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+      </a>
     </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Simulator">Simulator</a>
-    </h3>
+  </div>
+
+<nav class="nav-bar">
+  <a href="index.html">Home</a>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Provincial Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2026
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="quebec.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg" style="width: 25px; height: 17px">
+         Québec
+        </a>
+      </div>
     </div>
-    <div style="flex: 1;">
-    <h3>
-    <a href="#Model Specifics">Dropdowns and Polls</a>
-    </h3>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2027
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="PEI.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 25px; height: 17px">
+        Prince Edward Island
+        </a>
+        <a href="manitoba.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 33px; height: 17px">
+        Manitoba
+        </a>
+        <a href="alberta.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
+        Alberta
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2028
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NS.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 33px; height: 17px">
+        Nova Scotia
+        </a>
+        <a href="NB.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg" style="width: 27px; height: 17px">
+        New Brunswick
+        </a>
+        <a href="BC.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 28px; height: 17px">
+        British Columbia
+        </a>
+        <a href="SK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 33px; height: 17px">
+        Saskatchewan
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2029
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NL.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 33px; height: 17px">
+        Newfoundland and Labrador
+        </a>
+        <a href="YK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 33px; height: 17px">
+        Yukon
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2030
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="ontario.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        Ontario
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Federal Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+        <a href="canada.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+         Canada
+        </a>
+      </div>
+    </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    By-Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        Called
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="cornwall.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 25px; height: 17px">
+         Cornwall-Meadowbank
+        </a>
+        <a href="pas.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 33px; height: 17px">
+         The Pas-Kameesak
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        Uncalled
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub" style="overflow-y:scroll;">
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Beaches-East York
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
+        Calgary-Shaw
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Chicoutimi-Le Fjord
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Laurier-Sainte-Marie
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        North Vancouver-Capilano
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Rosemont-La Petite-Patrie
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Saint-Hyacinthe-Bagot-Acton
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        Scarborough Southwest
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        York-Simcoe
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Yorkton-Melville
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <a href="polls.html">Polls</a>
+  <a href="accuracy.html">Accuracy</a>
+    
+</nav>
+
 </header>
 
-<div class="province-box">
- <h2 class="province-title">CDNProjections Federal Electoral Model</h2>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 61.52%; background-color: #ac151a;"></div>
-        <div class="vote-bar" style="width: 46.64%; background-color: #df484d;"></div>
-         </div>
-     <div class="seat-vote-container">
-         <span class="seat-count">161-<span class="highlight">211</span>-244</span>
-         <span class="vote-count">(46.64%)</span>
-     </div>
-    </div>
-     <div class="party-row">
-      <img src="https://cpcassets.conservative.ca/social-icons/conservative-logo-Dark_Blue.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 27.70%; background-color: #0f2643;"></div>
-        <div class="vote-bar" style="width: 35.31%; background-color: #425976;"></div>
+<div class="page-wrapper">
+
+<div class="projection-grid">
+
+<div class="results">
+  <h2 class="title">CDNProjections Federal Electoral Model</h2>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Liberals</span>
+        <span>160–<span class="highlight">203</span>–224</span>
+        <span class="vote">(43.97%)</span>
       </div>
-      <div class="seat-vote-container">
-        <span class="seat-count">79-<span class="highlight">95</span>-140</span>
-        <span class="vote-count">(35.31%)</span>
-    </div>
-    </div>
-    <div class="party-row">
-      <img src="https://www.blocquebecois.org/wp-content/themes/bloc2021/images/logo-square.svg?ver=1712854112571" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 7.00%; background-color: #0086b9;"></div>
-        <div class="vote-bar" style="width: 6.59%; background-color: #33b9ec;"></div>
-         </div>
-      <div class="seat-vote-container">
-         <span class="seat-count">15-<span class="highlight">24</span>-35</span>
-         <span class="vote-count">(6.59%)</span>
+      <div class="bar">
+        <div class="bar-fill" style="width: 59.18%; background-color:#ac151a;"></div>
       </div>
     </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Orange_NDP_logo_English.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 2.62%; background-color: #c4681a;"></div>
-        <div class="vote-bar" style="width: 7.21%; background-color: #f79b4d;"></div>
-         </div>
-      <div class="seat-vote-container">
-         <span class="seat-count">4-<span class="highlight">10</span>-22</span>
-          <span class="vote-count">(7.21%)</span>
+  </div>
+
+  <div class="party-row">
+    <img src="https://cpcassets.conservative.ca/social-icons/conservative-logo-Dark_Blue.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Conservatives</span>
+        <span>79–<span class="highlight">93</span>–140</span>
+        <span class="vote">(34.16%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 27.11%; background-color:#0f2643;"></div>
       </div>
     </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Logo_2025_Green_Party_of_Canada.svg" alt="Party Logo" class="party-logo">
-      <div class="bar-container">
-        <div class="seat-bar" style="width: 0.87%; background-color: #307c2a;"></div>
-        <div class="vote-bar" style="width: 2.05%; background-color: #63af5d;"></div>
-         </div>
-      <div class="seat-vote-container">
-         <span class="seat-count">1-<span class="highlight">3</span>-4</span>
-          <span class="vote-count">(2.05%)</span>
+  </div>
+
+  <div class="party-row">
+    <img src="https://www.blocquebecois.org/wp-content/themes/bloc2021/images/logo-square.svg?ver=1712854112571" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Bloc Québécois</span>
+        <span>15–<span class="highlight">24</span>–35</span>
+        <span class="vote">(6.80%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 7.00%; background-color:#0086b9;"></div>
       </div>
     </div>
-    <div class="party-row">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" alt="Party Logo" class="party-logo">
-         <div class="bar-container">
-          <div class="seat-bar" style="width: 0.25%; background-color: #666666;"></div>
-          <div class="vote-bar" style="width: 2.19%; background-color: #999999;"></div>
-         </div>
-      <div class="seat-vote-container">
-         <span class="seat-count">0-<span class="highlight">0</span>-0</span>
-          <span class="vote-count">(2.19%)</span>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Orange_NDP_logo_English.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">NDP</span>
+        <span>8–<span class="highlight">20</span>–27</span>
+        <span class="vote">(7.21%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 5.83%; background-color:#c4681a;"></div>
       </div>
     </div>
-    <p>Last Updated: May 10, 2026<br><i>Party Floor-Projection-Party Ceiling<br>Percent of the Vote</i></p>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Logo_2025_Green_Party_of_Canada.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Greens</span>
+        <span>1–<span class="highlight">3</span>–4</span>
+        <span class="vote">(2.52%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 0.87%; background-color:#307c2a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: July 12, 2026</p>
 </div>
 
-<div class="province-box">
-    <h2 class="province-title">CDNProjections Chance of Forming Government</h2>
-        <div class="party-row">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" alt="Party Logo" class="party-logo">
-                <div class="bar-container">
-                    <div class="vote-bar" style="width: 95.8%; background-color: #e35f63;"></div>
-                    <div class="vote-bar" style="width: 4.2%; background-color: #e77679;"></div>
-                </div>
-                <div class="seat-vote-container">
-                    <span class="odds-count">(LIB Maj: 95.8%)</span>
-                    <span class="odds-count">(LIB Min: 4.2%)</span>
-                </div>
-        </div>
 
-    <p>Last Updated: May 10, 2026<br><i>Chance at Forming Government</i></p>
+<div id="map"></div>
+
+<div class="card">
+  <h3 class="card-title">Canada - 100 Simulated Results of the next Canadian Election</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/29590630"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29590630/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Canada - Regional Breakdowns</h3>
+<div class="flourish-embed flourish-parliament" data-src="visualisation/29608112"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29608112/thumbnail" width="100%" alt="parliament visualization" /></noscript></div>
+</div>
 
 </div>
 
-<div id="Regional Results" class="province-box">
-<div class="flourish-embed flourish-parliament" data-src="visualisation/21663506"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21663506/thumbnail" width="100%" alt="parliament visualization" /></noscript></div>
+<div class="card">
+  <h3 class="card-title">Canada - Historical Timeline of Projections</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/29607733" data-height="800px"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29607733/thumbnail" width="100%" height="400px" alt="chart visualization" /></noscript></div>
 </div>
 
-<div class="province-box">
-    <h2 class="province-title">Map</h2>
-<iframe title="Canada Projection" aria-label="Map" id="datawrapper-chart-cBY2w" src="https://datawrapper.dwcdn.net/cBY2w/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="680" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();</script>
+<div class="card">
+  <h3 class="card-title">Canada - Federal Polling</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/29608498" data-height="800px"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29608498/thumbnail" width="100%" height="400px" alt="chart visualization" /></noscript></div>
 </div>
 
-<div class="province-box">
-<h2 id="Model Specifics"></h2>
-    <div class="flourish-embed flourish-election" data-src="visualisation/21431016"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431016/thumbnail" width="100%" alt="election visualization" /></noscript></div>
-    <div class="flourish-embed flourish-chart" data-src="visualisation/21431145"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431145/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
-    <div class="flourish-embed flourish-chart" data-src="visualisation/21431179"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/21431179/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
-<div class="province-box">
-    <h2 id="Simulator" class="province-title">Simulator</h2>
-    <p><b>Simulate a Federal election by changing the voting intentions in the first table</b><br><i>It is important to note that the simulator does not include all model shifts and will not be identical to my real projection</i></p>
-    <a href="https://yapms.com/app/can/commons/2023201/blank?m=9wl5xm4j6jbtlk6">Click here to map your result</a>
+<script>
+const map = L.map('map', {
+  minZoom: 3,
+  maxZoom: 10,
+  zoomControl: true
+}).setView([56, -96], 4);
 
-<iframe width="100%" height="900" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/cf2e3623f1a8d6d7/IQRhnzUk9VSkS4PR4HN2KWiYAW1UAf00XHYqtZrfphR3pMc?wdAllowInteractivity=False&AllowTyping=True&ActiveCell='Simulator'!B2&wdInConfigurator=True&wdInConfigurator=True"></iframe>
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+let geojsonLayer = null;
+
+Promise.all([
+  fetch('federalridingmap.json').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
+    .then(r => r.text())
+    .then(csv => {
+      // Split rows but handle potential empty lines
+      const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
+      const header = rows.shift(); 
+      const model = {};
+
+      rows.forEach(row => {
+        // IMPROVED: This regex handles commas inside quotes better than a simple split
+        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+
+        const id = cols[0];                 
+        const lib = parseFloat(cols[1]);    
+        const cpc = parseFloat(cols[2]);    
+        const bqc = parseFloat(cols[3]);    
+        const ndp = parseFloat(cols[4]);    
+        const grn = parseFloat(cols[5]);    
+        const ppc = parseFloat(cols[6]);    
+        const oth = parseFloat(cols[7]);    
+        const status = cols[8] || '';       
+        const riding = cols[9] || '';       
+        const margin = parseFloat(cols[10]); 
+        const blurb = cols[11] || '';       
+        const result2025 = cols[12] || '';       
+        const result2021 = cols[13] || '';       
+        const result2019 = cols[14] || '';       
+        const libchange = parseFloat(cols[15]);    
+        const cpcchange = parseFloat(cols[16]);    
+        const bqcchange = parseFloat(cols[17]);    
+        const ndpchange = parseFloat(cols[18]);    
+        const grnchange = parseFloat(cols[19]);    
+        const ppcchange = parseFloat(cols[20]);    
+        const othchange = parseFloat(cols[21]);    
+
+        const parties = {
+          "Liberal": isNaN(lib) ? null : lib,
+          "Conservative": isNaN(cpc) ? null : cpc,
+          "Bloc": isNaN(bqc) ? null : bqc,
+          "NDP": isNaN(ndp) ? null : ndp,
+          "Green": isNaN(grn) ? null : grn,
+          "PPC": isNaN(ppc) ? null : ppc,
+          "Other": isNaN(oth) ? null : oth
+        };
+
+        const changes = {
+          "Liberal": isNaN(libchange) ? 0 : libchange,
+          "Conservative": isNaN(cpcchange) ? 0 : cpcchange,
+          "Bloc": isNaN(bqcchange) ? 0 : bqcchange,
+          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
+          "Green": isNaN(grnchange) ? 0 : grnchange,
+          "PPC": isNaN(ppcchange) ? 0 : ppcchange,
+          "Other": isNaN(othchange) ? 0 : othchange
+        };
+
+        let leading = null;
+        Object.keys(parties).forEach(p => {
+          const v = parties[p];
+          if (v === null) return;
+          if (!leading || v > leading.value) leading = { party: p, value: v };
+        });
+
+        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
+      });
+
+      return model;
+    })
+]).then(([geojson, model]) => {
+  geojsonLayer = L.geoJSON(geojson, {
+    style: feature => {
+      const id = String(feature.properties.FED_NUM);
+      const ridingData = model[id];
+      return {
+        color: "#fff",
+        weight: 1,
+        fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
+        fillOpacity: 0.8
+      };
+    },
+onEachFeature: (feature, layer) => {
+  const id = String(feature.properties.FED_NUM);
+  const d = model[id];
+  const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  if (d) {
+    const topParties = Object.keys(d.parties)
+      .sort((a, b) => d.parties[b] - d.parties[a])
+      .slice(0, 4);
+
+    const rowsHtml = topParties.map(p => {
+      const val = d.parties[p];
+      const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
+      const color = getBasePartyColor(p);
+      const sign = chg > 0 ? '+' : '';
+      const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
+
+      return `
+        <tr>
+          <td>
+            <div class="map-party-cell">
+              <div class="map-color-bar" style="background-color: ${color}"></div>
+              <span>${p}</span>
+            </div>
+          </td>
+          <td class="map-pct">${val.toFixed(1)}% ${chgDisplay}</td>
+        </tr>`;
+    }).join('');
+
+    const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
+      ? ` (+${d.margin.toFixed(1)}%)`
+      : "";
+
+    const contentHtml = `
+      <div class="map-title">${escapeHtml(ridingName)}</div>
+      <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+      <table class="map-table">
+        <tr class="map-header-row">
+          <td style="text-align:left">Party</td>
+          <td style="text-align:right">
+            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2025</span>
+          </td>
+        </tr>
+        ${rowsHtml}
+      </table>
+      <div class="map-footer">
+        ${escapeHtml(d.status || '')}${marginDisplay}
+      </div>
+      <div class="map-history-box">
+        <div class="map-history-title">Previous Results</div>
+        <div class="map-history-row"><span class="map-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
+        <div class="map-history-row"><span class="map-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+        <div class="map-history-row"><span class="map-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+      </div>
+      <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+    `;
+
+    // Tooltip only on non-mobile
+    if (!isMobile) {
+      layer.bindTooltip(contentHtml, {
+        sticky: true,
+        direction: "auto",
+        className: "leaflet-tooltip-map",
+        offset: [15, 0],
+        opacity: 1.0
+      });
+
+      // Hover events only on non-mobile
+      layer.on('mouseover', e => {
+        const lyr = e.target;
+        lyr.setStyle({
+          weight: 4,
+          color: '#000',
+          fillOpacity: 0.9
+        });
+
+        if (d && !lyr.isTooltipOpen()) {
+          lyr.openTooltip();
+        }
+      });
+
+      layer.on('mouseout', e => {
+        const lyr = e.target;
+        geojsonLayer.resetStyle(lyr);
+        lyr.closeTooltip();
+      });
+    }
+
+    // Popup (click/tap) on all devices
+    layer.bindPopup(contentHtml, {
+      className: "map-stick-popup",
+      closeButton: true
+    });
+  }
+} // ✅ closes onEachFeature properly
+  }).addTo(map); // ✅ closes L.geoJSON
+
+map.on('click', () => {
+  map.closePopup();
+});
+});
+
+function partyColor(partyRaw) {
+  if (!partyRaw) return "#ccc";
+  const party = partyRaw.trim();
+  return {
+    "Locked Liberal": "#811013",
+    "Safe Liberal": "#ac151a",
+    "Likely Liberal": "#d71a20",
+    "Leaning Liberal": "#df484d",
+    "Tilting Liberal": "#e77679",
+    "Locked Conservative": "#0b1c32",
+    "Safe Conservative": "#0f2643",
+    "Likely Conservative": "#132f54",
+    "Leaning Conservative": "#425976",
+    "Tilting Conservative": "#718298",
+    "Locked Bloc": "#00658b",
+    "Safe Bloc": "#0086b9",
+    "Likely Bloc": "#00a8e7",
+    "Leaning Bloc": "#33b9ec",
+    "Tilting Bloc": "#66cbf1",
+    "Locked NDP": "#934e13",
+    "Safe NDP": "#c4681a",
+    "Likely NDP": "#f58220",
+    "Leaning NDP": "#f79b4d",
+    "Tilting NDP": "#f9b479",
+    "Locked Green": "#245d20",
+    "Safe Green": "#307c2a",
+    "Likely Green": "#3c9b35",
+    "Leaning Green": "#63af5d",
+    "Tilting Green": "#8ac386",
+  }[party] || "#000000";
+}
+
+function highlightFeature(e) {
+  const layer = e.target;
+  layer.setStyle({
+    weight: 3,
+    color: '#000',
+    fillOpacity: 0.9
+  });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+}
+
+function resetHighlight(e) {
+  if (!geojsonLayer) return;
+  geojsonLayer.resetStyle(e.target);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function getBasePartyColor(partyName) {
+  const colors = {
+    "Liberal": "#d71a20",
+    "Conservative": "#132f54",
+    "Bloc": "#00a8e7",
+    "NDP": "#f58220",
+    "Green": "#3c9b35",
+    "PPC": "#68339b",
+    "Other": "#808080"
+  };
+  return colors[partyName] || "#cccccc";
+}
+
+</script>
 
 </body>
-</html>
