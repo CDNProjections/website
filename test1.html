@@ -120,7 +120,7 @@
 }
 
 .nav-bar a:hover, .dropbtn:hover {
-  color: #a36d7c; /* purple accent like VoteHub */
+  color: #a36d7c;
 }
 
 .dropdown {
@@ -335,7 +335,7 @@
   padding: 12px !important;
   color: #333 !important;
   opacity: 1 !important;
-  min-width: 250px; /* Slightly wider to fit decimals and margins */
+  min-width: 250px;
 }
 
 .leaflet-tooltip-map::before { display: none !important; }
@@ -345,13 +345,11 @@
 
 .map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
-/* Thin separators between party rows */
 .map-table tr { border-bottom: 1px solid #eeeeee; }
 .map-table tr:last-child { border-bottom: none; }
 
 .map-table td { padding: 7px 0; vertical-align: middle; }
 
-/* THE FIX: Alignment */
 .map-party-cell { text-align: left; display: flex; align-items: center; }
 .map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
 
@@ -359,7 +357,7 @@
   width: 4px;
   height: 18px;
   background-color: #ccc;
-  margin-right: 10px; /* Space between bar and text */
+  margin-right: 10px;
   flex-shrink: 0;
 }
 
@@ -378,16 +376,15 @@
   font-weight: 500;
 }
 
-/* Styling the Popup to match the Tooltip */
 .leaflet-popup-content-wrapper {
     background: white !important;
     border-radius: 4px !important;
-    padding: 5px !important; /* Let our internal div handle padding */
+    padding: 5px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
 .leaflet-popup-content {
-    margin: 12px !important; /* Matches our tooltip padding */
+    margin: 12px !important;
     min-width: 250px;
 }
 
@@ -395,7 +392,6 @@
     background: white !important;
 }
 
-/* Footer Branding */
 .map-brand {
     font-size: 10px;
     color: #aaa;
@@ -434,10 +430,9 @@
   display: inline-block;
 }
 
-/* Change in vote share styling */
 .map-chg {
   font-size: 11px;
-  color: #999; /* Grey color */
+  color: #999;
   font-weight: normal;
   margin-left: 6px;
   display: inline-block;
@@ -445,26 +440,22 @@
   text-align: left;
 }
 
-/* Ensure the PCT cell can fit both numbers */
 .map-pct { 
   text-align: right; 
   font-weight: bold; 
   font-size: 14px; 
-  white-space: nowrap; /* Prevents the change from wrapping to a new line */
+  white-space: nowrap;
   padding-left: 10px;
 }
 
-/* Ensure the highlighted riding border is always on top of others */
 .leaflet-interactive:hover {
     outline: none;
 }
 
-/* Ensure tooltips don't catch mouse events (prevents flickering) */
 .leaflet-tooltip-map {
     pointer-events: none !important;
 }
 
-/* Optional: Add a slight transition so the border doesn't 'snap' too hard */
 .leaflet-interactive {
     transition: stroke-width 0.1s, stroke 0.1s;
 }
@@ -515,8 +506,8 @@
 
 @media (max-width: 768px) {
   .projection-grid {
-    grid-template-columns: 1fr; /* stack columns vertically */
-    gap: 10px; /* tighter spacing for mobile */
+    grid-template-columns: 1fr;
+    gap: 10px;
     margin: 10px;
     grid-template-areas:
         "main-content"
@@ -532,7 +523,7 @@
   }
 
   .homepage-grid > * {
-    width: 100%; /* ensure each card fills the viewport width */
+    width: 100%;
   }
 
   .page-wrapper {
@@ -602,7 +593,7 @@
 
   .dropdown-content,
   .dropdown-content-sub {
-    position: static; /* removes desktop absolute positioning */
+    position: static;
     width: 100%;
     box-shadow: none;
   }
@@ -646,7 +637,7 @@
 
 @media (max-width: 768px) {
   .main-header {
-    position: static;   /* disables sticky */
+    position: static;
   }
 }
 
