@@ -495,6 +495,177 @@
   display: block;
 }
 
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .projection-grid {
+    grid-template-columns: 1fr; /* stack columns vertically */
+    gap: 10px; /* tighter spacing for mobile */
+    margin: 10px;
+    grid-template-areas:
+        "main-content"
+        "sidebar";
+  }
+
+  .results {
+    grid-area: sidebar;
+  }
+
+  .map {
+    grid-area: main-content;
+  }
+
+  .homepage-grid > * {
+    width: 100%; /* ensure each card fills the viewport width */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .logo-title img {
+    width: 70px;
+    height: auto;
+  }
+
+  .logo-title h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-bar > a {
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown, .dropdown-sub {
+    width: 100%;
+  }
+
+  .dropbtn, .dropbtn-sub {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content,
+  .dropdown-content-sub {
+    position: static; /* removes desktop absolute positioning */
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .province-link-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    position: static;   /* disables sticky */
+  }
+}
+
+@media (max-width: 768px) {
+  .approval-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* space between boxes */
+  }
+
+  .leftboxcard,
+  .centreboxcard,
+  .rightboxcard {
+    width: 80%; /* make each box fill most of the screen width */
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-title,
+  .live {
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 </html>
