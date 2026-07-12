@@ -1308,7 +1308,7 @@ onEachFeature: (feature, layer) => {
     // Popup (click/tap) on all devices
     layer.bindPopup(contentHtml, {
       className: "map-stick-popup",
-      closeButton: false
+      closeButton: true
     });
   }
 } // ✅ closes onEachFeature properly
