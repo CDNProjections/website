@@ -1026,10 +1026,10 @@
 
 <script>
 const map = L.map('map', {
-  minZoom: 3,
-  maxZoom: 10,
+  minZoom: 5,
+  maxZoom: 12,
   zoomControl: true
-}).setView([56, -96], 4);
+}).setView([46.4, -63.1], 4);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
@@ -1039,7 +1039,7 @@ let geojsonLayer = null;
 
 Promise.all([
   fetch('PEIboundaries.json').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1078825311&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -1052,45 +1052,36 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const lib = parseFloat(cols[1]);    
-        const cpc = parseFloat(cols[2]);    
-        const bqc = parseFloat(cols[3]);    
+        const pc = parseFloat(cols[1]);    
+        const lib = parseFloat(cols[2]);    
+        const grn = parseFloat(cols[3]);    
         const ndp = parseFloat(cols[4]);    
-        const grn = parseFloat(cols[5]);    
-        const ppc = parseFloat(cols[6]);    
-        const oth = parseFloat(cols[7]);    
-        const status = cols[8] || '';       
-        const riding = cols[9] || '';       
-        const margin = parseFloat(cols[10]); 
-        const blurb = cols[11] || '';       
-        const result2025 = cols[12] || '';       
-        const result2021 = cols[13] || '';       
-        const result2019 = cols[14] || '';       
-        const libchange = parseFloat(cols[15]);    
-        const cpcchange = parseFloat(cols[16]);    
-        const bqcchange = parseFloat(cols[17]);    
-        const ndpchange = parseFloat(cols[18]);    
-        const grnchange = parseFloat(cols[19]);    
-        const ppcchange = parseFloat(cols[20]);    
-        const othchange = parseFloat(cols[21]);    
+        const oth = parseFloat(cols[5]);    
+        const status = cols[6] || '';       
+        const riding = cols[7] || '';       
+        const margin = parseFloat(cols[8]); 
+        const blurb = cols[9] || '';       
+        const result2023 = cols[10] || '';       
+        const result2019 = cols[11] || '';       
+        const pcchange = parseFloat(cols[12]);    
+        const libchange = parseFloat(cols[13]);    
+        const grnchange = parseFloat(cols[14]);    
+        const ndpchange = parseFloat(cols[15]);    
+        const othchange = parseFloat(cols[16]);    
 
         const parties = {
+          "PC": isNaN(pc) ? null : pc,
           "Liberal": isNaN(lib) ? null : lib,
-          "Conservative": isNaN(cpc) ? null : cpc,
-          "Bloc": isNaN(bqc) ? null : bqc,
-          "NDP": isNaN(ndp) ? null : ndp,
           "Green": isNaN(grn) ? null : grn,
-          "PPC": isNaN(ppc) ? null : ppc,
+          "NDP": isNaN(ndp) ? null : ndp,
           "Other": isNaN(oth) ? null : oth
         };
 
         const changes = {
+          "PC": isNaN(pcchange) ? 0 : pcchange,
           "Liberal": isNaN(libchange) ? 0 : libchange,
-          "Conservative": isNaN(cpcchange) ? 0 : cpcchange,
-          "Bloc": isNaN(bqcchange) ? 0 : bqcchange,
-          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
           "Green": isNaN(grnchange) ? 0 : grnchange,
-          "PPC": isNaN(ppcchange) ? 0 : ppcchange,
+          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
           "Other": isNaN(othchange) ? 0 : othchange
         };
 
@@ -1101,7 +1092,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
+        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2023, result2019, };
       });
 
       return model;
@@ -1169,8 +1160,7 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
-        <div class="map-history-row"><span class="map-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
+        <div class="map-history-row"><span class="map-history-year">2023:</span> ${escapeHtml(d.result2023)}</div>
         <div class="map-history-row"><span class="map-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
       </div>
       <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
@@ -1225,31 +1215,26 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Liberal": "#811013",
-    "Safe Liberal": "#ac151a",
-    "Likely Liberal": "#d71a20",
-    "Leaning Liberal": "#df484d",
-    "Tilting Liberal": "#e77679",
-    "Locked Conservative": "#0b1c32",
-    "Safe Conservative": "#0f2643",
-    "Likely Conservative": "#132f54",
-    "Leaning Conservative": "#425976",
-    "Tilting Conservative": "#718298",
-    "Locked Bloc": "#00658b",
-    "Safe Bloc": "#0086b9",
-    "Likely Bloc": "#00a8e7",
-    "Leaning Bloc": "#33b9ec",
-    "Tilting Bloc": "#66cbf1",
-    "Locked NDP": "#934e13",
-    "Safe NDP": "#c4681a",
-    "Likely NDP": "#f58220",
-    "Leaning NDP": "#f79b4d",
-    "Tilting NDP": "#f9b479",
-    "Locked Green": "#245d20",
-    "Safe Green": "#307c2a",
-    "Likely Green": "#3c9b35",
-    "Leaning Green": "#63af5d",
-    "Tilting Green": "#8ac386",
+    "Locked PC": "#024773",
+    "Safe PC": "#035e99",
+    "Likely PC": "#0476bf",
+    "Leaning PC": "#3691cc",
+    "Tilting PC": "#68add9",
+    "Locked Liberal": "#7c1e22",
+    "Safe Liberal": "#a6282e",
+    "Likely Liberal": "#cf3239",
+    "Leaning Liberal": "#d95b61",
+    "Tilting Liberal": "#e28488",
+    "Locked Green": "#235f2a",
+    "Safe Green": "#2f7e38",
+    "Likely Green": "#3b9e46",
+    "Leaning Green": "#62b16b",
+    "Tilting Green": "#89c590",
+    "Locked NDP": "#944e11",
+    "Safe NDP": "#c56817",
+    "Likely NDP": "#f6821d",
+    "Leaning NDP": "#f89b4a",
+    "Tilting NDP": "#fab477",
   }[party] || "#000000";
 }
 
@@ -1282,12 +1267,10 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Liberal": "#d71a20",
-    "Conservative": "#132f54",
-    "Bloc": "#00a8e7",
-    "NDP": "#f58220",
-    "Green": "#3c9b35",
-    "PPC": "#68339b",
+    "PC": "#0476bf",
+    "Liberal": "#cf3239",
+    "Green": "#3b9e46",
+    "NDP": "#f6821d",
     "Other": "#808080"
   };
   return colors[partyName] || "#cccccc";
