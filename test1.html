@@ -1100,7 +1100,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
-      const id = String(feature.properties.FED_NUM);
+      const id = String(feature.properties.id);
       const ridingData = model[id];
       return {
         color: "#fff",
@@ -1110,7 +1110,7 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.FED_NUM);
+  const id = String(feature.properties.id);
   const d = model[id];
   const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
