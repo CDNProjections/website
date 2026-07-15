@@ -1039,7 +1039,7 @@ let geojsonLayer = null;
 
 Promise.all([
   fetch('PEIboundaries.json').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1078825311&single=true&output=csv')
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1328247924&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -1052,37 +1052,36 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const pc = parseFloat(cols[1]);    
-        const lib = parseFloat(cols[2]);    
-        const grn = parseFloat(cols[3]);    
-        const ndp = parseFloat(cols[4]);    
-        const oth = parseFloat(cols[5]);    
+        const sutcliffe = parseFloat(cols[1]);    
+        const leiper = parseFloat(cols[2]);    
+        const lawson = parseFloat(cols[3]);    
+        const saravanamuttoo = parseFloat(cols[4]);    
+        const other = parseFloat(cols[5]);    
         const status = cols[6] || '';       
-        const riding = cols[7] || '';       
+        const ward = cols[7] || '';       
         const margin = parseFloat(cols[8]); 
         const blurb = cols[9] || '';       
-        const result2023 = cols[10] || '';       
-        const result2019 = cols[11] || '';       
-        const pcchange = parseFloat(cols[12]);    
-        const libchange = parseFloat(cols[13]);    
-        const grnchange = parseFloat(cols[14]);    
-        const ndpchange = parseFloat(cols[15]);    
-        const othchange = parseFloat(cols[16]);    
+        const result2022 = cols[10] || '';       
+        const sutcliffechange = parseFloat(cols[11]);    
+        const leiperchange = parseFloat(cols[12]);    
+        const lawsonchange = parseFloat(cols[13]);    
+        const saravanamuttoochange = parseFloat(cols[14]);    
+        const otherchange = parseFloat(cols[15]);    
 
         const parties = {
-          "PC": isNaN(pc) ? null : pc,
-          "Liberal": isNaN(lib) ? null : lib,
-          "Green": isNaN(grn) ? null : grn,
-          "NDP": isNaN(ndp) ? null : ndp,
-          "Other": isNaN(oth) ? null : oth
+          "Sutcliffe": isNaN(sutcliffe) ? null : sutcliffe,
+          "Leiper": isNaN(leiper) ? null : leiper,
+          "Lawson": isNaN(lawson) ? null : lawson,
+          "Saravanamuttoo": isNaN(saravanamuttoo) ? null : saravanamuttoo,
+          "Other": isNaN(other) ? null : other
         };
 
         const changes = {
-          "PC": isNaN(pcchange) ? 0 : pcchange,
-          "Liberal": isNaN(libchange) ? 0 : libchange,
-          "Green": isNaN(grnchange) ? 0 : grnchange,
-          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
-          "Other": isNaN(othchange) ? 0 : othchange
+          "Sutcliffe": isNaN(sutcliffechange) ? 0 : sutcliffechange,
+          "Leiper": isNaN(leiperchange) ? 0 : leiperchange,
+          "Lawson": isNaN(lawsonchange) ? 0 : lawsonchange,
+          "Saravanamuttoo": isNaN(saravanamuttoochange) ? 0 : saravanamuttoochange,
+          "Other": isNaN(otherchange) ? 0 : otherchange
         };
 
         let leading = null;
@@ -1092,7 +1091,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2023, result2019, };
+        model[id] = { parties, changes, leading, status, ward, margin, blurb, result2022, };
       });
 
       return model;
@@ -1112,7 +1111,7 @@ Promise.all([
 onEachFeature: (feature, layer) => {
   const id = String(feature.properties.id);
   const d = model[id];
-  const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+  const ridingName = d && d.ward ? d.ward : (feature.properties.NAME || "Unknown Ward");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   if (d) {
@@ -1160,10 +1159,9 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2023:</span> ${escapeHtml(d.result2023)}</div>
-        <div class="map-history-row"><span class="map-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2023)}</div>
       </div>
-      <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+      <div class="map-brand">CDNPROJECTIONS.CA WARD MODEL</div>
     `;
 
     // Tooltip only on non-mobile
@@ -1215,26 +1213,26 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked PC": "#024773",
-    "Safe PC": "#035e99",
-    "Likely PC": "#0476bf",
-    "Leaning PC": "#3691cc",
-    "Tilting PC": "#68add9",
-    "Locked Liberal": "#7c1e22",
-    "Safe Liberal": "#a6282e",
-    "Likely Liberal": "#cf3239",
-    "Leaning Liberal": "#d95b61",
-    "Tilting Liberal": "#e28488",
-    "Locked Green": "#235f2a",
-    "Safe Green": "#2f7e38",
-    "Likely Green": "#3b9e46",
-    "Leaning Green": "#62b16b",
-    "Tilting Green": "#89c590",
-    "Locked NDP": "#944e11",
-    "Safe NDP": "#c56817",
-    "Likely NDP": "#f6821d",
-    "Leaning NDP": "#f89b4a",
-    "Tilting NDP": "#fab477",
+    "Locked Sutcliffe": "#2c946b",
+    "Safe Sutcliffe": "#3ac58e",
+    "Likely Sutcliffe": "#49f6b2",
+    "Leaning Sutcliffe": "#6df8c1",
+    "Tilting Sutcliffe": "#92fad1",
+    "Locked Leiper": "#590010",
+    "Safe Leiper": "#770016",
+    "Likely Leiper": "#95001b",
+    "Leaning Leiper": "#aa3349",
+    "Tilting Leiper": "#bf6676",
+    "Locked Lawson": "#1a106a",
+    "Safe Lawson": "#22168d",
+    "Likely Lawson": "#2b1bb0",
+    "Leaning Lawson": "#5549c0",
+    "Tilting Lawson": "#8076d0",
+    "Locked Saravanamuttoo": "#966f0d",
+    "Safe Saravanamuttoo": "#c89411",
+    "Likely Saravanamuttoo": "#fab915",
+    "Leaning Saravanamuttoo": "#fbc744",
+    "Tilting Saravanamuttoo": "#fcd573",
   }[party] || "#000000";
 }
 
@@ -1267,10 +1265,10 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "PC": "#0476bf",
-    "Liberal": "#cf3239",
-    "Green": "#3b9e46",
-    "NDP": "#f6821d",
+    "Sutcliffe": "#49f6b2",
+    "Leiper": "#95001b",
+    "Lawson": "#2b1bb0",
+    "Saravanamuttoo": "#fab915",
     "Other": "#808080"
   };
   return colors[partyName] || "#cccccc";
