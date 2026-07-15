@@ -1038,7 +1038,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('Wards_2022_2026.json').then(r => r.json()),
+  fetch('Wards_2022_2026.geojson').then(r => r.json()),
   fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1328247924&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
@@ -1159,7 +1159,7 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2023)}</div>
+        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2022)}</div>
       </div>
       <div class="map-brand">CDNPROJECTIONS.CA WARD MODEL</div>
     `;
