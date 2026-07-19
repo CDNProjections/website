@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDNProjections</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-V2T0WMSWY8');
+   </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+    body {
+        background-color: #e6e6e6;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .province-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+      gap: 15px;
+    }
+
+.main-header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 2px solid #000000;
+  font-family: 'Hind Siliguri', sans-serif;
+  top: 0;
+  position: relative;
+  z-index: 1100;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 15px 40px;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.logo-title img {
+  width: 80px;
+  height: 80px;
+}
+
+.logo-section h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 5px 0 0 0;
+  color: #111827;
+}
+
+.social-icons {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 10px 0;
+  border-top: 1px solid #808080;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.nav-bar a, .dropbtn {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.nav-bar a:hover, .dropbtn:hover {
+  color: #a36d7c;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: #111827;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn-sub {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  transition: color 0.2s ease;
+}
+
+.dropbtn-sub:hover {
+  color: #a36d7c;
+}
+
+.dropdown-content-sub {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+  background-color: #ffffff;
+  min-width: 180px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 11;
+}
+
+.dropdown-sub:hover .dropdown-content-sub {
+  display: block;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.dropdown:hover > .dropbtn .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-sub:hover > .dropbtn-sub .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-content.show,
+.dropdown-content-sub.show {
+  display: block;
+}
+
+.province-link-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111827;
+}
+
+.dropdown-content-sub a,
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.projection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.results {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.party-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.party-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.topline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.party-name {
+  font-weight: 700;
+}
+
+.highlight {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.vote {
+  color: #808080;
+  font-size: 16px;
+}
+
+.bar {
+  margin-top: 6px;
+  width: 100%;
+  height: 18px;
+  background: #f0f0f0;
+}
+
+.bar-fill {
+  height: 100%;
+}
+
+.updated {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #808080;
+  text-align: center;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 500px;
+  }
+}
+
+.leaflet-tooltip-map {
+  background: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 12px !important;
+  color: #333 !important;
+  opacity: 1 !important;
+  min-width: 250px;
+}
+
+.leaflet-tooltip-map::before { display: none !important; }
+
+.map-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
+.map-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
+
+.map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+.map-table tr { border-bottom: 1px solid #eeeeee; }
+.map-table tr:last-child { border-bottom: none; }
+
+.map-table td { padding: 7px 0; vertical-align: middle; }
+
+.map-party-cell { text-align: left; display: flex; align-items: center; }
+.map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+.map-color-bar {
+  width: 4px;
+  height: 18px;
+  background-color: #ccc;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.map-header-row td { 
+  font-size: 11px; 
+  color: #999; 
+  padding-bottom: 4px; 
+  border-bottom: 1px solid #ddd;
+}
+
+.map-footer {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 5px;
+  font-weight: 500;
+}
+
+.leaflet-popup-content-wrapper {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important;
+    min-width: 250px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+.map-brand {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
+.map-history-box {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #eee;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.map-history-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.map-history-row {
+  display: block;
+}
+
+.map-history-year {
+  font-weight: bold;
+  color: #333;
+  width: 35px;
+  display: inline-block;
+}
+
+.map-chg {
+  font-size: 11px;
+  color: #999;
+  font-weight: normal;
+  margin-left: 6px;
+  display: inline-block;
+  min-width: 30px;
+  text-align: left;
+}
+
+.map-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  white-space: nowrap;
+  padding-left: 10px;
+}
+
+.leaflet-interactive:hover {
+    outline: none;
+}
+
+.leaflet-tooltip-map {
+    pointer-events: none !important;
+}
+
+.leaflet-interactive {
+    transition: stroke-width 0.1s, stroke 0.1s;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  max-height: 900px;
+  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  color: #a36d7c;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.card iframe,
+.card .flourish-embed {
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .projection-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 10px;
+    grid-template-areas:
+        "main-content"
+        "sidebar";
+  }
+
+  .results {
+    grid-area: sidebar;
+  }
+
+  .map {
+    grid-area: main-content;
+  }
+
+  .homepage-grid > * {
+    width: 100%;
+  }
+
+  .page-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .logo-title img {
+    width: 70px;
+    height: auto;
+  }
+
+  .logo-title h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-bar > a {
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown, .dropdown-sub {
+    width: 100%;
+  }
+
+  .dropbtn, .dropbtn-sub {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content,
+  .dropdown-content-sub {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .province-link-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    width: 10%;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-title,
+  .live {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .flourish-embed[data-src="visualisation/29720692"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29720692"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29720736"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29720736"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29720751"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29720751"] iframe {
+    height: 400px !important;
+  }
+}
+
+
+</style>
+</head>
+</html>
+
+<body>
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-title">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" alt="CDNProjections Logo">
+      </a>
+      <h1>CDNProjections</h1>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+      </a>
+      <a href="https://x.com/CDNprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X">
+      </a>
+      <a href="https://cdnprojections.substack.com/" target="_blank">
+        <img src="https://substack.com/img/substack.png" alt="Substack">
+      </a>
+      <a href="https://www.youtube.com/@cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+      </a>
+    </div>
+  </div>
+
+<nav class="nav-bar">
+  <a href="index.html">Home</a>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Provincial Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2026
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="quebec.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg" style="width: 25px; height: 17px">
+         Québec
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2027
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="PEI.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 25px; height: 17px">
+        Prince Edward Island
+        </a>
+        <a href="manitoba.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 33px; height: 17px">
+        Manitoba
+        </a>
+        <a href="alberta.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
+        Alberta
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2028
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NS.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 33px; height: 17px">
+        Nova Scotia
+        </a>
+        <a href="NB.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg" style="width: 27px; height: 17px">
+        New Brunswick
+        </a>
+        <a href="BC.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 28px; height: 17px">
+        British Columbia
+        </a>
+        <a href="SK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 33px; height: 17px">
+        Saskatchewan
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2029
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NL.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 33px; height: 17px">
+        Newfoundland and Labrador
+        </a>
+        <a href="YK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 33px; height: 17px">
+        Yukon
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2030
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="ontario.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        Ontario
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Federal Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+        <a href="canada.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+         Canada
+        </a>
+      </div>
+    </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    By-Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        Called
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="cornwall.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 25px; height: 17px">
+         Cornwall-Meadowbank
+        </a>
+        <a href="pas.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 33px; height: 17px">
+         The Pas-Kameesak
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        Uncalled
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub" style="overflow-y:scroll;">
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Beaches-East York
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
+        Calgary-Shaw
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Chicoutimi-Le Fjord
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Laurier-Sainte-Marie
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        North Vancouver-Capilano
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Rosemont-La Petite-Patrie
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Saint-Hyacinthe-Bagot-Acton
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        Scarborough Southwest
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        York-Simcoe
+        </a>
+        <a href="index.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+        Yorkton-Melville
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <a href="polls.html">Polls</a>
+  <a href="accuracy.html">Accuracy</a>
+    
+</nav>
+
+</header>
+
+<div class="page-wrapper">
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Ottawa Mayoral Electoral Model</h2>
+
+  <div class="party-row">
+    <img src="ms-logo-heart.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Mark Sutcliffe</span>
+        <span class="highlight">40.64%</span>
+        <span class="vote">(64.5%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 40.64%; background-color:#3ac58e;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="leiper2026logo.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Jeff Leiper</span>
+        <span class="highlight">37.51%</span>
+        <span class="vote">(35.5%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 37.51%; background-color:#770016;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://votealex.ca/wp-content/uploads/2026/05/logo.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Alex Lawson</span>
+        <span class="highlight">15.32%</span>
+        <span class="vote">(<1%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 15.32%; background-color:#22168d;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="neil-for-mayor-scaled.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Neil Saravanamuttoo</span>
+        <span class="highlight">5.61%</span>
+        <span class="vote">(<1%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 5.61%; background-color:#c89411;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Others.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Others</span>
+        <span class="highlight">0.93%</span>
+        <span class="vote">(<1%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 0.93%; background-color:#666666;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: July 19, 2026</p>
+</div>
+
+
+<div id="map"></div>
+
+</div>
+
+<div class="card">
+  <h3 class="card-title">Ottawa - Historical Timeline of Projections</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/29720692"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720692/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Ottawa - 200 Simulated Margins of the Mayoral Election</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/29720736"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720736/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Ottawa - Mayoral Polling</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/29720751"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720751/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<script>
+const map = L.map('map', {
+  minZoom: 7,
+  maxZoom: 13,
+  zoomControl: true
+}).setView([45.3, -75.8], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+let geojsonLayer = null;
+
+Promise.all([
+  fetch('Wards_2022_2026.geojson').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1328247924&single=true&output=csv')
+    .then(r => r.text())
+    .then(csv => {
+      // Split rows but handle potential empty lines
+      const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
+      const header = rows.shift(); 
+      const model = {};
+
+      rows.forEach(row => {
+        // IMPROVED: This regex handles commas inside quotes better than a simple split
+        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+
+        const id = cols[0];                 
+        const sutcliffe = parseFloat(cols[1]);    
+        const leiper = parseFloat(cols[2]);    
+        const lawson = parseFloat(cols[3]);    
+        const saravanamuttoo = parseFloat(cols[4]);    
+        const other = parseFloat(cols[5]);    
+        const status = cols[6] || '';       
+        const ward = cols[7] || '';       
+        const margin = parseFloat(cols[8]); 
+        const blurb = cols[9] || '';       
+        const result2022 = cols[10] || '';       
+        const sutcliffechange = parseFloat(cols[11]);    
+        const leiperchange = parseFloat(cols[12]);    
+        const lawsonchange = parseFloat(cols[13]);    
+        const saravanamuttoochange = parseFloat(cols[14]);    
+        const otherchange = parseFloat(cols[15]);    
+
+        const parties = {
+          "Sutcliffe": isNaN(sutcliffe) ? null : sutcliffe,
+          "Leiper": isNaN(leiper) ? null : leiper,
+          "Lawson": isNaN(lawson) ? null : lawson,
+          "Saravanamuttoo": isNaN(saravanamuttoo) ? null : saravanamuttoo,
+          "Other": isNaN(other) ? null : other
+        };
+
+        const changes = {
+          "Sutcliffe": isNaN(sutcliffechange) ? 0 : sutcliffechange,
+          "Leiper": isNaN(leiperchange) ? 0 : leiperchange,
+          "Lawson": isNaN(lawsonchange) ? 0 : lawsonchange,
+          "Saravanamuttoo": isNaN(saravanamuttoochange) ? 0 : saravanamuttoochange,
+          "Other": isNaN(otherchange) ? 0 : otherchange
+        };
+
+        let leading = null;
+        Object.keys(parties).forEach(p => {
+          const v = parties[p];
+          if (v === null) return;
+          if (!leading || v > leading.value) leading = { party: p, value: v };
+        });
+
+        model[id] = { parties, changes, leading, status, ward, margin, blurb, result2022, };
+      });
+
+      return model;
+    })
+]).then(([geojson, model]) => {
+  geojsonLayer = L.geoJSON(geojson, {
+    style: feature => {
+      const id = String(feature.properties.WARD);
+      const ridingData = model[id];
+      return {
+        color: "#fff",
+        weight: 1,
+        fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
+        fillOpacity: 0.8
+      };
+    },
+onEachFeature: (feature, layer) => {
+  const id = String(feature.properties.WARD);
+  const d = model[id];
+  const ridingName = d && d.ward ? d.ward : (feature.properties.NAME || "Unknown Ward");
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  if (d) {
+    const topParties = Object.keys(d.parties)
+      .sort((a, b) => d.parties[b] - d.parties[a])
+      .slice(0, 4);
+
+    const rowsHtml = topParties.map(p => {
+      const val = d.parties[p];
+      const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
+      const color = getBasePartyColor(p);
+      const sign = chg > 0 ? '+' : '';
+      const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
+
+      return `
+        <tr>
+          <td>
+            <div class="map-party-cell">
+              <div class="map-color-bar" style="background-color: ${color}"></div>
+              <span>${p}</span>
+            </div>
+          </td>
+          <td class="map-pct">${val.toFixed(1)}% ${chgDisplay}</td>
+        </tr>`;
+    }).join('');
+
+    const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
+      ? ` (+${d.margin.toFixed(1)}%)`
+      : "";
+
+    const contentHtml = `
+      <div class="map-title">${escapeHtml(ridingName)}</div>
+      <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+      <table class="map-table">
+        <tr class="map-header-row">
+          <td style="text-align:left">Party</td>
+          <td style="text-align:right">
+            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2022</span>
+          </td>
+        </tr>
+        ${rowsHtml}
+      </table>
+      <div class="map-footer">
+        ${escapeHtml(d.status || '')}${marginDisplay}
+      </div>
+      <div class="map-history-box">
+        <div class="map-history-title">Previous Results</div>
+        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2022)}</div>
+      </div>
+      <div class="map-brand">CDNPROJECTIONS.CA WARD MODEL</div>
+    `;
+
+    // Tooltip only on non-mobile
+    if (!isMobile) {
+      layer.bindTooltip(contentHtml, {
+        sticky: true,
+        direction: "auto",
+        className: "leaflet-tooltip-map",
+        offset: [15, 0],
+        opacity: 1.0
+      });
+
+      // Hover events only on non-mobile
+      layer.on('mouseover', e => {
+        const lyr = e.target;
+        lyr.setStyle({
+          weight: 4,
+          color: '#000',
+          fillOpacity: 0.9
+        });
+
+        if (d && !lyr.isTooltipOpen()) {
+          lyr.openTooltip();
+        }
+      });
+
+      layer.on('mouseout', e => {
+        const lyr = e.target;
+        geojsonLayer.resetStyle(lyr);
+        lyr.closeTooltip();
+      });
+    }
+
+    // Popup (click/tap) on all devices
+    layer.bindPopup(contentHtml, {
+      className: "map-stick-popup",
+      closeButton: true
+    });
+  }
+} // ✅ closes onEachFeature properly
+  }).addTo(map); // ✅ closes L.geoJSON
+
+map.on('click', () => {
+  map.closePopup();
+});
+});
+
+function partyColor(partyRaw) {
+  if (!partyRaw) return "#ccc";
+  const party = partyRaw.trim();
+  return {
+    "Locked Sutcliffe": "#2c946b",
+    "Safe Sutcliffe": "#3ac58e",
+    "Likely Sutcliffe": "#49f6b2",
+    "Leaning Sutcliffe": "#6df8c1",
+    "Tilting Sutcliffe": "#92fad1",
+    "Locked Leiper": "#590010",
+    "Safe Leiper": "#770016",
+    "Likely Leiper": "#95001b",
+    "Leaning Leiper": "#aa3349",
+    "Tilting Leiper": "#bf6676",
+    "Locked Lawson": "#1a106a",
+    "Safe Lawson": "#22168d",
+    "Likely Lawson": "#2b1bb0",
+    "Leaning Lawson": "#5549c0",
+    "Tilting Lawson": "#8076d0",
+    "Locked Saravanamuttoo": "#966f0d",
+    "Safe Saravanamuttoo": "#c89411",
+    "Likely Saravanamuttoo": "#fab915",
+    "Leaning Saravanamuttoo": "#fbc744",
+    "Tilting Saravanamuttoo": "#fcd573",
+  }[party] || "#000000";
+}
+
+function highlightFeature(e) {
+  const layer = e.target;
+  layer.setStyle({
+    weight: 3,
+    color: '#000',
+    fillOpacity: 0.9
+  });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+}
+
+function resetHighlight(e) {
+  if (!geojsonLayer) return;
+  geojsonLayer.resetStyle(e.target);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function getBasePartyColor(partyName) {
+  const colors = {
+    "Sutcliffe": "#49f6b2",
+    "Leiper": "#95001b",
+    "Lawson": "#2b1bb0",
+    "Saravanamuttoo": "#fab915",
+    "Other": "#808080"
+  };
+  return colors[partyName] || "#cccccc";
+}
+
+</script>
+
+</body>
