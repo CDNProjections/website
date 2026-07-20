@@ -15,6 +15,10 @@
 
      gtag('config', 'G-V2T0WMSWY8');
    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <style>
     body {
         background-color: #e6e6e6;
@@ -37,165 +41,14 @@
       gap: 15px;
     }
 
-    .province-box {
-      border: 1.5px solid black;
-      background-color: #808080;
-      padding: 15px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      cursor: pointer;
-      color: black;
-      flex: 1 1 auto;
-      min-width: 300px;
-      max-width: 450px;
-    }
-
-    .election-box::before {
-      content: 'ELECTION';
-      background-color: #ffcc00;
-      color: black;
-      padding: 5px;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      font-weight: bold;
-    }
-
-    .province-box:hover {
-      transform: translateY(-5px);
-      filter: drop-shadow(10px 10px 10px rgba(36, 36, 36, 0.5));
-    }
-      
-    .province-box h2, .province-box span {
-      color: black;
-    }
-      
-    .province-title {
-      font-size: 30px;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .party-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 10px;
-    }
-
-    .party-logo {
-      width: 50px;
-      height: 50px;
-    }
-
-    .bar-container {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: 5px;
-    }
-
-    .vote-bar, .seat-bar {
-      height: 40px;
-      display: block;
-    }
-
-    .vote-bar {
-      width: 100%;
-      height: 10px;
-    }
-
-    .seat-bar {
-      width: 100%;
-      height: 30px;
-    }
-
-    .bar-text {
-      font-size: 12px;
-      color: black;
-      font-weight: bold;
-      margin-left: 5px;
-    }
-
-    .seat-vote-container {
-      display: flex;
-      flex-direction: column;
-      align-items: right;
-      gap: 10px;
-    }
-      
-    .seat-count {
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-     .vote-count {
-      font-size: 12px;
-    }
-
-    @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-     10% { transform: translate(-1px, -2px) rotate(-2deg); }
-     20% { transform: translate(-3px, 0px) rotate(2deg); }
-     30% { transform: translate(3px, 2px) rotate(0deg); }
-     40% { transform: translate(1px, -1px) rotate(2deg); }
-     50% { transform: translate(-1px, 2px) rotate(-2deg); }
-     60% { transform: translate(-3px, 1px) rotate(0deg); }
-     70% { transform: translate(3px, 1px) rotate(-2deg); }
-     80% { transform: translate(-1px, -1px) rotate(2deg); }
-     90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-2deg); }
-   }
-"---------------------------------------------------------------------------------------------------------------------------(style="animation: shake 5s infinite; min-width: 75px")"
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width: 768px) {
-    div[style="display: flex; flex-direction: row"] {
-        flex-direction: column !important;
-        align-items: center;
-    }
-    
-    .province-box {
-        width: 100%;
-    }
-
-    .party-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .bar-container {
-        width: 100%;
-    }
-}
-
-
-
-
-
-
-
-    
-
 .main-header {
   width: 100%;
   background-color: #ffffff;
   border-bottom: 2px solid #000000;
   font-family: 'Hind Siliguri', sans-serif;
-  position: sticky;
   top: 0;
-  z-index: 1000;
+  position: relative;
+  z-index: 1100;
 }
 
 .header-container {
@@ -378,17 +231,233 @@
   gap: 8px;
 }
 
-.homepage-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  margin: 20px;
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 30px;
 }
 
-.sidebar {
+.projection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.results {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.party-row {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.party-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.topline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.party-name {
+  font-weight: 700;
+}
+
+.highlight {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.vote {
+  color: #808080;
+  font-size: 16px;
+}
+
+.bar {
+  margin-top: 6px;
+  width: 100%;
+  height: 18px;
+  background: #f0f0f0;
+}
+
+.bar-fill {
+  height: 100%;
+}
+
+.updated {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #808080;
+  text-align: center;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 500px;
+  }
+}
+
+.leaflet-tooltip-map {
+  background: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 12px !important;
+  color: #333 !important;
+  opacity: 1 !important;
+  min-width: 250px;
+}
+
+.leaflet-tooltip-map::before { display: none !important; }
+
+.map-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
+.map-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
+
+.map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+.map-table tr { border-bottom: 1px solid #eeeeee; }
+.map-table tr:last-child { border-bottom: none; }
+
+.map-table td { padding: 7px 0; vertical-align: middle; }
+
+.map-party-cell { text-align: left; display: flex; align-items: center; }
+.map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+.map-color-bar {
+  width: 4px;
+  height: 18px;
+  background-color: #ccc;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.map-header-row td { 
+  font-size: 11px; 
+  color: #999; 
+  padding-bottom: 4px; 
+  border-bottom: 1px solid #ddd;
+}
+
+.map-footer {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 5px;
+  font-weight: 500;
+}
+
+.leaflet-popup-content-wrapper {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important;
+    min-width: 250px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+.map-brand {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
+.map-history-box {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #eee;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.map-history-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.map-history-row {
+  display: block;
+}
+
+.map-history-year {
+  font-weight: bold;
+  color: #333;
+  width: 35px;
+  display: inline-block;
+}
+
+.map-chg {
+  font-size: 11px;
+  color: #999;
+  font-weight: normal;
+  margin-left: 6px;
+  display: inline-block;
+  min-width: 30px;
+  text-align: left;
+}
+
+.map-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  white-space: nowrap;
+  padding-left: 10px;
+}
+
+.leaflet-interactive:hover {
+    outline: none;
+}
+
+.leaflet-tooltip-map {
+    pointer-events: none !important;
+}
+
+.leaflet-interactive {
+    transition: stroke-width 0.1s, stroke 0.1s;
 }
 
 .card {
@@ -397,10 +466,11 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px;
   text-align: center;
-  max-height: 500px;
+  max-height: 900px;
   margin-bottom: 20px;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card-title {
@@ -410,246 +480,19 @@
   margin-bottom: 10px;
 }
 
-.card-map {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  max-height: 200px;
+.card img.card-map {
+  max-width: 260px !important;
+  height: auto !important;
+  max-width: 100% !important;
   border-radius: 8px;
   margin-bottom: 10px;
   object-fit: contain;
 }
 
-.card-text {
-  margin-top: auto;
-  color: #333;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  filter: drop-shadow(10px 10px 10px rgba(36, 36, 36, 0.5));
-}
-
-.approval-box {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px 0;
-}
-
-.approve, .disapprove {
-  font-size: 1.8rem;
-  font-weight: 700;
-  border-radius: 8px;
-  padding: 10px;
-  width: 40%;
-}
-
-.approve {
-  background: #90EE90;
-  color: #006400;
-}
-
-.disapprove {
-  background: #FF8080;
-  color: #8B0000;
-}
-
-.leftboxcard, .centreboxcard, .rightboxcard {
-  font-size: 1.8rem;
-  font-weight: 700;
-  border-radius: 8px;
-  padding: 10px;
-  width: 25%;
-}
-
-.leftboxcard {
-  background: #b3b3b3;
-  color: #4d4d4d;
-}
-
-.centreboxcard {
-  background: #b3b3b3;
-  color: #4d4d4d;
-}
-
-.rightboxcard {
-  background: #b3b3b3;
-  color: #4d4d4d;
-}
-
-.live {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.live-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #e74c3c;
-  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.4);
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
-  70% { box-shadow: 0 0 0 6px rgba(231, 76, 60, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
-}
-
-.countdown-timer {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #a36d7c;
-  text-align: center;
-  word-spacing: 4px;
-  white-space: nowrap;
-}
-
-.projection-carousel {
-  position: relative;
-  width: 100%;
-  text-align: center;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.slide {
-  display: none;
-  padding: 20px;
-  height: 325px;
-}
-
-.slide.active {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 20px;
-}
-
-.map-column {
-  flex: 1;
-  text-align: center;
-  padding-top: 30px;
-}
-
-.text-column {
-  flex: 1;
-  text-align: left;
-}
-
-.province-map {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  object-fit: contain;
-}
-
-.province-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #a36d7c;
-}
-
-.province-blurb {
-  font-size: 1rem;
-  color: #000;
-  margin-bottom: 15px;
-}
-
-.view-link {
-  color: #a36d7c;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.carousel-controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-}
-
-.carousel-dots {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.dot {
-  height: 10px;
-  width: 10px;
-  margin: 0 4px;
-  background-color: #ccc;
-  border-radius: 50%;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #a36d7c;
-}
-
-.updates-feed {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.updates-title {
-  color: #a36d7c;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-}
-
-.updates-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.updates-list li {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: #333;
-  border-left: 3px solid #a36d7c;
-  padding-left: 10px;
-}
-
-.update-date {
-  font-weight: 600;
-  color: #6b46c1;
-}
-
-.projection-carousel,
-.updates-feed {
-  width: 90%;
-  max-width: 800px;
-  box-sizing: border-box;
-}
-
-.main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-top: 0;
+.card iframe,
+.card .flourish-embed {
+  margin: 0 auto;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -671,7 +514,7 @@
 }
 
 @media (max-width: 768px) {
-  .homepage-grid {
+  .projection-grid {
     grid-template-columns: 1fr;
     gap: 10px;
     margin: 10px;
@@ -680,18 +523,23 @@
         "sidebar";
   }
 
-  .sidebar {
+  .results {
     grid-area: sidebar;
   }
 
-  .main-content {
+  .map {
     grid-area: main-content;
   }
 
   .homepage-grid > * {
     width: 100%;
   }
-}
+
+  .page-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
 
 @media (max-width: 768px) {
   .main-header {
@@ -803,32 +651,35 @@
 }
 
 @media (max-width: 768px) {
-  .approval-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .leftboxcard,
-  .centreboxcard,
-  .rightboxcard {
-    width: 80%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
   .card-title,
   .live {
     text-align: center;
   }
 }
 
+@media (max-width: 768px) {
+  .flourish-embed[data-src="visualisation/29666141"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29666141"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29666115"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/29666115"] iframe {
+    height: 400px !important;
+  }
+}
+
 </style>
 </head>
 </html>
-
 
 <body>
 <header class="main-header">
@@ -1074,573 +925,89 @@
 
 </header>
 
-<div class="homepage-grid">
-  <aside class="sidebar">
+<div class="page-wrapper">
 
-<div class="card" style="animation: shake 5s infinite; min-width: 75px">
-  <a href="cornwall.html" class="province-link">
-  <h3 class="card-title">Race to Watch</h3>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Cornwall-Meadowbank_electoral_district_map.svg" class="card-map">
-  <p class="card-text">
-    <strong>Cornwall-Meadowbank</strong> is <span style="color: #cf3239;">Likely Liberal</span>
-  </p>
-  <p id="countdown3" class="countdown-timer"></p>
-  </a>
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Cornwall-Meadowbank By-Election Model</h2>
+
+  <div class="party-row">
+    <img src="https://cdnprojections.ca/Liberal_Party_of_PEI_Logo_2015.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Robert Mitchell</span>
+        <span class="highlight">49.10%</span>
+        <span class="vote">(95%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 49.10%; background-color:#cf3239;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/PC_Party_PEI_Logo.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Caley McDonald</span>
+        <span class="highlight">26.66%</span>
+        <span class="vote">(4%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 26.66%; background-color:#0476bf;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/GRNPEILogo.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Tayte Willows</span>
+        <span class="highlight">23.57%</span>
+        <span class="vote">(1%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 23.57%; background-color:#3b9e46;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://cdnprojections.ca/245021496_232100658945946_3370813018112262840_n.svg" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Craig Nash</span>
+        <span class="highlight">0.68%</span>
+        <span class="vote">(<1%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 0.68%; background-color:#f6821d;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: July 12, 2026</p>
 </div>
 
-<div class="card" style="animation: shake 5s infinite; min-width: 75px">
-  <a href="pas.html" class="province-link">
-  <h3 class="card-title">By-Election</h3>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Manitoba_2018_The_Pas-Kameesak.svg" class="card-map">
-  <p class="card-text">
-    <strong>The Pas-Kameesak</strong> is <span style="color: #844318;">Locked NDP</span>
-  </p>
-  <p id="countdown4" class="countdown-timer"></p>
-  </a>
+
+<div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Cornwall-Meadowbank_electoral_district_map.svg" class="card-map">
+</div>
+
 </div>
 
 <div class="card">
-  <a href="polls.html" class="province-link">
-  <h3 class="card-title">Do Canadians approve of Mark Carney's Government?</h3>
-  <div class="approval-box">
-    <div class="disapprove">30%<br><span>Disapprove</span></div>
-    <div class="approve">55%<br><span>Approve</span></div>
-  </div>
-<p class="live">
-  <span class="live-dot"></span> Latest Polls
-</p>
-  </a>
+  <h3 class="card-title">Cornwall-Meadowbank - Historical Timeline of Projections</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/29666141"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29666141/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
 <div class="card">
-  <a href="polls.html" class="province-link">
-  <h3 class="card-title">Who do Canadians Want as Prime Minister?</h3>
-  <div class="approval-box">
-    <div class="leftboxcard" style="background-color: #f9b479; color: #934e13;">5%<br><span>Lewis</span></div>
-    <div class="centreboxcard" style="background-color: #e77679; color: #811013;">55%<br><span>Carney</span></div>
-    <div class="rightboxcard" style="background-color: #718298; color: #0b1c32;">31%<br><span>Poilievre</span></div>
-  </div>
-<p class="live">
-  <span class="live-dot"></span> Latest Polls
-</p>
-  </a>
+  <h3 class="card-title">Cornwall-Meadowbank - 200 Simulated Margins of the By-Election</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/29666115"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29666115/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
 </div>
 
-<div class="card">
-  <a href="quebec.html" class="province-link">
-  <h3 class="card-title">Election Countdown - Quebec</h3>
-  <p id="countdown1" class="countdown-timer"></p>
-  </a>
 </div>
-
-<div class="card">
-  <a href="quebec.html" class="province-link">
-  <h3 class="card-title">Chances of Forming Quebec Government</h3>
-  <div class="approval-box">
-    <div class="leftboxcard" style="background-color: #7e9bca; color: #183564;">>99%<br><span>PQ</span></div>
-    <div class="centreboxcard" style="background-color: #f4757f; color: #8e0f19;"><1%<br><span>LIB</span></div>
-    <div class="rightboxcard" style="background-color: #66cbf1; color: #00658b;"><1%<br><span>CAQ</span></div>
-  </div>
-  </a>
-</div>
-
-<div class="card">
-  <a href="canada.html" class="province-link">
-  <h3 class="card-title">Election Countdown - Canada</h3>
-  <p id="countdown2" class="countdown-timer"></p>
-  </a>
-</div>
-
-<div class="card">
-  <a href="canada.html" class="province-link">
-  <h3 class="card-title">Chances of Forming Canadian Government</h3>
-  <div class="approval-box">
-    <div class="leftboxcard" style="background-color: #e77679; color: #811013;">>99%<br><span>LIB</span></div>
-    <div class="centreboxcard"><1%<br><span>TIE</span></div>
-    <div class="rightboxcard" style="background-color: #718298; color: #0b1c32;"><1%<br><span>CPC</span></div>
-  </div>
-  </a>
-</div>
-
-<div class="card">
-  <a href="accuracy.html" class="province-link">
-  <h3 class="card-title">Accuracy of Electoral Models</h3>
-  <div class="approval-box">
-    <div class="disapprove">12%<br><span>Incorrect</span></div>
-    <div class="approve">88%<br><span>Correct</span></div>
-  </div>
-<p class="live">
-  <span class="live-dot"></span> Live Accuracy
-</p>
-  </a>
-</div>
-
-  </aside>
-
-  <main class="main-content">
-
-<div class="projection-carousel">
-  <div class="slide active">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/QuebecDistrictsBlank2026.svg" alt="Quebec Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Quebec</h3>
-    <p class="province-blurb">
-      <span style="color: #2859a6;">Parti Quebecois lead by 19 seats over the Liberals, favoured to flip government from CAQ</span><br>
-      <span>Last Update: May 7, 2026</span>
-    </p>
-    <a href="quebec.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/7/71/20250429131644%21Canada_Election_2025_Results_Map.svg" alt="Canada Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Canada</h3>
-    <p class="province-blurb">
-      <span style="color: #d71a20;">Liberals lead by 116 seats over the Conservatives, favoured to win a 5th government</span><br>
-      <span>Last Update: May 10, 2026</span>
-    </p>
-    <a href="canada.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/NSDistrictsBlank2026.svg" alt="Nova Scotia Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Nova Scotia</h3>
-    <p class="province-blurb">
-      <span style="color: #4f9ee3;">Progressive Conservatives lead by 25 seats over the NDP, favoured to win a 3rd government</span><br>
-      <span>Last Update: May 6, 2026</span>
-    </p>
-    <a href="NS.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="" alt="Manitoba Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Manitoba</h3>
-    <p class="province-blurb">
-      <span style="color: #dc7028;">NDP lead by 33 seats over the Progressive Conservatives, favoured to win a 2nd government</span><br>
-      <span>Last Update: December 26, 2025</span>
-    </p>
-    <a href="manitoba.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/9/9f/20230404001414%212023_PEI_General_Election_Map.svg" alt="PEI Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Prince Edward Island</h3>
-    <p class="province-blurb">
-      <span style="color: #0476bf;">Progressive Conservatives lead by 4 seats over the Liberals, slightly favoured to win a 3rd government</span><br>
-      <span>Last Update: December 17, 2025</span>
-    </p>
-    <a href="PEI.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/2/21/20241020235251%212024_BC_election_map.svg" alt="British Columbia Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">British Columbia</h3>
-    <p class="province-blurb">
-      <span style="color: #e95e30;">NDP lead by 31 seats over the Conservatives, favoured to win a 4th government</span><br>
-      <span>Last Update: October 24, 2025</span>
-    </p>
-    <a href="BC.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/6/6b/20230530050949%212023_Alberta_General_Election_Map.svg" alt="Alberta Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Alberta</h3>
-    <p class="province-blurb">
-      <span style="color: #17427e;">United Conservative lead by 39 seats over the NDP, favoured to win a 3rd government</span><br>
-      <span>Last Update: July 7, 2025</span>
-    </p>
-    <a href="alberta.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/6/62/20250302064748%21Ontario_Election_2025_Results_Map.svg" alt="Ontario Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Ontario</h3>
-    <p class="province-blurb">
-      <span style="color: #4f9ee3;">Progressive Conservative lead by 25 seats over the Liberals, favoured to win a 4th government</span><br>
-      <span>Last Update: May 10, 2025</span>
-    </p>
-    <a href="Ontario.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/New_Brunswick_Complete_Map_of_2023_Electoral_Districts.svg" alt="New Brunswick Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">New Brunswick</h3>
-    <p class="province-blurb">
-      <span style="color: #ee3123;">Liberal lead by 15 seats over the Progressive Conservatives, favoured to win a 2nd government</span><br>
-      <span>No Update Since Last Election</span>
-    </p>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="" alt="Newfoundland and Labrador Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Newfoundland and Labrador</h3>
-    <p class="province-blurb">
-      <span style="color: #262453;">PC lead by 7 seats over the Liberals, favoured to win a 2nd government</span><br>
-      <span>No Update Since Last Election</span>
-    </p>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/f/f3/20241029145351%2145th_Saskatchewan_general_election_map.png" alt="Saskatchewan Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Saskatchewan</h3>
-    <p class="province-blurb">
-      <span style="color: #025a42;">Saskatchewan lead by 7 seats over the NDP, favoured to win a 6th government</span><br>
-      <span>No Update Since Last Election</span>
-    </p>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/YukonElectoralDistrictsBlank.svg" alt="Yukon Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Yukon</h3>
-    <p class="province-blurb">
-      <span style="color: #0c4a8d;">Yukon lead by 8 seats over the NDP, favoured to win a 2nd government</span><br>
-      <span>No Update Since Last Election</span>
-    </p>
-  </div>
-  </div>
-  </div>
-
-  <div class="carousel-controls">
-    <button class="prev">←</button>
-    <button class="next">→</button>
-  </div>
-
-  <div class="carousel-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-<div class="updates-feed">
-  <h3 class="updates-title">Latest Updates</h3>
-  <ul class="updates-list">
-    <li><span class="update-date">Upcoming: July 20: </span>The Pas-Kameesak byelection tracker created</li>
-    <li><span class="update-date">July 12: </span>Website redesign launched!</li>
-    <li><span class="update-date">June 21: </span>Cornwall-Meadowbank byelection tracker updated</li>
-    <li><span class="update-date">May 10: </span>Federal projections updated</li>
-    <li><span class="update-date">May 7: </span>Quebec projections updated</li>
-    <li><span class="update-date">May 6: </span>Nova Scotia projections updated</li>
-  </ul>
-</div>
-
-<div class="projection-carousel">
-  <div class="slide active">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/6/6b/20230530050949%212023_Alberta_General_Election_Map.svg" alt="Alberta Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Alberta Independence Referendum</h3>
-    <p class="province-blurb">
-      <span style="color: #f45e5a;">Remain favoured to win over Holding a Second Referendum</span><br>
-      <span>Last Update: X X, 2026</span>
-    </p>
-    <a href="albertareferendum.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/QuebecDistrictsBlank2026.svg" alt="Quebec Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Quebec Independence Referendum</h3>
-    <p class="province-blurb">
-      <span style="color: #f45e5a;">Remain favoured to win over Independence</span><br>
-      <span>Last Update: X X, 2025</span>
-    </p>
-    <a href="quebecreferendum.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="carousel-controls">
-    <button class="prev">←</button>
-    <button class="next">→</button>
-  </div>
-
-  <div class="carousel-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-<div class="projection-carousel">
-  <div class="slide active">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Blank_Ottawa_ward_map_%282022%29.png" alt="Ottawa Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Ottawa Mayoral Election</h3>
-    <p class="province-blurb">
-      <span style="color: #f45e5a;">Sutcliffe favoured to win a 2nd term</span><br>
-      <span>Last Update: X X, 2026</span>
-    </p>
-    <a href="ottawa.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="slide">
-  <div class="slide-content">
-  <div class="map-column">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/d/dc/20230627020348%21Toronto_mayoral_election%2C_2023_results_by_ward.svg" alt="Toronto Map" class="province-map">
-  </div>
-  <div class="text-column">
-    <h3 class="province-title">Toronto Mayoral Election</h3>
-    <p class="province-blurb">
-      <span style="color: #f45e5a;">Chow favoured to win a first full term</span><br>
-      <span>Last Update: X X, 2025</span>
-    </p>
-    <a href="toronto.html" class="view-link">View full projection →</a>
-  </div>
-  </div>
-  </div>
-
-  <div class="carousel-controls">
-    <button class="prev">←</button>
-    <button class="next">→</button>
-  </div>
-
-  <div class="carousel-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-  </main>
-</div>
-
-
-
-    
-
-
-
-    
-
-
-
-
-
-
-<br>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdiDbhJyxHNYDRFhFz6j-362KR3HOSiD-nXa_r2c7q9KeygPw/viewform?embedded=true" width="75%" height="750" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-function toggleDropdown(button) {
-  const dropdown = button.nextElementSibling;
-
-  document.querySelectorAll('.dropdown-content').forEach(menu => {
-    if (menu !== dropdown) menu.classList.remove('show');
-  });
-
-  dropdown.classList.toggle('show');
-}
-
-function toggleSubDropdown(button) {
-  const submenu = button.nextElementSibling;
-
-  const parentContent = button.closest('.dropdown-content');
-  parentContent.querySelectorAll('.dropdown-content-sub').forEach(menu => {
-    if (menu !== submenu) menu.classList.remove('show');
-  });
-
-  submenu.classList.toggle('show');
-}
-
-window.onclick = function(event) {
-  if (!event.target.closest('.dropdown, .dropdown-sub')) {
-    document.querySelectorAll('.dropdown-content, .dropdown-content-sub').forEach(menu => {
-      menu.classList.remove('show');
-    });
-  }
-};
-</script>
-
-<script>
-function createCountdown(elementId, targetDate) {
-  var countDownDate = new Date(targetDate).getTime();
-
-  var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById(elementId).innerHTML =
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById(elementId).innerHTML = "Election Day/Jour de L'Élection";
-    }
-  }, 1000);
-}
-</script>
-
-<script>
-createCountdown("countdown1", "Oct 5, 2026 0:00:00");
-createCountdown("countdown2", "Oct 15, 2029 0:00:00");
-createCountdown("countdown3", "July 13, 2026 0:00:00");
-createCountdown("countdown4", "July 21, 2026 0:00:00");
-</script>
-
-<script>
-document.querySelectorAll('.projection-carousel').forEach((carousel) => {
-  let currentSlide = 0;
-
-  const slides = carousel.querySelectorAll('.slide');
-  const dots = carousel.querySelectorAll('.dot');
-  const nextBtn = carousel.querySelector('.next');
-  const prevBtn = carousel.querySelector('.prev');
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
-    });
-  }
-
-  // Next button
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    });
-  }
-
-  // Prev button
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    });
-  }
-
-  // Dot click
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      currentSlide = i;
-      showSlide(currentSlide);
-    });
-  });
-
-  // Auto‑advance
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }, 20000);
-
-  // Initialize
-  showSlide(currentSlide);
-});
-</script>
-
 
 </body>
-</html>
-</a>
