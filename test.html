@@ -1001,11 +1001,11 @@ Promise.all([
         };
 
         const changes = {
-          "CAQ": isNaN(libchange) ? 0 : caqchange,
-          "QS": isNaN(cpcchange) ? 0 : qschange,
-          "PQ": isNaN(bqcchange) ? 0 : pqchange,
-          "Liberal": isNaN(ndpchange) ? 0 : libchange,
-          "Conservative": isNaN(grnchange) ? 0 : conchange,
+          "CAQ": isNaN(caqchange) ? 0 : caqchange,
+          "QS": isNaN(qschange) ? 0 : qschange,
+          "PQ": isNaN(pqchange) ? 0 : pqchange,
+          "Liberal": isNaN(libchange) ? 0 : libchange,
+          "Conservative": isNaN(conchange) ? 0 : conchange,
           "Other": isNaN(othchange) ? 0 : othchange
         };
 
@@ -1024,7 +1024,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
-      const id = String(feature.properties.FED_NUM);
+      const id = String(feature.properties.NM_CEP);
       const ridingData = model[id];
       return {
         color: "#fff",
