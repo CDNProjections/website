@@ -829,83 +829,6 @@
     </div>
 </div>
 
-<div class="dropdown">
-  <button class="dropbtn" onclick="toggleDropdown(this)">
-    By-Elections
-    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-    </svg>
-  </button>
-
-  <div class="dropdown-content">
-    <div class="dropdown-sub">
-      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
-        Called
-        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-        </svg>
-      </button>
-      <div class="dropdown-content-sub">
-        <a href="beaches.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Beaches-East York
-        </a>
-        <a href="fjord.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Chicoutimi-Le Fjord
-        </a>
-        <a href="creek.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Hamilton East-Stoney Creek
-        </a>
-        <a href="capilano.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        North Vancouver-Capilano
-        </a>
-        <a href="scarborough.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
-        Scarborough Southwest
-        </a>
-        <a href="york.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
-        York-Simcoe
-        </a>
-      </div>
-    </div>
-
-    <div class="dropdown-sub">
-      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
-        Uncalled
-        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-        </svg>
-      </button>
-      <div class="dropdown-content-sub" style="overflow-y:scroll;">
-        <a href="index.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
-        Calgary-Shaw
-        </a>
-        <a href="index.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Laurier-Sainte-Marie
-        </a>
-        <a href="index.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Rosemont-La Petite-Patrie
-        </a>
-        <a href="index.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Saint-Hyacinthe-Bagot-Acton
-        </a>
-        <a href="index.html" class="province-link-head">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
-        Yorkton-Melville
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
   <a href="polls.html">Polls</a>
   <a href="accuracy.html">Accuracy</a>
     
@@ -918,7 +841,7 @@
 <div class="projection-grid">
 
 <div class="results">
-  <h2 class="title">CDNProjections Federal Electoral Model</h2>
+  <h2 class="title">CDNProjections Quebec Electoral Model</h2>
 
   <div class="party-row">
     <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Liberal_Party_of_Canada_Logo_2014.svg" class="party-logo">
@@ -1034,8 +957,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('federalridingmap.json').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=0&single=true&output=csv')
+  fetch('QCElectoralBoundaries.json').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=360250015&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -1048,45 +971,41 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const lib = parseFloat(cols[1]);    
-        const cpc = parseFloat(cols[2]);    
-        const bqc = parseFloat(cols[3]);    
-        const ndp = parseFloat(cols[4]);    
-        const grn = parseFloat(cols[5]);    
-        const ppc = parseFloat(cols[6]);    
-        const oth = parseFloat(cols[7]);    
-        const status = cols[8] || '';       
-        const riding = cols[9] || '';       
-        const margin = parseFloat(cols[10]); 
-        const blurb = cols[11] || '';       
-        const result2025 = cols[12] || '';       
-        const result2021 = cols[13] || '';       
-        const result2019 = cols[14] || '';       
-        const libchange = parseFloat(cols[15]);    
-        const cpcchange = parseFloat(cols[16]);    
-        const bqcchange = parseFloat(cols[17]);    
-        const ndpchange = parseFloat(cols[18]);    
-        const grnchange = parseFloat(cols[19]);    
-        const ppcchange = parseFloat(cols[20]);    
-        const othchange = parseFloat(cols[21]);    
+        const caq = parseFloat(cols[1]);    
+        const qs = parseFloat(cols[2]);    
+        const pq = parseFloat(cols[3]);    
+        const lib = parseFloat(cols[4]);    
+        const con = parseFloat(cols[5]);    
+        const oth = parseFloat(cols[6]);    
+        const status = cols[7] || '';       
+        const riding = cols[8] || '';       
+        const margin = parseFloat(cols[9]); 
+        const blurb = cols[10] || '';       
+        const result2022 = cols[11] || '';       
+        const result2018 = cols[12] || '';       
+        const result2014 = cols[13] || '';       
+        const caqchange = parseFloat(cols[14]);    
+        const qschange = parseFloat(cols[15]);    
+        const pqchange = parseFloat(cols[16]);    
+        const libchange = parseFloat(cols[17]);    
+        const conchange = parseFloat(cols[18]);    
+        const othchange = parseFloat(cols[19]);    
 
         const parties = {
-          "Liberal": isNaN(lib) ? null : lib,
-          "Conservative": isNaN(cpc) ? null : cpc,
-          "Bloc": isNaN(bqc) ? null : bqc,
-          "NDP": isNaN(ndp) ? null : ndp,
-          "Green": isNaN(grn) ? null : grn,
-          "PPC": isNaN(ppc) ? null : ppc,
+          "CAQ": isNaN(lib) ? null : caq,
+          "QS": isNaN(cpc) ? null : qs,
+          "PQ": isNaN(bqc) ? null : pq,
+          "Liberal": isNaN(ndp) ? null : lib,
+          "Conservative": isNaN(grn) ? null : con,
           "Other": isNaN(oth) ? null : oth
         };
 
         const changes = {
-          "Liberal": isNaN(libchange) ? 0 : libchange,
-          "Conservative": isNaN(cpcchange) ? 0 : cpcchange,
-          "Bloc": isNaN(bqcchange) ? 0 : bqcchange,
-          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
-          "Green": isNaN(grnchange) ? 0 : grnchange,
-          "PPC": isNaN(ppcchange) ? 0 : ppcchange,
+          "CAQ": isNaN(libchange) ? 0 : caqchange,
+          "QS": isNaN(cpcchange) ? 0 : qschange,
+          "PQ": isNaN(bqcchange) ? 0 : pqchange,
+          "Liberal": isNaN(ndpchange) ? 0 : libchange,
+          "Conservative": isNaN(grnchange) ? 0 : conchange,
           "Other": isNaN(othchange) ? 0 : othchange
         };
 
@@ -1097,7 +1016,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2025, result2021, result2019 };
+        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2022, result2018, result2014 };
       });
 
       return model;
@@ -1115,7 +1034,7 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.FED_NUM);
+  const id = String(feature.properties.NM_CEP);
   const d = model[id];
   const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -1165,9 +1084,9 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
-        <div class="map-history-row"><span class="map-history-year">2021:</span> ${escapeHtml(d.result2021)}</div>
-        <div class="map-history-row"><span class="map-history-year">2019:</span> ${escapeHtml(d.result2019)}</div>
+        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2022)}</div>
+        <div class="map-history-row"><span class="map-history-year">2018:</span> ${escapeHtml(d.result2018)}</div>
+        <div class="map-history-row"><span class="map-history-year">2014:</span> ${escapeHtml(d.result2014)}</div>
       </div>
       <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
     `;
@@ -1221,31 +1140,31 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Liberal": "#811013",
-    "Safe Liberal": "#ac151a",
-    "Likely Liberal": "#d71a20",
-    "Leaning Liberal": "#df484d",
-    "Tilting Liberal": "#e77679",
-    "Locked Conservative": "#0b1c32",
-    "Safe Conservative": "#0f2643",
-    "Likely Conservative": "#132f54",
-    "Leaning Conservative": "#425976",
-    "Tilting Conservative": "#718298",
-    "Locked Bloc": "#00658b",
-    "Safe Bloc": "#0086b9",
-    "Likely Bloc": "#00a8e7",
-    "Leaning Bloc": "#33b9ec",
-    "Tilting Bloc": "#66cbf1",
-    "Locked NDP": "#934e13",
-    "Safe NDP": "#c4681a",
-    "Likely NDP": "#f58220",
-    "Leaning NDP": "#f79b4d",
-    "Tilting NDP": "#f9b479",
-    "Locked Green": "#245d20",
-    "Safe Green": "#307c2a",
-    "Likely Green": "#3c9b35",
-    "Leaning Green": "#63af5d",
-    "Tilting Green": "#8ac386",
+    "Locked CAQ": "#00658b",
+    "Safe CAQ": "#0086b9",
+    "Likely CAQ": "#00a8e7",
+    "Leaning CAQ": "#33b9ec",
+    "Tilting CAQ": "#66cbf1",
+    "Locked QS": "#993303",
+    "Safe QS": "#cc4404",
+    "Likely QS": "#ff5505",
+    "Leaning QS": "#ff7737",
+    "Tilting QS": "#ff9969",
+    "Locked PQ": "#183564",
+    "Safe PQ": "#204785",
+    "Likely PQ": "#2859a6",
+    "Leaning PQ": "#537ab8",
+    "Tilting PQ": "#7e9bca",
+    "Locked Liberal": "#8e0f19",
+    "Safe Liberal": "#bd1422",
+    "Likely Liberal": "#ec192a",
+    "Leaning Liberal": "#f04755",
+    "Tilting Liberal": "#f4757f",
+    "Locked Conservative": "#0d1731",
+    "Safe Conservative": "#121f41",
+    "Likely Conservative": "#162751",
+    "Leaning Conservative": "#455274",
+    "Tilting Conservative": "#737d97",
   }[party] || "#000000";
 }
 
@@ -1278,12 +1197,11 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Liberal": "#d71a20",
-    "Conservative": "#132f54",
-    "Bloc": "#00a8e7",
-    "NDP": "#f58220",
-    "Green": "#3c9b35",
-    "PPC": "#68339b",
+    "CAQ": "#00a8e7",
+    "QS": "#ff5505",
+    "PQ": "#2859a6",
+    "Liberal": "#ec192a",
+    "Conservative": "#162751",
     "Other": "#808080"
   };
   return colors[partyName] || "#cccccc";
