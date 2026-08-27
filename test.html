@@ -1250,6 +1250,16 @@
   </div>
   <p id="countdown11" class="countdown-timer"></p>
   </div>
+
+  <div class="carousel-controls">
+    <button class="prev">←</button>
+    <button class="next">→</button>
+  </div>
+
+  <div class="carousel-dots">
+    <span class="dot active"></span>
+  </div>
+
 </div>
 
 <div class="projection-carousel">
@@ -1686,14 +1696,18 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
   const nextBtn = carousel.querySelector('.next');
   const prevBtn = carousel.querySelector('.prev');
 
+  if (slides.length === 0) return;
+
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
+      // Safe check so missing dots never crash the script
+      if (dots[i]) {
+        dots[i].classList.toggle('active', i === index);
+      }
     });
   }
 
-  // Next button
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
@@ -1701,7 +1715,6 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   }
 
-  // Prev button
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
@@ -1709,7 +1722,6 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   }
 
-  // Dot click
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       currentSlide = i;
@@ -1717,13 +1729,14 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   });
 
-  // Auto‑advance
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }, 20000);
+  // Only auto-advance if there are at least 2 slides
+  if (slides.length > 1) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 20000);
+  }
 
-  // Initialize
   showSlide(currentSlide);
 });
 </script>
