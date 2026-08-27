@@ -1250,16 +1250,6 @@
   </div>
   <p id="countdown11" class="countdown-timer"></p>
   </div>
-
-  <div class="carousel-controls">
-    <button class="prev">←</button>
-    <button class="next">→</button>
-  </div>
-
-  <div class="carousel-dots">
-    <span class="dot active"></span>
-  </div>
-
 </div>
 
 <div class="projection-carousel">
@@ -1701,10 +1691,8 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
-      // Safe check so missing dots never crash the script
-      if (dots[i]) {
-        dots[i].classList.toggle('active', i === index);
-      }
+      // Optional chaining ensures it only updates dots if they actually exist
+      dots[i]?.classList.toggle('active', i === index);
     });
   }
 
@@ -1729,12 +1717,12 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   });
 
-  // Only auto-advance if there are at least 2 slides
+  // Cycle slides automatically only when more than 1 slide exists
   if (slides.length > 1) {
     setInterval(() => {
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
-    }, 20000);
+    }, 15000);
   }
 
   showSlide(currentSlide);
