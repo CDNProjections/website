@@ -607,7 +607,6 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px;
-  margin-top: 20px;
 }
 
 .updates-title {
@@ -1234,14 +1233,14 @@
 
   <main class="main-content">
 
-<div class="projection-carousel">
-  <div class="slide active">
+<div class="projection-carousel" style="animation: shake 5s infinite; min-width: 75px">
+  <div class="slide active" style="height: 475px">
   <div class="slide-content">
   <div class="map-column">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/QuebecDistrictsBlank2026.svg" alt="Quebec Map" class="province-map">
   </div>
   <div class="text-column">
-    <h3 class="province-title">Quebec</h3>
+    <h3 class="province-title">Quebec - Election To Watch</h3>
     <p class="province-blurb">
       <span style="color: #2859a6;">Parti Quebecois lead by 24 seats over the Liberals, favoured to flip government from CAQ</span><br>
       <span>Last Update: August 16, 2026</span>
@@ -1249,9 +1248,12 @@
     <a href="quebec.html" class="view-link">View full projection →</a>
   </div>
   </div>
+  <p id="countdown11" class="countdown-timer"></p>
   </div>
+</div>
 
-  <div class="slide">
+<div class="projection-carousel">
+  <div class="slide active">
   <div class="slide-content">
   <div class="map-column">
     <img src="https://upload.wikimedia.org/wikipedia/commons/archive/7/71/20250429131644%21Canada_Election_2025_Results_Map.svg" alt="Canada Map" class="province-map">
@@ -1430,7 +1432,6 @@
 
   <div class="carousel-dots">
     <span class="dot active"></span>
-    <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
@@ -1656,6 +1657,7 @@ createCountdown("countdown7", "September 3, 2026 0:00:00");
 createCountdown("countdown8", "September 3, 2026 0:00:00");
 createCountdown("countdown9", "September 3, 2026 0:00:00");
 createCountdown("countdown10", "September 14, 2026 0:00:00");
+createCountdown("countdown11", "Oct 5, 2026 0:00:00");
 </script>
 
 <script>
@@ -1667,14 +1669,16 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
   const nextBtn = carousel.querySelector('.next');
   const prevBtn = carousel.querySelector('.prev');
 
+  if (slides.length === 0) return;
+
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
+      // Optional chaining ensures it only updates dots if they actually exist
+      dots[i]?.classList.toggle('active', i === index);
     });
   }
 
-  // Next button
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
@@ -1682,7 +1686,6 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   }
 
-  // Prev button
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
@@ -1690,7 +1693,6 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   }
 
-  // Dot click
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       currentSlide = i;
@@ -1698,13 +1700,14 @@ document.querySelectorAll('.projection-carousel').forEach((carousel) => {
     });
   });
 
-  // Auto‑advance
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }, 20000);
+  // Cycle slides automatically only when more than 1 slide exists
+  if (slides.length > 1) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 15000);
+  }
 
-  // Initialize
   showSlide(currentSlide);
 });
 </script>
