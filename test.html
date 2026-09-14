@@ -956,8 +956,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('QCElectoralBoundaries.json').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=360250015&single=true&output=csv')
+  fetch('ONElectoralBoundaries.json').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1497646430&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -970,41 +970,38 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const caq = parseFloat(cols[1]);    
-        const qs = parseFloat(cols[2]);    
-        const pq = parseFloat(cols[3]);    
-        const lib = parseFloat(cols[4]);    
-        const con = parseFloat(cols[5]);    
-        const oth = parseFloat(cols[6]);    
-        const status = cols[7] || '';       
-        const riding = cols[8] || '';       
-        const margin = parseFloat(cols[9]); 
-        const blurb = cols[10] || '';       
+        const pc = parseFloat(cols[1]);    
+        const ndp = parseFloat(cols[2]);    
+        const lib = parseFloat(cols[3]);    
+        const grn = parseFloat(cols[4]);    
+        const oth = parseFloat(cols[5]);    
+        const status = cols[6] || '';       
+        const riding = cols[7] || '';       
+        const margin = parseFloat(cols[8]); 
+        const blurb = cols[9] || '';       
+        const result2025 = cols[10] || '';       
         const result2022 = cols[11] || '';       
         const result2018 = cols[12] || '';       
         const result2014 = cols[13] || '';       
-        const caqchange = parseFloat(cols[14]);    
-        const qschange = parseFloat(cols[15]);    
-        const pqchange = parseFloat(cols[16]);    
-        const libchange = parseFloat(cols[17]);    
-        const conchange = parseFloat(cols[18]);    
-        const othchange = parseFloat(cols[19]);    
+        const pcchange = parseFloat(cols[14]);    
+        const ndpchange = parseFloat(cols[15]);    
+        const libchange = parseFloat(cols[16]);    
+        const grnchange = parseFloat(cols[17]);    
+        const othchange = parseFloat(cols[18]);    
 
         const parties = {
-          "CAQ": isNaN(caq) ? null : caq,
-          "QS": isNaN(qs) ? null : qs,
-          "PQ": isNaN(pq) ? null : pq,
+          "PC": isNaN(pc) ? null : pc,
+          "NDP": isNaN(ndp) ? null : ndp,
           "Liberal": isNaN(lib) ? null : lib,
-          "Conservative": isNaN(con) ? null : con,
+          "Green": isNaN(grn) ? null : grn,
           "Other": isNaN(oth) ? null : oth
         };
 
         const changes = {
-          "CAQ": isNaN(caqchange) ? 0 : caqchange,
-          "QS": isNaN(qschange) ? 0 : qschange,
-          "PQ": isNaN(pqchange) ? 0 : pqchange,
+          "PC": isNaN(pcchange) ? 0 : pcchange,
+          "NDP": isNaN(ndpchange) ? 0 : ndpchange,
           "Liberal": isNaN(libchange) ? 0 : libchange,
-          "Conservative": isNaN(conchange) ? 0 : conchange,
+          "Green": isNaN(grnchange) ? 0 : grnchange,
           "Other": isNaN(othchange) ? 0 : othchange
         };
 
@@ -1015,7 +1012,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2022, result2018, result2014 };
+        model[id] = { parties, changes, leading, status, riding, margin, blurb, result2025, result2022, result2018, result2014 };
       });
 
       return model;
@@ -1023,7 +1020,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
-      const id = String(feature.properties.NM_CEP);
+      const id = String(feature.properties.ED_ID);
       const ridingData = model[id];
       return {
         color: "#fff",
@@ -1033,7 +1030,7 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.NM_CEP);
+  const id = String(feature.properties.ED_ID);
   const d = model[id];
   const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -1073,7 +1070,7 @@ onEachFeature: (feature, layer) => {
         <tr class="map-header-row">
           <td style="text-align:left">Party</td>
           <td style="text-align:right">
-            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2022</span>
+            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2025</span>
           </td>
         </tr>
         ${rowsHtml}
@@ -1083,6 +1080,7 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
+        <div class="map-history-row"><span class="map-history-year">2025:</span> ${escapeHtml(d.result2025)}</div>
         <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2022)}</div>
         <div class="map-history-row"><span class="map-history-year">2018:</span> ${escapeHtml(d.result2018)}</div>
         <div class="map-history-row"><span class="map-history-year">2014:</span> ${escapeHtml(d.result2014)}</div>
@@ -1139,31 +1137,31 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked CAQ": "#00658b",
-    "Safe CAQ": "#0086b9",
-    "Likely CAQ": "#00a8e7",
-    "Leaning CAQ": "#33b9ec",
-    "Tilting CAQ": "#66cbf1",
-    "Locked QS": "#993303",
-    "Safe QS": "#cc4404",
-    "Likely QS": "#ff5505",
-    "Leaning QS": "#ff7737",
-    "Tilting QS": "#ff9969",
-    "Locked PQ": "#183564",
-    "Safe PQ": "#204785",
-    "Likely PQ": "#2859a6",
-    "Leaning PQ": "#537ab8",
-    "Tilting PQ": "#7e9bca",
-    "Locked Liberal": "#8e0f19",
-    "Safe Liberal": "#bd1422",
-    "Likely Liberal": "#ec192a",
-    "Leaning Liberal": "#f04755",
-    "Tilting Liberal": "#f4757f",
-    "Locked CON": "#0d1731",
-    "Safe CON": "#121f41",
-    "Likely CON": "#162751",
-    "Leaning CON": "#455274",
-    "Tilting CON": "#737d97",
+    "Locked PC": "#2f5f88",
+    "Safe PC": "#3f7eb6",
+    "Likely PC": "#4f9ee3",
+    "Leaning PC": "#72b1e9",
+    "Tilting PC": "#95c5ee",
+    "Locked NDP": "#953c00",
+    "Safe NDP": "#c75000",
+    "Likely NDP": "#f96400",
+    "Leaning NDP": "#fa8333",
+    "Tilting NDP": "#fba266",
+    "Locked Liberal": "#8e1116",
+    "Safe Liberal": "#be161d",
+    "Likely Liberal": "#ed1c24",
+    "Leaning Liberal": "#f14950",
+    "Tilting Liberal": "#f4777c",
+    "Locked Green": "#1c471c",
+    "Safe Green": "#265f25",
+    "Likely Green": "#2f772e",
+    "Leaning Green": "#599258",
+    "Tilting Green": "#82ad82",
+    "Locked Other": "#4d4d4d",
+    "Safe Other": "#666666",
+    "Likely Other": "#808080",
+    "Leaning Other": "#999999",
+    "Tilting Other": "#b3b3b3",
   }[party] || "#000000";
 }
 
@@ -1196,11 +1194,10 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "CAQ": "#00a8e7",
-    "QS": "#ff5505",
-    "PQ": "#2859a6",
-    "Liberal": "#ec192a",
-    "Conservative": "#162751",
+    "PC": "#4f9ee3",
+    "NDP": "#f96400",
+    "Liberal": "#ed1c24",
+    "Green": "#2f772e",
     "Other": "#808080"
   };
   return colors[partyName] || "#cccccc";
