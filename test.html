@@ -978,8 +978,6 @@ onEachFeature: (feature, layer) => {
     const rowsHtml = topParties.map(p => {
       const val = d.parties[p];
       const color = getBasePartyColor(p);
-      const sign = chg > 0 ? '+' : '';
-      const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
 
       return `
         <tr>
