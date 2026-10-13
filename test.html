@@ -977,7 +977,6 @@ onEachFeature: (feature, layer) => {
 
     const rowsHtml = topParties.map(p => {
       const val = d.parties[p];
-      const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
       const color = getBasePartyColor(p);
       const sign = chg > 0 ? '+' : '';
       const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
