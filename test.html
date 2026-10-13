@@ -987,7 +987,8 @@ onEachFeature: (feature, layer) => {
               <span>${p}</span>
             </div>
           </td>
-        </tr>`;
+      <td class="map-pct">${val !== null && !isNaN(val) ? val.toFixed(1) + '%' : ''}</td>
+      </tr>`;
     }).join('');
 
     const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
