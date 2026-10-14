@@ -850,7 +850,7 @@
 <div class="projection-grid" style="margin-bottom: 20px;">
 
 <div class="results">
-  <h2 class="title">CDNProjections Ottawa Mayoral Electoral Model</h2>
+  <h2 class="title">CDNProjections Mississauga Mayoral Electoral Model</h2>
 
   <div class="party-row">
     <img src="ms-logo-heart.svg" class="party-logo">
@@ -922,7 +922,7 @@
     </div>
   </div>
 
-  <p class="updated">Last Updated: October 10, 2026</p>
+  <p class="updated">Last Updated: October 14, 2026</p>
 </div>
 
 
@@ -931,17 +931,17 @@
 </div>
 
 <div class="card">
-  <h3 class="card-title">Ottawa - Historical Timeline of Projections</h3>
+  <h3 class="card-title">Mississauga - Historical Timeline of Projections</h3>
 <div class="flourish-embed flourish-chart" data-src="visualisation/29720692"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720692/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
 <div class="card">
-  <h3 class="card-title">Ottawa - 200 Simulated Margins of the Mayoral Election</h3>
+  <h3 class="card-title">Mississauga - 200 Simulated Margins of the Mayoral Election</h3>
 <div class="flourish-embed flourish-scatter" data-src="visualisation/29720736"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720736/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
 </div>
 
 <div class="card">
-  <h3 class="card-title">Ottawa - Mayoral Polling</h3>
+  <h3 class="card-title">Mississauga - Mayoral Polling</h3>
 <div class="flourish-embed flourish-chart" data-src="visualisation/29720751"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29720751/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
 </div>
 
@@ -961,8 +961,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('Wards_2022_2026.geojson').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1328247924&single=true&output=csv')
+  fetch('Ward_Boundaries_-3305638411228248251.geojson').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1076170454&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -975,35 +975,35 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const sutcliffe = parseFloat(cols[1]);    
-        const leiper = parseFloat(cols[2]);    
-        const lawson = parseFloat(cols[3]);    
-        const saravanamuttoo = parseFloat(cols[4]);    
+        const parrish = parseFloat(cols[1]);    
+        const tedjo = parseFloat(cols[2]);    
+        const damerla = parseFloat(cols[3]);    
+        const crombie = parseFloat(cols[4]);    
         const other = parseFloat(cols[5]);    
         const status = cols[6] || '';       
         const ward = cols[7] || '';       
         const margin = parseFloat(cols[8]); 
         const blurb = cols[9] || '';       
-        const result2022 = cols[10] || '';       
-        const sutcliffechange = parseFloat(cols[11]);    
-        const leiperchange = parseFloat(cols[12]);    
-        const lawsonchange = parseFloat(cols[13]);    
-        const saravanamuttoochange = parseFloat(cols[14]);    
+        const result2024 = cols[10] || '';       
+        const parrishchange = parseFloat(cols[11]);    
+        const tedjochange = parseFloat(cols[12]);    
+        const damerlachange = parseFloat(cols[13]);    
+        const crombiechange = parseFloat(cols[14]);    
         const otherchange = parseFloat(cols[15]);    
 
         const parties = {
-          "Sutcliffe": isNaN(sutcliffe) ? null : sutcliffe,
-          "Leiper": isNaN(leiper) ? null : leiper,
-          "Lawson": isNaN(lawson) ? null : lawson,
-          "Saravanamuttoo": isNaN(saravanamuttoo) ? null : saravanamuttoo,
+          "Parrish": isNaN(parrish) ? null : parrish,
+          "Tedjo": isNaN(tedjo) ? null : tedjo,
+          "Damerla": isNaN(damerla) ? null : damerla,
+          "Crombie": isNaN(crombie) ? null : crombie,
           "Other": isNaN(other) ? null : other
         };
 
         const changes = {
-          "Sutcliffe": isNaN(sutcliffechange) ? 0 : sutcliffechange,
-          "Leiper": isNaN(leiperchange) ? 0 : leiperchange,
-          "Lawson": isNaN(lawsonchange) ? 0 : lawsonchange,
-          "Saravanamuttoo": isNaN(saravanamuttoochange) ? 0 : saravanamuttoochange,
+          "Parrish": isNaN(parrishchange) ? 0 : parrishchange,
+          "Tedjo": isNaN(tedjochange) ? 0 : tedjochange,
+          "Damerla": isNaN(damerlachange) ? 0 : damerlachange,
+          "Crombie": isNaN(crombiechange) ? 0 : crombiechange,
           "Other": isNaN(otherchange) ? 0 : otherchange
         };
 
@@ -1014,7 +1014,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, ward, margin, blurb, result2022, };
+        model[id] = { parties, changes, leading, status, ward, margin, blurb, result2024, };
       });
 
       return model;
@@ -1072,7 +1072,7 @@ onEachFeature: (feature, layer) => {
         <tr class="map-header-row">
           <td style="text-align:left">Party</td>
           <td style="text-align:right">
-            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2022</span>
+            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2024</span>
           </td>
         </tr>
         ${rowsHtml}
@@ -1082,7 +1082,7 @@ onEachFeature: (feature, layer) => {
       </div>
       <div class="map-history-box">
         <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2022:</span> ${escapeHtml(d.result2022)}</div>
+        <div class="map-history-row"><span class="map-history-year">2024:</span> ${escapeHtml(d.result2024)}</div>
       </div>
       <div class="map-brand">CDNPROJECTIONS.CA WARD MODEL</div>
     `;
@@ -1136,26 +1136,26 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Sutcliffe": "#2c946b",
-    "Safe Sutcliffe": "#3ac58e",
-    "Likely Sutcliffe": "#49f6b2",
-    "Leaning Sutcliffe": "#6df8c1",
-    "Tilting Sutcliffe": "#92fad1",
-    "Locked Leiper": "#590010",
-    "Safe Leiper": "#770016",
-    "Likely Leiper": "#95001b",
-    "Leaning Leiper": "#aa3349",
-    "Tilting Leiper": "#bf6676",
-    "Locked Lawson": "#1a106a",
-    "Safe Lawson": "#22168d",
-    "Likely Lawson": "#2b1bb0",
-    "Leaning Lawson": "#5549c0",
-    "Tilting Lawson": "#8076d0",
-    "Locked Saravanamuttoo": "#966f0d",
-    "Safe Saravanamuttoo": "#c89411",
-    "Likely Saravanamuttoo": "#fab915",
-    "Leaning Saravanamuttoo": "#fbc744",
-    "Tilting Saravanamuttoo": "#fcd573",
+    "Locked Parrish": "#821223",
+    "Safe Parrish": "#ae182f",
+    "Likely Parrish": "#d91e3b",
+    "Leaning Parrish": "#e14b62",
+    "Tilting Parrish": "#e87889",
+    "Locked Tedjo": "#125c53",
+    "Safe Tedjo": "#187a6e",
+    "Likely Tedjo": "#1e998a",
+    "Leaning Tedjo": "#4bada1",
+    "Tilting Tedjo": "#78c2b9",
+    "Locked Damerla": "#997700",
+    "Safe Damerla": "#cc9f00",
+    "Likely Damerla": "#ffc700",
+    "Leaning Damerla": "#ffd233",
+    "Tilting Damerla": "#ffdd66",
+    "Locked Crombie": "#1a0e3a",
+    "Safe Crombie": "#23124d",
+    "Likely Crombie": "#2c1760",
+    "Leaning Crombie": "#564580",
+    "Tilting Crombie": "#8074a0",
   }[party] || "#000000";
 }
 
@@ -1188,10 +1188,10 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Sutcliffe": "#49f6b2",
-    "Leiper": "#95001b",
-    "Lawson": "#2b1bb0",
-    "Saravanamuttoo": "#fab915",
+    "Parrish": "#d91e3b",
+    "Tedjo": "#1e998a",
+    "Damerla": "#ffc700",
+    "Crombie": "#2c1760",
     "Other": "#808080"
   };
   return colors[partyName] || "#cccccc";
