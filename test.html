@@ -983,8 +983,8 @@ function renderRidingMap(containerId, csvUrl, geojsonUrl = 'ABBoundaries.geojson
           const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"\vert{}"$/g, '').trim());
 
           const id = cols[0];                 
-          const remain = parseFloat(cols[1]);    
-          const second = parseFloat(cols[2]);    
+          const yes = parseFloat(cols[1]);    
+          const no = parseFloat(cols[2]);    
           const status = cols[3] || '';        
           const riding = cols[4] || '';        
           const margin = parseFloat(cols[5]); 
@@ -1116,16 +1116,16 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Remain": "#76011f",
-    "Safe Remain": "#9d022a",
-    "Likely Remain": "#c40234",
-    "Leaning Remain": "#d0355d",
-    "Tilting Remain": "#dc6785",
-    "Locked Second": "#005f40",
-    "Safe Second": "#007f56",
-    "Likely Second": "#009f6b",
-    "Leaning Second": "#33b289",
-    "Tilting Second": "#66c5a6",
+    "Locked Yes": "#76011f",
+    "Safe Yes": "#9d022a",
+    "Likely Yes": "#c40234",
+    "Leaning Yes": "#d0355d",
+    "Tilting Yes": "#dc6785",
+    "Locked No": "#005f40",
+    "Safe No": "#007f56",
+    "Likely No": "#009f6b",
+    "Leaning No": "#33b289",
+    "Tilting No": "#66c5a6",
   }[party] || "#000000";
 }
 
@@ -1141,8 +1141,8 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Remain": "#c40234",
-    "Second": "#009f6b",
+    "Yes": "#c40234",
+    "No": "#009f6b",
   };
   return colors[partyName] || "#cccccc";
 }
