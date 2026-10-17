@@ -1118,16 +1118,16 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Yes": "#76011f",
-    "Safe Yes": "#9d022a",
-    "Likely Yes": "#c40234",
-    "Leaning Yes": "#d0355d",
-    "Tilting Yes": "#dc6785",
-    "Locked No": "#005f40",
-    "Safe No": "#007f56",
-    "Likely No": "#009f6b",
-    "Leaning No": "#33b289",
-    "Tilting No": "#66c5a6",
+    "Locked No": "#76011f",
+    "Safe No": "#9d022a",
+    "Likely No": "#c40234",
+    "Leaning No": "#d0355d",
+    "Tilting No": "#dc6785",
+    "Locked Yes": "#005f40",
+    "Safe Yes": "#007f56",
+    "Likely Yes": "#009f6b",
+    "Leaning Yes": "#33b289",
+    "Tilting Yes": "#66c5a6",
   }[party] || "#000000";
 }
 
@@ -1143,8 +1143,8 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Yes": "#c40234",
-    "No": "#009f6b",
+    "No": "#c40234",
+    "Yes": "#009f6b",
   };
   return colors[partyName] || "#cccccc";
 }
