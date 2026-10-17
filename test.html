@@ -993,8 +993,8 @@ function renderRidingMap(containerId, csvUrl, geojsonUrl = 'ABBoundaries.geojson
           const blurb = cols[6] || '';        
 
           const parties = {
-            "Remain": isNaN(remain) ? null : remain,
-            "Second": isNaN(second) ? null : second,
+            "Yes": isNaN(yes) ? null : yes,
+            "No": isNaN(no) ? null : no,
           };
 
           let leading = null;
