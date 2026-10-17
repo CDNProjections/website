@@ -915,10 +915,10 @@
 
 <script>
 const map = L.map('map', {
-  minZoom: 7,
-  maxZoom: 13,
+  minZoom: 2,
+  maxZoom: 12,
   zoomControl: true
-}).setView([43.6, -79.7], 11);
+}).setView([53, -115], 6);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
@@ -927,8 +927,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('Ward_Boundaries_-3305638411228248251.geojson').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1076170454&single=true&output=csv')
+  fetch('ABBoundaries.geojson').then(r => r.json()),
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=624766097&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
       // Split rows but handle potential empty lines
@@ -941,36 +941,16 @@ Promise.all([
         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
 
         const id = cols[0];                 
-        const parrish = parseFloat(cols[1]);    
-        const tedjo = parseFloat(cols[2]);    
-        const damerla = parseFloat(cols[3]);    
-        const crombie = parseFloat(cols[4]);    
-        const other = parseFloat(cols[5]);    
-        const status = cols[6] || '';       
-        const ward = cols[7] || '';       
-        const margin = parseFloat(cols[8]); 
-        const blurb = cols[9] || '';       
-        const result2024 = cols[10] || '';       
-        const parrishchange = parseFloat(cols[11]);    
-        const tedjochange = parseFloat(cols[12]);    
-        const damerlachange = parseFloat(cols[13]);    
-        const crombiechange = parseFloat(cols[14]);    
-        const otherchange = parseFloat(cols[15]);    
+        const remain = parseFloat(cols[1]);    
+        const second = parseFloat(cols[2]);    
+        const status = cols[3] || '';       
+        const riding = cols[4] || '';       
+        const margin = parseFloat(cols[5]); 
+        const blurb = cols[6] || '';       
 
         const parties = {
-          "Parrish": isNaN(parrish) ? null : parrish,
-          "Tedjo": isNaN(tedjo) ? null : tedjo,
-          "Damerla": isNaN(damerla) ? null : damerla,
-          "Crombie": isNaN(crombie) ? null : crombie,
-          "Other": isNaN(other) ? null : other
-        };
-
-        const changes = {
-          "Parrish": isNaN(parrishchange) ? 0 : parrishchange,
-          "Tedjo": isNaN(tedjochange) ? 0 : tedjochange,
-          "Damerla": isNaN(damerlachange) ? 0 : damerlachange,
-          "Crombie": isNaN(crombiechange) ? 0 : crombiechange,
-          "Other": isNaN(otherchange) ? 0 : otherchange
+          "Remain": isNaN(remain) ? null : remain,
+          "Second": isNaN(second) ? null : second,
         };
 
         let leading = null;
@@ -980,7 +960,7 @@ Promise.all([
           if (!leading || v > leading.value) leading = { party: p, value: v };
         });
 
-        model[id] = { parties, changes, leading, status, ward, margin, blurb, result2024, };
+        model[id] = { parties, leading, status, riding, margin, blurb };
       });
 
       return model;
@@ -988,7 +968,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
-      const id = String(feature.properties.WARD);
+      const id = String(feature.properties.EDNumber20);
       const ridingData = model[id];
       return {
         color: "#fff",
@@ -998,9 +978,9 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.WARD);
+  const id = String(feature.properties.EDNumber20);
   const d = model[id];
-  const ridingName = d && d.ward ? d.ward : (feature.properties.NAME || "Unknown Ward");
+  const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   if (d) {
@@ -1010,10 +990,7 @@ onEachFeature: (feature, layer) => {
 
     const rowsHtml = topParties.map(p => {
       const val = d.parties[p];
-      const chg = (d.changes && d.changes[p] !== undefined) ? d.changes[p] : 0;
       const color = getBasePartyColor(p);
-      const sign = chg > 0 ? '+' : '';
-      const chgDisplay = `<span class="map-chg">${sign}${chg.toFixed(1)}</span>`;
 
       return `
         <tr>
@@ -1023,8 +1000,8 @@ onEachFeature: (feature, layer) => {
               <span>${p}</span>
             </div>
           </td>
-          <td class="map-pct">${val.toFixed(1)}% ${chgDisplay}</td>
-        </tr>`;
+      <td class="map-pct">${val !== null && !isNaN(val) ? val.toFixed(1) + '%' : ''}</td>
+      </tr>`;
     }).join('');
 
     const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
@@ -1038,7 +1015,7 @@ onEachFeature: (feature, layer) => {
         <tr class="map-header-row">
           <td style="text-align:left">Party</td>
           <td style="text-align:right">
-            Pct. <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">+/- 2024</span>
+            <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">Pct. </span>
           </td>
         </tr>
         ${rowsHtml}
@@ -1046,11 +1023,7 @@ onEachFeature: (feature, layer) => {
       <div class="map-footer">
         ${escapeHtml(d.status || '')}${marginDisplay}
       </div>
-      <div class="map-history-box">
-        <div class="map-history-title">Previous Results</div>
-        <div class="map-history-row"><span class="map-history-year">2024:</span> ${escapeHtml(d.result2024)}</div>
-      </div>
-      <div class="map-brand">CDNPROJECTIONS.CA WARD MODEL</div>
+      <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
     `;
 
     // Tooltip only on non-mobile
@@ -1102,26 +1075,16 @@ function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
   return {
-    "Locked Parrish": "#821223",
-    "Safe Parrish": "#ae182f",
-    "Likely Parrish": "#d91e3b",
-    "Leaning Parrish": "#e14b62",
-    "Tilting Parrish": "#e87889",
-    "Locked Tedjo": "#125c53",
-    "Safe Tedjo": "#187a6e",
-    "Likely Tedjo": "#1e998a",
-    "Leaning Tedjo": "#4bada1",
-    "Tilting Tedjo": "#78c2b9",
-    "Locked Damerla": "#997700",
-    "Safe Damerla": "#cc9f00",
-    "Likely Damerla": "#ffc700",
-    "Leaning Damerla": "#ffd233",
-    "Tilting Damerla": "#ffdd66",
-    "Locked Crombie": "#1a0e3a",
-    "Safe Crombie": "#23124d",
-    "Likely Crombie": "#2c1760",
-    "Leaning Crombie": "#564580",
-    "Tilting Crombie": "#8074a0",
+    "Locked Remain": "#76011f",
+    "Safe Remain": "#9d022a",
+    "Likely Remain": "#c40234",
+    "Leaning Remain": "#d0355d",
+    "Tilting Remain": "#dc6785",
+    "Locked Second": "#005f40",
+    "Safe Second": "#007f56",
+    "Likely Second": "#009f6b",
+    "Leaning Second": "#33b289",
+    "Tilting Second": "#66c5a6",
   }[party] || "#000000";
 }
 
@@ -1154,11 +1117,8 @@ function escapeHtml(str) {
 
 function getBasePartyColor(partyName) {
   const colors = {
-    "Parrish": "#d91e3b",
-    "Tedjo": "#1e998a",
-    "Damerla": "#ffc700",
-    "Crombie": "#2c1760",
-    "Other": "#808080"
+    "Remain": "#c40234",
+    "Second": "#009f6b",
   };
   return colors[partyName] || "#cccccc";
 }
