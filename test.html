@@ -892,7 +892,49 @@
 </div>
 
 
-<div id="map"></div>
+<div id="map-1"></div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 1: Do you support the Government of Alberta taking increased control over immigration for the purposes of decreasing immigration to more sustainable levels, prioritizing economic migration and giving Albertans first priority on new employment opportunities?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">30.56%</span>
+        <span class="vote">(56.5%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 40.56%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">28.27%</span>
+        <span class="vote">(38.0%)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 48.27%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+
+<div id="map-2"></div>
 
 </div>
 
@@ -914,163 +956,162 @@
 </div>
 
 <script>
-const map = L.map('map', {
-  minZoom: 2,
-  maxZoom: 12,
-  zoomControl: true
-}).setView([53, -115], 6);
+// Main reusable function to render a map
+function renderRidingMap(containerId, csvUrl, geojsonUrl = 'ABBoundaries.geojson') {
+  const map = L.map(containerId, {
+    minZoom: 2,
+    maxZoom: 12,
+    zoomControl: true
+  }).setView([53, -115], 6);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
 
-let geojsonLayer = null;
+  let geojsonLayer = null;
 
-Promise.all([
-  fetch('ABBoundaries.geojson').then(r => r.json()),
-  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=624766097&single=true&output=csv')
-    .then(r => r.text())
-    .then(csv => {
-      // Split rows but handle potential empty lines
-      const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
-      const header = rows.shift(); 
-      const model = {};
+  Promise.all([
+    fetch(geojsonUrl).then(r => r.json()),
+    fetch(csvUrl)
+      .then(r => r.text())
+      .then(csv => {
+        const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
+        rows.shift(); // Remove header
+        const model = {};
 
-      rows.forEach(row => {
-        // IMPROVED: This regex handles commas inside quotes better than a simple split
-        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+        rows.forEach(row => {
+          const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"\vert{}"$/g, '').trim());
 
-        const id = cols[0];                 
-        const remain = parseFloat(cols[1]);    
-        const second = parseFloat(cols[2]);    
-        const status = cols[3] || '';       
-        const riding = cols[4] || '';       
-        const margin = parseFloat(cols[5]); 
-        const blurb = cols[6] || '';       
+          const id = cols[0];                 
+          const remain = parseFloat(cols[1]);    
+          const second = parseFloat(cols[2]);    
+          const status = cols[3] || '';        
+          const riding = cols[4] || '';        
+          const margin = parseFloat(cols[5]); 
+          const blurb = cols[6] || '';        
 
-        const parties = {
-          "Remain": isNaN(remain) ? null : remain,
-          "Second": isNaN(second) ? null : second,
+          const parties = {
+            "Remain": isNaN(remain) ? null : remain,
+            "Second": isNaN(second) ? null : second,
+          };
+
+          let leading = null;
+          Object.keys(parties).forEach(p => {
+            const v = parties[p];
+            if (v === null) return;
+            if (!leading || v > leading.value) leading = { party: p, value: v };
+          });
+
+          model[id] = { parties, leading, status, riding, margin, blurb };
+        });
+
+        return model;
+      })
+  ]).then(([geojson, model]) => {
+    geojsonLayer = L.geoJSON(geojson, {
+      style: feature => {
+        const id = String(feature.properties.EDNumber20);
+        const ridingData = model[id];
+        return {
+          color: "#fff",
+          weight: 1,
+          fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
+          fillOpacity: 0.8
         };
+      },
+      onEachFeature: (feature, layer) => {
+        const id = String(feature.properties.EDNumber20);
+        const d = model[id];
+        const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-        let leading = null;
-        Object.keys(parties).forEach(p => {
-          const v = parties[p];
-          if (v === null) return;
-          if (!leading || v > leading.value) leading = { party: p, value: v };
-        });
+        if (d) {
+          const topParties = Object.keys(d.parties)
+            .sort((a, b) => d.parties[b] - d.parties[a])
+            .slice(0, 4);
 
-        model[id] = { parties, leading, status, riding, margin, blurb };
-      });
+          const rowsHtml = topParties.map(p => {
+            const val = d.parties[p];
+            const color = getBasePartyColor(p);
 
-      return model;
-    })
-]).then(([geojson, model]) => {
-  geojsonLayer = L.geoJSON(geojson, {
-    style: feature => {
-      const id = String(feature.properties.EDNumber20);
-      const ridingData = model[id];
-      return {
-        color: "#fff",
-        weight: 1,
-        fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
-        fillOpacity: 0.8
-      };
-    },
-onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.EDNumber20);
-  const d = model[id];
-  const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            return `
+              <tr>
+                <td>
+                  <div class="map-party-cell">
+                    <div class="map-color-bar" style="background-color: ${color}"></div>
+                    <span>${p}</span>
+                  </div>
+                </td>
+                <td class="map-pct">${val !== null && !isNaN(val) ? val.toFixed(1) + '%' : ''}</td>
+              </tr>`;
+          }).join('');
 
-  if (d) {
-    const topParties = Object.keys(d.parties)
-      .sort((a, b) => d.parties[b] - d.parties[a])
-      .slice(0, 4);
+          const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
+            ? ` (+${d.margin.toFixed(1)}%)`
+            : "";
 
-    const rowsHtml = topParties.map(p => {
-      const val = d.parties[p];
-      const color = getBasePartyColor(p);
-
-      return `
-        <tr>
-          <td>
-            <div class="map-party-cell">
-              <div class="map-color-bar" style="background-color: ${color}"></div>
-              <span>${p}</span>
+          const contentHtml = `
+            <div class="map-title">${escapeHtml(ridingName)}</div>
+            <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+            <table class="map-table">
+              <tr class="map-header-row">
+                <td style="text-align:left">Party</td>
+                <td style="text-align:right">
+                  <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">Pct. </span>
+                </td>
+              </tr>
+              ${rowsHtml}
+            </table>
+            <div class="map-footer">
+              ${escapeHtml(d.status || '')}${marginDisplay}
             </div>
-          </td>
-      <td class="map-pct">${val !== null && !isNaN(val) ? val.toFixed(1) + '%' : ''}</td>
-      </tr>`;
-    }).join('');
+            <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+          `;
 
-    const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
-      ? ` (+${d.margin.toFixed(1)}%)`
-      : "";
+          if (!isMobile) {
+            layer.bindTooltip(contentHtml, {
+              sticky: true,
+              direction: "auto",
+              className: "leaflet-tooltip-map",
+              offset: [15, 0],
+              opacity: 1.0
+            });
 
-    const contentHtml = `
-      <div class="map-title">${escapeHtml(ridingName)}</div>
-      <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
-      <table class="map-table">
-        <tr class="map-header-row">
-          <td style="text-align:left">Party</td>
-          <td style="text-align:right">
-            <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">Pct. </span>
-          </td>
-        </tr>
-        ${rowsHtml}
-      </table>
-      <div class="map-footer">
-        ${escapeHtml(d.status || '')}${marginDisplay}
-      </div>
-      <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
-    `;
+            layer.on('mouseover', e => {
+              const lyr = e.target;
+              lyr.setStyle({
+                weight: 4,
+                color: '#000',
+                fillOpacity: 0.9
+              });
 
-    // Tooltip only on non-mobile
-    if (!isMobile) {
-      layer.bindTooltip(contentHtml, {
-        sticky: true,
-        direction: "auto",
-        className: "leaflet-tooltip-map",
-        offset: [15, 0],
-        opacity: 1.0
-      });
+              if (d && !lyr.isTooltipOpen()) {
+                lyr.openTooltip();
+              }
+            });
 
-      // Hover events only on non-mobile
-      layer.on('mouseover', e => {
-        const lyr = e.target;
-        lyr.setStyle({
-          weight: 4,
-          color: '#000',
-          fillOpacity: 0.9
-        });
+            layer.on('mouseout', e => {
+              const lyr = e.target;
+              geojsonLayer.resetStyle(lyr); // Safely resets style for THIS map instance
+              lyr.closeTooltip();
+            });
+          }
 
-        if (d && !lyr.isTooltipOpen()) {
-          lyr.openTooltip();
+          layer.bindPopup(contentHtml, {
+            className: "map-stick-popup",
+            closeButton: true
+          });
         }
-      });
+      }
+    }).addTo(map);
 
-      layer.on('mouseout', e => {
-        const lyr = e.target;
-        geojsonLayer.resetStyle(lyr);
-        lyr.closeTooltip();
-      });
-    }
-
-    // Popup (click/tap) on all devices
-    layer.bindPopup(contentHtml, {
-      className: "map-stick-popup",
-      closeButton: true
+    map.on('click', () => {
+      map.closePopup();
     });
-  }
-} // ✅ closes onEachFeature properly
-  }).addTo(map); // ✅ closes L.geoJSON
+  });
+}
 
-map.on('click', () => {
-  map.closePopup();
-});
-});
-
+// Global Helper Functions
 function partyColor(partyRaw) {
   if (!partyRaw) return "#ccc";
   const party = partyRaw.trim();
@@ -1086,23 +1127,6 @@ function partyColor(partyRaw) {
     "Leaning Second": "#33b289",
     "Tilting Second": "#66c5a6",
   }[party] || "#000000";
-}
-
-function highlightFeature(e) {
-  const layer = e.target;
-  layer.setStyle({
-    weight: 3,
-    color: '#000',
-    fillOpacity: 0.9
-  });
-  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-    layer.bringToFront();
-  }
-}
-
-function resetHighlight(e) {
-  if (!geojsonLayer) return;
-  geojsonLayer.resetStyle(e.target);
 }
 
 function escapeHtml(str) {
@@ -1123,6 +1147,17 @@ function getBasePartyColor(partyName) {
   return colors[partyName] || "#cccccc";
 }
 
+// Initializing Multiple Maps
+renderRidingMap(
+  'map-1',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=624766097&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-2',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=624766097&single=true&output=csv'
+);
+    
 </script>
 
 </body>
