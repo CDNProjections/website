@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDNProjections</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2T0WMSWY8"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-V2T0WMSWY8');
+   </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+    body {
+        background-color: #e6e6e6;
+        font-family: 'Hind Siliguri', sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .province-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+      gap: 15px;
+    }
+
+.main-header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 2px solid #000000;
+  font-family: 'Hind Siliguri', sans-serif;
+  top: 0;
+  position: relative;
+  z-index: 1100;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 15px 40px;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.logo-title img {
+  width: 80px;
+  height: 80px;
+}
+
+.logo-section h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 5px 0 0 0;
+  color: #111827;
+}
+
+.social-icons {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.2s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 10px 0;
+  border-top: 1px solid #808080;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.nav-bar a, .dropbtn {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.nav-bar a:hover, .dropbtn:hover {
+  color: #a36d7c;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: #111827;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn-sub {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  transition: color 0.2s ease;
+}
+
+.dropbtn-sub:hover {
+  color: #a36d7c;
+}
+
+.dropdown-content-sub {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+  background-color: #ffffff;
+  min-width: 180px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  z-index: 11;
+}
+
+.dropdown-sub:hover .dropdown-content-sub {
+  display: block;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.dropdown:hover > .dropbtn .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-sub:hover > .dropbtn-sub .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-content.show,
+.dropdown-content-sub.show {
+  display: block;
+}
+
+.province-link-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111827;
+}
+
+.dropdown-content-sub a,
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.projection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.results {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.questiontitle {
+  font-size: 16px;
+  font-weight: 350;
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+.party-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.party-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.topline {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.party-name {
+  font-weight: 700;
+}
+
+.highlight {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.vote {
+  color: #808080;
+  font-size: 16px;
+}
+
+.bar {
+  margin-top: 6px;
+  width: 100%;
+  height: 18px;
+  background: #f0f0f0;
+}
+
+.bar-fill {
+  height: 100%;
+}
+
+.updated {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #808080;
+  text-align: center;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 500px;
+  }
+}
+
+.leaflet-tooltip-map {
+  background: white !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 12px !important;
+  color: #333 !important;
+  opacity: 1 !important;
+  min-width: 250px;
+}
+
+.leaflet-tooltip-map::before { display: none !important; }
+
+.map-title { font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #000; }
+.map-subtitle { font-size: 13px; color: #777; margin-bottom: 10px; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; line-height: 1.4; max-width: 300px; }
+
+.map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+.map-table tr { border-bottom: 1px solid #eeeeee; }
+.map-table tr:last-child { border-bottom: none; }
+
+.map-table td { padding: 7px 0; vertical-align: middle; }
+
+.map-party-cell { text-align: left; display: flex; align-items: center; }
+.map-pct { text-align: right; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+.map-color-bar {
+  width: 4px;
+  height: 18px;
+  background-color: #ccc;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.map-header-row td { 
+  font-size: 11px; 
+  color: #999; 
+  padding-bottom: 4px; 
+  border-bottom: 1px solid #ddd;
+}
+
+.map-footer {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 5px;
+  font-weight: 500;
+}
+
+.leaflet-popup-content-wrapper {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 5px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important;
+    min-width: 250px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+.map-brand {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #eee;
+    padding-top: 4px;
+}
+
+.map-history-box {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #eee;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.map-history-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.map-history-row {
+  display: block;
+}
+
+.map-history-year {
+  font-weight: bold;
+  color: #333;
+  width: 35px;
+  display: inline-block;
+}
+
+.map-chg {
+  font-size: 11px;
+  color: #999;
+  font-weight: normal;
+  margin-left: 6px;
+  display: inline-block;
+  min-width: 30px;
+  text-align: left;
+}
+
+.map-pct { 
+  text-align: right; 
+  font-weight: bold; 
+  font-size: 14px; 
+  white-space: nowrap;
+  padding-left: 10px;
+}
+
+.leaflet-interactive:hover {
+    outline: none;
+}
+
+.leaflet-tooltip-map {
+    pointer-events: none !important;
+}
+
+.leaflet-interactive {
+    transition: stroke-width 0.1s, stroke 0.1s;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  max-height: 900px;
+  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  color: #a36d7c;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.card iframe,
+.card .flourish-embed {
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .projection-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 10px;
+    grid-template-areas:
+        "main-content"
+        "sidebar";
+  }
+
+  .results {
+    grid-area: sidebar;
+  }
+
+  .map {
+    grid-area: main-content;
+  }
+
+  .homepage-grid > * {
+    width: 100%;
+  }
+
+  .page-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0px 0px;
+  }
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .logo-title img {
+    width: 70px;
+    height: auto;
+  }
+
+  .logo-title h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-bar > a {
+    text-align: center;
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown, .dropdown-sub {
+    width: 100%;
+  }
+
+  .dropbtn, .dropbtn-sub {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .dropdown-content,
+  .dropdown-content-sub {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .province-link-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    width: 10%;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-title,
+  .live {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .flourish-embed[data-src="visualisation/30573640"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/30573640"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/30573643"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/30573643"] iframe {
+    height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/30573644"] {
+    height: 400px !important;
+    max-height: 400px !important;
+  }
+
+  .flourish-embed[data-src="visualisation/30573644"] iframe {
+    height: 400px !important;
+  }
+}
+
+
+</style>
+</head>
+</html>
+
+<body>
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-title">
+      <a href="index.html">
+        <img src="https://raw.githubusercontent.com/CDNProjections/website/refs/heads/main/New_Logo-removebg-preview.png" alt="CDNProjections Logo">
+      </a>
+      <h1>CDNProjections</h1>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+      </a>
+      <a href="https://x.com/CDNprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" alt="X">
+      </a>
+      <a href="https://cdnprojections.substack.com/" target="_blank">
+        <img src="https://substack.com/img/substack.png" alt="Substack">
+      </a>
+      <a href="https://www.youtube.com/@cdnprojections" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+      </a>
+    </div>
+  </div>
+
+<nav class="nav-bar">
+  <a href="index.html">Home</a>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Provincial Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2026
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="quebec.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg" style="width: 25px; height: 17px">
+         Québec
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2027
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="PEI.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg" style="width: 25px; height: 17px">
+        Prince Edward Island
+        </a>
+        <a href="manitoba.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg" style="width: 33px; height: 17px">
+        Manitoba
+        </a>
+        <a href="alberta.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg" style="width: 33px; height: 17px"> 
+        Alberta
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2028
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NS.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg" style="width: 33px; height: 17px">
+        Nova Scotia
+        </a>
+        <a href="NB.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg" style="width: 27px; height: 17px">
+        New Brunswick
+        </a>
+        <a href="BC.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg" style="width: 28px; height: 17px">
+        British Columbia
+        </a>
+        <a href="SK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg" style="width: 33px; height: 17px">
+        Saskatchewan
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2029
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="NL.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg" style="width: 33px; height: 17px">
+        Newfoundland and Labrador
+        </a>
+        <a href="YK.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg" style="width: 33px; height: 17px">
+        Yukon
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown-sub">
+      <button class="dropbtn-sub" onclick="toggleSubDropdown(this)">
+        2030
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="dropdown-content-sub">
+        <a href="ontario.html" class="province-link-head">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg" style="width: 33px; height: 17px">
+        Ontario
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown(this)">
+    Federal Elections
+    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+
+  <div class="dropdown-content">
+    <div class="dropdown-sub">
+        <a href="canada.html" class="province-link-head">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" style="width: 33px; height: 17px">
+         Canada
+        </a>
+      </div>
+    </div>
+</div>
+
+  <a href="polls.html">Polls</a>
+  <a href="accuracy.html">Accuracy</a>
+    
+</nav>
+
+</header>
+
+<div class="page-wrapper">
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 1: Do you support the Government of Alberta taking increased control over immigration for the purposes of decreasing immigration to more sustainable levels, prioritizing economic migration and giving Albertans first priority on new employment opportunities?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">66.43%</span>
+        <span class="vote">(99.5%)</span>
+        <span class="vote">(87)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 66.43%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">33.57%</span>
+        <span class="vote">(0.5%)</span>
+        <span class="vote">(0)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 33.57%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+
+<div id="map-1"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 1</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30599991"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30599991/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 1 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30599996"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30599996/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 2: Do you support the Government of Alberta introducing a law mandating that only Canadian citizens, permanent residents and individuals with an Alberta-approved immigration status will be eligible for provincially-funded programs, such as health care, education and other social services?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">65.03%</span>
+        <span class="vote">(99.3%)</span>
+        <span class="vote">(87)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 65.03%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">34.97%</span>
+        <span class="vote">(0.7%)</span>
+        <span class="vote">(0)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 34.97%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-2"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 2</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608148/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 2 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608166"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608166/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 3: Assuming that all Canadian citizens and permanent residents continue to qualify for social support programs as they do now, do you support the Government of Alberta introducing a law requiring all individuals with a non-permanent legal immigration status to reside in Alberta for at least 12 months before qualifying for any provincially-funded social support programs?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">67.01%</span>
+        <span class="vote">(99.8%)</span>
+        <span class="vote">(87)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 67.01%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">32.99%</span>
+        <span class="vote">(0.2%)</span>
+        <span class="vote">(0)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 32.99%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-3"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 3</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608512"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608512/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 3 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608516"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608516/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 4: Assuming that all Canadian citizens and permanent residents continue to qualify for public health care and education as they do now, do you support the Government of Alberta charging a reasonable fee or premium to individuals with a non-permanent immigration status living in Alberta for their and their family's use of the healthcare and education systems?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">64.51%</span>
+        <span class="vote">(99.5%)</span>
+        <span class="vote">(87)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 64.51%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">35.49%</span>
+        <span class="vote">(0.5%)</span>
+        <span class="vote">(0)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 35.49%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+
+<div id="map-4"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 4</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608677"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608677/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 4 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608687"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608687/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 5: Do you support the Government of Alberta introducing a law requiring individuals to provide proof of citizenship, such as a passport, birth certificate, or citizenship card, to vote in an Alberta provincial election?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">69.28%</span>
+        <span class="vote">(99.8%)</span>
+        <span class="vote">(87)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 69.28%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">30.72%</span>
+        <span class="vote">(0.2%)</span>
+        <span class="vote">(0)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 30.72%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-5"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 5</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608759"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608759/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 5 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608755"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608755/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 6: Do you support the Government of Alberta working with the governments of other willing provinces to amend the Canadian Constitution to have provincial governments, and not the federal government, select the justices appointed to provincial King's Bench and Appeal courts?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">56.11%</span>
+        <span class="vote">(82.3%)</span>
+        <span class="vote">(61)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 56.11%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">43.89%</span>
+        <span class="vote">(15.7%)</span>
+        <span class="vote">(26)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 43.89%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-6"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 6</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608798"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608798/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 6 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608806"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608806/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 7: Do you support the Government of Alberta working with the governments of other willing provinces to amend the Canadian Constitution to abolish the unelected federal Senate?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">56.14%</span>
+        <span class="vote">(84.0%)</span>
+        <span class="vote">(61)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 56.14%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">43.86%</span>
+        <span class="vote">(16.0%)</span>
+        <span class="vote">(26)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 43.86%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-7"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 7</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30608909"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608909/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 7 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30608913"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30608913/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 8: Do you support the Government of Alberta working with the governments of other willing provinces to amend the Canadian Constitution to allow provinces to opt out of federal programs that intrude on provincial jurisdiction such as health care, education, and social services, without a province losing any of the associated federal funding for use in its social programs?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">50.25%</span>
+        <span class="vote">(50.6%)</span>
+        <span class="vote">(41)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 50.25%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">49.75%</span>
+        <span class="vote">(49.4%)</span>
+        <span class="vote">(46)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 49.75%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-8"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 8</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30609013"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30609013/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 8 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30609019"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30609019/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+<div class="projection-grid" style="margin-bottom: 20px;">
+
+<div class="results">
+  <h2 class="title">CDNProjections Alberta Referendum Electoral Model</h2>
+  <h4 class="questiontitle">Question 9: Do you support the Government of Alberta working with the governments of other willing provinces to amend the Canadian Constitution to better protect provincial rights from federal interference by giving a province's laws dealing with provincial or shared areas of constitutional jurisdiction priority over federal laws when the province's laws and federal laws conflict?</h4>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Eo_circle_green_checkmark.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">Yes</span>
+        <span class="highlight">54.19%</span>
+        <span class="vote">(66.8%)</span>
+        <span class="vote">(58)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 54.19%; background-color:#007f56;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="party-row">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" style="object-fit: contain;" class="party-logo">
+    <div class="info">
+      <div class="topline">
+        <span class="party-name">No</span>
+        <span class="highlight">45.81%</span>
+        <span class="vote">(33.2%)</span>
+        <span class="vote">(29)</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width: 45.81%; background-color:#9d022a;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="updated">Last Updated: October 18, 2026</p>
+</div>
+
+<div id="map-9"></div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - 200 Simulated Results of Question 9</h3>
+<div class="flourish-embed flourish-scatter" data-src="visualisation/30609044"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30609044/thumbnail" width="100%" alt="scatter visualization" /></noscript></div>
+</div>
+
+<div class="card">
+  <h3 class="card-title">Alberta - Question 9 Regional Breakdowns</h3>
+<div class="flourish-embed flourish-chart" data-src="visualisation/30609049"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/30609049/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+// Main reusable function to render a map
+function renderRidingMap(containerId, csvUrl, geojsonUrl = 'ABBoundaries.geojson') {
+  const map = L.map(containerId, {
+    minZoom: 2,
+    maxZoom: 12,
+    zoomControl: true
+  }).setView([53, -115], 6);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  let geojsonLayer = null;
+
+  Promise.all([
+    fetch(geojsonUrl).then(r => r.json()),
+    fetch(csvUrl)
+      .then(r => r.text())
+      .then(csv => {
+        const rows = csv.split(/\r?\n/).map(r => r.trim()).filter(Boolean);
+        rows.shift(); // Remove header
+        const model = {};
+
+        rows.forEach(row => {
+          const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"\vert{}"$/g, '').trim());
+
+          const id = cols[0];                 
+          const yes = parseFloat(cols[1]);    
+          const no = parseFloat(cols[2]);    
+          const status = cols[3] || '';        
+          const riding = cols[4] || '';        
+          const margin = parseFloat(cols[5]); 
+          const blurb = cols[6] || '';        
+
+          const parties = {
+            "Yes": isNaN(yes) ? null : yes,
+            "No": isNaN(no) ? null : no,
+          };
+
+          let leading = null;
+          Object.keys(parties).forEach(p => {
+            const v = parties[p];
+            if (v === null) return;
+            if (!leading || v > leading.value) leading = { party: p, value: v };
+          });
+
+          model[id] = { parties, leading, status, riding, margin, blurb };
+        });
+
+        return model;
+      })
+  ]).then(([geojson, model]) => {
+    geojsonLayer = L.geoJSON(geojson, {
+      style: feature => {
+        const id = String(feature.properties.EDNumber20);
+        const ridingData = model[id];
+        return {
+          color: "#fff",
+          weight: 1,
+          fillColor: ridingData && ridingData.status ? partyColor(ridingData.status) : "#ccc",
+          fillOpacity: 0.8
+        };
+      },
+      onEachFeature: (feature, layer) => {
+        const id = String(feature.properties.EDNumber20);
+        const d = model[id];
+        const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (d) {
+          const topParties = Object.keys(d.parties)
+            .sort((a, b) => d.parties[b] - d.parties[a])
+            .slice(0, 4);
+
+          const rowsHtml = topParties.map(p => {
+            const val = d.parties[p];
+            const color = getBasePartyColor(p);
+
+            return `
+              <tr>
+                <td>
+                  <div class="map-party-cell">
+                    <div class="map-color-bar" style="background-color: ${color}"></div>
+                    <span>${p}</span>
+                  </div>
+                </td>
+                <td class="map-pct">${val !== null && !isNaN(val) ? val.toFixed(1) + '%' : ''}</td>
+              </tr>`;
+          }).join('');
+
+          const marginDisplay = (d.margin !== undefined && !isNaN(d.margin))
+            ? ` (+${d.margin.toFixed(1)}%)`
+            : "";
+
+          const contentHtml = `
+            <div class="map-title">${escapeHtml(ridingName)}</div>
+            <div class="map-subtitle">${escapeHtml(d.blurb || 'Blurb filler')}</div>
+            <table class="map-table">
+              <tr class="map-header-row">
+                <td style="text-align:left">Party</td>
+                <td style="text-align:right">
+                  <span style="font-size: 10px; margin-left: 12px; font-weight: normal; color: #999;">Pct. </span>
+                </td>
+              </tr>
+              ${rowsHtml}
+            </table>
+            <div class="map-footer">
+              ${escapeHtml(d.status || '')}${marginDisplay}
+            </div>
+            <div class="map-brand">CDNPROJECTIONS.CA RIDING MODEL</div>
+          `;
+
+          if (!isMobile) {
+            layer.bindTooltip(contentHtml, {
+              sticky: true,
+              direction: "auto",
+              className: "leaflet-tooltip-map",
+              offset: [15, 0],
+              opacity: 1.0
+            });
+
+            layer.on('mouseover', e => {
+              const lyr = e.target;
+              lyr.setStyle({
+                weight: 4,
+                color: '#000',
+                fillOpacity: 0.9
+              });
+
+              if (d && !lyr.isTooltipOpen()) {
+                lyr.openTooltip();
+              }
+            });
+
+            layer.on('mouseout', e => {
+              const lyr = e.target;
+              geojsonLayer.resetStyle(lyr); // Safely resets style for THIS map instance
+              lyr.closeTooltip();
+            });
+          }
+
+          layer.bindPopup(contentHtml, {
+            className: "map-stick-popup",
+            closeButton: true
+          });
+        }
+      }
+    }).addTo(map);
+
+    map.on('click', () => {
+      map.closePopup();
+    });
+  });
+}
+
+// Global Helper Functions
+function partyColor(partyRaw) {
+  if (!partyRaw) return "#ccc";
+  const party = partyRaw.trim();
+  return {
+    "Locked No": "#76011f",
+    "Safe No": "#9d022a",
+    "Likely No": "#c40234",
+    "Leaning No": "#d0355d",
+    "Tilting No": "#dc6785",
+    "Locked Yes": "#005f40",
+    "Safe Yes": "#007f56",
+    "Likely Yes": "#009f6b",
+    "Leaning Yes": "#33b289",
+    "Tilting Yes": "#66c5a6",
+  }[party] || "#000000";
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function getBasePartyColor(partyName) {
+  const colors = {
+    "No": "#c40234",
+    "Yes": "#009f6b",
+  };
+  return colors[partyName] || "#cccccc";
+}
+
+// Initializing Multiple Maps
+renderRidingMap(
+  'map-1',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1195233648&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-2',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1774336924&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-3',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=2119345002&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-4',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1029864216&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-5',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=437948773&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-6',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1275584648&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-7',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=651508280&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-8',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1899420953&single=true&output=csv'
+);
+
+renderRidingMap(
+  'map-9',
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1964323655&single=true&output=csv'
+);
+
+</script>
+
+</body>
