@@ -1030,7 +1030,7 @@ Promise.all([
       };
     },
 onEachFeature: (feature, layer) => {
-  const id = String(feature.properties.ED_ID);
+  const id = String(feature.properties.FEDUID);
   const d = model[id];
   const ridingName = d && d.riding ? d.riding : (feature.properties.NAME || "Unknown Riding");
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
