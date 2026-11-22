@@ -956,7 +956,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let geojsonLayer = null;
 
 Promise.all([
-  fetch('OntarioElectoralBounariesFixed.geojson').then(r => r.json()),
+  fetch('ONElectoralBoundariesFixed.geojson').then(r => r.json()),
   fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTQRgzDuq_pBFcrXIYiUO_qZBPPoaVS_nR79ZPzciN5Avrtz3FPZY5mkCTg6lltKeLHAFpeFBObRSeC/pub?gid=1497646430&single=true&output=csv')
     .then(r => r.text())
     .then(csv => {
@@ -1020,7 +1020,7 @@ Promise.all([
 ]).then(([geojson, model]) => {
   geojsonLayer = L.geoJSON(geojson, {
     style: feature => {
-      const id = String(feature.properties.ED_ID);
+      const id = String(feature.properties.FEDUID);
       const ridingData = model[id];
       return {
         color: "#fff",
